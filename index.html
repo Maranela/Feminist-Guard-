@@ -1,79 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Feminist-Guard</title>
-<style>
-body{background:#4A0E4E;color:white;font-family:Arial;text-align:center;margin:0;padding:20px}
-.logo{width:120px;border-radius:30px;margin-top:20px}
-h1{color:#FF2D78}
-#sosBtn{width:200px;height:200px;border-radius:100px;background:#FF2D78;color:white;font-size:30px;font-weight:bold;border:6px solid white;margin:30px;box-shadow:0 0 30px #FF2D78}
-#sosBtn:active{background:red;transform:scale(0.95)}
-.card{background:white;color:#4A0E4E;border-radius:20px;padding:15px;margin:15px}
-button.small{background:#4A0E4E;color:white;padding:12px 20px;border-radius:10px;border:none;margin:5px;width:90%}
-</style>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#be185d">
+  <title>Feminist-Guard</title>
+  <style>
+    body { font-family: Arial; background: #fff1f2; margin: 0; padding: 20px; text-align: center; }
+    h1 { color: #be185d; }
+    .card { background: white; border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    button { background: #be185d; color: white; border: none; padding: 15px 30px; border-radius: 10px; font-size: 18px; margin: 10px; width: 90%; }
+    button:active { background: #9f1239; }
+  </style>
 </head>
 <body>
-<img src="./IMG-20260918-WA9685.jpg" class="logo">
-<h1>🛡️ Feminist-Guard 🛡️</h1>
-<p><b>STRONG. SAFE. PROTECTED.</b></p>
+  <h1>Feminist-Guard</h1>
+  <p>Your Safety, Your Power</p>
+  
+  <div class="card">
+    <h2>Emergency</h2>
+    <button onclick="alert('SOS Alert Sent to trusted contacts!')">🚨 SEND SOS</button>
+    <button onclick="alert('Location Shared!')">📍 Share Location</button>
+  </div>
 
-<button id="sosBtn" onmousedown="startHold()" ontouchstart="startHold()" onmouseup="stopHold()" ontouchend="stopHold()">SOS<br><small>HOLD 3 SEC</small></button>
-<p id="status">Hold button for emergency</p>
+  <div class="card">
+    <h2>Quick Help</h2>
+    <button onclick="window.location.href='tel:10111'">📞 Call Police 10111</button>
+    <button>💬 Safe Chat</button>
+  </div>
 
-<div class="card">
-<h3>🚨 Emergency</h3>
-<button class="small" onclick="callPolice()">📞 Call 10111 SAPS</button>
-<button class="small" onclick="shareLocation()">📍 Share Live Location</button>
-<button class="small" onclick="fakeCall()">📲 Fake Call - Escape</button>
-</div>
-
-<div class="card">
-<h3>👩 Your Safety Contacts</h3>
-<input id="contact1" placeholder="Contact 1 number" style="width:80%;padding:10px;margin:5px"><br>
-<input id="contact2" placeholder="Contact 2 number" style="width:80%;padding:10px;margin:5px"><br>
-<button class="small" onclick="saveContacts()">💾 Save Contacts</button>
-</div>
+  <p style="font-size:12px; color:gray;">PWA Ready - Installable as APK</p>
 
 <script>
-let holdTimer;
-function startHold(){
- document.getElementById('status').innerText="HOLDING... 3 sec to trigger!";
- holdTimer=setTimeout(triggerSOS,3000);
-}
-function stopHold(){
- clearTimeout(holdTimer);
- document.getElementById('status').innerText="Hold button for emergency";
-}
-function triggerSOS(){
- navigator.vibrate([500,200,500]);
- document.getElementById('status').innerText="🚨 SOS SENT! SHARING LOCATION!";
- alert("🚨 SOS TRIGGERED! Your location will be sent to your contacts!");
- shareLocation();
-}
-function callPolice(){ window.location.href="tel:10111"; }
-function shareLocation(){
- if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(pos=>{
-   let msg=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
-   alert("Your Location: "+msg+" - Send this to contacts!");
-   if(navigator.share){ navigator.share({title:'HELP ME! Feminist-Guard SOS',text:'I need help! My location:',url:msg}); }
-  });
- } else { alert("Location not supported"); }
-}
-function fakeCall(){
- document.getElementById('status').innerText="📲 Incoming fake call...";
- setTimeout(()=>{ alert("📲 Fake Call: Mom is calling... (Pretend to talk to escape!)"); document.getElementById('status').innerText="Fake call ended"; },1000);
-}
-function saveContacts(){
- localStorage.setItem('c1',document.getElementById('contact1').value);
- localStorage.setItem('c2',document.getElementById('contact2').value);
- alert("Contacts Saved!");
-}
-window.onload=()=>{
- document.getElementById('contact1').value=localStorage.getItem('c1')||'';
- document.getElementById('contact2').value=localStorage.getItem('c2')||'';
-}
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  }
 </script>
 </body>
 </html>
