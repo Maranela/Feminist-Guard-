@@ -1,78 +1,411 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title><meta name="theme-color" content="#6D28D9">
+<title>Feminist Guard PRO</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;padding-bottom:80px}
-.screen{display:none;min-height:100vh;padding:16px}
+body{background:#F5F3FF;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
 .screen.active{display:block}
-.splash{background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.card{background:#fff;border-radius:18px;padding:14px;margin-bottom:10px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
 .btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
 .btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
-.nav{font-size:11px;text-align:center;color:#888}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.bottom.hidden{display:none}
+.nav{font-size:11px;text-align:center;color:#888;flex:1}
+.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
 </style>
 </head>
 <body>
-<div id="splash" class="screen active splash" onclick="go('home')">
-<div style="font-size:70px">🛡️</div>
-<h1>Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:10px">Your Safety. Your Power.</p>
-<p style="font-size:11px;margin-top:20px;opacity:.7">Tap to Start - South Africa</p>
+<div id="splash" class="screen active">
+<div style="font-size:80px">🛡️</div>
+<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:12px">Your Safety. Your Power.</p>
+<button class="start-btn" onclick="go('home')">Tap to Start →</button>
+<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
 </div>
 <div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:12px;color:#666;margin-bottom:12px">You are not alone. We are here.</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>Start Safe Trip</b><br><span style="font-size:11px">Track your journey live</span></div>
+<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:26px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:26px">👁️</div><b>Unsafe</b></div>
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
 </div>
 <div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A)"><b>🔒 Premium R50</b><p style="font-size:11px">Unlock 5 contacts + recording + silent SOS</p><button class="btn btn-p" style="margin-top:8px" onclick="alert('Pay R50 via PayShap to YOUR number then WhatsApp proof!')">Unlock R50</button></div>
+<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
 </div>
 <div id="emergency" class="screen" style="background:#DC2626;color:#fff">
 <p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:140px;height:140px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:50px">🚨</div><h1>EMERGENCY</h1><p>Hold 3 sec to SOS</p></div>
-<div class="card" style="color:#000"><p style="font-size:12px">Will: Alert contacts, Share live location, Call 10111, Start recording</p></div>
-<button class="btn" style="background:#fff;color:#DC2626;margin-top:20px" onclick="go('home')">Cancel - I'm Safe</button>
+<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
+<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
 </div>
 <div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back Safe Trip</p>
-<div class="map">🛰️ Live Map: Thulamela → Thohoyandou<br>ETA 18 min</div>
-<div class="card"><b>On my way to: Thohoyandou CBD</b><p style="font-size:11px">Sharing with 3 contacts ● Live</p></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626" onclick="go('home')">End Trip</button>
+<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
+<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
 </div>
 <div id="contacts" class="screen">
 <h3>Trusted Contacts</h3>
-<div class="card"><b>Mom - 082 123 4567</b><br><span style="font-size:11px">Family</span></div>
-<div class="card"><b>Sister - 071 987 6543</b></div>
-<button class="btn btn-p" onclick="alert('Add Contact - Premium: 5 contacts, Free: 2')">+ Add Contact (R50)</button>
+<div class="card"><b>👩 Mom - 082 123 4567</b></div>
+<div class="card"><b>👩 Sister - 071 987 6543</b></div>
+<button class="btn btn-p">+ Add Contact (R50)</button>
 </div>
 <div id="safe" class="screen">
 <p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card">🏥 Thohoyandou Police - 1.2km <br><button class="btn btn-p" style="margin-top:6px">Directions</button></div>
-<div class="card">🏥 Clinic - 0.8km</div>
+<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
+<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
 </div>
 <div id="more" class="screen">
-<h3>More - Settings</h3>
-<div class="card">My Profile - Nhlanhla</div>
-<div class="card">⚙️ App Settings</div>
-<div class="card">💜 GBV Resources: *120*7867# | 0800 428 428</div>
+<h3>More</h3>
+<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
 <div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
 </div>
-<div class="bottom">
+<div id="bottomNav" class="bottom hidden">
 <div class="nav" onclick="go('home')">🏠<br>Home</div>
 <div class="nav" onclick="go('tracking')">📍<br>Map</div>
 <div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
 <div class="nav" onclick="go('more')">☰<br>More</div>
 </div>
 <script>
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function go(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+const nav=document.getElementById('bottomNav');
+if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard PRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F3FF;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
+.screen.active{display:block}
+#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+.btn-p{background:#6D28D9;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.bottom.hidden{display:none}
+.nav{font-size:11px;text-align:center;color:#888;flex:1}
+.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+</style>
+</head>
+<body>
+<div id="splash" class="screen active">
+<div style="font-size:80px">🛡️</div>
+<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:12px">Your Safety. Your Power.</p>
+<button class="start-btn" onclick="go('home')">Tap to Start →</button>
+<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
+</div>
+<div id="home" class="screen">
+<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
+</div>
+<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
+<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
+</div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
+<p onclick="go('home')">‹ Back</p>
+<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
+<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
+</div>
+<div id="tracking" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
+<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
+</div>
+<div id="contacts" class="screen">
+<h3>Trusted Contacts</h3>
+<div class="card"><b>👩 Mom - 082 123 4567</b></div>
+<div class="card"><b>👩 Sister - 071 987 6543</b></div>
+<button class="btn btn-p">+ Add Contact (R50)</button>
+</div>
+<div id="safe" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
+<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
+<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
+</div>
+<div id="more" class="screen">
+<h3>More</h3>
+<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
+<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
+</div>
+<div id="bottomNav" class="bottom hidden">
+<div class="nav" onclick="go('home')">🏠<br>Home</div>
+<div class="nav" onclick="go('tracking')">📍<br>Map</div>
+<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('more')">☰<br>More</div>
+</div>
+<script>
+function go(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+const nav=document.getElementById('bottomNav');
+if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard PRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F3FF;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
+.screen.active{display:block}
+#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+.btn-p{background:#6D28D9;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.bottom.hidden{display:none}
+.nav{font-size:11px;text-align:center;color:#888;flex:1}
+.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+</style>
+</head>
+<body>
+<div id="splash" class="screen active">
+<div style="font-size:80px">🛡️</div>
+<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:12px">Your Safety. Your Power.</p>
+<button class="start-btn" onclick="go('home')">Tap to Start →</button>
+<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
+</div>
+<div id="home" class="screen">
+<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
+</div>
+<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
+<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
+</div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
+<p onclick="go('home')">‹ Back</p>
+<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
+<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
+</div>
+<div id="tracking" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
+<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
+</div>
+<div id="contacts" class="screen">
+<h3>Trusted Contacts</h3>
+<div class="card"><b>👩 Mom - 082 123 4567</b></div>
+<div class="card"><b>👩 Sister - 071 987 6543</b></div>
+<button class="btn btn-p">+ Add Contact (R50)</button>
+</div>
+<div id="safe" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
+<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
+<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
+</div>
+<div id="more" class="screen">
+<h3>More</h3>
+<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
+<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
+</div>
+<div id="bottomNav" class="bottom hidden">
+<div class="nav" onclick="go('home')">🏠<br>Home</div>
+<div class="nav" onclick="go('tracking')">📍<br>Map</div>
+<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('more')">☰<br>More</div>
+</div>
+<script>
+function go(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+const nav=document.getElementById('bottomNav');
+if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard PRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F3FF;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
+.screen.active{display:block}
+#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+.btn-p{background:#6D28D9;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.bottom.hidden{display:none}
+.nav{font-size:11px;text-align:center;color:#888;flex:1}
+.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+</style>
+</head>
+<body>
+<div id="splash" class="screen active">
+<div style="font-size:80px">🛡️</div>
+<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:12px">Your Safety. Your Power.</p>
+<button class="start-btn" onclick="go('home')">Tap to Start →</button>
+<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
+</div>
+<div id="home" class="screen">
+<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
+</div>
+<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
+<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
+</div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
+<p onclick="go('home')">‹ Back</p>
+<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
+<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
+</div>
+<div id="tracking" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
+<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
+</div>
+<div id="contacts" class="screen">
+<h3>Trusted Contacts</h3>
+<div class="card"><b>👩 Mom - 082 123 4567</b></div>
+<div class="card"><b>👩 Sister - 071 987 6543</b></div>
+<button class="btn btn-p">+ Add Contact (R50)</button>
+</div>
+<div id="safe" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
+<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
+<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
+</div>
+<div id="more" class="screen">
+<h3>More</h3>
+<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
+<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
+</div>
+<div id="bottomNav" class="bottom hidden">
+<div class="nav" onclick="go('home')">🏠<br>Home</div>
+<div class="nav" onclick="go('tracking')">📍<br>Map</div>
+<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('more')">☰<br>More</div>
+</div>
+<script>
+function go(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+const nav=document.getElementById('bottomNav');
+if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard PRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F3FF;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
+.screen.active{display:block}
+#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+.btn-p{background:#6D28D9;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.bottom.hidden{display:none}
+.nav{font-size:11px;text-align:center;color:#888;flex:1}
+.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+</style>
+</head>
+<body>
+<div id="splash" class="screen active">
+<div style="font-size:80px">🛡️</div>
+<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:12px">Your Safety. Your Power.</p>
+<button class="start-btn" onclick="go('home')">Tap to Start →</button>
+<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
+</div>
+<div id="home" class="screen">
+<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
+</div>
+<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
+<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
+</div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
+<p onclick="go('home')">‹ Back</p>
+<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
+<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
+</div>
+<div id="tracking" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
+<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
+</div>
+<div id="contacts" class="screen">
+<h3>Trusted Contacts</h3>
+<div class="card"><b>👩 Mom - 082 123 4567</b></div>
+<div class="card"><b>👩 Sister - 071 987 6543</b></div>
+<button class="btn btn-p">+ Add Contact (R50)</button>
+</div>
+<div id="safe" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
+<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
+<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
+</div>
+<div id="more" class="screen">
+<h3>More</h3>
+<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
+<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
+</div>
+<div id="bottomNav" class="bottom hidden">
+<div class="nav" onclick="go('home')">🏠<br>Home</div>
+<div class="nav" onclick="go('tracking')">📍<br>Map</div>
+<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('more')">☰<br>More</div>
+</div>
+<script>
+function go(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+const nav=document.getElementById('bottomNav');
+if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
+window.scrollTo(0,0);
+}
 </script>
 </body>
 </html>
