@@ -1,18 +1,26 @@
-# Feminist-Guard
-### Protect Women. Empower Communities. A Safer South Africa.
+# 🛡️ Feminist-Guard 🛡️
+![STRONG Logo](./IMG-20260916-WA0063.jpg)
 
-Feminist-Guard is a women's safety mobile app built for South Africa. Not a demo - a real protection app.
+### Strong. Safe. Protected.
 
-**What it does:**
-- 🚨 EMERGENCY SOS - Hold 3 seconds, alerts trusted contacts + shares live location + calls 10111
-- 🗺️ Safe Trip - Track journey to Pretoria CBD, ETA 18 min, share with trusted contacts
-- 👥 Trusted Contacts - Add 5 guardians
-- 📍 Safe Places - Police & hospitals nearby
-- 🔕 Silent Alert - No sound mode
-- ⚙️ Real Account - Login, Profile, Settings, Privacy
+**Protect Women. Empower Communities. A Safer South Africa.**
 
-**Colors:** Deep Purple #2E0B5A + Hot Pink #FF1493
-**Logo:** Woman silhouette inside shield
-**Status:** In development - Limpopo, Thulamela
+Feminist-Guard is a women's safety mobile app built for South Africa. Not a weak demo — a REAL protection app with STRONG design!
 
-Built for every woman who deserves to feel safe.
+> 🎨 Design: Deep Purple #4A0E4E + Hot Pink #FF2D78 + Woman Shield Logo = POWER & STRENGTH
+
+## 🔥 Features
+- 🚨 EMERGENCY SOS — Hold 3 sec, alerts trusted contacts + live location + calls 10111
+- 📍 Live Location Sharing
+- 👥 Trusted Contacts (5 guardians)
+- 🗺️ Safe Zones — Police & hospitals nearby
+- 📞 One-Tap Emergency Call
+- 🔕 Silent Alert — No sound mode
+
+## 💪 Why STRONG?
+Because safety is not soft. Safety is POWER. This app shows a woman's strength with a shield — protection + empowerment.
+
+Built by Maranela — For women, by women.
+
+---
+⭐ Star this repo if you support women's safety!
