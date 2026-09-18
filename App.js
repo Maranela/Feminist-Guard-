@@ -1,37 +1,35 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Image 
-        source={require('./IMG-20260916-WA0063.jpg')}
-        style={styles.logo}
-      />
-      <Text style={styles.title}>Feminist-Guard</Text>
-      <Text style={styles.subtitle}>Strong. Safe. Protected.</Text>
-      
-      <TouchableOpacity style={styles.sosButton}>
-        <Text style={styles.sosText}>🆘 SOS EMERGENCY</Text>
-      </TouchableOpacity>
-      
-      <View style={styles.menu}>
-        <Text style={styles.menuText}>✓ Share Location</Text>
-        <Text style={styles.menuText}>✓ Emergency Contacts</Text>
-        <Text style={styles.menuText}>✓ Safe Zones</Text>
-        <Text style={styles.menuText}>✓ Settings</Text>
-      </View>
-    </View>
-  );
-}
+      <div style={styles.container}>
+            <h1 style={styles.logo}>🛡️ Feminist-Guard</h1>
+                  <p style={styles.tagline}>Strong. Safe. Supported.</p>
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#4A0E4E', alignItems: 'center', paddingTop: 80 },
-  logo: { width: 150, height: 150, borderRadius: 75, backgroundColor: 'white' },
-  title: { color: '#FF2D78', fontSize: 32, fontWeight: 'bold', marginTop: 20 },
-  subtitle: { color: 'white', fontSize: 16, marginTop: 5 },
-  sosButton: { backgroundColor: '#FF2D78', padding: 20, borderRadius: 50, marginTop: 40, width: '80%', alignItems: 'center' },
-  sosText: { color: 'white', fontWeight: 'bold', fontSize: 20 },
-  menu: { marginTop: 30, width: '80%' },
-  menuText: { color: 'white', fontSize: 18, marginVertical: 8, backgroundColor: '#6A1B6D', padding: 12, borderRadius: 10 }
-});
+                        <div style={styles.card}>
+                                <h2>Welcome Sister 💜</h2>
+                                        <p>Your safe space. Emergency help, community support, and resources.</p>
+                                              </div>
+
+                                                    <a href="tel:112" style={{...styles.button, ...styles.primary, textDecoration:'none', display:'block', textAlign:'center'}}>
+                                                            🚨 EMERGENCY CALL 112
+                                                                  </a>
+
+                                                                        <button style={styles.button}>👩‍👧‍👧 My Safe Circle</button>
+                                                                              <button style={styles.button}>📚 Know Your Rights</button>
+                                                                                    <button style={styles.button}>💬 Community Support</button>
+
+                                                                                          <p style={styles.footer}>Built with love by Maranela • You are not alone</p>
+                                                                                              </div>
+                                                                                                );
+                                                                                                }
+
+                                                                                                const styles = {
+                                                                                                  container: { background: '#1a0b2e', minHeight: '100vh', padding: 20, color: 'white', textAlign: 'center', fontFamily: 'Arial' },
+                                                                                                    logo: { color: '#ff7ac3', fontSize: 32 },
+                                                                                                      tagline: { letterSpacing: 2 },
+                                                                                                        card: { background: '#2d184a', borderRadius: 20, padding: 20, margin: '20px 0', border: '1px solid #ff7ac3' },
+                                                                                                          button: { background: '#4a2a7a', color: 'white', padding: 16, borderRadius: 15, width: '100%', border: 'none', marginBottom: 12, fontWeight: 'bold', fontSize: 16 },
+                                                                                                            primary: { background: '#ff2e7e' },
+                                                                                                              footer: { marginTop: 30, color: '#888', fontSize: 12 }
+                                                                                                              };
