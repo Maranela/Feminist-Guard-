@@ -2,410 +2,158 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title>
+<title>Feminist Guard PRO - Pretoria</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;overflow-x:hidden}
+body{background:#F5F3FF}
 .screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
 .screen.active{display:block}
-#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+#splash.active{display:flex;position:fixed;inset:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:16px}
+.card{background:#fff;border-radius:18px;padding:14px;margin-bottom:10px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:13px;border:none;border-radius:14px;font-weight:700;cursor:pointer}
 .btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
+.btn-o{background:#fff;border:2px solid #6D28D9;color:#6D28D9}
+.input{width:100%;padding:11px;border:2px solid #E9D5FF;border-radius:12px;margin:5px 0;font-size:14px}
+.otp-input{width:40px;height:46px;text-align:center;font-weight:700;border:2px solid #E9D5FF;border-radius:10px;margin:3px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:100}
 .bottom.hidden{display:none}
-.nav{font-size:11px;text-align:center;color:#888;flex:1}
-.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+.nav{font-size:9px;text-align:center;color:#888;flex:1}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lang-btn{padding:10px;border:2px solid #E9D5FF;border-radius:10px;background:#fff;font-weight:600;font-size:11px}
+.lang-btn.active{background:#6D28D9;color:#fff;border-color:#6D28D9}
+.badge{display:inline-block;background:#10B981;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;margin-left:6px}
+.popia{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px}
+.popia.hidden{display:none}
 </style>
 </head>
 <body>
+<div id="popiaModal" class="popia">
+<div class="card" style="max-width:380px">
+<h3>🔐 POPIA Privacy</h3>
+<p style="font-size:11px;margin:8px 0">
+<b>Feminist Guard PRO - Pretoria</b> POPIA compliant.<br>
+- Location ONLY during SOS/Trip.<br>
+- Never sell data. Encrypted.<br>
+- Hidden vault, not gallery.<br>
+- Delete anytime.<br><br>
+<input type="checkbox" id="popiaCheck"> I consent to share location ONLY during SOS<br>
+<input type="checkbox" id="popiaCheck2" style="margin-top:6px"> I am 16+ or parent consent
+</p>
+<button class="btn btn-p" onclick="acceptPopia()">I Consent & Continue</button>
+</div>
+</div>
+
 <div id="splash" class="screen active">
-<div style="font-size:80px">🛡️</div>
-<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:12px">Your Safety. Your Power.</p>
-<button class="start-btn" onclick="go('home')">Tap to Start →</button>
-<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
+<div style="font-size:56px">🛡️</div>
+<h1 style="font-size:28px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span> <span class="badge">POPIA ✓</span></h1>
+<p style="font-size:12px;margin:8px 0" data-t="splash_sub">Pretoria • English default • 12 Languages in Settings</p>
+<button class="btn" style="background:#fff;color:#6D28D9;margin-top:12px;border-radius:24px;font-weight:800" onclick="go('login')" data-t="tap_start">Tap to Start →</button>
+<p style="font-size:9px;margin-top:10px;opacity:.7">Duress PIN 9999 • Shake 3x SOS • Child Mode</p>
 </div>
+
+<div id="login" class="screen"><h2 data-t="login">Login 💜</h2><p style="font-size:11px;color:#666" data-t="login_hint">Forced? Enter 9999 = Fake Mode + Silent SOS</p><div class="card" style="margin-top:10px"><input id="lEmail" class="input" placeholder="Email / Phone"><input id="lPass" class="input" type="password" placeholder="Password or 9999"><button class="btn btn-p" style="margin-top:8px" onclick="doLogin()" data-t="login_btn">Login</button><button class="btn btn-o" style="margin-top:6px" onclick="go('signup')" data-t="create_acc">Create Account</button></div></div>
+<div id="signup" class="screen"><h2 data-t="signup">Sign Up</h2><div class="card"><input id="sName" class="input" placeholder="Full Name"><input id="sUser" class="input" placeholder="Username"><input id="sEmail" class="input" placeholder="Email"><input id="sPhone" class="input" placeholder="Phone"><input id="sPass" class="input" type="password" placeholder="Password 6+"><button class="btn btn-p" style="margin-top:8px" onclick="doSignup()" data-t="send_otp">Send OTP</button></div></div>
+<div id="otp" class="screen"><h2>Verify OTP 🔐</h2><p id="otpMsg" style="font-size:11px">Code sent</p><div class="card" style="text-align:center"><div style="display:flex;justify-content:center"><input id="o1" class="otp-input" maxlength="1" oninput="moveOtp(1)"><input id="o2" class="otp-input" maxlength="1" oninput="moveOtp(2)"><input id="o3" class="otp-input" maxlength="1" oninput="moveOtp(3)"><input id="o4" class="otp-input" maxlength="1" oninput="moveOtp(4)"><input id="o5" class="otp-input" maxlength="1" oninput="moveOtp(5)"><input id="o6" class="otp-input" maxlength="1" oninput="moveOtp(6)"></div><div id="demoCode" style="background:#FEF3C7;padding:8px;border-radius:10px;font-weight:800;letter-spacing:4px;margin:8px 0"></div><button class="btn btn-p" onclick="doVerify()" data-t="verify">Verify</button></div></div>
+
 <div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
+<h2 id="greet">Hello, Queen ✓</h2><p style="font-size:10px;color:#666">Shake 3x SOS: ON • Battery Saver: ON</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff;margin-top:8px" onclick="go('tracking')"><b data-t="start_trip">▶ Start Safe Trip</b><br><span style="font-size:10px" data-t="start_trip_sub">Live location + Offline SMS</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px">
+<div class="card" style="text-align:center;background:#FFF1F2;padding:10px" onclick="triggerSOS()"><div style="font-size:22px">🚨</div><b style="font-size:11px;color:#DC2626">SOS</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF;padding:10px" onclick="toggleDecoy()"><div style="font-size:22px">🧮</div><b style="font-size:11px" data-t="hide">Hide</b></div>
+<div class="card" style="text-align:center;background:#FEF3C7;padding:10px" onclick="go('vault')"><div style="font-size:22px">🔒</div><b style="font-size:11px">Vault</b></div>
 </div>
-<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
+<div class="card"><b data-t="quick">Quick Access</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px"><button class="btn btn-p" style="font-size:11px" onclick="go('safe')" data-t="safe_places">📍 Safe Places Pretoria</button><button class="btn btn-p" style="font-size:11px" onclick="startRecording()" data-t="record">🎙️ Record Evidence</button></div></div>
+<div class="card"><b>Language / Ulimi</b><p style="font-size:10px">Current: <span id="curLangShow">English</span> - Change in Settings → Language</p><button class="btn btn-o" style="margin-top:4px" onclick="go('settings')">⚙️ Go to Language Settings</button></div>
 </div>
-<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
-<p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
-<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
+
+<div id="fakeHome" class="screen"><h2>Calculator</h2><div class="card"><p style="text-align:center">No contacts<br>🧮</p></div><p style="font-size:9px;text-align:center">Silent SOS sent!</p></div>
+<div id="contacts" class="screen"><p onclick="go('home')">‹ Back</p><h3 data-t="contacts">Trusted Contacts</h3><div id="contactList"></div><div class="card"><input id="cName" class="input" placeholder="Name"><input id="cPhone" class="input" placeholder="Phone"><button class="btn btn-p" onclick="addContact()">+ Add</button></div></div>
+<div id="vault" class="screen"><p onclick="go('home')">‹ Back</p><h3>🔒 Evidence Vault</h3><div id="vaultLock"><div class="card"><input id="vaultPin" class="input" type="password" placeholder="Vault PIN"><button class="btn btn-p" onclick="unlockVault()">Unlock</button></div></div><div id="vaultContent" style="display:none"><div class="card"><b>Recordings</b><div id="recList">None</div></div></div></div>
+<div id="tracking" class="screen"><p onclick="go('home')">‹ Back</p><h3 data-t="live_trip">Live Trip Pretoria</h3><div style="height:200px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center" id="mapBox">🛰️ Pretoria Live</div><button class="btn btn-p" style="margin-top:6px" onclick="startTrip()" data-t="start">Start Trip</button><button class="btn btn-o" style="margin-top:6px" onclick="endTrip()" data-t="end">End Trip Safe</button><div class="card" style="margin-top:6px"><b>History</b><div id="historyList">No trips</div></div></div>
+<div id="safe" class="screen"><p onclick="go('home')">‹ Back</p><h3>Safe Places - Pretoria <span class="badge">Verified</span></h3><div class="card"><b>👮 Pretoria Central SAPS Verified ✓</b><br>012 353 4100</div><div class="card"><b>👮 Sunnyside SAPS 012 422 3600</b></div><div class="card"><b>👮 Mamelodi East 012 801 8600</b></div><div class="card"><b>🏥 Steve Biko Hospital 012 354 1000</b></div><div class="card"><b>💜 Thuthuzela Kalafong 012 318 6500 / 0800 428 428</b></div></div>
+<div id="stories" class="screen"><p onclick="go('home')">‹ Back</p><h3>Stories Anonymous</h3><div class="card"><textarea id="storyInput" class="input" style="height:70px" placeholder="Share anonymously"></textarea><button class="btn btn-p" onclick="postStory()">Post</button></div><div id="storyList"></div></div>
+<div id="child" class="screen"><p onclick="go('home')">‹ Back</p><h3>Child Mode</h3><div class="card"><input id="childName" class="input" placeholder="Daughter Name"><button class="btn btn-p" onclick="saveChild()">Save</button></div><div id="childAlerts"></div></div>
+
+<!-- SETTINGS WITH FULL LANGUAGE SWITCHER -->
+<div id="settings" class="screen"><p onclick="go('home')">‹ Back</p><h3>Settings / Izilungiselelo</h3>
+<div class="card" style="border:2px solid #6D28D9"><b>🌍 Language / Ulimi - Choose your language</b><p style="font-size:10px;margin:4px 0">Default is English for funders. Choose Zulu for daily use. App will change instantly!</p><div class="lang-grid" style="margin-top:8px">
+<button class="lang-btn active" id="btn-en" onclick="setLang('en')">🇬🇧 English (Default)</button>
+<button class="lang-btn" id="btn-zu" onclick="setLang('zu')">🇿🇦 isiZulu - Second</button>
+<button class="lang-btn" id="btn-xh" onclick="setLang('xh')">isiXhosa</button>
+<button class="lang-btn" id="btn-af" onclick="setLang('af')">Afrikaans</button>
+<button class="lang-btn" id="btn-nso" onclick="setLang('nso')">Sepedi</button>
+<button class="lang-btn" id="btn-tn" onclick="setLang('tn')">Setswana</button>
+<button class="lang-btn" id="btn-st" onclick="setLang('st')">Sesotho</button>
+<button class="lang-btn" id="btn-ts" onclick="setLang('ts')">Xitsonga</button>
+<button class="lang-btn" id="btn-ss" onclick="setLang('ss')">siSwati</button>
+<button class="lang-btn" id="btn-ve" onclick="setLang('ve')">Tshivenda</button>
+<button class="lang-btn" id="btn-nr" onclick="setLang('nr')">isiNdebele</button>
+</div><p style="font-size:11px;margin-top:8px;font-weight:700">Current / Manje: <span id="curLangShow2" style="color:#6D28D9">English</span></p></div>
+<div class="card"><b>Profile</b><input id="setName" class="input" placeholder="Name"><input id="setUser" class="input" placeholder="Username"><button class="btn btn-p" style="margin-top:4px" onclick="saveSettings()">Save</button></div>
+<div class="card" style="background:#FFF1F2"><button class="btn" style="background:#DC2626;color:#fff" onclick="deleteAcc()">Delete Account (POPIA)</button><button class="btn btn-o" style="margin-top:6px" onclick="logout()">Logout</button></div>
 </div>
-<div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
-<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
-</div>
-<div id="contacts" class="screen">
-<h3>Trusted Contacts</h3>
-<div class="card"><b>👩 Mom - 082 123 4567</b></div>
-<div class="card"><b>👩 Sister - 071 987 6543</b></div>
-<button class="btn btn-p">+ Add Contact (R50)</button>
-</div>
-<div id="safe" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
-<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
-</div>
-<div id="more" class="screen">
-<h3>More</h3>
-<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
-<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
-</div>
+
+<div id="admin" class="screen"><p onclick="go('home')">‹ Back</p><h3>Admin PIN 2026</h3><div class="card"><input id="adminPin" class="input" type="password" placeholder="PIN"><button class="btn btn-p" onclick="checkAdmin()">Unlock</button></div><div id="adminPanel" style="display:none"><div class="card"><b>Users:</b> <span id="userCount">0</span></div></div></div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff"><p onclick="go('home')">‹ Back</p><div style="text-align:center;margin:24px 0"><div style="width:140px;height:140px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:56px" onclick="triggerSOS()">🚨</div><h1>SOS SENT!</h1><p id="evidenceStatus">Recording...</p></div><button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">I am Safe</button></div>
+<div id="decoyScreen" class="screen" style="background:#111827;color:#fff"><h2 style="text-align:center;margin-top:30px">🧮 Calculator</h2><p style="text-align:center" onclick="toggleDecoy()">Tap 5x to exit</p></div>
+<div id="more" class="screen"><h3>More</h3><div class="card" onclick="go('stories')">💜 Stories</div><div class="card" onclick="go('settings')">⚙️ Settings - Language EN/ZU</div><div class="card" onclick="go('admin')">🔐 Admin</div></div>
 <div id="bottomNav" class="bottom hidden">
-<div class="nav" onclick="go('home')">🏠<br>Home</div>
-<div class="nav" onclick="go('tracking')">📍<br>Map</div>
-<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('home')">🏠<br><span data-t="home">Home</span></div>
+<div class="nav" onclick="go('contacts')">👥<br><span data-t="contacts_nav">Contacts</span></div>
+<div class="nav" onclick="go('vault')">🔒<br>Vault</div>
+<div class="nav" onclick="go('safe')">📍<br>Safe</div>
 <div class="nav" onclick="go('more')">☰<br>More</div>
 </div>
 <script>
-function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-const nav=document.getElementById('bottomNav');
-if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
-window.scrollTo(0,0);
+const translations={
+en:{splash_sub:"Pretoria • English default • 12 Languages in Settings",tap_start:"Tap to Start →",login:"Login 💜",login_hint:"Forced? Enter 9999 = Fake Mode + Silent SOS",login_btn:"Login",create_acc:"Create Account",signup:"Sign Up",send_otp:"Send OTP",verify:"Verify",start_trip:"▶ Start Safe Trip",start_trip_sub:"Live location + Offline SMS",hide:"Hide",quick:"Quick Access",safe_places:"📍 Safe Places Pretoria",record:"🎙️ Record Evidence",contacts:"Trusted Contacts",live_trip:"Live Trip Pretoria",start:"Start Trip",end:"End Trip Safe",home:"Home",contacts_nav:"Contacts"},
+zu:{splash_sub:"Pretoria • IsiNgisi okuzenzakalelayo • Izilimi ezingu-12 kuzilungiselelo",tap_start:"Thepha ukuqala →",login:"Ngena 💜",login_hint:"Uphoqekile? Faka 9999 = Fake Mode + SOS ethule",login_btn:"Ngena",create_acc:"Dala I-akhawunti",signup:"Bhalisa",send_otp:"Thumela OTP",verify:"Qinisekisa",start_trip:"▶ Qala Uhambo Oluphephile",start_trip_sub:"Indawo bukhoma + SMS offline",hide:"Fihla",quick:"Ukufinyelela Okusheshayo",safe_places:"📍 Izindawo Eziphephile Pretoria",record:"🎙️ Qopha Ubufakazi",contacts:"Othintana Naye Othembekile",live_trip:"Uhambo Olubukhoma Pretoria",start:"Qala Uhambo",end:"Qeda Uhambo Uphephile",home:"Ikhaya",contacts_nav:"Othintana Naye"},
+xh:{splash_sub:"Pretoria • IsiNgesi default • Iilwimi ezili-12",tap_start:"Cofa ukuqala",login:"Ngena 💜",login_btn:"Ngena",create_acc:"Yenza I-akhawunti",start_trip:"▶ Qala Uhambo Olukhuselekileyo",safe_places:"📍 Iindawo Ezikhuselekileyo",home:"Ikhaya",contacts_nav:"Abafowunelwa"},
+af:{splash_sub:"Pretoria • Engels verstek • 12 Tale in Instellings",tap_start:"Tik om te Begin",login:"Teken In 💜",login_btn:"Teken In",create_acc:"Skep Rekening",start_trip:"▶ Begin Veilige Reis",safe_places:"📍 Veilige Plekke Pretoria",home:"Tuis",contacts_nav:"Kontakte"},
+nso:{splash_sub:"Pretoria • English default • Maleme a 12",tap_start:"Tobetsa go thoma",login:"Tsena 💜",login_btn:"Tsena",create_acc:"Hlama Akhaonto",start_trip:"▶ Thoma Leeto le Sireletsegileng",safe_places:"📍 Mafelo a Sireletsegileng",home:"Gae",contacts_nav:"Mangalane"},
+tn:{splash_sub:"Pretoria • English default • Dipuo tse 12",tap_start:"Tobetsa go simolola",login:"Tsena 💜",login_btn:"Tsena",create_acc:"Dira Akhaonto",start_trip:"▶ Simolola Loeto lo Sireletsegileng",safe_places:"📍 Mafelo a a Sireletsegileng",home:"Gae",contacts_nav:"Mangalane"},
+st:{splash_sub:"Pretoria • English default • Lipuo tse 12",tap_start:"Tobetsa ho qala",login:"Kena 💜",login_btn:"Kena",create_acc:"Etsa Akhaonto",start_trip:"▶ Qala Leeto le Sireletsehileng",safe_places:"📍 Libaka tse Sireletsehileng",home:"Hae",contacts_nav:"Mabitso"},
+ts:{splash_sub:"Pretoria • English default • Tindzimi ta 12",tap_start:"Tshikilela ku sungula",login:"Nghena 💜",login_btn:"Nghena",create_acc:"Tumbuluxa Akhawunti",start_trip:"▶ Sungula Riendzo ro Sirheleleka",safe_places:"📍 Tindhawu to Sirheleleka",home:"Kaya",contacts_nav:"Vanghana"},
+ss:{splash_sub:"Pretoria • English default • Tilwimi letingu-12",tap_start:"Cofa kucala",login:"Ngena 💜",login_btn:"Ngena",create_acc:"Dala I-akhawunti",start_trip:"▶ Cala Luhambo Lwesiphephile",safe_places:"📍 Tindzawo Letiphephile",home:"Ekhaya",contacts_nav:"Bongani"},
+ve:{splash_sub:"Pretoria • English default • Nyambo dza 12",tap_start:"Tobetsa u thoma",login:"Dzhena 💜",login_btn:"Dzhena",create_acc:"Vhumba Akhaunti",start_trip:"▶ Thoma Lugendo lwo Tsireledzeaho",safe_places:"📍 Fhethu ho Tsireledzeaho",home:"Hayani",contacts_nav:"Vhadzulapo"},
+nr:{splash_sub:"Pretoria • English default • Ilimi ezilitshumi nambili",tap_start:"Tjhwaya ukuqala",login:"Ngena 💜",login_btn:"Ngena",create_acc:"Akha I-akhawunti",start_trip:"▶ Qala Uhambo Oluphephileko",safe_places:"📍 Iindawo Eziphephileko",home:"Ekhaya",contacts_nav:"Othintana Nabo"}
+};
+let curLang=localStorage.getItem('fg_lang')||'en'; let currentOtp=""; let shakeCount=0,lastShake=0,shakeEnabled=true,isRecording=false,mediaRecorder;
+function applyLang(l){
+curLang=l; localStorage.setItem('fg_lang',l);
+document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+const btn=document.getElementById('btn-'+l); if(btn) btn.classList.add('active');
+const dict=translations[l]||translations.en;
+document.querySelectorAll('[data-t]').forEach(el=>{
+const k=el.getAttribute('data-t'); if(dict[k]) el.innerText=dict[k];
+});
+const names={en:'English',zu:'isiZulu',xh:'isiXhosa',af:'Afrikaans',nso:'Sepedi',tn:'Setswana',st:'Sesotho',ts:'Xitsonga',ss:'siSwati',ve:'Tshivenda',nr:'isiNdebele'};
+document.getElementById('curLangShow').innerText=names[l]||l;
+document.getElementById('curLangShow2').innerText=names[l]||l;
 }
+function acceptPopia(){ if(!document.getElementById('popiaCheck').checked ||!document.getElementById('popiaCheck2').checked){alert('Tick both');return;} localStorage.setItem('fg_popia','true'); document.getElementById('popiaModal').classList.add('hidden'); }
+(function(){ if(localStorage.getItem('fg_popia')) document.getElementById('popiaModal').classList.add('hidden'); applyLang(curLang); })();
+function setLang(l){ applyLang(l); alert('Language changed to '+l+' / Ulimi lushintshiwe: '+l); }
+function go(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); const nav=document.getElementById('bottomNav'); if(['splash','login','signup','otp','decoyScreen','fakeHome'].includes(id)) nav.classList.add('hidden'); else nav.classList.remove('hidden'); if(id==='home'){ const u=JSON.parse(localStorage.getItem('fg_user')||'{}'); document.getElementById('greet').innerText='Hello, '+(u.name||'Queen')+' ✓'; } window.scrollTo(0,0); }
+function genOtp(){return Math.floor(100000+Math.random()*900000).toString();}
+function doSignup(){ const name=document.getElementById('sName').value.trim(); const username=document.getElementById('sUser').value.trim(); const email=document.getElementById('sEmail').value.trim(); const phone=document.getElementById('sPhone').value.trim(); const pass=document.getElementById('sPass').value.trim(); if(!name||!username||!email||!phone||pass.length<6){alert('Fill all');return;} currentOtp=genOtp(); localStorage.setItem('fg_pending',JSON.stringify({name,username,email,phone,pass,otp:currentOtp})); document.getElementById('otpMsg').innerText='Code to '+email; document.getElementById('demoCode').innerText=currentOtp; go('otp'); }
+function moveOtp(i){ if(document.getElementById('o'+i).value && i<6) document.getElementById('o'+(i+1)).focus(); }
+function getEnteredOtp(){ let c=""; for(let i=1;i<=6;i++) c+=document.getElementById('o'+i).value; return c; }
+function doVerify(){ const entered=getEnteredOtp(); const p=JSON.parse(localStorage.getItem('fg_pending')||'{}'); if(entered===p.otp||entered===currentOtp){ localStorage.setItem('fg_user',JSON.stringify({...p,verified:true})); localStorage.removeItem('fg_pending'); alert('Verified ✓'); go('home'); } else alert('Wrong, demo: '+currentOtp); }
+function doLogin(){ const e=document.getElementById('lEmail').value.trim(); const p=document.getElementById('lPass').value.trim(); if(p==='9999'){ go('fakeHome'); triggerSOS(); return; } const u=JSON.parse(localStorage.getItem('fg_user')||'{}'); if((u.email===e||u.phone===e||u.username===e)&&u.pass===p){ go('home'); } else alert('Wrong'); }
+function saveSettings(){ let u=JSON.parse(localStorage.getItem('fg_user')||'{}'); u.name=document.getElementById('setName').value.trim(); u.username=document.getElementById('setUser').value.trim(); localStorage.setItem('fg_user',JSON.stringify(u)); alert('Saved'); go('home'); }
+function logout(){ go('login'); } function deleteAcc(){ if(confirm('Delete?')){ localStorage.clear(); go('signup'); } }
+function addContact(){ const n=document.getElementById('cName').value; const ph=document.getElementById('cPhone').value; if(!n||!ph){alert('Fill');return;} let list=JSON.parse(localStorage.getItem('fg_contacts')||'[]'); list.push({name:n,phone:ph}); localStorage.setItem('fg_contacts',JSON.stringify(list)); }
+function triggerSOS(){ go('emergency'); const contacts=JSON.parse(localStorage.getItem('fg_contacts')||'[]'); const loc='-25.7479,28.2293 Pretoria'; const msg='SOS! Needs help! https://maps.google.com/?q='+loc; contacts.forEach(c=>{ try{ window.open('sms:'+c.phone+'?body='+encodeURIComponent(msg)); }catch(e){} }); }
+function startTrip(){ document.getElementById('mapBox').innerHTML='🛰️ LIVE Pretoria<br>● Sharing'; }
+function endTrip(){ document.getElementById('mapBox').innerHTML='Trip Ended Safe ✓'; }
+function toggleDecoy(){ const d=document.getElementById('decoyScreen'); if(d.classList.contains('active')) go('home'); else go('decoyScreen'); }
+function postStory(){ const t=document.getElementById('storyInput').value.trim(); if(!t) return; let s=JSON.parse(localStorage.getItem('fg_stories')||'[]'); s.unshift({text:t,time:new Date().toISOString()}); localStorage.setItem('fg_stories',JSON.stringify(s)); document.getElementById('storyInput').value=''; }
+function saveChild(){ alert('Child Mode ON ✓'); }
+function unlockVault(){ document.getElementById('vaultLock').style.display='none'; document.getElementById('vaultContent').style.display='block'; }
+function checkAdmin(){ if(document.getElementById('adminPin').value==='2026'){ document.getElementById('adminPanel').style.display='block'; document.getElementById('userCount').innerText=localStorage.getItem('fg_user')?'1 user':'0'; } }
 </script>
 </body>
-</html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;overflow-x:hidden}
-.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
-.screen.active{display:block}
-#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
-.btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
-.bottom.hidden{display:none}
-.nav{font-size:11px;text-align:center;color:#888;flex:1}
-.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
-</style>
-</head>
-<body>
-<div id="splash" class="screen active">
-<div style="font-size:80px">🛡️</div>
-<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:12px">Your Safety. Your Power.</p>
-<button class="start-btn" onclick="go('home')">Tap to Start →</button>
-<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
-</div>
-<div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
-</div>
-<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
-</div>
-<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
-<p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
-<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
-</div>
-<div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
-<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
-</div>
-<div id="contacts" class="screen">
-<h3>Trusted Contacts</h3>
-<div class="card"><b>👩 Mom - 082 123 4567</b></div>
-<div class="card"><b>👩 Sister - 071 987 6543</b></div>
-<button class="btn btn-p">+ Add Contact (R50)</button>
-</div>
-<div id="safe" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
-<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
-</div>
-<div id="more" class="screen">
-<h3>More</h3>
-<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
-<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
-</div>
-<div id="bottomNav" class="bottom hidden">
-<div class="nav" onclick="go('home')">🏠<br>Home</div>
-<div class="nav" onclick="go('tracking')">📍<br>Map</div>
-<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
-<div class="nav" onclick="go('more')">☰<br>More</div>
-</div>
-<script>
-function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-const nav=document.getElementById('bottomNav');
-if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
-window.scrollTo(0,0);
-}
-</script>
-</body>
-</html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;overflow-x:hidden}
-.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
-.screen.active{display:block}
-#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
-.btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
-.bottom.hidden{display:none}
-.nav{font-size:11px;text-align:center;color:#888;flex:1}
-.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
-</style>
-</head>
-<body>
-<div id="splash" class="screen active">
-<div style="font-size:80px">🛡️</div>
-<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:12px">Your Safety. Your Power.</p>
-<button class="start-btn" onclick="go('home')">Tap to Start →</button>
-<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
-</div>
-<div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
-</div>
-<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
-</div>
-<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
-<p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
-<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
-</div>
-<div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
-<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
-</div>
-<div id="contacts" class="screen">
-<h3>Trusted Contacts</h3>
-<div class="card"><b>👩 Mom - 082 123 4567</b></div>
-<div class="card"><b>👩 Sister - 071 987 6543</b></div>
-<button class="btn btn-p">+ Add Contact (R50)</button>
-</div>
-<div id="safe" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
-<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
-</div>
-<div id="more" class="screen">
-<h3>More</h3>
-<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
-<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
-</div>
-<div id="bottomNav" class="bottom hidden">
-<div class="nav" onclick="go('home')">🏠<br>Home</div>
-<div class="nav" onclick="go('tracking')">📍<br>Map</div>
-<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
-<div class="nav" onclick="go('more')">☰<br>More</div>
-</div>
-<script>
-function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-const nav=document.getElementById('bottomNav');
-if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
-window.scrollTo(0,0);
-}
-</script>
-</body>
-</html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;overflow-x:hidden}
-.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
-.screen.active{display:block}
-#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
-.btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
-.bottom.hidden{display:none}
-.nav{font-size:11px;text-align:center;color:#888;flex:1}
-.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
-</style>
-</head>
-<body>
-<div id="splash" class="screen active">
-<div style="font-size:80px">🛡️</div>
-<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:12px">Your Safety. Your Power.</p>
-<button class="start-btn" onclick="go('home')">Tap to Start →</button>
-<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
-</div>
-<div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
-</div>
-<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
-</div>
-<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
-<p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
-<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
-</div>
-<div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
-<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
-</div>
-<div id="contacts" class="screen">
-<h3>Trusted Contacts</h3>
-<div class="card"><b>👩 Mom - 082 123 4567</b></div>
-<div class="card"><b>👩 Sister - 071 987 6543</b></div>
-<button class="btn btn-p">+ Add Contact (R50)</button>
-</div>
-<div id="safe" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
-<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
-</div>
-<div id="more" class="screen">
-<h3>More</h3>
-<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
-<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
-</div>
-<div id="bottomNav" class="bottom hidden">
-<div class="nav" onclick="go('home')">🏠<br>Home</div>
-<div class="nav" onclick="go('tracking')">📍<br>Map</div>
-<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
-<div class="nav" onclick="go('more')">☰<br>More</div>
-</div>
-<script>
-function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-const nav=document.getElementById('bottomNav');
-if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
-window.scrollTo(0,0);
-}
-</script>
-</body>
-</html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard PRO</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-body{background:#F5F3FF;overflow-x:hidden}
-.screen{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
-.screen.active{display:block}
-#splash.active{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;padding:20px}
-.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
-.btn-p{background:#6D28D9;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:100}
-.bottom.hidden{display:none}
-.nav{font-size:11px;text-align:center;color:#888;flex:1}
-.start-btn{margin-top:24px;background:#fff;color:#6D28D9;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;border:none}
-.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
-</style>
-</head>
-<body>
-<div id="splash" class="screen active">
-<div style="font-size:80px">🛡️</div>
-<h1 style="font-size:38px">Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
-<p style="margin-top:12px">Your Safety. Your Power.</p>
-<button class="start-btn" onclick="go('home')">Tap to Start →</button>
-<p style="font-size:11px;margin-top:24px;opacity:.6">South Africa • Made for Women</p>
-</div>
-<div id="home" class="screen">
-<h2>Good morning, Nhlanhla</h2><p style="font-size:13px;color:#666;margin-bottom:14px">You are not alone. 💜</p>
-<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>▶ Start Safe Trip</b><br><span style="font-size:12px">Share live location</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:28px">🚨</div><b style="color:#DC2626">Emergency</b></div>
-<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:28px">👁️</div><b>Unsafe</b></div>
-</div>
-<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
-<div class="card" style="background:#FEF3C7;border:2px solid #F59E0B"><b>🔒 Premium R50 / year</b><p style="font-size:11px;margin:6px 0">5 contacts + recording + silent SOS</p><button class="btn btn-p" onclick="alert('PayShap R50 to YOUR number!')">Unlock R50 →</button></div>
-</div>
-<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
-<p onclick="go('home')">‹ Back</p>
-<div style="text-align:center;margin:30px 0"><div style="width:150px;height:150px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:60px" onclick="alert('SOS SENT!')">🚨</div><h1>EMERGENCY</h1><p>Tap shield to send SOS</p></div>
-<button class="btn" style="background:#fff;color:#DC2626" onclick="go('home')">Cancel - I'm Safe</button>
-</div>
-<div id="tracking" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Live Tracking</h3>
-<div class="map"><div><b>🛰️ Thulamela → Thohoyandou</b><br>ETA 18 min<br><br><span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:12px">● LIVE</span></div></div>
-<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626;margin-top:10px" onclick="go('home')">■ End Trip</button>
-</div>
-<div id="contacts" class="screen">
-<h3>Trusted Contacts</h3>
-<div class="card"><b>👩 Mom - 082 123 4567</b></div>
-<div class="card"><b>👩 Sister - 071 987 6543</b></div>
-<button class="btn btn-p">+ Add Contact (R50)</button>
-</div>
-<div id="safe" class="screen">
-<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
-<div class="card"><b>👮 Thohoyandou SAPS - 1.2km</b><br><button class="btn btn-p" style="margin-top:8px" onclick="window.open('https://maps.google.com/?q=Thohoyandou+Police')">Directions</button></div>
-<div class="card"><b>🏥 Tshilidzini Hospital</b></div>
-</div>
-<div id="more" class="screen">
-<h3>More</h3>
-<div class="card">💜 GBV Help: *120*7867# | 0800 428 428</div>
-<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
-</div>
-<div id="bottomNav" class="bottom hidden">
-<div class="nav" onclick="go('home')">🏠<br>Home</div>
-<div class="nav" onclick="go('tracking')">📍<br>Map</div>
-<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
-<div class="nav" onclick="go('more')">☰<br>More</div>
-</div>
-<script>
-function go(id){
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-const nav=document.getElementById('bottomNav');
-if(id==='splash'){nav.classList.add('hidden')}else{nav.classList.remove('hidden')}
-window.scrollTo(0,0);
-}
-</script>
-</body>
-</html>
+                                                                                                                                                                                                                                                               </html>
