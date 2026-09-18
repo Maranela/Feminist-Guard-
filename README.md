@@ -1,5 +1,5 @@
 # 🛡️ Feminist-Guard 🛡️
-![STRONG Logo](./IMG-20260916-WA0063.jpg)
+![STRONG Logo](./IMG-20260918-WA9685.jpg)
 
 ### Strong. Safe. Protected.
 
