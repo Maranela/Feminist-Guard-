@@ -1,0 +1,18 @@
+{
+  "name": "feminist-guard",
+  "version": "2.0.0",
+  "description": "Strong. Safe. Protected. - Woman's Safety App",
+  "main": "App.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "expo": "~49.0.0",
+    "react": "18.2.0",
+    "react-native": "0.72.0",
+    "expo-location": "~16.1.0",
+    "react-native-maps": "1.7.1"
+  }
+}
