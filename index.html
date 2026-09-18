@@ -1,92 +1,78 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#be185d">
-<title>Feminist-Guard</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard PRO</title><meta name="theme-color" content="#6D28D9">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#FFF0F3;min-height:100vh}
-.container{max-width:420px;margin:0 auto;padding:20px}
-h1{color:#be185d;text-align:center;font-size:28px;margin:15px 0 5px}
-.subtitle{text-align:center;color:#666;margin-bottom:20px}
-.card{background:white;border-radius:20px;padding:20px;margin:15px 0;box-shadow:0 4px 15px rgba(190,24,93,0.1)}
-input{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin:8px 0;font-size:16px}
-button{width:100%;padding:15px;border:none;border-radius:14px;font-size:16px;font-weight:bold;margin-top:10px}
-.btn-primary{background:#be185d;color:white}
-.sos-btn{background:#be185d;color:white;padding:22px;font-size:22px;animation:pulse 2s infinite}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
-.contact-item{background:#FFF0F3;padding:10px;border-radius:10px;margin:6px 0;display:flex;justify-content:space-between}
-.hidden{display:none !important}
-.fake-call-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#111;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F3FF;padding-bottom:80px}
+.screen{display:none;min-height:100vh;padding:16px}
+.screen.active{display:block}
+.splash{background:linear-gradient(180deg,#2D0B5A,#6D28D9);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.card{background:#fff;border-radius:18px;padding:14px;margin-bottom:10px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-weight:700}
+.btn-p{background:#6D28D9;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
+.nav{font-size:11px;text-align:center;color:#888}
+.map{height:260px;background:#DBEAFE;border-radius:16px;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
-<div id="loginPage" class="container">
-<h1>Feminist-Guard</h1>
-<p class="subtitle">Your Safety, Your Power 💖</p>
-<div class="card">
-<h2>Welcome Sister</h2>
-<p style="font-size:14px;color:#666;margin:10px 0">Create account - stays on your phone</p>
-<input id="regName" placeholder="Your Name *">
-<input id="regPhone" placeholder="Your Phone +27... *">
-<button class="btn-primary" onclick="doLogin()">Enter My Safe App →</button>
+<div id="splash" class="screen active splash" onclick="go('home')">
+<div style="font-size:70px">🛡️</div>
+<h1>Feminist Guard<br><span style="color:#F9A8D4">PRO</span></h1>
+<p style="margin-top:10px">Your Safety. Your Power.</p>
+<p style="font-size:11px;margin-top:20px;opacity:.7">Tap to Start - South Africa</p>
 </div>
+<div id="home" class="screen">
+<h2>Good morning, Nhlanhla</h2><p style="font-size:12px;color:#666;margin-bottom:12px">You are not alone. We are here.</p>
+<div class="card" style="background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff" onclick="go('tracking')"><b>Start Safe Trip</b><br><span style="font-size:11px">Track your journey live</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="card" style="text-align:center;background:#FFF1F2" onclick="go('emergency')"><div style="font-size:26px">🚨</div><b style="color:#DC2626">Emergency</b></div>
+<div class="card" style="text-align:center;background:#F3E8FF"><div style="font-size:26px">👁️</div><b>Unsafe</b></div>
 </div>
-<div id="homePage" class="container hidden">
-<h1>Feminist-Guard</h1>
-<p class="subtitle">Hi <span id="userNameDisplay"></span> 💖</p>
-<div class="card">
-<h2 style="color:#be185d">🚨 EMERGENCY</h2>
-<button class="sos-btn" onclick="sendSOS()">🚨 SEND SOS</button>
-<p style="font-size:12px;text-align:center;margin-top:8px;color:#666">Sends live location via WhatsApp</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
-<button style="background:#880E4F;color:white" onclick="shareLocation()">📍 Share Location</button>
-<button style="background:#880E4F;color:white" onclick="window.open('tel:10111')">📞 Police 10111</button>
+<div class="card"><b>Quick Access</b><br><button class="btn btn-p" style="margin-top:8px" onclick="go('safe')">📍 Safe Places</button></div>
+<div class="card" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A)"><b>🔒 Premium R50</b><p style="font-size:11px">Unlock 5 contacts + recording + silent SOS</p><button class="btn btn-p" style="margin-top:8px" onclick="alert('Pay R50 via PayShap to YOUR number then WhatsApp proof!')">Unlock R50</button></div>
 </div>
+<div id="emergency" class="screen" style="background:#DC2626;color:#fff">
+<p onclick="go('home')">‹ Back</p>
+<div style="text-align:center;margin:30px 0"><div style="width:140px;height:140px;border:4px solid #fff;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:50px">🚨</div><h1>EMERGENCY</h1><p>Hold 3 sec to SOS</p></div>
+<div class="card" style="color:#000"><p style="font-size:12px">Will: Alert contacts, Share live location, Call 10111, Start recording</p></div>
+<button class="btn" style="background:#fff;color:#DC2626;margin-top:20px" onclick="go('home')">Cancel - I'm Safe</button>
 </div>
-<div class="card">
-<h2>Quick Tools</h2>
-<button style="background:#880E4F;color:white" onclick="triggerFakeCall()">📱 Fake Call</button>
-<button id="recordBtn" style="background:#6A1B9A;color:white" onclick="toggleRecord()">🎙️ Secret Record</button>
-<button style="background:white;color:#be185d;border:2px solid #be185d" onclick="window.open('tel:0800428428')">💬 GBV Helpline</button>
+<div id="tracking" class="screen">
+<p onclick="go('home')">‹ Back Safe Trip</p>
+<div class="map">🛰️ Live Map: Thulamela → Thohoyandou<br>ETA 18 min</div>
+<div class="card"><b>On my way to: Thohoyandou CBD</b><p style="font-size:11px">Sharing with 3 contacts ● Live</p></div>
+<button class="btn" style="background:#fff;border:2px solid #DC2626;color:#DC2626" onclick="go('home')">End Trip</button>
 </div>
-<div class="card">
-<h2>👩‍👧‍👧 Emergency Contacts</h2>
-<div id="contactList"></div>
-<input id="cName" placeholder="Name (e.g. Mom)">
-<input id="cPhone" placeholder="WhatsApp +27...">
-<button style="background:#2E7D32;color:white" onclick="addContact()">+ Add Contact</button>
+<div id="contacts" class="screen">
+<h3>Trusted Contacts</h3>
+<div class="card"><b>Mom - 082 123 4567</b><br><span style="font-size:11px">Family</span></div>
+<div class="card"><b>Sister - 071 987 6543</b></div>
+<button class="btn btn-p" onclick="alert('Add Contact - Premium: 5 contacts, Free: 2')">+ Add Contact (R50)</button>
 </div>
-<div class="card"><button style="background:white;color:#be185d;border:2px solid #be185d" onclick="logout()">Logout</button></div>
+<div id="safe" class="screen">
+<p onclick="go('home')">‹ Back</p><h3>Safe Places</h3>
+<div class="card">🏥 Thohoyandou Police - 1.2km <br><button class="btn btn-p" style="margin-top:6px">Directions</button></div>
+<div class="card">🏥 Clinic - 0.8km</div>
 </div>
-<div id="fakeCallScreen" class="fake-call-screen hidden">
-<p>INCOMING CALL...</p>
-<h1 id="fakeCallerName" style="color:white;font-size:40px;margin:20px">Mom</h1>
-<div style="display:flex;gap:50px;margin-top:60px">
-<button onclick="endFakeCall()" style="width:70px;height:70px;border-radius:50%;background:#d32f2f;color:white;font-size:24px;border:none">✖</button>
-<button onclick="endFakeCall()" style="width:70px;height:70px;border-radius:50%;background:#2E7D32;color:white;font-size:24px;border:none">✔</button>
+<div id="more" class="screen">
+<h3>More - Settings</h3>
+<div class="card">My Profile - Nhlanhla</div>
+<div class="card">⚙️ App Settings</div>
+<div class="card">💜 GBV Resources: *120*7867# | 0800 428 428</div>
+<div class="card" style="text-align:center;color:#BE185D"><b>You are brave. You are not alone.</b></div>
 </div>
-<button onclick="endFakeCall()" style="margin-top:40px;background:#333;width:auto;padding:10px 20px;border-radius:20px;color:white">End - Safe Now</button>
+<div class="bottom">
+<div class="nav" onclick="go('home')">🏠<br>Home</div>
+<div class="nav" onclick="go('tracking')">📍<br>Map</div>
+<div class="nav" onclick="go('contacts')">👥<br>Contacts</div>
+<div class="nav" onclick="go('more')">☰<br>More</div>
 </div>
 <script>
-let contacts=JSON.parse(localStorage.getItem('fg_contacts')||'[]');
-let user=JSON.parse(localStorage.getItem('fg_user')||'null');
-let isRecording=false;let mediaRecorder;
-function init(){if(user)showHome();renderContacts()}
-function doLogin(){const name=document.getElementById('regName').value.trim();const phone=document.getElementById('regPhone').value.trim();if(!name||!phone){alert('Enter name and phone');return}user={name,phone};localStorage.setItem('fg_user',JSON.stringify(user));showHome()}
-function showHome(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('homePage').classList.remove('hidden');document.getElementById('userNameDisplay').innerText=user.name;renderContacts()}
-function logout(){if(confirm('Logout?')){localStorage.removeItem('fg_user');location.reload()}}
-function addContact(){const name=document.getElementById('cName').value.trim();let phone=document.getElementById('cPhone').value.trim();if(!name||!phone){alert('Enter details');return}contacts.push({name,phone});localStorage.setItem('fg_contacts',JSON.stringify(contacts));document.getElementById('cName').value='';document.getElementById('cPhone').value='';renderContacts()}
-function renderContacts(){const list=document.getElementById('contactList');if(contacts.length==0){list.innerHTML='<p style="color:#999;font-size:13px">No contacts yet</p>';return}list.innerHTML=contacts.map((c,i)=>`<div class="contact-item"><span><b>${c.name}</b> ${c.phone}</span><span onclick="removeContact(${i})" style="color:red">✖</span></div>`).join('')}
-function removeContact(i){contacts.splice(i,1);localStorage.setItem('fg_contacts',JSON.stringify(contacts));renderContacts()}
-function shareLocation(){navigator.geolocation.getCurrentPosition(p=>{const link=`https://maps.google.com/?q=${p.coords.latitude},${p.coords.longitude}`;prompt('Copy location:',link)},()=>alert('Allow location'))}
-function sendSOS(){if(contacts.length==0){alert('Add contact first!');return}navigator.geolocation.getCurrentPosition(pos=>{const mapLink=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;const msg=`🚨 SOS! I NEED HELP! I am ${user.name}. Location: ${mapLink} - Feminist-Guard`;contacts.forEach(c=>{let clean=c.phone.replace(/[^0-9]/g,'');window.open(`https://wa.me/${clean}?text=${encodeURIComponent(msg)}`,'_blank')});alert('SOS sent!')},()=>alert('Enable location'))}
-function triggerFakeCall(){document.getElementById('fakeCallerName').innerText=contacts[0]?.name||'Mom';document.getElementById('fakeCallScreen').classList.remove('hidden')}
-function endFakeCall(){document.getElementById('fakeCallScreen').classList.add('hidden')}
-function toggleRecord(){const btn=document.getElementById('recordBtn');if(!isRecording){navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{mediaRecorder=new MediaRecorder(s);mediaRecorder.start();isRecording=true;btn.innerText='🔴 Recording... Tap to Stop';btn.style.background='red'}).catch(()=>alert('Mic needed'))}else{mediaRecorder.stop();isRecording=false;btn.innerText='🎙️ Secret Record';btn.style.background='#6A1B9A';mediaRecorder.ondataavailable=e=>{const url=URL.createObjectURL(e.data);const a=document.createElement('a');a.href=url;a.download='evidence.webm';a.click();alert('Saved!')}}}
-init();
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 </script>
 </body>
 </html>
