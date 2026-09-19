@@ -4,6 +4,7 @@
     "slug": "feminist-guard",
     "version": "1.0.0",
     "orientation": "portrait",
+    "owner": "nhlanhla1",
     "icon": "./icon-512.png",
     "splash": {
       "image": "./icon-512.png",
@@ -15,6 +16,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./icon-512.png",
         "backgroundColor": "#9C27B0"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f3b7a1d2-8c4e-4b9a-9e2f-1a2b3c4d5e6f"
       }
     }
   }
