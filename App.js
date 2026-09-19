@@ -65,7 +65,7 @@ return(
 <ScrollView style={{flex:1,backgroundColor:'#F5F0FF'}} contentContainerStyle={{padding:20,paddingTop:60}}>
 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
 <Text style={{fontSize:22,fontWeight:'bold',color:'#4C1D95'}}>Feminist Guard</Text>
-<TouchableOpacity onPress={()=>setLang(lang==='en'?'nso':lang==='nso'?'ve':'en')} style={{backgroundColor:'#4C1D95',padding:8,borderRadius:8}}>
+<TouchableOpacity onPress={()=>setLang(lang==='en'?'nso':lang==='nso'?'ve':lang==='ve'?'ts':'en')} style={{backgroundColor:'#4C1D95',padding:8,borderRadius:8}}>
 <Text style={{color:'white'}}>{lang.toUpperCase()}</Text>
 </TouchableOpacity>
 </View>
@@ -75,4 +75,29 @@ return(
 <Text style={{color:'white',marginTop:5}}>Tap to alert all</Text>
 </TouchableOpacity>
 
-<TouchableOpacity onPress={()=>Alert.alert
+<View style={{backgroundColor:'white',padding:15,borderRadius:15,marginTop:20}}>
+<Text style={{fontWeight:'bold',color:'#4C1D95',marginBottom:10}}>{t.add}</Text>
+<TextInput placeholder="Name" value={name} onChangeText={setName} style={{borderWidth:1,borderColor:'#DDD',padding:10,borderRadius:8,marginBottom:10}}/>
+<TextInput placeholder="Phone" value={phone} onChangeText={setPhone} keyboardType="phone-pad" style={{borderWidth:1,borderColor:'#DDD',padding:10,borderRadius:8,marginBottom:10}}/>
+<TouchableOpacity onPress={saveContact} style={{backgroundColor:'#4C1D95',padding:12,borderRadius:8,alignItems:'center'}}>
+<Text style={{color:'white',fontWeight:'bold'}}>{t.add}</Text>
+</TouchableOpacity>
+</View>
+
+<View style={{marginTop:20}}>
+<Text style={{fontWeight:'bold',color:'#4C1D95',marginBottom:10}}>{t.cont} ({contacts.length})</Text>
+{contacts.map((c,i)=>(
+<View key={i} style={{backgroundColor:'white',padding:10,borderRadius:8,marginBottom:8,flexDirection:'row',justifyContent:'space-between'}}>
+<Text style={{fontWeight:'bold'}}>{c.name}</Text>
+<Text>{c.phone}</Text>
+</View>
+))}
+</View>
+
+<TouchableOpacity onPress={()=>Alert.alert("Safe","You are marked safe!")} style={{backgroundColor:'#10B981',padding:15,borderRadius:15,marginTop:20,alignItems:'center'}}>
+<Text style={{color:'white',fontWeight:'bold',fontSize:16}}>{t.safe}</Text>
+</TouchableOpacity>
+
+</ScrollView>
+);
+  }
