@@ -17,15 +17,16 @@ body{margin:0;background:#F5F3FF}
 .btn-primary{width:100%;background:#6D28D9;color:white;padding:16px;border-radius:14px;border:none;font-weight:700;font-size:16px;margin:8px 0}
 .btn-outline{width:100%;background:white;color:#6D28D9;padding:16px;border-radius:14px;border:2px solid #6D28D9;font-weight:700;margin:8px 0}
 .topNav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:10px 0;z-index:99}
-.topNav div{text-align:center;font-size:12px;color:#666;flex:1;padding:5px}
-.topNav.active{color:#6D28D9;font-weight:800}
+.topNav div{text-align:center;font-size:12px;color:#666;flex:1;padding:5px;cursor:pointer}
+.active{color:#6D28D9!important;font-weight:800}
 .bigTrip{background:#8B5CF6;color:white;border-radius:24px;padding:20px}
 .tile{background:#FFF7ED;border-radius:20px;padding:15px;text-align:center;cursor:pointer}
 .langGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.langBtn{padding:14px;border:2px solid #E9D5FF;background:white;border-radius:12px;font-weight:600}
+.langBtn{padding:14px;border:2px solid #E9D5FF;background:white;border-radius:12px;font-weight:600;cursor:pointer}
 .langBtn.active{background:#6D28D9;color:white;border-color:#6D28D9}
 .hidden{display:none}
 .contactItem{background:#F9F5FF;padding:12px;border-radius:12px;margin:6px 0;display:flex;justify-content:space-between}
+.policy{font-size:13px;line-height:1.6;color:#444}
 </style>
 </head>
 <body>
@@ -33,10 +34,11 @@ body{margin:0;background:#F5F3FF}
 <div id="s1" class="splash">
 <div style="font-size:60px">🛡️</div>
 <h1 style="font-size:38px">Feminist Guard</h1>
-<div style="font-size:32px;color:#F9A8D4;font-weight:800">PRO <span style="background:#10B981;color:white;padding:5px 14px;border-radius:20px;font-size:13px">POPIA ✓</span></div>
+<div style="font-size:26px;color:#F9A8D4;font-weight:800">PRO <span style="background:rgba(255,255,255,0.2);color:white;padding:5px 14px;border-radius:20px;font-size:12px;border:1px solid #fff">Privacy First</span></div>
 <div style="opacity:.9;margin-top:10px">Pretoria • English default • 12 Languages</div>
+<div style="margin-top:10px;font-size:12px;opacity:.7;max-width:320px">MVP Prototype - Built with POPIA Principles in mind. Data stays on your device.</div>
 <button class="cta" onclick="go('s2')">Tap to Start →</button>
-<div style="margin-top:15px;font-size:13px;opacity:.7">Duress PIN 9999 • Shake 3x SOS • Child Mode</div>
+<div style="margin-top:15px;font-size:11px;opacity:.6">Duress PIN 9999 • Shake 3x SOS • Child Mode</div>
 </div>
 
 <div id="s2" class="page hidden" style="min-height:100vh">
@@ -48,14 +50,14 @@ body{margin:0;background:#F5F3FF}
 <button class="btn-primary" onclick="doLogin()">Login</button>
 <button class="btn-outline" onclick="doCreate()">Create Account</button>
 <p id="loginMsg" style="color:red;text-align:center"></p>
+<p style="font-size:11px;color:#888;text-align:center;margin-top:10px">By continuing, you agree to our Privacy Policy (More → Privacy)</p>
 </div>
 </div>
 
-<!-- HOME -->
 <div id="s3" class="page hidden">
 <h1 id="helloName">Hello, Madumane ✓</h1>
-<p>Shake 3x SOS: ON • Battery Saver: ON</p>
-<div class="bigTrip"><div style="font-size:22px;font-weight:800">▶ Start Safe Trip</div><div style="opacity:.9;margin-top:6px">Live location + Offline SMS</div></div>
+<p>Shake 3x SOS: ON • Data: On-Device Only</p>
+<div class="bigTrip"><div style="font-size:22px;font-weight:800">▶ Start Safe Trip</div><div style="opacity:.9;margin-top:6px">Live location + Offline SMS to guardians</div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0">
 <div class="tile" onclick="sendSOS()"><div style="font-size:30px">🚨</div><b style="color:#DC2626">SOS</b></div>
 <div class="tile" onclick="hideMode()"><div style="font-size:30px">🧮</div><b>Hide</b></div>
@@ -77,7 +79,6 @@ body{margin:0;background:#F5F3FF}
 <div class="topNav"><div class="active" onclick="go('s3')">🏠<br>Home</div><div onclick="go('s6c')">👥<br>Contacts</div><div onclick="go('s5')">🔒<br>Vault</div><div onclick="go('s7')">📍<br>Safe</div><div onclick="go('s6')">☰<br>More</div></div>
 </div>
 
-<!-- SETTINGS / LANGUAGE -->
 <div id="s4" class="page hidden">
 <div onclick="go('s3')">‹ Back</div>
 <h1>Settings / Izilungiselelo</h1>
@@ -102,11 +103,10 @@ body{margin:0;background:#F5F3FF}
 <div class="topNav"><div onclick="go('s3')">🏠<br>Home</div><div onclick="go('s6c')">👥<br>Contacts</div><div onclick="go('s5')">🔒<br>Vault</div><div onclick="go('s7')">📍<br>Safe</div><div onclick="go('s6')">☰<br>More</div></div>
 </div>
 
-<!-- CONTACTS - NEW FIXED -->
 <div id="s6c" class="page hidden">
 <h1>Contacts 👥</h1>
 <div class="card">
-<h3>My Guardians</h3>
+<h3>My Guardians (Stored only on your phone)</h3>
 <div id="contactList"><p style="color:#888">No guardians yet</p></div>
 <input id="cName" class="input" placeholder="Name - e.g. Mom">
 <input id="cPhone" class="input" placeholder="WhatsApp +27...">
@@ -115,15 +115,13 @@ body{margin:0;background:#F5F3FF}
 <div class="topNav"><div onclick="go('s3')">🏠<br>Home</div><div class="active">👥<br>Contacts</div><div onclick="go('s5')">🔒<br>Vault</div><div onclick="go('s7')">📍<br>Safe</div><div onclick="go('s6')">☰<br>More</div></div>
 </div>
 
-<!-- VAULT -->
 <div id="s5" class="page hidden">
-<h1>Vault 🔒 POPIA Encrypted</h1>
-<div class="card"><p>Your evidence is safe. This vault is encrypted.</p><p id="vaultRec">No recordings yet</p></div>
+<h1>Vault 🔒 Private</h1>
+<div class="card"><p><b>On-Device Only - No Cloud.</b> Your evidence stays on your phone. We do not upload it.</p><p id="vaultRec">No recordings yet</p></div>
 <button class="btn-outline" onclick="go('s3')">Back Home</button>
 <div class="topNav"><div onclick="go('s3')">🏠<br>Home</div><div onclick="go('s6c')">👥<br>Contacts</div><div class="active">🔒<br>Vault</div><div onclick="go('s7')">📍<br>Safe</div><div onclick="go('s6')">☰<br>More</div></div>
 </div>
 
-<!-- SAFE PLACES - NEW FIXED -->
 <div id="s7" class="page hidden">
 <h1>Safe Places 📍 Pretoria</h1>
 <div class="card">🏥 <b>Brooklyn SAPS</b> - 24h<br><small>012 366 1700</small><br><button class="btn-primary" onclick="window.open('https://maps.google.com/?q=Brooklyn+SAPS+Pretoria')">Open Map</button></div>
@@ -132,13 +130,35 @@ body{margin:0;background:#F5F3FF}
 <div class="topNav"><div onclick="go('s3')">🏠<br>Home</div><div onclick="go('s6c')">👥<br>Contacts</div><div onclick="go('s5')">🔒<br>Vault</div><div class="active">📍<br>Safe</div><div onclick="go('s6')">☰<br>More</div></div>
 </div>
 
-<!-- MORE -->
 <div id="s6" class="page hidden">
 <h1>More ☰</h1>
+<div class="card" onclick="go('sPrivacy')" style="border:2px solid #10B981">📄 Privacy Policy & POPIA Info - Tap to read</div>
 <div class="card" onclick="alert('Stories: Sisters sharing stories - Coming soon')">💜 Stories</div>
 <div class="card" onclick="go('s4')">⚙️ Settings - Language</div>
-<div class="card" onclick="alert('Admin: Only for you - User management')">🔐 Admin</div>
+<div class="card" onclick="alert('Admin: Only for you')">🔐 Admin</div>
+<p style="font-size:11px;color:#888;text-align:center;margin-top:20px">Feminist Guard PRO MVP v7.2 Safe - Data on device only. Not yet formally POPIA certified. Built for POPIA principles.</p>
 <div class="topNav"><div onclick="go('s3')">🏠<br>Home</div><div onclick="go('s6c')">👥<br>Contacts</div><div onclick="go('s5')">🔒<br>Vault</div><div onclick="go('s7')">📍<br>Safe</div><div class="active">☰<br>More</div></div>
+</div>
+
+<div id="sPrivacy" class="page hidden">
+<div onclick="go('s6')">‹ Back to More</div>
+<h1>Privacy Policy</h1>
+<div class="card policy">
+<h3>1. What is this?</h3>
+<p>Feminist Guard PRO is currently an MVP Prototype (test version) hosted on GitHub Pages. It is built with South Africa's POPIA privacy principles in mind.</p>
+<h3>2. Where is your data?</h3>
+<p><b>On your phone ONLY.</b> Contacts, recordings, and name are saved in your browser's localStorage. We do NOT send it to any server, we do NOT sell it. If you clear your browser data, it is deleted.</p>
+<h3>3. Location?</h3>
+<p>Location is only used when YOU tap SOS. It creates a Google Maps link to share via YOUR WhatsApp. We do not track you.</p>
+<h3>4. POPIA Rights</h3>
+<p>You can: View, edit, delete your guardians anytime in Contacts → ✖. Delete all data: Chrome Settings → Clear Site Data.</p>
+<h3>5. Disclaimer</h3>
+<p>This MVP is NOT yet formally POPIA certified by a lawyer. Wording "Privacy First" means we designed for privacy, not that we have a certificate. For full certification, we will appoint an Information Officer after funding.</p>
+<h3>6. Contact</h3>
+<p>For data questions: Email - admin@feministguard.co.za (to be registered)</p>
+<p style="margin-top:15px;font-weight:700">By using this prototype you understand it is for testing and feedback.</p>
+</div>
+<button class="btn-primary" onclick="go('s3')">I Understand - Back to Home</button>
 </div>
 
 <script>
@@ -154,12 +174,12 @@ function doCreate(){ let e=document.getElementById('loginEmail').value; if(!e) r
 function saveProfile(){ let n=document.getElementById('profName').value; if(n){ localStorage.setItem('fg_user',n); document.getElementById('helloName').innerText='Hello, '+n+' ✓'; alert('Saved!'); go('s3'); } }
 function setL(code,el){ document.querySelectorAll('.langBtn').forEach(b=>b.classList.remove('active')); el.classList.add('active'); let map={en:'English',zu:'isiZulu',xh:'isiXhosa',af:'Afrikaans',nso:'Sepedi',tn:'Setswana',st:'Sesotho',ts:'Xitsonga',ss:'siSwati',ve:'Tshivenda',nr:'isiNdebele'}; document.getElementById('curLang').innerText=map[code]; document.getElementById('curLang2').innerText=map[code]; localStorage.setItem('fg_lang',code); }
 function sendSOS(){ navigator.geolocation.getCurrentPosition(pos=>{ let link=`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`; let arr=JSON.parse(localStorage.getItem('fg_contacts')||"[]"); let msg=`🚨 SOS Feminist Guard PRO! I need help! ${link}`; if(arr.length>0){ arr.forEach(c=>{ let num=c.phone.replace(/[^0-9]/g,''); window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`,'_blank'); }); } else { window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank'); } alert('🚨 SOS SENT! '+link); },()=>alert('Allow location for SOS')); }
-function addContact(){ let n=document.getElementById('cName').value.trim(); let p=document.getElementById('cPhone').value.trim(); if(!n||!p) return alert('Enter name & phone'); let arr=JSON.parse(localStorage.getItem('fg_contacts')||"[]"); arr.push({name:n,phone:p}); localStorage.setItem('fg_contacts',JSON.stringify(arr)); document.getElementById('cName').value=''; document.getElementById('cPhone').value=''; loadContacts(); alert('Guardian saved!'); }
+function addContact(){ let n=document.getElementById('cName').value.trim(); let p=document.getElementById('cPhone').value.trim(); if(!n||!p) return alert('Enter name & phone'); let arr=JSON.parse(localStorage.getItem('fg_contacts')||"[]"); arr.push({name:n,phone:p}); localStorage.setItem('fg_contacts',JSON.stringify(arr)); document.getElementById('cName').value=''; document.getElementById('cPhone').value=''; loadContacts(); alert('Guardian saved locally!'); }
 function loadContacts(){ let arr=JSON.parse(localStorage.getItem('fg_contacts')||"[]"); let el=document.getElementById('contactList'); if(arr.length==0) el.innerHTML='<p style=color:#888>No guardians yet</p>'; else el.innerHTML=arr.map((c,i)=>`<div class=contactItem><span>• ${c.name} - ${c.phone}</span><span style=color:red;cursor:pointer onclick=delC(${i})>✖</span></div>`).join(''); }
 function delC(i){ let arr=JSON.parse(localStorage.getItem('fg_contacts')||"[]"); arr.splice(i,1); localStorage.setItem('fg_contacts',JSON.stringify(arr)); loadContacts(); }
 function hideMode(){ document.body.innerHTML='<div style=min-height:100vh;background:#f0f0f0;padding:20px><h1>🧮 Calculator</h1><input style=width:100%;padding:20px;font-size:24px value=0><div style=display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px><button>7</button><button>8</button><button>9</button><button>/</button><button>4</button><button>5</button><button>6</button><button>*</button><button>1</button><button>2</button><button>3</button><button>-</button><button>0</button><button>.</button><button>=</button><button>+</button></div><button onclick=location.reload() style=margin-top:30px;width:100%;padding:15px;background:#6D28D9;color:white;border-radius:10px>Exit Hide Mode</button></div>'; }
-let rec=false; function toggleRec(){ rec=!rec; document.getElementById('recP').innerText=rec?'🔴 Recording... Tap again to stop':'✅ Saved to Vault'; document.getElementById('vaultRec').innerText=rec?'🔴 Recording...':'✅ Evidence saved at '+new Date().toLocaleTimeString(); }
+let rec=false; function toggleRec(){ rec=!rec; document.getElementById('recP').innerText=rec?'🔴 Recording... Tap again to stop':'✅ Saved to Vault (On device only)'; document.getElementById('vaultRec').innerText=rec?'🔴 Recording...':'✅ Evidence saved locally at '+new Date().toLocaleTimeString(); }
 window.onload=()=>{ let u=localStorage.getItem('fg_user'); if(u) document.getElementById('helloName').innerText='Hello, '+u+' ✓'; }
 </script>
 </body>
-</html>
+ </html>
