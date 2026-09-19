@@ -10,45 +10,61 @@ ts: { sos: "PFUNO YA XIHATLA", add: "Engetela", safe: "NDZI HLAYISEKILE", cont: 
 };
 
 export default function App(){
-const [page,setPage]=useState('splash');
-const [lang,setLang]=useState('en');
-const [contacts,setContacts]=useState([]);
-const [name,setName]=useState('');
-const [phone,setPhone]=useState('');
-const t=LANG[lang];
+const pageState = useState('splash');
+const page = pageState[0];
+const setPage = pageState[1];
+
+const langState = useState('en');
+const lang = langState[0];
+const setLang = langState[1];
+
+const contactsState = useState([]);
+const contacts = contactsState[0];
+const setContacts = contactsState[1];
+
+const nameState = useState('');
+const name = nameState[0];
+const setName = nameState[1];
+
+const phoneState = useState('');
+const phone = phoneState[0];
+const setPhone = phoneState[1];
+
+const t = LANG[lang];
 
 useEffect(()=>{
-setTimeout(()=>setPage('home'),2000);
+setTimeout(function(){setPage('home')},2000);
 loadContacts();
 },[]);
 
-const loadContacts=async()=>{
+const loadContacts = async()=>{
 try{
-const {data}=await supabase.from('contacts').select('*');
-if(data) setContacts(data);
+const res = await supabase.from('contacts').select('*');
+if(res && res.data) setContacts(res.data);
 }catch(e){}
 };
 
 const saveContact=async()=>{
 if(!name||!phone) return Alert.alert("Fill both");
 try{
-await supabase.from('contacts').insert([{name,phone}]);
+await supabase.from('contacts').insert([{name:name,phone:phone}]);
 setName(''); setPhone(''); loadContacts();
 Alert.alert("✅ Saved to Cloud!");
 }catch(e){
-setContacts([...contacts,{name,phone}]);
+const newList = contacts.concat([{name:name,phone:phone}]);
+setContacts(newList);
 Alert.alert("Saved locally");
 }
 };
 
 const triggerSOS=async()=>{
 const loc="Thulamela - https://maps.google.com/?q=-22.94,30.79";
-const msg=`SOS! Help! ${loc}`;
+const msg="SOS! Help! "+loc;
 try{
 await supabase.from('sos_logs').insert([{location:loc,message:msg}]);
 }catch(e){}
 Alert.alert("🚨 SOS SENT!","Cloud log saved. SMS opening...");
-if(contacts[0]) Linking.openURL(`sms:${contacts[0].phone}?body=${msg}`);
+if(contacts[0]) Linking.openURL("sms:"+contacts[0].phone+"?body="+msg);
 };
 
 if(page==='splash'){
@@ -56,7 +72,7 @@ return(
 <View style={{flex:1,backgroundColor:'#4C1D95',justifyContent:'center',alignItems:'center'}}>
 <Text style={{fontSize:60}}>🛡️</Text>
 <Text style={{color:'white',fontSize:26,fontWeight:'bold',marginTop:10}}>Feminist Guard PRO</Text>
-<Text style={{color:'#E9D5FF',marginTop:5}}>{t.slogan} • Pretoria</Text>
+<Text style={{color:'#E9D5FF',marginTop:5}}>{t.slogan} - Pretoria</Text>
 </View>
 );
 }
@@ -65,7 +81,12 @@ return(
 <ScrollView style={{flex:1,backgroundColor:'#F5F0FF'}} contentContainerStyle={{padding:20,paddingTop:60}}>
 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
 <Text style={{fontSize:22,fontWeight:'bold',color:'#4C1D95'}}>Feminist Guard</Text>
-<TouchableOpacity onPress={()=>setLang(lang==='en'?'nso':lang==='nso'?'ve':lang==='ve'?'ts':'en')} style={{backgroundColor:'#4C1D95',padding:8,borderRadius:8}}>
+<TouchableOpacity onPress={function(){
+if(lang==='en') setLang('nso');
+else if(lang==='nso') setLang('ve');
+else if(lang==='ve') setLang('ts');
+else setLang('en');
+}} style={{backgroundColor:'#4C1D95',padding:8,borderRadius:8}}>
 <Text style={{color:'white'}}>{lang.toUpperCase()}</Text>
 </TouchableOpacity>
 </View>
@@ -86,15 +107,17 @@ return(
 
 <View style={{marginTop:20}}>
 <Text style={{fontWeight:'bold',color:'#4C1D95',marginBottom:10}}>{t.cont} ({contacts.length})</Text>
-{contacts.map((c,i)=>(
+{contacts.map(function(c,i){
+return(
 <View key={i} style={{backgroundColor:'white',padding:10,borderRadius:8,marginBottom:8,flexDirection:'row',justifyContent:'space-between'}}>
 <Text style={{fontWeight:'bold'}}>{c.name}</Text>
 <Text>{c.phone}</Text>
 </View>
-))}
+);
+})}
 </View>
 
-<TouchableOpacity onPress={()=>Alert.alert("Safe","You are marked safe!")} style={{backgroundColor:'#10B981',padding:15,borderRadius:15,marginTop:20,alignItems:'center'}}>
+<TouchableOpacity onPress={function(){Alert.alert("Safe","You are marked safe!")}} style={{backgroundColor:'#10B981',padding:15,borderRadius:15,marginTop:20,alignItems:'center'}}>
 <Text style={{color:'white',fontWeight:'bold',fontSize:16}}>{t.safe}</Text>
 </TouchableOpacity>
 
