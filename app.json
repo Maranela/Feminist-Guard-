@@ -1,22 +1,26 @@
 {
   "expo": {
-    "name": "Feminist Guard",
-    "slug": "feminist-guard",
+    "name": "Feminist Guard PRO",
+    "slug": "feminist-guard-pro",
+    "owner": "nhlanhla1s-team",
     "version": "2.0.0",
     "orientation": "portrait",
-    "icon": "./icon-512.png",
-    "splash": {
-      "image": "./icon-512.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#7C3AED"
-    },
+    "userInterfaceStyle": "light",
+    "sdkVersion": "49.0.0",
     "android": {
       "package": "com.maranela.feministguard",
       "adaptiveIcon": {
-        "foregroundImage": "./icon-512.png",
-        "backgroundColor": "#7C3AED"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
     },
-    "platforms": ["android", "web"]
+    "ios": {
+      "bundleIdentifier": "com.maranela.feministguard"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5d288ddd-dc22-48e4-bcfa-9f05351d3d77"
+      }
+    }
   }
 }
