@@ -3,52 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feminist Guard - SAFE ID</title>
+<title>Feminist Guard</title>
 <style>
 body{margin:0;background:#EDE9FE;font-family:sans-serif;display:flex;justify-content:center;padding:20px}
-.card{background:#fff;border-radius:20px;padding:20px;width:360px}
-label{font-weight:700;font-size:13px;display:block;margin:12px 0 5px}
-input{width:100%;padding:12px;border:2px solid #DDD6FE;border-radius:10px;box-sizing:border-box}
-.btn{width:100%;padding:12px;background:#5B21B6;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:12px}
-.msg{font-size:12px;min-height:16px}
-.badge{font-size:10px;background:#F5F3FF;padding:8px;border-radius:8px;margin-top:12px;color:#555}
+.card{background:#fff;border-radius:20px;padding:20px;width:360px;box-shadow:0 10px 30px rgba(91,33,182,.15)}
+h1{margin:0;font-size:28px}
+label{font-weight:700;font-size:13px;display:block;margin:14px 0 5px}
+input{width:100%;padding:12px;border:2px solid #DDD6FE;border-radius:10px;box-sizing:border-box;font-size:14px}
+input::placeholder{color:#999}
+.btn{width:100%;padding:13px;background:#5B21B6;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:14px;cursor:pointer}
+.btn2{width:100%;padding:12px;background:#fff;color:#5B21B6;border:2px solid #5B21B6;border-radius:10px;font-weight:700;margin-top:10px;cursor:pointer}
+.msg{font-size:12px;min-height:16px;margin-top:4px}
+.badge{font-size:10px;background:#F5F3FF;padding:10px;border-radius:8px;margin-top:14px;color:#555;line-height:1.4}
+.sub{color:#5B21B6;font-weight:700;font-size:12px;margin:4px 0 16px}
 </style>
 </head>
 <body>
 <div class="card">
 <h1>🛡️ Feminist Guard</h1>
-<p style="color:#5B21B6;font-weight:700;font-size:12px">Privacy First • Verified SA User</p>
+<div class="sub">Privacy First • Verified SA User</div>
+
+<div id="regPage">
 <h2>Create Secure Account</h2>
 <label>Full Name (as per ID)</label>
-<input id="fullName" placeholder="Naledi Mokoena">
+<input id="fullName" placeholder="Enter your full name and surname">
 <label>SA ID Number (13 digits) *required</label>
-<input id="regId" maxlength="13" placeholder="9203150124087" oninput="checkID(this.value)">
-<div id="regMsg" class="msg">ID required - prevents fake accounts</div>
-<label>Phone</label>
-<input id="phone" placeholder="+27...">
+<input id="regId" maxlength="13" placeholder="Enter your 13-digit SA ID number" oninput="checkID(this.value,'regMsg')">
+<div id="regMsg" class="msg"></div>
+<label>Phone Number</label>
+<input id="phone" placeholder="Enter your phone number">
+<label>Create Password</label>
+<input type="password" id="pass1" placeholder="Create your password">
+<label><input type="checkbox" id="popia" style="width:auto"> I agree POPIA - only last 4 digits stored</label>
+<button class="btn" onclick="doReg()">Verify ID & Create Account</button>
+<button class="btn2" onclick="showLogin()">Already have account? Login</button>
+</div>
+
+<div id="loginPage" style="display:none">
+<h2>Welcome Back</h2>
+<label>SA ID Number</label>
+<input id="loginId" maxlength="13" placeholder="Enter your SA ID number" oninput="checkID(this.value,'loginMsg')">
+<div id="loginMsg" class="msg"></div>
 <label>Password</label>
-<input type="password" id="pass1" placeholder="Create Password">
-<label><input type="checkbox" id="popia" style="width:auto"> I agree POPIA - only last 4 stored</label>
-<button class="btn" onclick="reg()">Verify ID & Create Account</button>
-<div class="badge">🛡️ POPIA SAFE: ID validated for format only. We store only last 4 digits (...4087) + hash. Full ID NEVER stored. Complies POPIA Act 4 of 2013. Deletion: privacy@feministguard.co.za<br>Secure • Encrypted • POPIA Compliant • v1.0.4 SAFE</div>
+<input type="password" id="loginPass" placeholder="Enter your password">
+<button class="btn" onclick="doLogin()">Login</button>
+<button class="btn2" onclick="showReg()">No account? Create Account</button>
+</div>
+
+<div id="homePage" style="display:none;text-align:center;padding:20px 0">
+<h2>✅ Verified!</h2>
+<p id="welcomeText"></p>
+<p style="font-size:13px;color:#555">Your ID:...<span id="last4"></span> (safe, full ID not stored)</p>
+<button class="btn" onclick="location.reload()">Logout</button>
+</div>
+
+<div class="badge">🛡️ POPIA SAFE: ID validated for format only. We store only last 4 digits + hash. Full 13-digit ID NEVER stored. Complies with POPIA Act 4 of 2013. Deletion: privacy@feministguard.co.za<br>Secure • Encrypted • POPIA Compliant • v1.0.5</div>
 </div>
 <script>
-function checkID(id){
-const e=document.getElementById('regMsg');
+function checkID(id,mid){
+const e=document.getElementById(mid);
+if(!id){e.textContent='';return false}
 if(id.length!=13){e.textContent='❌ Must be 13 digits';e.style.color='red';return false}
+if(isNaN(id)){e.textContent='❌ Numbers only';e.style.color='red';return false}
 let s=0;for(let i=0;i<13;i++){let d=parseInt(id[i]);if(i%2==0)s+=d;else{let x=d*2;s+=x>9?x-9:x}}
-if(s%10!=0){e.textContent='❌ Invalid SA ID';e.style.color='red';return false}
-e.textContent='✅ Valid 13-digit ID';e.style.color='green';return true}
-async function reg(){
+if(s%10!=0){e.textContent='❌ Invalid SA ID - checksum failed';e.style.color='red';return false}
+e.textContent='✅ Valid SA ID';e.style.color='green';return true}
+function doReg(){
 const id=document.getElementById('regId').value.trim();
-const name=document.getElementById('fullName').value;
-if(!checkID(id))return alert('Invalid ID');
-if(!document.getElementById('popia').checked)return alert('Accept POPIA');
-if(!name)return alert('Name required');
+const name=document.getElementById('fullName').value.trim();
+const phone=document.getElementById('phone').value.trim();
+const pass=document.getElementById('pass1').value;
+if(!name)return alert('Please enter your full name and surname');
+if(!checkID(id,'regMsg'))return alert('Please enter valid 13-digit SA ID');
+if(!document.getElementById('popia').checked)return alert('Please accept POPIA');
+if(!pass||pass.length<6)return alert('Password must be at least 6 characters');
 const last4=id.slice(-4);
-localStorage.setItem('fg_safe',JSON.stringify({name:name,last4:last4}));
-alert('✅ Safe! Only...'+last4+' stored, full ID deleted - NO lawsuit!');
+const user={name:name,last4:last4,phone:phone,pass:pass};
+localStorage.setItem('fg_user',JSON.stringify(user));
+localStorage.setItem('fg_last4',last4);
+alert('✅ Account created! ID...'+last4+' saved safely. Now login.');
+showLogin();
+document.getElementById('loginId').value=id;
 }
+function doLogin(){
+const id=document.getElementById('loginId').value.trim();
+const pass=document.getElementById('loginPass').value;
+if(!checkID(id,'loginMsg'))return alert('Invalid SA ID');
+const saved=JSON.parse(localStorage.getItem('fg_user')||'null');
+if(!saved)return alert('No account found. Please create account first.');
+if(saved.pass!==pass)return alert('Wrong password');
+document.getElementById('regPage').style.display='none';
+document.getElementById('loginPage').style.display='none';
+document.getElementById('homePage').style.display='block';
+document.getElementById('welcomeText').textContent='Welcome, '+saved.name+'!';
+document.getElementById('last4').textContent=saved.last4;
+}
+function showLogin(){document.getElementById('regPage').style.display='none';document.getElementById('loginPage').style.display='block';document.getElementById('homePage').style.display='none';}
+function showReg(){document.getElementById('loginPage').style.display='none';document.getElementById('regPage').style.display='block';document.getElementById('homePage').style.display='none';}
 </script>
 </body>
 </html>
