@@ -3,173 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Feminist Guard v4.5 FINAL FULL FIXED</title>
+<title>Feminist Guard v4.6 SETTINGS FULL</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C2185B">
 <style>
-* { box-sizing: border-box; }
-body { margin: 0; background: #F3EFFF; font-family: system-ui, sans-serif; padding-bottom: 85px; }
-.top { background: #C2185B; color: white; padding: 12px; text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 101; }
-.card { background: white; border-radius: 20px; margin: 12px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-input { width: 100%; padding: 13px; border: 2px solid #E2D6FF; border-radius: 12px; margin: 6px 0; font-size: 15px; }
-.btn { background: #5E35B1; color: white; border: none; padding: 14px; width: 100%; border-radius: 14px; font-weight: bold; font-size: 16px; margin: 6px 0; cursor: pointer; }
-.btn-outline { background: white; color: #5E35B1; border: 2px solid #E2D6FF; }
-.btn-green { background: #2E7D32; }
-.btn-red { background: #D32F2F; }
-.tab { display: flex; gap: 8px; margin-bottom: 12px; }
-.tab button { flex: 1; }
-.tab.active { background: #5E35B1!important; color: white!important; }
-.error-box { background: #FFEBEE; color: #B71C1C; border: 1px solid #FFCDD2; padding: 12px; border-radius: 12px; font-size: 13px; font-weight: bold; margin: 8px 0; display: none; line-height: 1.5; }
-.ok-box { background: #E8F5E9; color: #1B5E20; border: 1px solid #C8E6C9; padding: 12px; border-radius: 12px; font-size: 13px; margin: 6px 0; display: none; }
-.panic { width: 210px; height: 210px; background: radial-gradient(#FF5252, #D32F2F); border-radius: 50%; color: white; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 15px auto; cursor: pointer; }
-.nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #ddd; z-index: 100; }
-.nav span { text-align: center; font-size: 11px; cursor: pointer; }
-.vol { position: fixed; top: 52px; right: 10px; background: #212121; color: #FFEB3B; padding: 6px 10px; border-radius: 20px; font-size: 12px; z-index: 99; font-weight: bold; }
-.hidden { display: none!important; }
-.small { font-size: 12px; color: #666; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+:root{--bg:#F3EFFF;--card:#ffffff;--text:#212121;--sub:#666;--border:#E2D6FF;--pink:#C2185B;--purple:#5E35B1}
+body.dark{--bg:#121212;--card:#1E1E1E;--text:#E0E0E0;--sub:#999;--border:#333;--pink:#880E4F;--purple:#7C4DFF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;padding-bottom:90px;transition:.2s}
+.top{background:var(--pink);color:white;padding:12px;text-align:center;font-weight:bold;position:sticky;top:0;z-index:101}
+.card{background:var(--card);border-radius:20px;margin:12px;padding:16px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+input,select{width:100%;padding:13px;border:2px solid var(--border);border-radius:12px;margin:6px 0;font-size:15px;background:var(--card);color:var(--text)}
+.btn{background:var(--purple);color:white;border:none;padding:14px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin:6px 0;cursor:pointer}
+.btn-outline{background:var(--card);color:var(--purple);border:2px solid var(--border)}
+.btn-green{background:#2E7D32}.btn-red{background:#D32F2F}
+.tab{display:flex;gap:8px;margin-bottom:12px}.tab button{flex:1}
+.active{background:var(--purple)!important;color:white!important}
+.error-box{background:#FFEBEE;color:#B71C1C;border:1px solid #FFCDD2;padding:12px;border-radius:12px;font-size:13px;font-weight:bold;margin:8px 0;display:none}
+.ok-box{background:#E8F5E9;color:#1B5E20;border:1px solid #C8E6C9;padding:12px;border-radius:12px;font-size:13px;margin:6px 0;display:none}
+.panic{width:210px;height:210px;background:radial-gradient(#FF5252,#D32F2F);border-radius:50%;color:white;font-size:24px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:15px auto;cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid var(--border);z-index:100}
+.nav span{text-align:center;font-size:11px;cursor:pointer;color:var(--text)}
+.hidden{display:none!important}
+.small{font-size:12px;color:var(--sub)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.set-section{background:var(--bg);padding:12px;border-radius:12px;margin:10px 0;border:1px solid var(--border)}
+.set-title{font-weight:bold;font-size:14px;margin:0 0 8px;color:var(--pink)}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--card);border-radius:10px;margin:6px 0;border:1px solid var(--border)}
+.switch{position:relative;width:46px;height:26px;background:#ccc;border-radius:20px;cursor:pointer;transition:.3s}
+.switch.on{background:#2E7D32}
+.switch:after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:white;border-radius:50%;transition:.3s}
+.switch.on:after{left:23px}
+.avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--pink),var(--purple));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;font-weight:bold;margin:10px auto;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="top">🛡️ Feminist Guard • v4.5 FINAL FULL • POPIA Safe</div>
-<div id="vol" class="vol hidden">Volume: 0/13</div>
-
+<div class="top">🛡️ Feminist Guard • v4.6 SETTINGS • POPIA Safe</div>
 <div id="loginPage" class="card">
-  <div class="tab">
-    <button id="tabLogin" class="btn active" onclick="switchTab('login')">Login</button>
-    <button id="tabCreate" class="btn btn-outline" onclick="switchTab('create')">Create Account</button>
-  </div>
-  <div id="loginForm">
-    <h3>Welcome Back Sister</h3>
-    <input id="loginUser" placeholder="Username">
-    <input id="loginPass" type="password" placeholder="Password">
-    <div id="loginError" class="error-box"></div>
-    <button class="btn" onclick="doLogin()">🔓 Login Securely</button>
-    <button class="btn btn-outline" onclick="switchTab('create')">New? Create Account</button>
-  </div>
-  <div id="createForm" class="hidden">
-    <h3>Create Trusted Account</h3>
-    <input id="saId" placeholder="SA ID (13 digits)" maxlength="13" inputmode="numeric">
-    <input id="fullName" placeholder="Full name">
-    <input id="regUser" placeholder="Username (min 3)">
-    <div class="grid2">
-      <label style="background:#F3EFFF;padding:10px;border-radius:10px;text-align:center"><input type="radio" name="otpType" value="phone" checked onclick="toggleOtp()"> 📱 Phone</label>
-      <label style="background:#F3EFFF;padding:10px;border-radius:10px;text-align:center"><input type="radio" name="otpType" value="email" onclick="toggleOtp()"> ✉️ Email</label>
-    </div>
-    <div id="phoneBox"><input id="regPhone" placeholder="Cell e.g. 0821234567"></div>
-    <div id="emailBox" class="hidden"><input id="regEmail" placeholder="Email e.g. you@gmail.com"></div>
-    <div style="display:flex;gap:8px">
-      <input id="otpInput" placeholder="6-digit OTP" maxlength="6" style="flex:1">
-      <button class="btn btn-green" style="width:120px" onclick="sendOtp()">Send OTP</button>
-    </div>
-    <div id="otpStatus" class="ok-box"></div>
-    <div id="regError" class="error-box"></div>
-    <input id="regPass" type="password" placeholder="Password min 6">
-    <label class="small"><input type="checkbox" id="popia" checked style="width:auto"> POPIA agree **** only</label>
-    <button class="btn btn-green" onclick="doRegister()">✅ Verify OTP & Create</button>
-    <button class="btn btn-outline" onclick="switchTab('login')">Already have? Login</button>
-  </div>
+<div class="tab"><button id="tabLogin" class="btn active" onclick="switchTab('login')">Login</button><button id="tabCreate" class="btn btn-outline" onclick="switchTab('create')">Create Account</button></div>
+<div id="loginForm"><h3>Welcome Back Sister</h3><input id="loginUser" placeholder="Username"><input id="loginPass" type="password" placeholder="Password"><div id="loginError" class="error-box"></div><button class="btn" onclick="doLogin()">🔓 Login</button><button class="btn btn-outline" onclick="switchTab('create')">Create Account</button></div>
+<div id="createForm" class="hidden"><h3>Create Account</h3><input id="saId" placeholder="SA ID 13 digits" maxlength="13"><input id="fullName" placeholder="Full name"><input id="regUser" placeholder="Username min 3"><div class="grid2"><label style="background:var(--bg);padding:10px;border-radius:10px;text-align:center"><input type="radio" name="otpType" value="phone" checked onclick="toggleOtp()"> 📱 Phone</label><label style="background:var(--bg);padding:10px;border-radius:10px;text-align:center"><input type="radio" name="otpType" value="email" onclick="toggleOtp()"> ✉️ Email</label></div><div id="phoneBox"><input id="regPhone" placeholder="Cell e.g. 0821234567"></div><div id="emailBox" class="hidden"><input id="regEmail" placeholder="Email"></div><div style="display:flex;gap:8px"><input id="otpInput" placeholder="6-digit OTP" maxlength="6" style="flex:1"><button class="btn btn-green" style="width:120px" onclick="sendOtp()">Send OTP</button></div><div id="otpStatus" class="ok-box"></div><div id="regError" class="error-box"></div><input id="regPass" type="password" placeholder="Password min 6"><button class="btn btn-green" onclick="doRegister()">✅ Verify & Create</button><button class="btn btn-outline" onclick="switchTab('login')">Login</button></div>
 </div>
-
-<div id="home" class="card hidden"><h2>Hello, <span id="helloName">Sister</span> ✓</h2><div class="small" id="idShow" style="background:#F3EFFF;padding:8px;border-radius:10px;margin:8px 0"></div><button class="btn btn-green" onclick="showInside('safe')">▶ START SAFE TRIP</button><div class="grid2"><button class="btn btn-red" onclick="panicNow()">🚨 SOS NOW</button><button class="btn btn-outline" onclick="showInside('calc')">🧮 Hide</button></div><div class="grid2"><button class="btn" style="background:#FFF9C4;color:#333" onclick="showInside('vault')">🔒 Vault<br><small id="vaultCount">0 items</small></button><button class="btn btn-outline" onclick="showInside('contacts')">👥 Contacts<br><small id="contactCount">0 contacts</small></button></div></div>
-<div id="contacts" class="card hidden"><h2>👥 Vault People</h2><input id="cName" placeholder="Name"><input id="cPhone" placeholder="Phone"><button class="btn" onclick="addContact()">+ Add</button><div id="cList"></div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
-<div id="vault" class="card hidden"><h2>🔒 Vault</h2><div id="vaultList" style="background:#F5F5F5;padding:14px;border-radius:12px;min-height:100px">No items yet</div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
-<div id="safe" class="card hidden"><h2 style="text-align:center">Emergency</h2><div class="panic" onclick="panicNow()">HOLD<br>PANIC</div><p id="status" style="text-align:center">Ready</p><p id="log" class="small"></p><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
-<div id="more" class="card hidden"><h2>More</h2><div style="background:#F3EFFF;padding:12px;border-radius:12px;font-size:11px">BO:60014295069 | CIPC:2026/768091/07 | PSIRA-FREE Family Tech | POPIA **** only</div><button class="btn btn-outline" onclick="logout()">Logout</button></div>
+<div id="home" class="card hidden"><h2>Hello, <span id="helloName">Sister</span> ✓</h2><div class="small" id="idShow" style="background:var(--bg);padding:8px;border-radius:10px;margin:8px 0"></div><button class="btn btn-green" onclick="showInside('safe')">▶ START SAFE TRIP</button><div class="grid2"><button class="btn btn-red" onclick="panicNow()">🚨 SOS NOW</button><button class="btn btn-outline" onclick="showInside('calc')">🧮 Hide 1337</button></div><div class="grid2"><button class="btn" style="background:#FFF9C4;color:#333" onclick="showInside('vault')">🔒 Vault<br><small id="vaultCount">0 items</small></button><button class="btn btn-outline" onclick="showInside('contacts')">👥 Contacts<br><small id="contactCount">0 contacts</small></button></div></div>
+<div id="contacts" class="card hidden"><h2>👥 Trusted Contacts</h2><input id="cName" placeholder="Name"><input id="cPhone" placeholder="Phone"><button class="btn" onclick="addContact()">+ Add</button><div id="cList"></div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
+<div id="vault" class="card hidden"><h2>🔒 Vault Evidence</h2><div id="vaultList" style="background:var(--bg);padding:14px;border-radius:12px;min-height:100px">No items yet</div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
+<div id="safe" class="card hidden"><h2 style="text-align:center">🚨 Emergency</h2><div class="panic" onclick="panicNow()">HOLD<br>PANIC</div><p id="status" style="text-align:center">Ready</p><p id="log" class="small"></p><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
+<div id="more" class="card hidden"><h2>More & Business</h2><div style="background:var(--bg);padding:12px;border-radius:12px;font-size:11px;border:1px solid var(--border)"><b>Legal Inside Only:</b><br>BO:60014295069 | CIPC:2026/768091/07<br>PSIRA-FREE Family Safety Tech<br>POPIA: **** only</div><div class="grid2" style="margin-top:12px"><button class="btn" onclick="showInside('settings')">⚙️ Settings</button><button class="btn btn-outline" onclick="showInside('calc')">🧮 Calculator</button></div><button class="btn btn-outline" onclick="logout()">Logout</button></div>
+<div id="settings" class="card hidden">
+<h2>⚙️ Settings</h2>
+<div class="avatar" onclick="changeAvatar()" id="avatarEl">S</div>
+<div class="set-section"><p class="set-title">1. Account & Profile</p><label class="small">Username</label><input id="setUsername" placeholder="Username"><label class="small">Full Name</label><input id="setFullName"><label class="small">Email</label><input id="setEmail"><label class="small">Phone</label><input id="setPhone"><button class="btn btn-green" onclick="saveProfile()">💾 Save Profile</button><label class="small">Change Password</label><input id="oldPass" type="password" placeholder="Old"><input id="newPass" type="password" placeholder="New min 6"><button class="btn btn-outline" onclick="changePassword()">🔐 Update Password</button><div class="toggle"><span>Two-Factor Auth (2FA)</span><div class="switch" id="sw2fa" onclick="toggleSwitch('sw2fa','2fa')"></div></div><div class="toggle"><span>Google Login</span><div class="switch" id="swGoogle" onclick="toggleSwitch('swGoogle','google')"></div></div><div style="background:var(--bg);padding:10px;border-radius:10px;margin-top:10px"><p class="small"><b>Subscription:</b> Free Family Safety Plan</p></div></div>
+<div class="set-section"><p class="set-title">2. Preferences</p><div class="toggle"><span>🌙 Dark Mode</span><div class="switch" id="swDark" onclick="toggleDark()"></div></div><div class="toggle"><span>🔔 Push Notifications</span><div class="switch on" id="swPush" onclick="toggleSwitch('swPush','push')"></div></div><div class="toggle"><span>📧 Email Alerts</span><div class="switch on" id="swEmailA" onclick="toggleSwitch('swEmailA','emailA')"></div></div><div class="toggle"><span>💬 SMS Updates</span><div class="switch on" id="swSms" onclick="toggleSwitch('swSms','sms')"></div></div><label class="small">Language</label><select id="setLang"><option>English (SA)</option><option>Zulu</option><option>Sotho</option><option>Afrikaans</option></select><label class="small">Font Size</label><select id="setFont" onchange="changeFont()"><option value="14">Normal</option><option value="16">Large</option><option value="18">Extra Large</option></select><div class="toggle"><span>High Contrast</span><div class="switch" id="swContrast" onclick="toggleSwitch('swContrast','contrast')"></div></div></div>
+<div class="set-section"><p class="set-title">3. Privacy & Data</p><div class="toggle"><span>📊 Analytics</span><div class="switch" id="swAnalytics" onclick="toggleSwitch('swAnalytics','analytics')"></div></div><div class="toggle"><span>🎯 Personalized Ads</span><div class="switch" id="swAds" onclick="toggleSwitch('swAds','ads')"></div></div><div class="toggle"><span>📍 Location</span><div class="switch on" id="swLocation" onclick="toggleSwitch('swLocation','location')"></div></div><div class="toggle"><span>🎤 Microphone</span><div class="switch on" id="swMic" onclick="toggleSwitch('swMic','mic')"></div></div><div class="toggle"><span>📷 Camera</span><div class="switch" id="swCamera" onclick="toggleSwitch('swCamera','camera')"></div></div><div class="toggle"><span>👥 Contacts</span><div class="switch on" id="swContacts" onclick="toggleSwitch('swContacts','contactsPerm')"></div></div><button class="btn btn-outline" onclick="alert('POPIA: Data on phone only')">🔒 POPIA Policy</button></div>
+<div class="set-section"><p class="set-title">4. Support & About</p><button class="btn btn-outline" onclick="alert('Help: Hold PANIC 1 sec or Volume 13x. Code 1337 = vault')">❓ Help & FAQ</button><button class="btn btn-outline" onclick="let f=prompt('Feedback/bug:'); if(f){let fb=JSON.parse(localStorage.getItem('fg_feedback')||'[]'); fb.push({date:new Date().toLocaleString(),msg:f}); localStorage.setItem('fg_feedback',JSON.stringify(fb)); alert('Thanks! Saved');}">💬 Feedback</button><div class="grid2"><button class="btn btn-outline" onclick="alert('Terms: Family Safety Tech, PSIRA-FREE, BO 60014295069')">📄 Terms</button><button class="btn btn-outline" onclick="alert('Privacy: POPIA compliant, **** only')">🔒 Privacy</button></div><div style="background:var(--bg);padding:12px;border-radius:10px;margin-top:10px;border:1px solid var(--border)"><p class="small"><b>App Info:</b> v4.6 SETTINGS FULL<br>Storage: <span id="storageInfo">...</span><br>Credits: Soshanguve Women Safety<br>CIPC 2026/768091/07</p></div></div>
+<div style="margin-top:20px;border-top:2px solid #FFCDD2;padding-top:12px"><button class="btn btn-outline" onclick="logout()">🚪 Log Out</button><button class="btn btn-red" onclick="deleteAccount()">🗑️ Delete Account</button></div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back Home</button>
+</div>
 <div id="calc" class="card hidden"><h2>🧮 Calculator</h2><input id="calcDisplay" disabled style="font-size:26px;text-align:right;background:#212121;color:#76FF03"><div class="grid2" style="margin-top:8px"><button class="btn btn-outline" onclick="calcPress('7')">7</button><button class="btn btn-outline" onclick="calcPress('8')">8</button><button class="btn btn-outline" onclick="calcPress('9')">9</button><button class="btn btn-outline" onclick="calcPress('4')">4</button><button class="btn btn-outline" onclick="calcPress('5')">5</button><button class="btn btn-outline" onclick="calcPress('6')">6</button><button class="btn btn-outline" onclick="calcPress('1')">1</button><button class="btn btn-outline" onclick="calcPress('2')">2</button><button class="btn btn-outline" onclick="calcPress('3')">3</button><button class="btn btn-outline" onclick="calcPress('0')">0</button><button class="btn btn-green" onclick="calcPress('=')">=</button><button class="btn btn-red" onclick="calcClear()">C</button></div><button class="btn btn-outline" onclick="showInside('home')">Exit</button></div>
-<div id="bottomNav" class="nav hidden"><span onclick="showInside('home')">🏠<br>Home</span><span onclick="showInside('contacts')">👥<br>Contacts</span><span onclick="showInside('vault')">🔒<br>Vault</span><span onclick="showInside('safe')">📍<br>Safe</span><span onclick="showInside('more')">☰<br>More</span></div>
-
+<div id="bottomNav" class="nav hidden"><span onclick="showInside('home')">🏠<br>Home</span><span onclick="showInside('contacts')">👥<br>Contacts</span><span onclick="showInside('vault')">🔒<br>Vault</span><span onclick="showInside('safe')">📍<br>Safe</span><span onclick="showInside('settings')">⚙️<br>Settings</span></div>
 <script>
 let volCount=0,firstTime=0,generatedOtp="",calcVal="";
-function switchTab(t){
- document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
- document.getElementById('createForm').classList.toggle('hidden',t!=='create');
- document.getElementById('tabLogin').className=t==='login'?'btn active':'btn btn-outline';
- document.getElementById('tabCreate').className=t==='create'?'btn active':'btn btn-outline';
- document.getElementById('loginError').style.display='none';
- document.getElementById('regError').style.display='none';
-}
-function toggleOtp(){
- let type=document.querySelector('input[name="otpType"]:checked').value;
- document.getElementById('phoneBox').classList.toggle('hidden',type!=='phone');
- document.getElementById('emailBox').classList.toggle('hidden',type!=='email');
-}
-function sendOtp(){
- let type=document.querySelector('input[name="otpType"]:checked').value;
- let phone=document.getElementById('regPhone').value.trim();
- let email=document.getElementById('regEmail').value.trim();
- let err=document.getElementById('regError'); err.style.display='none';
- if(type==='phone'&&phone.length<8){err.innerText='❌ Enter valid phone e.g. 0821234567';err.style.display='block';return;}
- if(type==='email'&&!email.includes('@')){err.innerText='❌ Enter valid email';err.style.display='block';return;}
- generatedOtp=Math.floor(100000+Math.random()*900000).toString();
- let box=document.getElementById('otpStatus'); box.style.display='block';
- box.innerHTML='✅ OTP to <b>'+ (type==='phone'?phone:email) +'</b> Code: <b style="font-size:22px;letter-spacing:5px">'+generatedOtp+'</b><br><small>Demo - no cost</small>';
-}
-function getUsers(){try{return JSON.parse(localStorage.getItem('fg_users')||'[]')}catch(e){return []}}
-function saveUsers(u){localStorage.setItem('fg_users',JSON.stringify(u))}
-function doRegister(){
- let id=document.getElementById('saId').value.trim();
- let name=document.getElementById('fullName').value.trim();
- let user=document.getElementById('regUser').value.trim();
- let pass=document.getElementById('regPass').value.trim();
- let otp=document.getElementById('otpInput').value.trim();
- let err=document.getElementById('regError'); err.style.display='none';
- if(id.length!==13){err.innerText='❌ SA ID must be 13 digits';err.style.display='block';return;}
- if(name.length<2){err.innerText='❌ Enter full name';err.style.display='block';return;}
- if(user.length<3){err.innerText='❌ Username min 3';err.style.display='block';return;}
- if(pass.length<6){err.innerText='❌ Password min 6';err.style.display='block';return;}
- if(!generatedOtp){err.innerText='❌ Tap Send OTP first!';err.style.display='block';return;}
- if(otp!==generatedOtp){err.innerText='❌ Wrong OTP! Correct is '+generatedOtp+' (demo)';err.style.display='block';return;}
- let users=getUsers();
- if(users.find(x=>x.username.toLowerCase()===user.toLowerCase())){err.innerText='❌ Username exists! Login instead';err.style.display='block';return;}
- users.push({saId:'****'+id.slice(-4),fullName:name,username:user,password:pass});
- saveUsers(users);
- alert('✅ Created! Login with '+user);
- switchTab('login'); document.getElementById('loginUser').value=user;
- generatedOtp="";document.getElementById('otpStatus').style.display='none';
-}
-function doLogin(){
- let u=document.getElementById('loginUser').value.trim();
- let p=document.getElementById('loginPass').value.trim();
- let err=document.getElementById('loginError'); err.style.display='none';
- if(!u||!p){err.innerText='❌ Enter username and password';err.style.display='block';return;}
- let users=getUsers(); let found=null;
- for(let i=0;i<users.length;i++){if(users[i].username.toLowerCase()===u.toLowerCase() && users[i].password===p){found=users[i];break;}}
- if(!found){
-   err.innerText='❌ Incorrect username or password. Account "'+u+'" not found or password wrong. Please Create Account first.';
-   err.style.display='block'; return;
- }
- document.getElementById('helloName').innerText=found.fullName||found.username;
- document.getElementById('idShow').innerText='ID: '+found.saId+' • Verified ✓';
- document.getElementById('loginPage').classList.add('hidden');
- document.getElementById('vol').classList.remove('hidden');
- document.getElementById('bottomNav').classList.remove('hidden');
- localStorage.setItem('fg_current',found.username);
- showInside('home'); loadLists();
-}
-function showInside(id){
- document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage'&&c.id!=='vol'&&c.id!=='bottomNav')c.classList.add('hidden')});
- let t=document.getElementById(id); if(t) t.classList.remove('hidden');
-}
-function logout(){
- document.getElementById('loginPage').classList.remove('hidden');
- document.getElementById('vol').classList.add('hidden');
- document.getElementById('bottomNav').classList.add('hidden');
- document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage')c.classList.add('hidden')});
- document.getElementById('loginPage').classList.remove('hidden');
-}
-function loadLists(){
- let contacts=JSON.parse(localStorage.getItem('fg_contacts')||'[]');
- let cl=document.getElementById('cList'); let cc=document.getElementById('contactCount');
- if(cc) cc.innerText=contacts.length+' contacts';
- if(cl) cl.innerHTML=contacts.map((x,i)=>`<div style="padding:8px;background:#F5F5F5;border-radius:8px;margin:4px 0;display:flex;justify-content:space-between"><span><b>${x.name}</b> ${x.phone}</span><span onclick="delContact(${i})" style="color:red">✕</span></div>`).join('')||'<small>No contacts</small>';
-}
+function switchTab(t){document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('createForm').classList.toggle('hidden',t!=='create');document.getElementById('tabLogin').className=t==='login'?'btn active':'btn btn-outline';document.getElementById('tabCreate').className=t==='create'?'btn active':'btn btn-outline';document.getElementById('loginError').style.display='none';document.getElementById('regError').style.display='none';}
+function toggleOtp(){let type=document.querySelector('input[name="otpType"]:checked').value;document.getElementById('phoneBox').classList.toggle('hidden',type!=='phone');document.getElementById('emailBox').classList.toggle('hidden',type!=='email');}
+function sendOtp(){let type=document.querySelector('input[name="otpType"]:checked').value;let phone=document.getElementById('regPhone').value.trim();let email=document.getElementById('regEmail').value.trim();let err=document.getElementById('regError');err.style.display='none';if(type==='phone'&&phone.length<8){err.innerText='❌ Enter valid phone';err.style.display='block';return;}if(type==='email'&&!email.includes('@')){err.innerText='❌ Enter valid email';err.style.display='block';return;}generatedOtp=Math.floor(100000+Math.random()*900000).toString();let box=document.getElementById('otpStatus');box.style.display='block';box.innerHTML='✅ OTP to <b>'+ (type==='phone'?phone:email) +'</b> Code: <b style="font-size:22px;letter-spacing:5px">'+generatedOtp+'</b>';}
+function getUsers(){try{return JSON.parse(localStorage.getItem('fg_users')||'[]')}catch(e){return []}}function saveUsers(u){localStorage.setItem('fg_users',JSON.stringify(u))}
+function doRegister(){let id=document.getElementById('saId').value.trim();let name=document.getElementById('fullName').value.trim();let user=document.getElementById('regUser').value.trim();let pass=document.getElementById('regPass').value.trim();let otp=document.getElementById('otpInput').value.trim();let err=document.getElementById('regError');err.style.display='none';if(id.length!==13){err.innerText='❌ SA ID 13 digits';err.style.display='block';return;}if(name.length<2){err.innerText='❌ Enter full name';err.style.display='block';return;}if(user.length<3){err.innerText='❌ Username min 3';err.style.display='block';return;}if(pass.length<6){err.innerText='❌ Password min 6';err.style.display='block';return;}if(!generatedOtp){err.innerText='❌ Tap Send OTP first!';err.style.display='block';return;}if(otp!==generatedOtp){err.innerText='❌ Wrong OTP! Correct is '+generatedOtp;err.style.display='block';return;}let users=getUsers();if(users.find(x=>x.username.toLowerCase()===user.toLowerCase())){err.innerText='❌ Username exists!';err.style.display='block';return;}users.push({saId:'****'+id.slice(-4),fullName:name,username:user,password:pass,email:document.getElementById('regEmail').value.trim(),phone:document.getElementById('regPhone').value.trim()});saveUsers(users);alert('✅ Created! Login with '+user);switchTab('login');document.getElementById('loginUser').value=user;generatedOtp="";document.getElementById('otpStatus').style.display='none';}
+function doLogin(){let u=document.getElementById('loginUser').value.trim();let p=document.getElementById('loginPass').value.trim();let err=document.getElementById('loginError');err.style.display='none';if(!u||!p){err.innerText='❌ Enter username and password';err.style.display='block';return;}let users=getUsers();let found=null;for(let i=0;i<users.length;i++){if(users[i].username.toLowerCase()===u.toLowerCase() && users[i].password===p){found=users[i];break;}}if(!found){err.innerText='❌ Incorrect username or password. Account "'+u+'" not found or password wrong. Please Create Account first.';err.style.display='block';return;}document.getElementById('helloName').innerText=found.fullName||found.username;document.getElementById('idShow').innerText='ID: '+found.saId+' • Verified ✓';document.getElementById('loginPage').classList.add('hidden');document.getElementById('bottomNav').classList.remove('hidden');localStorage.setItem('fg_current',found.username);document.getElementById('setUsername').value=found.username;document.getElementById('setFullName').value=found.fullName||'';document.getElementById('setEmail').value=found.email||'';document.getElementById('setPhone').value=found.phone||'';document.getElementById('avatarEl').innerText=(found.fullName||found.username||'S')[0].toUpperCase();showInside('home');loadLists();applySettings();}
+function showInside(id){document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage'&&c.id!=='bottomNav')c.classList.add('hidden')});let t=document.getElementById(id);if(t) t.classList.remove('hidden');window.scrollTo(0,0);if(id==='settings'){let s=document.getElementById('storageInfo');if(s){let used=new Blob(Object.values(localStorage)).size; s.innerText=(used/1024).toFixed(1)+' KB / 5 MB';}}}
+function logout(){document.getElementById('loginPage').classList.remove('hidden');document.getElementById('bottomNav').classList.add('hidden');document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage')c.classList.add('hidden')});document.getElementById('loginPage').classList.remove('hidden');}
+function loadLists(){let contacts=JSON.parse(localStorage.getItem('fg_contacts')||'[]');let cl=document.getElementById('cList');let cc=document.getElementById('contactCount');if(cc) cc.innerText=contacts.length+' contacts';if(cl) cl.innerHTML=contacts.map((x,i)=>`<div style="padding:8px;background:var(--bg);border-radius:8px;margin:4px 0;display:flex;justify-content:space-between"><span><b>${x.name}</b> ${x.phone}</span><span onclick="delContact(${i})" style="color:red">✕</span></div>`).join('')||'<small>No contacts</small>';let vault=JSON.parse(localStorage.getItem('fg_vault')||'[]');let vc=document.getElementById('vaultCount');if(vc) vc.innerText=vault.length+' items';}
 function addContact(){let n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim();if(!n||!p){alert('Enter name+phone');return;}let l=JSON.parse(localStorage.getItem('fg_contacts')||'[]');l.push({name:n,phone:p});localStorage.setItem('fg_contacts',JSON.stringify(l));document.getElementById('cName').value='';document.getElementById('cPhone').value='';loadLists();}
 function delContact(i){let l=JSON.parse(localStorage.getItem('fg_contacts')||'[]');l.splice(i,1);localStorage.setItem('fg_contacts',JSON.stringify(l));loadLists();}
-document.addEventListener('keydown',e=>{if(e.key==='VolumeUp'||e.keyCode===38){let now=Date.now();if(now-firstTime>10000){volCount=0;firstTime=now;}volCount++;let v=document.getElementById('vol');if(v)v.innerText='Vol: '+volCount+'/13';if(volCount>=13){volCount=0;panicNow();}}});
-function panicNow(){document.getElementById('status').innerText='🎙️ RECORDING + GPS...';navigator.geolocation.getCurrentPosition(p=>{let txt='📍 '+p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5);document.getElementById('log').innerText=txt;let va=JSON.parse(localStorage.getItem('fg_vault')||'[]');va.push({time:new Date().toLocaleString(),text:txt});localStorage.setItem('fg_vault',JSON.stringify(va));loadLists();},{},{enableHighAccuracy:true});}
-function calcPress(v){if(v==='='){if(calcVal==='1337'){showInside('vault');calcVal='';document.getElementById('calcDisplay').value='';}else{try{document.getElementById('calcDisplay').value=eval(calcVal)||'';calcVal=document.getElementById('calcDisplay').value}catch(e){document.getElementById('calcDisplay').value='Error';calcVal=''}} }else{calcVal+=v;document.getElementById('calcDisplay').value=calcVal;}}
-function calcClear(){calcVal='';document.getElementById('calcDisplay').value='';}
+document.addEventListener('keydown',e=>{if(e.key==='VolumeUp'||e.keyCode===38){let now=Date.now();if(now-firstTime>10000){volCount=0;firstTime=now;}volCount++;if(volCount>=13){volCount=0;panicNow();}}});
+function panicNow(){document.getElementById('status').innerText='🎙️ RECORDING + GPS...';navigator.geolocation.getCurrentPosition(p=>{let txt='📍 SOS '+p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5);document.getElementById('log').innerText=txt;let va=JSON.parse(localStorage.getItem('fg_vault')||'[]');va.push({time:new Date().toLocaleString(),text:txt});localStorage.setItem('fg_vault',JSON.stringify(va));loadLists();},{},{enableHighAccuracy:true});}
+function calcPress(v){if(v==='='){if(calcVal==='1337'){showInside('vault');calcVal='';document.getElementById('calcDisplay').value='';}else{try{document.getElementById('calcDisplay').value=eval(calcVal)||'';calcVal=document.getElementById('calcDisplay').value}catch(e){document.getElementById('calcDisplay').value='Error';calcVal=''}} }else{calcVal+=v;document.getElementById('calcDisplay').value=calcVal;}}function calcClear(){calcVal='';document.getElementById('calcDisplay').value='';}
+function saveProfile(){let u=document.getElementById('setUsername').value.trim();let n=document.getElementById('setFullName').value.trim();let e=document.getElementById('setEmail').value.trim();let ph=document.getElementById('setPhone').value.trim();let cur=localStorage.getItem('fg_current');let users=getUsers();let me=users.find(x=>x.username===cur);if(me){me.username=u||me.username;me.fullName=n||me.fullName;me.email=e;me.phone=ph;saveUsers(users);localStorage.setItem('fg_current',me.username);document.getElementById('helloName').innerText=me.fullName;document.getElementById('avatarEl').innerText=(me.fullName||me.username)[0].toUpperCase();alert('✅ Profile saved');}}
+function changePassword(){let oldP=document.getElementById('oldPass').value;let newP=document.getElementById('newPass').value;if(newP.length<6){alert('New min 6');return;}let cur=localStorage.getItem('fg_current');let users=getUsers();let me=users.find(x=>x.username===cur);if(me&&me.password===oldP){me.password=newP;saveUsers(users);alert('✅ Password changed');document.getElementById('oldPass').value='';document.getElementById('newPass').value='';}else alert('❌ Old wrong');}
+function toggleSwitch(id,key){let el=document.getElementById(id);el.classList.toggle('on');let state=el.classList.contains('on');let s=JSON.parse(localStorage.getItem('fg_settings')||'{}');s[key]=state;localStorage.setItem('fg_settings',JSON.stringify(s));}
+function toggleDark(){let el=document.getElementById('swDark');el.classList.toggle('on');document.body.classList.toggle('dark',el.classList.contains('on'));let s=JSON.parse(localStorage.getItem('fg_settings')||'{}');s.dark=el.classList.contains('on');localStorage.setItem('fg_settings',JSON.stringify(s));}
+function changeFont(){let v=document.getElementById('setFont').value;document.body.style.fontSize=v+'px';let s=JSON.parse(localStorage.getItem('fg_settings')||'{}');s.font=v;localStorage.setItem('fg_settings',JSON.stringify(s));}
+function applySettings(){let s=JSON.parse(localStorage.getItem('fg_settings')||'{}');if(s.dark){document.body.classList.add('dark');document.getElementById('swDark').classList.add('on');}if(s.font){document.body.style.fontSize=s.font+'px';document.getElementById('setFont').value=s.font;}}
+function changeAvatar(){let l=prompt('Enter letter:'); if(l){document.getElementById('avatarEl').innerText=l[0].toUpperCase();}}
+function deleteAccount(){if(confirm('⚠️ DELETE account permanently? Cannot undo!')){if(confirm('Really delete all?')){let cur=localStorage.getItem('fg_current');let users=getUsers().filter(x=>x.username!==cur);saveUsers(users);localStorage.removeItem('fg_current');localStorage.removeItem('fg_contacts');localStorage.removeItem('fg_vault');alert('Deleted');logout();}}}
+applySettings();
 </script>
 </body>
-</html>
+  </html>
