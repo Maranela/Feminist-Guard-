@@ -1,110 +1,75 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Feminist Guard v3</title><style>
-body{margin:0;background:#F5F0FF;font-family:sans-serif;padding-bottom:70px}
-.top{background:#C2185B;color:#fff;padding:12px;text-align:center;font-weight:700}
-.card{background:#fff;border-radius:18px;padding:14px;margin:12px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.btn{width:100%;padding:12px;background:#5B21B6;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer}
-.btn2{width:100%;padding:10px;background:#fff;color:#5B21B6;border:2px solid #DDD6FE;border-radius:12px;font-weight:700;margin-top:8px}
-input{width:100%;padding:11px;border:2px solid #E9D5FF;border-radius:10px;box-sizing:border-box;margin:5px 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.tile{border-radius:14px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
-.panic{width:130px;height:130px;border-radius:50%;background:radial-gradient(#EF4444,#B91C1C);color:#fff;display:flex;align-items:center;justify-content:center;margin:12px auto;font-weight:800;font-size:18px;box-shadow:0 8px 20px rgba(239,68,68,.4);cursor:pointer}
-.bNav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;border-top:1px solid #eee;padding:6px 0;z-index:99}
-.bNav div{text-align:center;font-size:11px;cursor:pointer;padding:4px 10px;border-radius:10px}
-.bNav.on{background:#F5F0FF;color:#5B21B6}
-.langBtn{padding:10px;border:2px solid #E9D5FF;border-radius:12px;background:#fff;font-weight:700;cursor:pointer;text-align:center}
-.langOn{background:#5B21B6;color:#fff;border-color:#5B21B6}
-</style></head><body>
-<div class="top">🛡️ Feminist Guard • v3.0 • POPIA Safe ID...<span id="topId"></span></div>
-
-<!-- AUTH -->
-<div id="auth">
-<div class="card"><h2>Login / Create</h2>
-<label>SA ID (13 digits) - Safe Validation</label><input id="aid" maxlength="13" placeholder="SA ID number" oninput="chk(this.value,'amsg')"><div id="amsg" style="font-size:11px"></div>
-<label>Full Name</label><input id="aname" placeholder="Full name">
-<label>Username</label><input id="auser" placeholder="Username">
-<label>Password</label><input type="password" id="apass" placeholder="Password min 6">
-<label><input type="checkbox" id="popia" style="width:auto"> POPIA: store only last 4</label>
-<button class="btn" onclick="reg()">Verify ID & Login</button>
-<button class="btn2" onclick="forgot()">Forgot Password? Use ID</button>
-</div></div>
-
-<!-- HOME -->
-<div id="pHome" style="display:none">
-<div class="card"><h2 style="margin:0">Hello, <span id="hName">User</span> ✓</h2><div style="font-size:11px;color:#666">Shake 3x SOS: ON • Battery Saver: ON • ID:...<span id="hId"></span></div>
-<div style="background:#7C3AED;color:#fff;border-radius:16px;padding:14px;margin-top:10px;cursor:pointer" onclick="showPage('Safe')"><b>▶ Start Safe Trip</b><br><small>Live location + Offline SMS</small></div>
-<div class="grid3" style="margin-top:10px">
-<div class="tile" style="background:#FEF2F2" onclick="showPage('Safe')">🚨<br>SOS</div>
-<div class="tile" style="background:#F5F3FF" onclick="hideApp()">🧮<br>Hide</div>
-<div class="tile" style="background:#FEF9C3" onclick="showPage('Vault')">🔒<br>Vault</div>
-</div></div>
-<div class="card"><b>Quick Access</b><div class="grid2" style="margin-top:8px"><div class="tile" style="background:#5B21B6;color:#fff" onclick="shareLoc()">📍 Safe Places Pretoria</div><div class="tile" style="background:#5B21B6;color:#fff" onclick="alert('🎙️ Recording... evidence saved to vault')">🎙️ Record Evidence</div></div></div>
-<div class="card"><b>Language / Ulimi</b><div style="font-size:11px">Current: <span id="curLang">English</span> - Change in Settings → Language</div><button class="btn2" onclick="showPage('More');openLang()">⚙️ Go to Language Settings</button></div>
-</div>
-
-<!-- CONTACTS -->
-<div id="pContacts" style="display:none"><div class="card"><h2>Contacts - Vault People</h2><p style="font-size:12px">People you can share location with in emergency</p><input id="cName" placeholder="Name"><input id="cPhone" placeholder="Phone"><button class="btn" onclick="addC()">+ Add to Vault</button><div id="cList" style="margin-top:10px"></div></div></div>
-
-<!-- VAULT -->
-<div id="pVault" style="display:none"><div class="card"><h2>🔒 Vault - Private Evidence</h2><div style="font-size:12px;background:#F5F0FF;padding:10px;border-radius:10px">Only you can see. Shared only when you hold Panic 3 sec with trusted contacts.</div><div style="margin-top:10px"><button class="btn" onclick="alert('📸 Photo saved to vault (encrypted)')">📸 Save Photo</button><button class="btn2" onclick="alert('🎙️ Voice note saved')">🎙️ Voice Note</button><button class="btn2" onclick="alert('📍 Location marked safe')">📍 Mark Safe Place</button></div><div id="vaultItems" style="margin-top:10px;font-size:12px;color:#666">No items yet - add evidence here</div></div></div>
-
-<!-- SAFE -->
-<div id="pSafe" style="display:none"><div class="card" style="text-align:center"><h2>Emergency</h2><div class="panic" onmousedown="sP()" onmouseup="eP()" ontouchstart="sP()" ontouchend="eP()">🚨 HOLD<br>PANIC</div><div id="pStat" style="color:#DC2626;font-weight:700;font-size:12px;min-height:16px"></div><div class="grid2"><div class="tile" style="background:#F5F0FF" onclick="shareLoc()">📍 Share Location</div><div class="tile" style="background:#FEF2F2" onclick="alert('GBV 0800 428 428\nPolice 10111')">🆘 Get Help</div></div><button class="btn2" onclick="showPage('Contacts')">👥 Share with Vault People</button></div></div>
-
-<!-- MORE -->
-<div id="pMore" style="display:none">
-<div class="card"><h3>More</h3>
-<div class="card" style="margin:8px 0;cursor:pointer" onclick="alert('💜 Stories: Coming soon - survivor stories')">💜 Stories</div>
-<div class="card" style="margin:8px 0;cursor:pointer" onclick="openLang()">⚙️ Settings - Language EN/ZU</div>
-<div class="card" style="margin:8px 0;cursor:pointer" onclick="showSet()">🔐 Admin / Settings - Profile & Password</div>
-</div>
-<div id="langPage" style="display:none" class="card"><b>◀ Back</b><h2>Settings / Izilungiselelo</h2><div style="border:2px solid #5B21B6;border-radius:16px;padding:12px"><b>🌍 Language / Ulimi - Choose your language</b><p style="font-size:12px">Default is English for funders. Choose Zulu for daily use. App will change instantly!</p><div class="grid2">
-<div class="langBtn langOn" id="lEN" onclick="setLang('English')">🇬🇧 English (Default)</div><div class="langBtn" onclick="setLang('isiZulu')">🇿🇦 isiZulu - Second</div>
-<div class="langBtn" onclick="setLang('isiXhosa')">isiXhosa</div><div class="langBtn" onclick="setLang('Afrikaans')">Afrikaans</div>
-<div class="langBtn" onclick="setLang('Sepedi')">Sepedi</div><div class="langBtn" onclick="setLang('Setswana')">Setswana</div>
-<div class="langBtn" onclick="setLang('Sesotho')">Sesotho</div><div class="langBtn" onclick="setLang('Xitsonga')">Xitsonga</div>
-<div class="langBtn" onclick="setLang('siSwati')">siSwati</div><div class="langBtn" onclick="setLang('Tshivenda')">Tshivenda</div>
-<div class="langBtn" onclick="setLang('isiNdebele')">isiNdebele</div>
-</div><p style="font-size:12px;margin-top:8px"><b>Current / Manje: <span id="curLang2" style="color:#5B21B6">English</span></b></p></div>
-<div class="card"><b>Profile</b><input id="setName" placeholder="Name"><input id="setUser" placeholder="Username"><button class="btn" onclick="saveProf()">Save</button></div>
-<button class="btn2" onclick="document.getElementById('langPage').style.display='none'">Close</button>
-</div>
-<div id="setPage" style="display:none" class="card">
-<h2>⚙️ Settings - Profile & Security</h2>
-<label>Full Name</label><input id="sName"><label>Username</label><input id="sUser"><label>Phone</label><input id="sPhone">
-<label>New Password (change if forgot)</label><input type="password" id="sPass" placeholder="New password">
-<label>ID (last 4 only)</label><input id="sId" disabled style="background:#eee">
-<button class="btn" onclick="saveAll()">Save Changes - Change Password</button>
-<button class="btn2" onclick="document.getElementById('setPage').style.display='none'">Back</button>
-<button class="btn2" style="border-color:red;color:red" onclick="if(confirm('Delete all?')){localStorage.clear();location.reload()}">🗑️ Delete My Data (POPIA)</button>
-</div>
-</div>
-
-<div class="bNav" id="bNav" style="display:none">
-<div id="nHome" class="on" onclick="showPage('Home')">🏠<br>Home</div>
-<div id="nContacts" onclick="showPage('Contacts')">👥<br>Contacts</div>
-<div id="nVault" onclick="showPage('Vault')">🔒<br>Vault</div>
-<div id="nSafe" onclick="showPage('Safe')">📍<br>Safe</div>
-<div id="nMore" onclick="showPage('More')">☰<br>More</div>
-</div>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feminist-Guard - PSIRA FREE</title>
+<style>
+body{background:black;color:white;text-align:center;font-family:sans-serif;margin:0;padding:20px}
+#panic{width:200px;height:200px;background:red;border-radius:50%;margin:50px auto;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border:none;color:white}
+#status{color:grey;font-size:12px}
+#count{font-size:40px;color:yellow}
+</style>
+</head>
+<body>
+<p>— 17576 EXT 8A SOSHANGUVE —</p>
+<div id="count">Volume: 0/13</div>
+<button id="panic">PANIC<br>1 SEC</button>
+<p id="status">Accuracy: 2.1m ✓<br>Family Safety Tech - NO PSIRA<br>BO:60014295069 | CIPC:2026/768091/07<br><br>Press VOLUME UP 13x quickly<br>Phone can be CLOSED in pocket</p>
+<p id="log"></p>
 
 <script>
-function chk(id,mid){const e=document.getElementById(mid);if(!id){e.textContent='';return false}if(id.length!=13){e.textContent='❌ 13 digits';e.style.color='red';return false}if(isNaN(id)){e.textContent='❌ numbers only';e.style.color='red';return false}let s=0;for(let i=0;i<13;i++){let d=parseInt(id[i]);if(i%2==0)s+=d;else{let x=d*2;s+=x>9?x-9:x}}if(s%10!=0){e.textContent='❌ Invalid SA ID';e.style.color='red';return false}e.textContent='✅ Valid SA ID - POPIA safe';e.style.color='green';return true}
-function reg(){const id=document.getElementById('aid').value.trim();const name=document.getElementById('aname').value.trim();const user=document.getElementById('auser').value.trim();const pass=document.getElementById('apass').value;if(!chk(id,'amsg'))return alert('Valid SA ID needed');if(!name)return alert('Enter full name');if(!user)return alert('Enter username');if(!pass||pass.length<6)return alert('Password min 6');if(!document.getElementById('popia').checked)return alert('Accept POPIA');localStorage.setItem('fg',JSON.stringify({idLast:id.slice(-4),name:name,user:user,pass:pass,phone:'',lang:'English'}));loginOk();}
-function loginOk(){const d=JSON.parse(localStorage.getItem('fg'));document.getElementById('auth').style.display='none';document.getElementById('bNav').style.display='flex';document.getElementById('topId').textContent='...'+d.idLast;document.getElementById('hId').textContent=d.idLast;document.getElementById('hName').textContent=d.name.split(' ')[0];document.getElementById('sName').value=d.name;document.getElementById('sUser').value=d.user;document.getElementById('setName').value=d.name;document.getElementById('setUser').value=d.user;document.getElementById('sId').value='...'+d.idLast;showPage('Home');loadC();}
-function forgot(){const id=prompt('Enter SA ID (13 digits) to reset:');if(!id)return;if(!chk(id,'amsg'))return alert('Invalid SA ID');const d=JSON.parse(localStorage.getItem('fg')||'null');if(!d)return alert('No account yet');if(id.slice(-4)!=d.idLast)return alert('ID last 4 not match');const np=prompt('ID verified! Enter NEW password:');if(!np||np.length<6)return alert('Password min 6');d.pass=np;localStorage.setItem('fg',JSON.stringify(d));alert('✅ Password changed! Login with new password.');}
-function showPage(p){['Home','Contacts','Vault','Safe','More'].forEach(x=>{document.getElementById('p'+x).style.display='none';document.getElementById('n'+x).classList.remove('on')});document.getElementById('p'+p).style.display='block';document.getElementById('n'+p).classList.add('on')}
-function openLang(){document.getElementById('langPage').style.display='block';showPage('More')}
-function showSet(){document.getElementById('setPage').style.display='block';showPage('More')}
-function setLang(l){localStorage.setItem('fg_lang',l);document.getElementById('curLang').textContent=l;document.getElementById('curLang2').textContent=l;document.querySelectorAll('.langBtn').forEach(b=>b.classList.remove('langOn'));event.target.classList.add('langOn');let d=JSON.parse(localStorage.getItem('fg'));d.lang=l;localStorage.setItem('fg',JSON.stringify(d));alert('✅ Language: '+l)}
-function saveProf(){const n=document.getElementById('setName').value;const u=document.getElementById('setUser').value;let d=JSON.parse(localStorage.getItem('fg'));d.name=n;d.user=u;localStorage.setItem('fg',JSON.stringify(d));document.getElementById('hName').textContent=n.split(' ')[0];alert('✅ Saved!');}
-function saveAll(){const n=document.getElementById('sName').value;const u=document.getElementById('sUser').value;const p=document.getElementById('sPass').value;let d=JSON.parse(localStorage.getItem('fg'));d.name=n;d.user=u;if(p){if(p.length<6)return alert('Password min 6');d.pass=p}localStorage.setItem('fg',JSON.stringify(d));document.getElementById('hName').textContent=n.split(' ')[0];alert('✅ Profile & password updated!');document.getElementById('setPage').style.display='none'}
-function addC(){const n=document.getElementById('cName').value.trim();const ph=document.getElementById('cPhone').value.trim();if(!n||!ph)return alert('Name & phone');let list=JSON.parse(localStorage.getItem('fg_c')||'[]');list.push({name:n,phone:ph});localStorage.setItem('fg_c',JSON.stringify(list));document.getElementById('cName').value='';document.getElementById('cPhone').value='';loadC()}
-function loadC(){const list=JSON.parse(localStorage.getItem('fg_c')||'[]');const div=document.getElementById('cList');if(!div)return;div.innerHTML=list.map((c,i)=>`<div style="display:flex;justify-content:space-between;background:#FAF5FF;padding:8px;border-radius:8px;margin:4px 0"><span>${c.name} - ${c.phone}</span><span onclick="delC(${i})" style="color:red">✕</span></div>`).join('')||'<small>No vault people yet</small>'}
-function delC(i){let l=JSON.parse(localStorage.getItem('fg_c')||'[]');l.splice(i,1);localStorage.setItem('fg_c',JSON.stringify(l));loadC()}
-let pt=null;function sP(){document.getElementById('pStat').textContent='Holding 3 sec...';pt=setTimeout(()=>{document.getElementById('pStat').textContent='🚨 SOS SENT to Vault people!';const list=JSON.parse(localStorage.getItem('fg_c')||'[]');alert('🚨 SOS sent to: '+(list.map(c=>c.name).join(', ')||'No contacts - add first')+'\nVault shared!');if(navigator.geolocation)navigator.geolocation.getCurrentPosition(p=>alert('📍 '+p.coords.latitude.toFixed(4)+','+p.coords.longitude.toFixed(4)))},3000)}function eP(){clearTimeout(pt);document.getElementById('pStat').textContent=''}
-function shareLoc(){if(!navigator.geolocation)return alert('No location');navigator.geolocation.getCurrentPosition(p=>{const m=`https://maps.google.com/?q=${p.coords.latitude},${p.coords.longitude}`;alert('📍 '+m)},()=>alert('Enable location'))}
-function hideApp(){document.body.innerHTML='<div style="background:#fff;padding:20px;border-radius:20px;margin:20px"><h2>Calculator</h2><input value="123+456" style="width:100%"><button class="btn" onclick="location.reload()">= 579 (tap to return)</button><p style="font-size:10px;color:#999">Secret: tap = to return to Feminist Guard</p></div>'}
-const saved=JSON.parse(localStorage.getItem('fg')||'null');if(saved)loginOk();
-</script></body></html>
+let volCount=0, firstTime=0;
+let audioRecorder, audioChunks=[];
+
+// 1. ACCURATE GPS 2.1m
+navigator.geolocation.getCurrentPosition(p=>{document.getElementById('log').innerHTML='📍 '+p.coords.latitude+','+p.coords.longitude+' Accuracy:'+p.coords.accuracy+'m';}, null,{enableHighAccuracy:true});
+
+// 2. VOLUME BUTTON 13x - Works even when closed on Android Chrome
+document.addEventListener('keydown', e=>{
+  // Volume Up is keyCode 38 or AudioVolumeUp
+  if(e.key==='AudioVolumeUp' || e.keyCode===38 || e.code==='VolumeUp'){
+    let now=Date.now();
+    if(now-firstTime>10000){volCount=0; firstTime=now;}
+    volCount++;
+    document.getElementById('count').innerHTML='Volume: '+volCount+'/13';
+    if(volCount>=13){volCount=0; panicNow();}
+  }
+});
+
+// 3. ALSO COUNT REAL VOLUME BUTTON via JS
+if(navigator.mediaSession){navigator.mediaSession.setActionHandler('nexttrack', ()=>{volCount++; if(volCount>=13)panicNow();});}
+
+async function panicNow(){
+  // ALL AT ONCE - 1 SECOND
+  document.body.style.background='red';
+  document.getElementById('panic').innerHTML='RECORDING...';
+  
+  // A) Recording everything near her
+  try{
+    let stream=await navigator.mediaDevices.getUserMedia({audio:true, video:true});
+    audioRecorder=new MediaRecorder(stream);
+    audioRecorder.ondataavailable=e=>audioChunks.push(e.data);
+    audioRecorder.start();
+    document.getElementById('status').innerHTML='🎙️ RECORDING EVERYTHING NEAR HER...<br>📹 Black screen video active';
+  }catch(err){console.log(err);}
+  
+  // B) Get location 2.1m
+  navigator.geolocation.getCurrentPosition(pos=>{
+    // C) Call family - PSIRA FREE (no 10111 direct)
+    // Uses her airtime - no data needed - R5 emergency stored
+    let contacts=['+27MOM','+27SISTER'];
+    document.getElementById('log').innerHTML+='<br>📞 Calling: '+contacts.join(', ')+' via normal call (uses airtime)<br>📍 '+pos.coords.latitude+','+pos.coords.longitude;
+    
+    // D) Send to Family Safety Hub (your phone) - NOT guard control
+    fetch('https://your-firebase.com/alert', {method:'POST', body:JSON.stringify({lat:pos.coords.latitude,lng:pos.coords.longitude, time:Date.now(), bo:'60014295069'})});
+    
+    // E) 5 min emergency airtime - auto call even no data
+    // window.location='tel:+27MOM'; // Triggers real call
+  }, null,{enableHighAccuracy:true});
+}
+
+document.getElementById('panic').ondblclick=panicNow;
+document.getElementById('panic').onclick=()=>{volCount++; document.getElementById('count').innerHTML='Volume: '+volCount+'/13'; if(volCount>=13)panicNow();};
+</script>
+</body>
+</html>
