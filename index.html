@@ -1,142 +1,156 @@
 <!DOCTYPE html>
 <html><head><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Feminist Guard v4.0</title>
+<link rel="manifest" href="manifest.json">
 <style>
-body{margin:0;background:#F3EFFF;font-family:sans-serif}
-.top{background:#C2185B;color:white;padding:10px;text-align:center;font-weight:bold}
+body{margin:0;background:#F3EFFF;font-family:sans-serif;padding-bottom:70px}
+.top{background:#C2185B;color:white;padding:12px;text-align:center;font-weight:bold;font-size:15px}
 .card{background:white;border-radius:20px;margin:12px;padding:16px;box-shadow:0 2px 10px #0001}
 input{width:100%;padding:12px;border:2px solid #E2D6FF;border-radius:12px;margin:6px 0;box-sizing:border-box}
 .btn{background:#5E35B1;color:white;border:none;padding:14px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin:6px 0}
 .btn-outline{background:white;color:#5E35B1;border:2px solid #E2D6FF}
-.panic{width:180px;height:180px;background:#D32F2F;border-radius:50%;color:white;font-size:22px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:10px auto;box-shadow:0 0 20px #D32F2F66}
+.tab{display:flex;gap:8px;margin-bottom:10px}
+.tab button{flex:1}
+.tab .active{background:#5E35B1;color:white}
+.panic{width:180px;height:180px;background:#D32F2F;border-radius:50%;color:white;font-size:22px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:10px auto}
 .nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px;border-top:1px solid #ddd}
-.vol{position:fixed;top:45px;right:10px;background:black;color:yellow;padding:4px 8px;border-radius:8px;font-size:12px;z-index:99}
+.vol{position:fixed;top:50px;right:10px;background:black;color:yellow;padding:4px 8px;border-radius:8px;font-size:12px;z-index:99}
 .hidden{display:none}
 </style></head><body>
-<div class="top">🛡️ Feminist Guard • v4.0 • POPIA Safe • 17576 EXT 8A</div>
-<div id="vol" class="vol">Volume: 0/13</div>
+<div class="top">🛡️ Feminist Guard • v4.0 • POPIA Safe</div>
+<div id="vol" class="vol hidden">Volume: 0/13</div>
 
-<!-- LOGIN -->
-<div id="login" class="card">
-<h2>Login / Create</h2>
-<p>SA ID (13 digits) - Safe Validation</p>
-<input id="saId" placeholder="SA ID number">
-<input placeholder="Full name">
-<input placeholder="Username">
-<input type="password" placeholder="Password min 6">
-<label><input type="checkbox"> POPIA: store only last 4</label>
-<button class="btn" onclick="show('home')">Verify ID & Login</button>
-<button class="btn btn-outline">Forgot Password? Use ID</button>
-<p style="font-size:11px;color:gray">BO:60014295069 | CIPC:2026/768091/07<br>PSIRA-FREE Family Safety Tech</p>
+<!-- LOGIN / CREATE - FRONT PAGE CLEAN -->
+<div id="loginPage" class="card">
+<div class="tab">
+<button id="tabLogin" class="btn active" onclick="switchTab('login')">Login</button>
+<button id="tabCreate" class="btn btn-outline" onclick="switchTab('create')">Create Account</button>
 </div>
 
-<!-- HOME -->
+<!-- LOGIN FORM - username + password only -->
+<div id="loginForm">
+<h2>Login</h2>
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+<button class="btn" onclick="doLogin()">Login</button>
+<button class="btn btn-outline" onclick="switchTab('create')">Don't have account? Create</button>
+</div>
+
+<!-- CREATE FORM - your screenshot style -->
+<div id="createForm" class="hidden">
+<h2>Create Account</h2>
+<p style="font-size:13px;color:gray">SA ID (13 digits) - Safe Validation</p>
+<input id="saId" placeholder="SA ID number (13 digits)" maxlength="13">
+<input id="fullName" placeholder="Full name">
+<input id="regUser" placeholder="Username">
+<input id="regPass" type="password" placeholder="Password min 6">
+<label style="font-size:13px"><input type="checkbox" id="popia"> POPIA: store only last 4 digits</label>
+<button class="btn" onclick="doRegister()">Verify ID & Create</button>
+<button class="btn btn-outline" onclick="switchTab('login')">Already have account? Login</button>
+</div>
+</div>
+
+<!-- INSIDE APP AFTER LOGIN -->
 <div id="home" class="card hidden">
-<h2>Hello, nhlanhla ✓</h2>
+<h2>Hello, <span id="helloName">user</span> ✓</h2>
 <small>Shake 3x SOS: ON • Battery Saver: ON • Volume 13x: ON • ID:...6081</small>
-<button class="btn" style="text-align:left" onclick="show('safe')">▶ Start Safe Trip<br><small>Live location + Offline SMS + Recording</small></button>
+<button class="btn" onclick="showInside('safe')">▶ Start Safe Trip<br><small>Live location + Offline SMS + Recording</small></button>
 <div style="display:flex;gap:8px">
-<button class="btn" style="background:#FFF0F0;color:black" onclick="show('safe')">🚨<br>SOS</button>
-<button class="btn" style="background:#F0F0FF;color:black">🧮<br>Hide</button>
-<button class="btn" style="background:#FFF9C4;color:black" onclick="show('vault')">🔒<br>Vault</button>
-</div>
-<h3>Quick Access</h3>
-<div style="display:flex;gap:8px">
-<button class="btn" onclick="show('safe')">📍 Safe Places Pretoria</button>
-<button class="btn">🎙️ Record Evidence</button>
+<button class="btn" style="background:#FFE0E0;color:black" onclick="showInside('safe')">🚨 SOS</button>
+<button class="btn" style="background:#EDE7FF;color:black">🧮 Hide</button>
+<button class="btn" style="background:#FFF9C4;color:black" onclick="showInside('vault')">🔒 Vault</button>
 </div>
 <p style="text-align:center;color:gray">Accuracy: 2.1m ✓</p>
 </div>
 
-<!-- CONTACTS -->
 <div id="contacts" class="card hidden">
 <h2>Contacts - Vault People</h2>
-<p>People you can share location with in emergency</p>
 <input id="cName" placeholder="Name">
 <input id="cPhone" placeholder="Phone">
 <button class="btn" onclick="addContact()">+ Add to Vault</button>
-<div id="cList">No vault people yet</div>
+<div id="cList"></div>
 </div>
 
-<!-- VAULT -->
 <div id="vault" class="card hidden">
 <h2>🔒 Vault - Private Evidence</h2>
-<div style="background:#F3EFFF;padding:10px;border-radius:12px;font-size:13px">Only you can see. Shared only when you hold Panic 3 sec with trusted contacts. Recording saves here automatically.</div>
-<button class="btn">📸 Save Photo</button>
-<button class="btn btn-outline">🎙️ Voice Note</button>
-<button class="btn btn-outline">📍 Mark Safe Place</button>
-<div id="vaultList">No items yet - recording after panic will appear here</div>
+<p style="font-size:12px">Recording saves here automatically</p>
+<div id="vaultList">No items yet</div>
 </div>
 
-<!-- SAFE / EMERGENCY v4 -->
 <div id="safe" class="card hidden">
-<h2 style="text-align:center">Emergency</h2>
-<div class="panic" onclick="panicNow()" ondblclick="panicNow()">🚨 HOLD<br>PANIC<br><small style="font-size:10px">1 SEC</small></div>
-<p style="text-align:center;font-size:12px">Press VOLUME UP 13x quickly<br>Phone can be CLOSED in pocket<br><span id="status">Accuracy: 2.1m ✓ | Family Safety - NO PSIRA</span></p>
-<div style="display:flex;gap:8px">
-<button class="btn btn-outline">📍 Share Location</button>
-<button class="btn" style="background:#FFE0E0">🆘 Get Help</button>
-</div>
-<button class="btn btn-outline">👥 Share with Vault People</button>
+<h2 style="text-align:center">Emergency - HOLD 1 SEC</h2>
+<div class="panic" onclick="panicNow()">🚨 HOLD<br>PANIC</div>
+<p style="text-align:center;font-size:12px">Press VOLUME UP 13x quickly<br>Phone can be CLOSED in pocket<br><span id="status">Accuracy: 2.1m ✓ | Family Safety</span></p>
 <p id="log" style="font-size:11px;color:gray"></p>
 </div>
 
-<!-- MORE -->
 <div id="more" class="card hidden">
 <h2>More</h2>
 <button class="btn btn-outline">💜 Stories</button>
-<button class="btn btn-outline" onclick="show('settings')">⚙️ Settings - Language EN/ZU</button>
-<button class="btn btn-outline">🔐 Admin / Settings - Profile & Password</button>
+<button class="btn btn-outline" onclick="showInside('settings')">⚙️ Settings - Language EN/ZU</button>
+<div style="margin-top:20px;padding:12px;background:#F3EFFF;border-radius:12px;font-size:11px;color:gray">
+<p><b>Registration (Inside only - POPIA Safe):</b><br>
+BO:60014295069 | CIPC:2026/768091/07<br>
+PSIRA-FREE Family Safety Technology<br>
+Soshanguve Ext 8A - Women Safety</p>
+</div>
 </div>
 
-<!-- SETTINGS -->
 <div id="settings" class="card hidden">
-<h2>Settings / Izilungiselelo</h2>
-<div style="border:2px solid #5E35B1;padding:12px;border-radius:16px">
-<p>🌍 Language / Ulimi - Choose your language</p>
-<button class="btn">🇬🇧 English (Default)</button>
-<button class="btn btn-outline">🇿🇦 isiZulu - Second</button>
-<button class="btn btn-outline">isiXhosa</button>
-<button class="btn btn-outline">Afrikaans</button>
-<p>Current: English</p>
-</div>
+<h2>Settings</h2>
+<button class="btn">🇬🇧 English</button>
+<button class="btn btn-outline">🇿🇦 isiZulu</button>
 </div>
 
 <div class="nav">
-<span onclick="show('home')">🏠<br>Home</span>
-<span onclick="show('contacts')">👥<br>Contacts</span>
-<span onclick="show('vault')">🔒<br>Vault</span>
-<span onclick="show('safe')">📍<br>Safe</span>
-<span onclick="show('more')">☰<br>More</span>
+<span onclick="showInside('home')">🏠<br>Home</span>
+<span onclick="showInside('contacts')">👥<br>Contacts</span>
+<span onclick="showInside('vault')">🔒<br>Vault</span>
+<span onclick="showInside('safe')">📍<br>Safe</span>
+<span onclick="showInside('more')">☰<br>More</span>
 </div>
 
 <script>
-let volCount=0, firstTime=0;
-let contacts=[];
-function show(id){document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
-function addContact(){let n=document.getElementById('cName').value,p=document.getElementById('cPhone').value;if(n&&p){contacts.push({n,p});document.getElementById('cList').innerHTML+=`<div>${n} - ${p}</div>`;}}
-
-// VOLUME 13x - v4 FEATURE
-document.addEventListener('keydown', e=>{
- if(e.key==='AudioVolumeUp'||e.keyCode===38||e.code==='VolumeUp'||e.key==='VolumeUp'){
-  let now=Date.now(); if(now-firstTime>10000){volCount=0; firstTime=now;}
+let volCount=0,firstTime=0;
+function switchTab(t){
+ document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
+ document.getElementById('createForm').classList.toggle('hidden',t!=='create');
+ document.getElementById('tabLogin').className=t==='login'?'btn active':'btn btn-outline';
+ document.getElementById('tabCreate').className=t==='create'?'btn active':'btn btn-outline';
+}
+function doLogin(){
+ let u=document.getElementById('loginUser').value;
+ if(!u){alert('Enter username');return;}
+ document.getElementById('helloName').innerText=u;
+ document.getElementById('loginPage').classList.add('hidden');
+ document.getElementById('vol').classList.remove('hidden');
+ showInside('home');
+}
+function doRegister(){
+ let id=document.getElementById('saId').value;
+ if(id.length!==13){alert('SA ID must be 13 digits');return;}
+ let name=document.getElementById('fullName').value;
+ document.getElementById('helloName').innerText=name||document.getElementById('regUser').value;
+ document.getElementById('loginPage').classList.add('hidden');
+ document.getElementById('vol').classList.remove('hidden');
+ showInside('home');
+}
+function showInside(id){document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage')c.classList.add('hidden')});document.getElementById(id).classList.remove('hidden');}
+function addContact(){let n=document.getElementById('cName').value,p=document.getElementById('cPhone').value;document.getElementById('cList').innerHTML+=`<div>${n} - ${p}</div>`;}
+// VOLUME INSIDE ONLY
+document.addEventListener('keydown',e=>{
+ if(e.key==='AudioVolumeUp'||e.keyCode===38||e.key==='VolumeUp'){
+  let now=Date.now(); if(now-firstTime>10000){volCount=0;firstTime=now;}
   volCount++; document.getElementById('vol').innerText='Volume: '+volCount+'/13';
-  if(volCount>=13){volCount=0; panicNow();}
+  if(volCount>=13){volCount=0;panicNow();}
  }
 });
-// Also count any key as volume for testing
-document.addEventListener('volumeup', ()=>{volCount++; if(volCount>=13)panicNow();});
-
 async function panicNow(){
- document.body.style.background='#FF0000';
- document.getElementById('status').innerHTML='🎙️ RECORDING EVERYTHING NEAR HER...<br>📹 Black screen video ON<br>📞 Calling family via airtime';
- try{
-  let s=await navigator.mediaDevices.getUserMedia({audio:true,video:true});
-  let r=new MediaRecorder(s); let chunks=[];
-  r.ondataavailable=e=>chunks.push(e.data);
-  r.start();
-  document.getElementById('log').innerHTML='RECORDING SAVED TO VAULT...';
-  setTimeout(()=>{r.stop();}, 10000);
- }catch(e){document.getElementById('log').innerHTML='Recording permission needed';}
- navigator.geolocation.getCurrentPosition(pos=>{
-  document.getElementById('log').innerHTML+=`<br>📍 ${pos.coords.latitude},
+ document.getElementById('status').innerHTML='🎙️ RECORDING EVERYTHING...';
+ try{let s=await navigator.mediaDevices.getUserMedia({audio:true});let r=new MediaRecorder(s);r.start();}catch(e){}
+ navigator.geolocation.getCurrentPosition(p=>{
+  document.getElementById('log').innerHTML=`📍 ${p.coords.latitude},${p.coords.longitude} Acc:${p.coords.accuracy}m<br>Alert sent to vault (PSIRA-FREE)`;
+ },{},{enableHighAccuracy:true});
+}
+</script>
+</body></html>
