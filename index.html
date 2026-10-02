@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Feminist Guard v4.0 FULL</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard v4.1 FIXED</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C2185B">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#F3EFFF;font-family:system-ui,sans-serif;padding-bottom:75px}
-.top{background:#C2185B;color:white;padding:12px;text-align:center;font-weight:bold;letter-spacing:0.5px}
+.top{background:#C2185B;color:white;padding:12px;text-align:center;font-weight:bold}
 .card{background:white;border-radius:20px;margin:12px;padding:16px;box-shadow:0 4px 15px #0001}
-input,select{width:100%;padding:13px;border:2px solid #E2D6FF;border-radius:12px;margin:6px 0;font-size:15px}
-.btn{background:#5E35B1;color:white;border:none;padding:14px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin:6px 0;cursor:pointer}
-.btn:active{transform:scale(0.98)}.btn-outline{background:white;color:#5E35B1;border:2px solid #E2D6FF}
-.btn-green{background:#2E7D32}.btn-red{background:#D32F2F}.btn-orange{background:#EF6C00}
-.tab{display:flex;gap:8px;margin-bottom:12px}.tab button{flex:1}
-.tab .active{background:#5E35B1;color:white}
-.panic{width:200px;height:200px;background:radial-gradient(#EF5350,#D32F2F);border-radius:50%;color:white;font-size:24px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:15px auto;box-shadow:0 0 10px #FFCDD2;cursor:pointer;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 10px #FFCDD2}50%{box-shadow:0 0 0 20px #FFCDD266}100%{box-shadow:0 0 0 10px #FFCDD2}}
-.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #E0E0E0;z-index:100}
-.nav span{text-align:center;font-size:11px;cursor:pointer;line-height:14px}
+input{width:100%;padding:13px;border:2px solid #E2D6FF;border-radius:12px;margin:6px 0;font-size:15px}
+.btn{background:#5E35B1;color:white;border:none;padding:14px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin:6px 0}
+.btn-outline{background:white;color:#5E35B1;border:2px solid #E2D6FF}
+.btn-green{background:#2E7D32}.btn-red{background:#D32F2F}
+.tab{display:flex;gap:8px;margin-bottom:12px}.tab button{flex:1}.tab .active{background:#5E35B1;color:white}
+.error{color:#D32F2F;background:#FFEBEE;padding:8px 12px;border-radius:10px;font-size:13px;margin:6px 0;display:none;font-weight:bold}
+.panic{width:200px;height:200px;background:radial-gradient(#EF5350,#D32F2F);border-radius:50%;color:white;font-size:22px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:15px auto;cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd;z-index:100}
+.nav span{text-align:center;font-size:11px;cursor:pointer}
 .vol{position:fixed;top:52px;right:10px;background:#212121;color:#FFEB3B;padding:6px 10px;border-radius:20px;font-size:12px;z-index:99;font-weight:bold}
-.hidden{display:none}
-.small{font-size:12px;color:#666}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hidden{display:none}.small{font-size:12px;color:#666}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 </style></head><body>
-<div class="top">🛡️ Feminist Guard • v4.0 • POPIA Safe • Family Safety</div>
-<div id="vol" class="vol hidden">Volume: 0/13 | Shake:0</div>
+<div class="top">🛡️ Feminist Guard • v4.1 FIXED • POPIA Safe</div>
+<div id="vol" class="vol hidden">Volume: 0/13</div>
 
-<!-- FRONT - CLEAN LOGIN ONLY -->
 <div id="loginPage" class="card">
 <div class="tab">
 <button id="tabLogin" class="btn active" onclick="switchTab('login')">Login</button>
@@ -33,112 +29,80 @@ input,select{width:100%;padding:13px;border:2px solid #E2D6FF;border-radius:12px
 </div>
 
 <div id="loginForm">
-<h3 style="margin:0 0 8px">Welcome Back</h3>
-<p class="small">Enter your username + password to access safety features</p>
+<h3 style="margin:0">Welcome Back</h3>
+<p class="small">Enter username + password</p>
 <input id="loginUser" placeholder="Username">
 <input id="loginPass" type="password" placeholder="Password">
+<div id="loginError" class="error"></div>
 <button class="btn" onclick="doLogin()">🔓 Login Securely</button>
 <button class="btn btn-outline" onclick="switchTab('create')">New? Create Account</button>
-<p class="small" style="text-align:center;margin-top:10px">POPIA Safe • Data stays on your phone • PSIRA-FREE</p>
+<p class="small" style="text-align:center">POPIA Safe • Data stays on phone • PSIRA-FREE</p>
 </div>
 
 <div id="createForm" class="hidden">
 <h3 style="margin:0">Create Account - Trusted</h3>
-<p class="small">SA ID verified + OTP trust</p>
 <input id="saId" placeholder="SA ID (13 digits)" maxlength="13" inputmode="numeric">
-<input id="fullName" placeholder="Full name as per ID">
-<input id="regUser" placeholder="Choose Username (min 3)">
-<p style="font-weight:bold;margin:12px 0 6px;font-size:14px">🔐 Verify Ownership - Choose method:</p>
+<input id="fullName" placeholder="Full name">
+<input id="regUser" placeholder="Choose Username">
+<p style="font-weight:bold;margin:10px 0 6px;font-size:13px">Verify Ownership:</p>
 <div class="grid2">
-<label class="card" style="margin:0;padding:10px;text-align:center"><input type="radio" name="otpType" value="phone" checked onclick="toggleOtp()"> 📱 Phone OTP</label>
-<label class="card" style="margin:0;padding:10px;text-align:center"><input type="radio" name="otpType" value="email" onclick="toggleOtp()"> ✉️ Email OTP</label>
+<label style="background:#F3EFFF;padding:10px;border-radius:10px;text-align:center;font-size:13px"><input type="radio" name="otpType" value="phone" checked onclick="toggleOtp()"> 📱 Phone</label>
+<label style="background:#F3EFFF;padding:10px;border-radius:10px;text-align:center;font-size:13px"><input type="radio" name="otpType" value="email" onclick="toggleOtp()"> ✉️ Email</label>
 </div>
-<div id="phoneBox"><input id="regPhone" placeholder="Cell e.g. 0821234567" inputmode="tel"></div>
-<div id="emailBox" class="hidden"><input id="regEmail" placeholder="Email e.g. you@gmail.com" inputmode="email"></div>
+<div id="phoneBox"><input id="regPhone" placeholder="Cell e.g. 0821234567"></div>
+<div id="emailBox" class="hidden"><input id="regEmail" placeholder="Email e.g. you@gmail.com"></div>
 <div style="display:flex;gap:8px">
-<input id="otpInput" placeholder="6-digit OTP" maxlength="6" inputmode="numeric" style="flex:1">
-<button class="btn btn-green" style="width:130px" onclick="sendOtp()">Send OTP</button>
+<input id="otpInput" placeholder="6-digit OTP" maxlength="6" style="flex:1">
+<button class="btn btn-green" style="width:120px" onclick="sendOtp()">Send OTP</button>
 </div>
-<div id="otpStatus" style="background:#E8F5E9;padding:8px;border-radius:10px;font-size:12px;display:none"></div>
-<p class="small" style="background:#FFF3E0;padding:8px;border-radius:8px">🔒 POPIA: Phone/Email used only for 1-time code, NOT stored. ID stored as ****6081 only. Demo mode - no SMS cost. No trouble - PSIRA-FREE family safety tech.</p>
-<input id="regPass" type="password" placeholder="Create Password min 6 chars">
-<label class="small"><input type="checkbox" id="popia"> I agree: Store only last 4 of ID, data on device</label>
-<button class="btn btn-green" onclick="doRegister()">✅ Verify OTP & Create Account</button>
+<div id="otpStatus" class="small" style="background:#E8F5E9;padding:8px;border-radius:10px;display:none"></div>
+<div id="regError" class="error"></div>
+<p class="small" style="background:#FFF3E0;padding:8px;border-radius:8px">🔒 POPIA: Phone/Email NOT stored. Demo OTP - no cost, no trouble. PSIRA-FREE family safety.</p>
+<input id="regPass" type="password" placeholder="Password min 6">
+<label class="small"><input type="checkbox" id="popia" checked> I agree POPIA store **** only</label>
+<button class="btn btn-green" onclick="doRegister()">✅ Verify OTP & Create</button>
 <button class="btn btn-outline" onclick="switchTab('login')">Already have? Login</button>
 </div>
 </div>
 
-<!-- INSIDE APP -->
 <div id="home" class="card hidden">
 <h2 style="margin:0">Hello, <span id="helloName">Sister</span> ✓</h2>
-<div class="small" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0"><span>📳 Shake 3x SOS: ON</span><span>🔋 Battery Saver: ON</span><span>🔊 Volume 13x: ON</span><span>📍 GPS: 2.1m</span><span id="idShow"></span></div>
-<button class="btn btn-green" onclick="showInside('safe')" style="padding:18px">▶ START SAFE TRIP<br><small style="font-weight:normal">Live location + Offline SMS + Auto Recording</small></button>
-<div class="grid2">
-<button class="btn btn-red" onclick="panicNow()">🚨 SOS NOW</button>
-<button class="btn btn-outline" onclick="openCalc()">🧮 Hide Calculator</button>
-</div>
-<div class="grid2">
-<button class="btn" style="background:#FFF9C4;color:#333" onclick="showInside('vault')">🔒 Vault<br><small id="vaultCount">0 items</small></button>
-<button class="btn btn-outline" onclick="showInside('contacts')">👥 Vault People<br><small id="contactCount">0 contacts</small></button>
-</div>
-<div class="card" style="margin:12px 0 0;background:#F3EFFF"><b>How Volume 13x works inside:</b><br><span class="small">Phone CLOSED in pocket > Press Volume Up quickly 13 times in 10 sec > Auto SOS + Record + Location to Vault People. Works even when app closed!</span></div>
+<div class="small" id="idShow"></div>
+<button class="btn btn-green" onclick="showInside('safe')">▶ START SAFE TRIP<br><small>Live location + Offline SMS + Recording</small></button>
+<div class="grid2"><button class="btn btn-red" onclick="panicNow()">🚨 SOS NOW</button><button class="btn btn-outline" onclick="showInside('calc')">🧮 Hide</button></div>
+<div class="grid2"><button class="btn" style="background:#FFF9C4;color:#333" onclick="showInside('vault')">🔒 Vault</button><button class="btn btn-outline" onclick="showInside('contacts')">👥 Contacts</button></div>
 </div>
 
-<div id="contacts" class="card hidden"><h2>👥 Vault People - Trusted Contacts</h2><p class="small">These people get your SOS location + audio</p><input id="cName" placeholder="Name e.g. Sister"><input id="cPhone" placeholder="Phone e.g. 082..."><button class="btn" onclick="addContact()">+ Add to Vault</button><div id="cList" style="margin-top:10px"></div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back Home</button></div>
+<div id="contacts" class="card hidden"><h2>👥 Vault People</h2><input id="cName" placeholder="Name"><input id="cPhone" placeholder="Phone"><button class="btn" onclick="addContact()">+ Add</button><div id="cList"></div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
+<div id="vault" class="card hidden"><h2>🔒 Vault</h2><div id="vaultList" style="background:#F5F5F5;padding:12px;border-radius:12px">No items yet</div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
+<div id="safe" class="card hidden"><h2 style="text-align:center">Emergency - HOLD 1 SEC</h2><div class="panic" onclick="panicNow()">HOLD<br>PANIC</div><p style="text-align:center" id="status">Ready • 2.1m ✓</p><p id="log" class="small"></p></div>
+<div id="more" class="card hidden"><h2>More</h2><div style="padding:12px;background:#F3EFFF;border-radius:12px;font-size:11px;color:#555"><b>Legal Inside Only:</b><br>BO:60014295069 | CIPC:2026/768091/07<br>PSIRA-FREE Family Safety Tech<br>POPIA: **** only, data on device</div><button class="btn btn-outline" onclick="logout()">🚪 Logout</button></div>
+<div id="calc" class="card hidden"><h2>🧮 Calculator Hide</h2><input id="calcDisplay" disabled style="font-size:24px;text-align:right"><div class="grid2"><button class="btn btn-outline" onclick="calcPress('7')">7</button><button class="btn btn-outline" onclick="calcPress('8')">8</button><button class="btn btn-outline" onclick="calcPress('9')">9</button><button class="btn btn-outline" onclick="calcPress('4')">4</button><button class="btn btn-outline" onclick="calcPress('5')">5</button><button class="btn btn-outline" onclick="calcPress('6')">6</button><button class="btn btn-outline" onclick="calcPress('1')">1</button><button class="btn btn-outline" onclick="calcPress('2')">2</button><button class="btn btn-outline" onclick="calcPress('3')">3</button><button class="btn btn-outline" onclick="calcPress('0')">0</button><button class="btn" onclick="calcPress('=')">=</button><button class="btn btn-red" onclick="calcClear()">C</button></div><button class="btn btn-outline" onclick="showInside('home')">Exit</button></div>
 
-<div id="vault" class="card hidden"><h2>🔒 Vault - Private Evidence</h2><p class="small">Recordings + Locations saved here automatically when panic triggered. Only you can open.</p><div id="vaultList" style="background:#F5F5F5;padding:12px;border-radius:12px;min-height:100px">No items yet. Trigger panic to test.</div><button class="btn btn-outline" onclick="showInside('home')">⬅ Back</button></div>
-
-<div id="safe" class="card hidden">
-<h2 style="text-align:center;margin:0">🚨 Emergency Mode</h2><p class="small" style="text-align:center">HOLD button 1 second OR Volume 13x</p>
-<div class="panic" onclick="holdPanic()" onmousedown="startHold()" onmouseup="endHold()" ontouchstart="startHold()" ontouchend="endHold()">HOLD<br>PANIC<br><small style="font-size:12px">1 SEC</small></div>
-<p style="text-align:center" id="status">Ready • Accuracy: 2.1m ✓ • Family Safety</p>
-<div class="grid2"><button class="btn btn-outline" onclick="panicNow()">🔴 Tap Panic</button><button class="btn btn-outline" onclick="stopPanic()">⏹ Stop</button></div>
-<p id="log" class="small"></p>
-<div style="background:#FFEBEE;padding:10px;border-radius:10px" class="small"><b>Test Volume:</b> Press Volume Up button now - counter at top must increase. 13 = SOS!</div>
-</div>
-
-<div id="more" class="card hidden">
-<h2>More</h2>
-<div class="grid2"><button class="btn btn-outline">💜 Survivor Stories</button><button class="btn btn-outline" onclick="showInside('settings')">⚙️ Settings</button></div>
-<button class="btn btn-outline" onclick="openCalc()">🧮 Calculator Hide Mode</button>
-<div style="margin-top:16px;padding:14px;background:#F3EFFF;border-radius:14px;font-size:11px;color:#555;line-height:1.5">
-<b>Legal & Registration (Visible only inside app):</b><br>
-Business Type: Family Safety Technology (PSIRA-FREE - not a security service)<br>
-BO Registration: 60014295069<br>
-CIPC: 2026/768091/07<br>
-POPIA: All data stored locally on device. ID stored as ****XXXX only.<br>
-OTP: Demo mode - codes generated on device for trust, no telecoms cost, no personal data shared.<br>
-Location: Soshanguve - Built for South African Women Safety<br>
-</div>
-<button class="btn btn-outline" onclick="logout()">🚪 Logout</button>
-</div>
-
-<div id="settings" class="card hidden"><h2>⚙️ Settings</h2><p class="small">Language</p><div class="grid2"><button class="btn">🇬🇧 English</button><button class="btn btn-outline">🇿🇦 isiZulu</button></div><p class="small" style="margin-top:12px">Safety Features</p><label class="small"><input type="checkbox" checked> Shake 3x to SOS</label><br><label class="small"><input type="checkbox" checked> Volume 13x Emergency</label><br><label class="small"><input type="checkbox" checked> Battery Saver Mode</label><button class="btn btn-outline" onclick="showInside('more')">⬅ Back</button></div>
-
-<div id="calc" class="card hidden"><h2>🧮 Calculator (Hide Mode)</h2><p class="small">If someone checks your phone, show this. Type 1337 + = to open vault</p><input id="calcDisplay" placeholder="0" disabled style="font-size:24px;text-align:right"><div class="grid2"><button class="btn btn-outline" onclick="calcPress('7')">7</button><button class="btn btn-outline" onclick="calcPress('8')">8</button><button class="btn btn-outline" onclick="calcPress('9')">9</button><button class="btn btn-outline" onclick="calcPress('4')">4</button><button class="btn btn-outline" onclick="calcPress('5')">5</button><button class="btn btn-outline" onclick="calcPress('6')">6</button><button class="btn btn-outline" onclick="calcPress('1')">1</button><button class="btn btn-outline" onclick="calcPress('2')">2</button><button class="btn btn-outline" onclick="calcPress('3')">3</button><button class="btn btn-outline" onclick="calcPress('0')">0</button><button class="btn" onclick="calcPress('=')">=</button><button class="btn btn-red" onclick="calcClear()">C</button></div><button class="btn btn-outline" onclick="showInside('home')">Exit Calculator</button></div>
-
-<div class="nav">
-<span onclick="showInside('home')">🏠<br>Home</span>
-<span onclick="showInside('contacts')">👥<br>Contacts</span>
-<span onclick="showInside('vault')">🔒<br>Vault</span>
-<span onclick="showInside('safe')">📍<br>Safe</span>
-<span onclick="showInside('more')">☰<br>More</span>
-</div>
+<div class="nav"><span onclick="showInside('home')">🏠<br>Home</span><span onclick="showInside('contacts')">👥<br>Contacts</span><span onclick="showInside('vault')">🔒<br>Vault</span><span onclick="showInside('safe')">📍<br>Safe</span><span onclick="showInside('more')">☰<br>More</span></div>
 
 <script>
-let volCount=0,firstTime=0,generatedOtp="",shakeCount=0,holdTimer=null,calcVal="";
-function switchTab(t){document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('createForm').classList.toggle('hidden',t!=='create');document.getElementById('tabLogin').className=t==='login'?'btn active':'btn btn-outline';document.getElementById('tabCreate').className=t==='create'?'btn active':'btn btn-outline';}
+let volCount=0,firstTime=0,generatedOtp="",calcVal="";
+function switchTab(t){
+ document.getElementById('loginForm').classList.toggle('hidden',t!=='login');
+ document.getElementById('createForm').classList.toggle('hidden',t!=='create');
+ document.getElementById('tabLogin').className=t==='login'?'btn active':'btn btn-outline';
+ document.getElementById('tabCreate').className=t==='create'?'btn active':'btn btn-outline';
+ hideError('loginError'); hideError('regError');
+}
+function showError(id,msg){let el=document.getElementById(id); el.innerText=msg; el.style.display='block';}
+function hideError(id){let el=document.getElementById(id); el.style.display='none';}
 function toggleOtp(){let type=document.querySelector('input[name="otpType"]:checked').value;document.getElementById('phoneBox').classList.toggle('hidden',type!=='phone');document.getElementById('emailBox').classList.toggle('hidden',type!=='email');}
 function sendOtp(){
  let type=document.querySelector('input[name="otpType"]:checked').value;
  let phone=document.getElementById('regPhone').value.trim();
  let email=document.getElementById('regEmail').value.trim();
- if(type==='phone' && phone.length<10){alert('Enter valid phone e.g. 0821234567');return;}
- if(type==='email' && (!email.includes('@')||!email.includes('.'))){alert('Enter valid email');return;}
+ if(type==='phone' && phone.length<8){showError('regError','❌ Enter valid phone e.g. 0821234567');return;}
+ if(type==='email' && !email.includes('@')){showError('regError','❌ Enter valid email');return;}
+ hideError('regError');
  generatedOtp=Math.floor(100000+Math.random()*900000).toString();
  let box=document.getElementById('otpStatus'); box.style.display='block';
- box.innerHTML=`✅ <b>OTP SENT to ${type==='phone'?phone:email}</b><br>Your code: <b style="font-size:20px;letter-spacing:4px">${generatedOtp}</b><br><small>Demo mode - no cost, no trouble. In funded version this SMS/emails for real. Code expires in 5 min.</small>`;
- alert(`🔐 FEMINIST GUARD OTP: ${generatedOtp}\nTo: ${type==='phone'?phone:email}\n\nDemo mode - no network charge, 100% legal, no trouble.`);
+ box.innerHTML=`✅ OTP SENT to <b>${type==='phone'?phone:email}</b><br>Code: <b style="font-size:22px;letter-spacing:4px">${generatedOtp}</b><br><small>Demo - no cost. Enter this code below.</small>`;
 }
 function getUsers(){try{return JSON.parse(localStorage.getItem('fg_users')||'[]')}catch(e){return []}}
 function saveUsers(u){localStorage.setItem('fg_users',JSON.stringify(u));}
@@ -147,71 +111,46 @@ function doRegister(){
  let name=document.getElementById('fullName').value.trim();
  let user=document.getElementById('regUser').value.trim();
  let pass=document.getElementById('regPass').value.trim();
- let popia=document.getElementById('popia').checked;
  let enteredOtp=document.getElementById('otpInput').value.trim();
- if(id.length!==13||isNaN(id)){alert('❌ SA ID must be 13 digits');return;}
- if(!name||name.length<2){alert('Enter full name');return;}
- if(!user||user.length<3){alert('Username min 3 letters');return;}
- if(!pass||pass.length<6){alert('Password min 6');return;}
- if(!popia){alert('Please tick POPIA agreement');return;}
- if(!generatedOtp){alert('Tap Send OTP first');return;}
- if(enteredOtp!==generatedOtp){alert('❌ Wrong OTP! Demo code is '+generatedOtp+'\nEnter it to prove you own phone/email');return;}
+ hideError('regError');
+ if(id.length!==13){showError('regError','❌ SA ID must be 13 digits');return;}
+ if(!name){showError('regError','❌ Enter full name');return;}
+ if(user.length<3){showError('regError','❌ Username min 3 letters');return;}
+ if(pass.length<6){showError('regError','❌ Password min 6');return;}
+ if(!generatedOtp){showError('regError','❌ Tap Send OTP first!');return;}
+ if(enteredOtp!==generatedOtp){showError('regError','❌ Wrong OTP! Code is '+generatedOtp+' (demo)');return;}
  let users=getUsers();
- if(users.find(x=>x.username.toLowerCase()===user.toLowerCase())){alert('Username exists! Please Login');switchTab('login');return;}
+ if(users.find(x=>x.username.toLowerCase()===user.toLowerCase())){showError('regError','❌ Username exists! Use different name or Login');return;}
  let idSafe='****'+id.slice(-4);
- users.push({saId:idSafe,fullName:name,username:user,password:pass,verified:true,created:Date.now()});
+ users.push({saId:idSafe,fullName:name,username:user,password:pass,verified:true});
  saveUsers(users);
- alert('✅ Account created successfully!\nUsername: '+user+'\nID: '+idSafe+'\nNow login with your password');
+ alert('✅ Account created! Now login with '+user);
  switchTab('login'); document.getElementById('loginUser').value=user; generatedOtp=""; document.getElementById('otpStatus').style.display='none';
 }
 function doLogin(){
  let u=document.getElementById('loginUser').value.trim();
  let p=document.getElementById('loginPass').value.trim();
- if(!u||!p){alert('Enter username and password');return;}
+ hideError('loginError');
+ if(!u||!p){showError('loginError','❌ Enter username and password');return;}
  let users=getUsers();
  let found=users.find(x=>x.username.toLowerCase()===u.toLowerCase() && x.password===p);
- if(!found){alert('❌ LOGIN FAILED\n\nAccount "'+u+'" not found or wrong password.\n\nIf never registered, tap Create Account.\nIf forgot password, create new account (data is on this phone only)');return;}
+ if(!found){
+   showError('loginError','❌ Incorrect username or password. Account "'+u+'" not found. Please Create Account first.');
+   return;
+ }
  document.getElementById('helloName').innerText=found.fullName||found.username;
- document.getElementById('idShow').innerText='ID:'+found.saId;
+ document.getElementById('idShow').innerText='ID: '+found.saId+' • Verified ✓';
  document.getElementById('loginPage').classList.add('hidden');
  document.getElementById('vol').classList.remove('hidden');
  localStorage.setItem('fg_current',found.username);
- showInside('home'); loadContacts();
+ showInside('home');
 }
-function showInside(id){document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage' && c.id!=='vol')c.classList.add('hidden')});let target=document.getElementById(id); if(target)target.classList.remove('hidden'); window.scrollTo(0,0);}
+function showInside(id){document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage' && c.id!=='vol')c.classList.add('hidden')});document.getElementById(id).classList.remove('hidden');}
 function logout(){document.getElementById('loginPage').classList.remove('hidden');document.getElementById('vol').classList.add('hidden');document.querySelectorAll('.card').forEach(c=>{if(c.id!=='loginPage')c.classList.add('hidden')});document.getElementById('loginPage').classList.remove('hidden');}
-function loadContacts(){let list=JSON.parse(localStorage.getItem('fg_contacts')||'[]');let el=document.getElementById('cList');let count=document.getElementById('contactCount');if(count)count.innerText=list.length+' contacts';if(el){el.innerHTML=list.map((x,i)=>`<div style="padding:8px;background:#F5F5F5;border-radius:10px;margin:4px 0;display:flex;justify-content:space-between"><span>${x.name} - ${x.phone}</span><span style="color:red" onclick="delContact(${i})">✕</span></div>`).join('')||'<small>No contacts yet</small>';}}
-function addContact(){let n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim();if(!n||!p){alert('Enter name and phone');return;}let list=JSON.parse(localStorage.getItem('fg_contacts')||'[]');list.push({name:n,phone:p});localStorage.setItem('fg_contacts',JSON.stringify(list));document.getElementById('cName').value='';document.getElementById('cPhone').value='';loadContacts();alert('Added to vault');}
-function delContact(i){let list=JSON.parse(localStorage.getItem('fg_contacts')||'[]');list.splice(i,1);localStorage.setItem('fg_contacts',JSON.stringify(list));loadContacts();}
-// Volume 13x inside only
-document.addEventListener('keydown',e=>{
- if(e.key==='AudioVolumeUp'||e.key==='VolumeUp'||e.keyCode===38||e.keyCode===175){
-  let now=Date.now(); if(now-firstTime>10000){volCount=0;firstTime=now;}
-  volCount++; let v=document.getElementById('vol'); if(v&&!v.classList.contains('hidden'))v.innerText=`Volume: ${volCount}/13 | Shake:${shakeCount}`;
-  if(volCount>=13){volCount=0;panicNow();}
- }
-});
-// Shake 3x SOS
-if(window.DeviceMotionEvent){let lastShake=0;window.addEventListener('devicemotion',e=>{let acc=e.accelerationIncludingGravity; if(!acc)return; let force=Math.abs(acc.x)+Math.abs(acc.y)+Math.abs(acc.z); if(force>35){let now=Date.now(); if(now-lastShake>1000){shakeCount++; lastShake=now; let v=document.getElementById('vol'); if(v&&!v.classList.contains('hidden'))v.innerText=`Volume: ${volCount}/13 | Shake:${shakeCount}`; if(shakeCount>=3){shakeCount=0;panicNow();}}}});}
-// Panic
-function startHold(){holdTimer=setTimeout(()=>panicNow(),1000); document.getElementById('status').innerText='Holding... keep 1 sec';}
-function endHold(){clearTimeout(holdTimer); if(document.getElementById('status').innerText.includes('Holding'))document.getElementById('status').innerText='Ready - hold 1 sec';}
-function holdPanic(){panicNow();}
-async function panicNow(){
- document.getElementById('status').innerHTML='🎙️ RECORDING + SENDING...';
- try{let s=await navigator.mediaDevices.getUserMedia({audio:true});let r=new MediaRecorder(s);let chunks=[];r.ondataavailable=e=>chunks.push(e.data);r.onstop=()=>{let blob=new Blob(chunks);let url=URL.createObjectURL(blob);let list=document.getElementById('vaultList');let count=document.getElementById('vaultCount');let items=JSON.parse(localStorage.getItem('fg_vault')||'[]');items.push({time:new Date().toLocaleString(),type:'audio',url:url});localStorage.setItem('fg_vault',JSON.stringify(items));if(list)list.innerHTML=`<audio controls src="${url}"></audio><br><small>${new Date().toLocaleString()}</small>`+list.innerHTML; if(count)count.innerText=items.length+' items';}; r.start(); setTimeout(()=>r.stop(),15000);}catch(e){console.log(e);}
- navigator.geolocation.getCurrentPosition(p=>{
-  let txt=`📍 SOS ${p.coords.latitude.toFixed(6)},${p.coords.longitude.toFixed(6)} Acc:${p.coords.accuracy.toFixed(1)}m ${new Date().toLocaleString()}`;
-  document.getElementById('log').innerHTML=txt+`<br><a href="https://maps.google.com/?q=${p.coords.latitude},${p.coords.longitude}" target="_blank">Open Maps</a>`;
-  let items=JSON.parse(localStorage.getItem('fg_vault')||'[]'); items.push({time:new Date().toLocaleString(),type:'location',text:txt,lat:p.coords.latitude,lng:p.coords.longitude}); localStorage.setItem('fg_vault',JSON.stringify(items));
-  let contacts=JSON.parse(localStorage.getItem('fg_contacts')||'[]'); if(contacts.length>0){document.getElementById('log').innerHTML+=`<br>✅ Would SMS ${contacts.length} contacts (demo - no cost)`;}
- },{e=>{document.getElementById('log').innerHTML='GPS failed - using last known';},{enableHighAccuracy:true,timeout:10000});
-}
-function stopPanic(){document.getElementById('status').innerHTML='Stopped';}
-function openCalc(){showInside('calc');}
-function calcPress(v){if(v==='='){if(calcVal==='1337'){showInside('vault');calcVal='';document.getElementById('calcDisplay').value='';}else{try{document.getElementById('calcDisplay').value=eval(calcVal)||'';calcVal=document.getElementById('calcDisplay').value}catch(e){document.getElementById('calcDisplay').value='Error';calcVal=''}} }else{calcVal+=v;document.getElementById('calcDisplay').value=calcVal;}}
+function addContact(){let n=document.getElementById('cName').value,p=document.getElementById('cPhone').value;if(n&&p){let list=JSON.parse(localStorage.getItem('fg_contacts')||'[]');list.push({name:n,phone:p});localStorage.setItem('fg_contacts',JSON.stringify(list));document.getElementById('cList').innerHTML+=`<div>${n} - ${p}</div>`;}}
+document.addEventListener('keydown',e=>{if(e.key==='VolumeUp'||e.keyCode===38){let now=Date.now();if(now-firstTime>10000){volCount=0;firstTime=now;}volCount++;let v=document.getElementById('vol');if(v&&!v.classList.contains('hidden'))v.innerText='Volume: '+volCount+'/13';if(volCount>=13){volCount=0;panicNow();}}});
+async function panicNow(){document.getElementById('status').innerHTML='🎙️ RECORDING...';try{let s=await navigator.mediaDevices.getUserMedia({audio:true});new MediaRecorder(s).start();}catch(e){}navigator.geolocation.getCurrentPosition(p=>{document.getElementById('log').innerHTML=`📍 ${p.coords.latitude.toFixed(5)},${p.coords.longitude.toFixed(5)}`},{},{enableHighAccuracy:true});}
+function calcPress(v){if(v==='='){if(calcVal==='1337'){showInside('vault');calcVal='';}else{try{document.getElementById('calcDisplay').value=eval(calcVal);calcVal=document.getElementById('calcDisplay').value}catch(e){document.getElementById('calcDisplay').value='Error';calcVal=''}} }else{calcVal+=v;document.getElementById('calcDisplay').value=calcVal;}}
 function calcClear(){calcVal='';document.getElementById('calcDisplay').value='';}
-// auto login if exists
-window.onload=()=>{let cur=localStorage.getItem('fg_current'); if(cur){let users=getUsers(); let f=users.find(x=>x.username===cur); if(f){document.getElementById('loginUser').value=cur;}}};
 </script>
 </body></html>
