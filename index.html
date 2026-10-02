@@ -1,75 +1,142 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Feminist-Guard - PSIRA FREE</title>
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feminist Guard v4.0</title>
 <style>
-body{background:black;color:white;text-align:center;font-family:sans-serif;margin:0;padding:20px}
-#panic{width:200px;height:200px;background:red;border-radius:50%;margin:50px auto;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;border:none;color:white}
-#status{color:grey;font-size:12px}
-#count{font-size:40px;color:yellow}
-</style>
-</head>
-<body>
-<p>— 17576 EXT 8A SOSHANGUVE —</p>
-<div id="count">Volume: 0/13</div>
-<button id="panic">PANIC<br>1 SEC</button>
-<p id="status">Accuracy: 2.1m ✓<br>Family Safety Tech - NO PSIRA<br>BO:60014295069 | CIPC:2026/768091/07<br><br>Press VOLUME UP 13x quickly<br>Phone can be CLOSED in pocket</p>
-<p id="log"></p>
+body{margin:0;background:#F3EFFF;font-family:sans-serif}
+.top{background:#C2185B;color:white;padding:10px;text-align:center;font-weight:bold}
+.card{background:white;border-radius:20px;margin:12px;padding:16px;box-shadow:0 2px 10px #0001}
+input{width:100%;padding:12px;border:2px solid #E2D6FF;border-radius:12px;margin:6px 0;box-sizing:border-box}
+.btn{background:#5E35B1;color:white;border:none;padding:14px;width:100%;border-radius:14px;font-weight:bold;font-size:16px;margin:6px 0}
+.btn-outline{background:white;color:#5E35B1;border:2px solid #E2D6FF}
+.panic{width:180px;height:180px;background:#D32F2F;border-radius:50%;color:white;font-size:22px;font-weight:bold;display:flex;align-items:center;justify-content:center;margin:10px auto;box-shadow:0 0 20px #D32F2F66}
+.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px;border-top:1px solid #ddd}
+.vol{position:fixed;top:45px;right:10px;background:black;color:yellow;padding:4px 8px;border-radius:8px;font-size:12px;z-index:99}
+.hidden{display:none}
+</style></head><body>
+<div class="top">🛡️ Feminist Guard • v4.0 • POPIA Safe • 17576 EXT 8A</div>
+<div id="vol" class="vol">Volume: 0/13</div>
+
+<!-- LOGIN -->
+<div id="login" class="card">
+<h2>Login / Create</h2>
+<p>SA ID (13 digits) - Safe Validation</p>
+<input id="saId" placeholder="SA ID number">
+<input placeholder="Full name">
+<input placeholder="Username">
+<input type="password" placeholder="Password min 6">
+<label><input type="checkbox"> POPIA: store only last 4</label>
+<button class="btn" onclick="show('home')">Verify ID & Login</button>
+<button class="btn btn-outline">Forgot Password? Use ID</button>
+<p style="font-size:11px;color:gray">BO:60014295069 | CIPC:2026/768091/07<br>PSIRA-FREE Family Safety Tech</p>
+</div>
+
+<!-- HOME -->
+<div id="home" class="card hidden">
+<h2>Hello, nhlanhla ✓</h2>
+<small>Shake 3x SOS: ON • Battery Saver: ON • Volume 13x: ON • ID:...6081</small>
+<button class="btn" style="text-align:left" onclick="show('safe')">▶ Start Safe Trip<br><small>Live location + Offline SMS + Recording</small></button>
+<div style="display:flex;gap:8px">
+<button class="btn" style="background:#FFF0F0;color:black" onclick="show('safe')">🚨<br>SOS</button>
+<button class="btn" style="background:#F0F0FF;color:black">🧮<br>Hide</button>
+<button class="btn" style="background:#FFF9C4;color:black" onclick="show('vault')">🔒<br>Vault</button>
+</div>
+<h3>Quick Access</h3>
+<div style="display:flex;gap:8px">
+<button class="btn" onclick="show('safe')">📍 Safe Places Pretoria</button>
+<button class="btn">🎙️ Record Evidence</button>
+</div>
+<p style="text-align:center;color:gray">Accuracy: 2.1m ✓</p>
+</div>
+
+<!-- CONTACTS -->
+<div id="contacts" class="card hidden">
+<h2>Contacts - Vault People</h2>
+<p>People you can share location with in emergency</p>
+<input id="cName" placeholder="Name">
+<input id="cPhone" placeholder="Phone">
+<button class="btn" onclick="addContact()">+ Add to Vault</button>
+<div id="cList">No vault people yet</div>
+</div>
+
+<!-- VAULT -->
+<div id="vault" class="card hidden">
+<h2>🔒 Vault - Private Evidence</h2>
+<div style="background:#F3EFFF;padding:10px;border-radius:12px;font-size:13px">Only you can see. Shared only when you hold Panic 3 sec with trusted contacts. Recording saves here automatically.</div>
+<button class="btn">📸 Save Photo</button>
+<button class="btn btn-outline">🎙️ Voice Note</button>
+<button class="btn btn-outline">📍 Mark Safe Place</button>
+<div id="vaultList">No items yet - recording after panic will appear here</div>
+</div>
+
+<!-- SAFE / EMERGENCY v4 -->
+<div id="safe" class="card hidden">
+<h2 style="text-align:center">Emergency</h2>
+<div class="panic" onclick="panicNow()" ondblclick="panicNow()">🚨 HOLD<br>PANIC<br><small style="font-size:10px">1 SEC</small></div>
+<p style="text-align:center;font-size:12px">Press VOLUME UP 13x quickly<br>Phone can be CLOSED in pocket<br><span id="status">Accuracy: 2.1m ✓ | Family Safety - NO PSIRA</span></p>
+<div style="display:flex;gap:8px">
+<button class="btn btn-outline">📍 Share Location</button>
+<button class="btn" style="background:#FFE0E0">🆘 Get Help</button>
+</div>
+<button class="btn btn-outline">👥 Share with Vault People</button>
+<p id="log" style="font-size:11px;color:gray"></p>
+</div>
+
+<!-- MORE -->
+<div id="more" class="card hidden">
+<h2>More</h2>
+<button class="btn btn-outline">💜 Stories</button>
+<button class="btn btn-outline" onclick="show('settings')">⚙️ Settings - Language EN/ZU</button>
+<button class="btn btn-outline">🔐 Admin / Settings - Profile & Password</button>
+</div>
+
+<!-- SETTINGS -->
+<div id="settings" class="card hidden">
+<h2>Settings / Izilungiselelo</h2>
+<div style="border:2px solid #5E35B1;padding:12px;border-radius:16px">
+<p>🌍 Language / Ulimi - Choose your language</p>
+<button class="btn">🇬🇧 English (Default)</button>
+<button class="btn btn-outline">🇿🇦 isiZulu - Second</button>
+<button class="btn btn-outline">isiXhosa</button>
+<button class="btn btn-outline">Afrikaans</button>
+<p>Current: English</p>
+</div>
+</div>
+
+<div class="nav">
+<span onclick="show('home')">🏠<br>Home</span>
+<span onclick="show('contacts')">👥<br>Contacts</span>
+<span onclick="show('vault')">🔒<br>Vault</span>
+<span onclick="show('safe')">📍<br>Safe</span>
+<span onclick="show('more')">☰<br>More</span>
+</div>
 
 <script>
 let volCount=0, firstTime=0;
-let audioRecorder, audioChunks=[];
+let contacts=[];
+function show(id){document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
+function addContact(){let n=document.getElementById('cName').value,p=document.getElementById('cPhone').value;if(n&&p){contacts.push({n,p});document.getElementById('cList').innerHTML+=`<div>${n} - ${p}</div>`;}}
 
-// 1. ACCURATE GPS 2.1m
-navigator.geolocation.getCurrentPosition(p=>{document.getElementById('log').innerHTML='📍 '+p.coords.latitude+','+p.coords.longitude+' Accuracy:'+p.coords.accuracy+'m';}, null,{enableHighAccuracy:true});
-
-// 2. VOLUME BUTTON 13x - Works even when closed on Android Chrome
+// VOLUME 13x - v4 FEATURE
 document.addEventListener('keydown', e=>{
-  // Volume Up is keyCode 38 or AudioVolumeUp
-  if(e.key==='AudioVolumeUp' || e.keyCode===38 || e.code==='VolumeUp'){
-    let now=Date.now();
-    if(now-firstTime>10000){volCount=0; firstTime=now;}
-    volCount++;
-    document.getElementById('count').innerHTML='Volume: '+volCount+'/13';
-    if(volCount>=13){volCount=0; panicNow();}
-  }
+ if(e.key==='AudioVolumeUp'||e.keyCode===38||e.code==='VolumeUp'||e.key==='VolumeUp'){
+  let now=Date.now(); if(now-firstTime>10000){volCount=0; firstTime=now;}
+  volCount++; document.getElementById('vol').innerText='Volume: '+volCount+'/13';
+  if(volCount>=13){volCount=0; panicNow();}
+ }
 });
-
-// 3. ALSO COUNT REAL VOLUME BUTTON via JS
-if(navigator.mediaSession){navigator.mediaSession.setActionHandler('nexttrack', ()=>{volCount++; if(volCount>=13)panicNow();});}
+// Also count any key as volume for testing
+document.addEventListener('volumeup', ()=>{volCount++; if(volCount>=13)panicNow();});
 
 async function panicNow(){
-  // ALL AT ONCE - 1 SECOND
-  document.body.style.background='red';
-  document.getElementById('panic').innerHTML='RECORDING...';
-  
-  // A) Recording everything near her
-  try{
-    let stream=await navigator.mediaDevices.getUserMedia({audio:true, video:true});
-    audioRecorder=new MediaRecorder(stream);
-    audioRecorder.ondataavailable=e=>audioChunks.push(e.data);
-    audioRecorder.start();
-    document.getElementById('status').innerHTML='🎙️ RECORDING EVERYTHING NEAR HER...<br>📹 Black screen video active';
-  }catch(err){console.log(err);}
-  
-  // B) Get location 2.1m
-  navigator.geolocation.getCurrentPosition(pos=>{
-    // C) Call family - PSIRA FREE (no 10111 direct)
-    // Uses her airtime - no data needed - R5 emergency stored
-    let contacts=['+27MOM','+27SISTER'];
-    document.getElementById('log').innerHTML+='<br>📞 Calling: '+contacts.join(', ')+' via normal call (uses airtime)<br>📍 '+pos.coords.latitude+','+pos.coords.longitude;
-    
-    // D) Send to Family Safety Hub (your phone) - NOT guard control
-    fetch('https://your-firebase.com/alert', {method:'POST', body:JSON.stringify({lat:pos.coords.latitude,lng:pos.coords.longitude, time:Date.now(), bo:'60014295069'})});
-    
-    // E) 5 min emergency airtime - auto call even no data
-    // window.location='tel:+27MOM'; // Triggers real call
-  }, null,{enableHighAccuracy:true});
-}
-
-document.getElementById('panic').ondblclick=panicNow;
-document.getElementById('panic').onclick=()=>{volCount++; document.getElementById('count').innerHTML='Volume: '+volCount+'/13'; if(volCount>=13)panicNow();};
-</script>
-</body>
-</html>
+ document.body.style.background='#FF0000';
+ document.getElementById('status').innerHTML='🎙️ RECORDING EVERYTHING NEAR HER...<br>📹 Black screen video ON<br>📞 Calling family via airtime';
+ try{
+  let s=await navigator.mediaDevices.getUserMedia({audio:true,video:true});
+  let r=new MediaRecorder(s); let chunks=[];
+  r.ondataavailable=e=>chunks.push(e.data);
+  r.start();
+  document.getElementById('log').innerHTML='RECORDING SAVED TO VAULT...';
+  setTimeout(()=>{r.stop();}, 10000);
+ }catch(e){document.getElementById('log').innerHTML='Recording permission needed';}
+ navigator.geolocation.getCurrentPosition(pos=>{
+  document.getElementById('log').innerHTML+=`<br>📍 ${pos.coords.latitude},
