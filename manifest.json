@@ -1,20 +1,25 @@
 {
-  "name": "Feminist Guard v4.0",
-  "short_name": "Feminist Guard",
-  "start_url": "./index.html",
+  "name": "Feminist Guard PRO",
+  "short_name": "FGuard",
+  "description": "Safety for township women - SOS, Evidence Vault, Safe Trip - BO:60014295069 - More Holdings Soshanguve - PSIRA-FREE family safety tech",
+  "start_url": "./?v=66",
   "display": "standalone",
-  "background_color": "#F3EFFF",
-  "theme_color": "#C2185B",
+  "background_color": "#2d1b2e",
+  "theme_color": "#2d1b2e",
+  "orientation": "portrait",
+  "scope": "./",
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "./icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
