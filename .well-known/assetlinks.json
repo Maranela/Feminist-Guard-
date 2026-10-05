@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.maranela.twa",
+      "sha256_cert_fingerprints": [
+        "C8:9D:64:17:8D:61:0E:5E:BC:29:2E:8B:DC:41:A3:B4:C2:5D:9A:88:AF:F8:94:75:4D:C6:2D:0A:59:68:92:FE"
+      ]
+    }
+  }
+]
