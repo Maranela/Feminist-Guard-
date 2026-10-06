@@ -2,8 +2,8 @@
   "name": "Feminist Guard - Elite women's safety app - SOS, Evidence Vault, Safe Trip",
   "short_name": "Feminist Guard",
   "description": "Elite women's safety app - SOS, Evidence Vault, Safe Trip",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#2D0A37",
@@ -19,7 +19,13 @@
       "src": "icon512.png?v=2",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon512.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
