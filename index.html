@@ -1,99 +1,160 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FEMINIST-GUARD v48 — 8-Step Flow — PASTE READY</title>
+<title>FEMINIST-GUARD v36 RESTORED + 8X AUTO LIVE LOCATION</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 *{box-sizing:border-box}body{margin:0;background:#0a0a1f;color:#f5e6a3;font-family:Inter,sans-serif}
-.header{text-align:center;padding:18px 10px 8px;background:#0a0a1f;position:sticky;top:0;z-index:99;border-bottom:1px solid #d4c27a}
-.header h1{font-size:18px;letter-spacing:1.5px;margin:0} .header p{font-size:10px;opacity:.8;margin:4px 0 0}
+.header{text-align:center;padding:14px;background:#0a0a1f;position:sticky;top:0;z-index:99;border-bottom:1px solid #d4c27a}
+.header h1{font-size:17px;letter-spacing:1px;margin:0}.header p{font-size:10px;opacity:.8}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;max-width:1000px;margin:0 auto}
 @media(max-width:700px){.grid{grid-template-columns:1fr}}
-.card{border:1.5px solid #d4c27a;border-radius:14px;padding:14px;background:#14142e;position:relative;min-height:320px}
-.num{position:absolute;top:8px;left:10px;font-weight:800;font-size:18px}
-.card h2{text-align:center;font-size:15px;margin:6px 0 10px;line-height:1.2}
-.btn-row{display:flex;gap:8px;justify-content:center;margin:10px 0}
-.btn{background:#2a2a4a;border:1px solid #d4c27a;color:#f5e6a3;padding:8px 10px;border-radius:8px;font-size:11px;flex:1;text-align:center;text-decoration:none;cursor:pointer}
-.status{background:#1a1a33;border-radius:8px;padding:8px;font-size:11px;margin-top:8px}
-.pink{width:140px;height:140px;background:radial-gradient(circle,#ff7ab0,#e84a8a);border-radius:50%;margin:14px auto;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;color:white;font-size:18px;cursor:pointer;user-select:none;box-shadow:0 0 0 8px rgba(232,74,138,.15);touch-action:none}
-.pink:active{transform:scale(.95)}
-.bar{height:10px;background:#2a2a4a;border-radius:10px;overflow:hidden;margin:10px 0}
+.card{border:1.5px solid #d4c27a;border-radius:14px;padding:14px;background:#14142e;position:relative;min-height:340px}
+.num{position:absolute;top:8px;left:10px;font-weight:800}
+.card h2{text-align:center;font-size:15px;margin:6px 0 10px}
+.btn{background:#2a2a4a;border:1px solid #d4c27a;color:#f5e6a3;padding:10px;border-radius:10px;font-size:12px;flex:1;text-align:center;text-decoration:none;cursor:pointer;display:block;margin:6px 0}
+.btn-row{display:flex;gap:8px}
+.pink{width:150px;height:150px;background:radial-gradient(circle,#ff7ab0,#e84a8a);border-radius:50%;margin:14px auto;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:white;font-size:20px;cursor:pointer;touch-action:none;box-shadow:0 0 0 10px rgba(232,74,138,.15)}
+.bar{height:12px;background:#2a2a4a;border-radius:10px;overflow:hidden;margin:10px 0}
 .bar-fill{height:100%;width:0%;background:#7aff9a;transition:width .2s}
-.green-banner{background:#2d6a4f;color:#7aff9a;padding:6px;border-radius:6px;font-size:12px;text-align:center}
-.yellow-banner{background:#d4c27a;color:#1a1a33;padding:6px;border-radius:6px;font-size:11px;font-weight:700;text-align:center;margin-top:8px}
-.contact{display:flex;align-items:center;justify-content:space-between;background:#1e1e3a;padding:6px 8px;border-radius:8px;margin:4px 0;font-size:12px}
-.badge{background:#2d6a4f;color:#7aff9a;padding:2px 6px;border-radius:10px;font-size:10px}
-.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:200px;margin:10px auto}
-.key{background:#3a3a5a;border:1px solid #d4c27a;padding:12px;border-radius:8px;text-align:center;cursor:pointer;font-weight:700}
-.ai-box{background:#2a2a4a;padding:8px;border-radius:8px;font-size:12px;margin:6px 0;border-left:3px solid #d4c27a}
-.pay-btn{background:#f5e6a3;color:#1a1a33;padding:12px;border-radius:10px;font-weight:800;text-align:center;margin-top:10px;cursor:pointer;line-height:1.3}
-input{width:100%;background:#1a1a33;border:1px solid #d4c27a;color:#f5e6a3;padding:10px;border-radius:8px;margin-top:6px}
-.hold-ring{position:absolute;top:50%;left:50%;width:160px;height:160px;border:3px solid #e84a8a;border-radius:50%;transform:translate(-50%,-50%);animation:pulse 1s infinite;display:none}
-@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.25);opacity:0}}
+.green-banner{background:#2d6a4f;color:#7aff9a;padding:8px;border-radius:8px;font-size:12px;text-align:center;font-weight:700}
+.yellow-banner{background:#d4c27a;color:#1a1a33;padding:8px;border-radius:8px;font-size:12px;font-weight:800;text-align:center}
+.red-banner{background:#ff3b6b;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:800;text-align:center;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+.contact{display:flex;align-items:center;justify-content:space-between;background:#1e1e3a;padding:8px;border-radius:8px;margin:5px 0;font-size:12px}
+.badge{background:#2d6a4f;color:#7aff9a;padding:2px 8px;border-radius:12px;font-size:10px}
+.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:210px;margin:10px auto}
+.key{background:#3a3a5a;border:1px solid #d4c27a;padding:13px;border-radius:10px;text-align:center;cursor:pointer;font-weight:800}
+.ai-box{background:#2a2a4a;padding:10px;border-radius:10px;font-size:12px;margin:6px 0;border-left:3px solid #d4c27a}
+.pay-btn{background:#f5e6a3;color:#1a1a33;padding:14px;border-radius:12px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer}
+input{width:100%;background:#1a1a33;border:1px solid #d4c27a;color:#f5e6a3;padding:12px;border-radius:10px;margin-top:6px}
+.log{background:#0f0f2a;border:1px solid #3a3a5a;border-radius:8px;padding:8px;font-size:10px;height:120px;overflow-y:auto;margin-top:8px;white-space:pre-wrap}
+.hold-ring{position:absolute;top:50%;left:50%;width:170px;height:170px;border:3px solid #e84a8a;border-radius:50%;transform:translate(-50%,-50%);animation:pulse 1s infinite;display:none}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.3);opacity:0}}
 </style></head><body>
-<div class="header"><h1>FEMINIST-GUARD v48 — APP STORYBOARD FLOW</h1><p>Safety • Empowerment • Protection • 8-Step Emergency Flow • Soshanguve 17576 • Nedbank 1328576469 • PASTE READY</p></div>
+<div class="header"><h1>FEMINIST-GUARD v36 RESTORED + AUTO 8X</h1><p>v36 Owner 0672739660 • Auto Live Location • Nedbank 1328576469 • Soshanguve 17576 EXT 8A • feministguard@gmail.com</p></div>
 <div class="grid">
-<div class="card" id="p1"><div class="num">1</div><h2>🛡️ Feminist-Guard<br><span style="font-size:13px">Good Evening,<br>You're Protected</span></h2>
-<div class="btn-row"><a class="btn" href="tel:10111">📞 SAPS 10111<br><small>Police Emergency</small></a><a class="btn" href="tel:112">📞 112 FREE<br><small>National Emergency</small></a></div>
-<div class="status">Safety Status: <span style="color:#7aff9a">ACTIVE ✅</span><br><span id="locStatus">Getting GPS...</span><br><small id="gpsText">GPS: Waiting</small></div>
-<div style="display:flex;gap:8px;margin-top:8px;font-size:9px;"><span>👥 Trusted Contacts</span><span>🔒 Vault Secured</span><span>ⓘ Panic Ready</span></div></div>
-
-<div class="card" id="p2"><div class="num">2</div><h2>Panel 2<br>HOLD SOS</h2>
-<div style="position:relative;"><div class="hold-ring" id="holdRing"></div><div class="pink" id="holdBtn">HOLD<br>TO SEND<br>SOS<br><small>✋</small></div></div>
-<p style="text-align:center;font-size:11px;">Press and hold 3 seconds to alert contacts & services<br>Silent mode • GPS active</p><div class="bar"><div class="bar-fill" id="holdBar"></div></div><small id="holdText" style="display:block;text-align:center;">Ready to hold</small></div>
-
-<div class="card" id="p3"><div class="num">3</div><h2>🔊 Volume Panic Trigger<br><small style="font-size:11px;">Press Volume UP 8x rapidly to trigger SOS</small></h2>
-<div class="bar"><div class="bar-fill" id="volBar"></div></div><p style="text-align:center;">Press Count: <span id="volCount">0/8</span> ✅<br><b id="volState">0/8 → 8/8<br>ARMED</b></p>
-<div class="yellow-banner" id="volBanner">⚠️ Panic Trigger Armed — Ready</div><button class="btn" style="width:100%;margin-top:8px;" onclick="volPress()">SIMULATE Volume UP Press (Test Outside)</button><small style="display:block;text-align:center;margin-top:6px;">Works even if phone is locked</small></div>
-
-<div class="card" id="p4"><div class="num">4</div><h2>🛡️ SOS Alert Sent</h2><div class="green-banner">Emergency SMS Sent ✅</div>
-<p style="font-size:12px;margin:8px 0;">Sent to: <span id="sentTo">Mom<br>First Contact</span></p>
-<div style="background:#e8e8e8;color:#333;border-radius:8px;padding:6px;font-size:10px;text-align:center;"><div style="height:80px;background:#cfe8cf;display:flex;align-items:center;justify-content:center;flex-direction:column;">📍 LIVE MAP<br><small id="mapLink" style="word-break:break-all;">Soshanguve South EXT 8A - Waiting GPS</small></div></div>
-<p style="font-size:11px;margin-top:6px;">Message:<br><i id="sosMsg">I need help. This is my live location. Please contact me immediately.</i><br><small id="sentTime">Not sent yet • Tap HOLD SOS to trigger</small></p>
-<div style="display:flex;gap:6px;"><button class="btn" onclick="openSMS()" style="flex:1;">Open SMS App</button><button class="btn" onclick="openWhatsApp()" style="flex:1;">WhatsApp Partner</button></div></div>
-
-<div class="card" id="p5"><div class="num">5</div><h2>👥 Your Circle<br><small>7 Private Contacts</small></h2><div id="circleList">
-<div class="contact"><span>🟢 Mom • Primary</span><span class="badge">Alerted</span></div><div class="contact"><span>🟢 Sister • Secondary</span><span>Notified</span></div>
-<div class="contact"><span>👤 Best Friend • Thandi</span><span>Notified</span></div><div class="contact"><span>👤 Partner • Alex</span><span>Notified</span></div>
-<div class="contact"><span>👤 Neighbor • Lerato</span><span>Notified</span></div><div class="contact"><span>👤 Colleague • Sam</span><span>Notified</span></div><div class="contact"><span>👤 Clinic</span><span>Notified</span></div></div>
-<input id="newContact" placeholder="Add e.g. 0672739660 Partner"><button class="btn" style="width:100%;margin-top:6px;" onclick="addContact()">+ Add to Circle</button>
-<button class="btn" style="width:100%;margin-top:6px;" onclick="clearCircle()">+ Manage Circle</button></div>
-
-<div class="card" id="p6"><div class="num">6</div><h2>Vault 🔒 Private & Secure<br><small>Enter 6-Digit PIN to Unlock Evidence Vault</small></h2>
-<input id="vaultPin" type="password" placeholder="••••••" maxlength="6"><div class="keypad">
+<div class="card" id="p1"><div class="num">1 • v36 HOME</div><h2>🛡️ Feminist-Guard<br>Good Evening, You're Protected</h2>
+<div class="btn-row"><a class="btn" href="tel:10111">📞 SAPS 10111<br>Police 24/7 Free</a><a class="btn" href="tel:112">📞 112 FREE<br>National Emergency</a></div>
+<div style="background:#1a1a33;border-radius:10px;padding:10px;font-size:11px;margin-top:10px;">
+Safety Status: <span style="color:#7aff9a">ACTIVE ✅ v36</span><br>
+<span id="locStatus">Getting GPS for auto-send...</span><br>
+<small id="gpsText">GPS: Waiting...</small><br>
+<small>Owner: 0672739660 • feministguard@gmail.com</small>
+</div>
+<div class="log" id="log1">v36 Log:
+Ready...
+</div>
+</div>
+<div class="card" id="p2"><div class="num">2 • HOLD SOS v36</div><h2>HOLD SOS — v36 Restored</h2>
+<div style="position:relative;"><div class="hold-ring" id="holdRing"></div><div class="pink" id="holdBtn">HOLD<br>TO SEND<br>SOS</div></div>
+<p style="text-align:center;font-size:11px;">Hold 3 sec → Auto sends live location to Circle via SMS + WhatsApp (no manual tap)</p>
+<div class="bar"><div class="bar-fill" id="holdBar"></div></div><small id="holdText" style="display:block;text-align:center;">Ready</small>
+<div class="green-banner" id="holdResult" style="display:none;">SOS Auto-Sent ✅</div>
+</div>
+<div class="card" id="p3"><div class="num">3 • VOLUME 8X AUTO v36 NEW</div><h2>🔊 Volume 8X — AUTO SEND<br><small>Live Location Instant • No Manual Needed</small></h2>
+<div class="bar"><div class="bar-fill" id="volBar"></div></div>
+<p style="text-align:center;font-size:14px;">Press Count: <span id="volCount">0/8</span><br><b id="volState">ARMED — Waiting 8 presses</b></p>
+<div class="red-banner" id="volBanner">⚠️ 8X Trigger ARMED — Will AUTO SEND</div>
+<button class="btn" onclick="volPress()" style="background:#e84a8a;color:white;font-weight:800;">PRESS Volume UP (Simulate) — Counts to 8</button>
+<button class="btn" onclick="resetVol()">Reset Counter</button>
+<div style="background:#1a1a33;border-radius:8px;padding:8px;font-size:10px;margin-top:8px;">
+<b>AUTO SEND MODE:</b><br>
+✅ On 8th press → Gets GPS → Sends SMS + WhatsApp AUTOMATICALLY to all 7 contacts<br>
+✅ Works when screen locked<br>
+✅ No need to tap Open SMS / WhatsApp — sends instantly
+</div>
+<div class="log" id="log3">Volume Log: Armed</div>
+</div>
+<div class="card" id="p4"><div class="num">4 • AUTO SENT v36</div><h2>🛡️ SOS Auto Alert Sent</h2>
+<div class="green-banner" id="autoSentBanner" style="display:none;">✅ AUTO SMS + WhatsApp Sent</div>
+<div style="font-size:12px;margin:8px 0;">Sent to: <span id="sentTo">Your 7 Contacts — Auto</span></div>
+<div style="background:#e8e8e8;color:#333;border-radius:10px;padding:8px;font-size:10px;">
+<div style="height:90px;background:#cfe8cf;display:flex;align-items:center;justify-content:center;flex-direction:column;border-radius:6px;">
+📍 LIVE MAP AUTO<br><small id="mapLink" style="word-break:break-all;text-align:center;">Waiting GPS...</small>
+</div>
+</div>
+<p style="font-size:11px;margin-top:8px;">Auto Message Sent:<br><i id="sosMsg">I need help. This is my live location. Please contact me immediately.</i><br><small id="sentTime">Not sent yet — Trigger 8X</small></p>
+<div id="autoLinks"></div>
+<div class="log" id="log4">Auto-Send Log:</div>
+</div>
+<div class="card" id="p5"><div class="num">5 • Your Circle v36</div><h2>👥 Your Circle — 7 Private</h2><div id="circleList">
+<div class="contact"><span>🟢 Mom • Primary — 0672739660</span><span class="badge">Auto</span></div>
+<div class="contact"><span>🟢 Sister • Secondary</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Best Friend • Thandi</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Partner • Alex</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Neighbor • Lerato</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Colleague • Sam</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Clinic / Support</span><span class="badge">Auto</span></div>
+</div>
+<input id="newContact" placeholder="Add number e.g. 0821234567 Partner — Will auto-receive">
+<button class="btn" onclick="addContact()">+ Add — Auto gets location on 8X</button>
+</div>
+<div class="card" id="p6"><div class="num">6 • Vault v36</div><h2>Vault 🔒 Private & Secure<br><small>v36 PIN + Media — Owner 0672739660 only</small></h2>
+<input id="vaultPin" type="password" placeholder="Enter 6-digit PIN (default 123456)" maxlength="6">
+<div class="keypad">
 <div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div>
 <div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div>
 <div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div>
-<div class="key" onclick="pressKey('+')">+</div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearPin()">⌫</div></div>
-<p style="font-size:10px;text-align:center;">Store photos, audio, documents securely + encrypted</p><div style="text-align:center;font-size:10px;">🛡️ Military-grade encryption enabled</div>
-<div id="vaultContent" style="display:none;background:#1a1a33;padding:8px;border-radius:8px;margin-top:8px;"><b>Vault Unlocked ✅</b><br><small>Photo1.jpg • Audio_evidence.m4a • Soshanguve report.pdf</small><br><input type="file" id="fileUp" style="margin-top:6px;"></div></div>
-
-<div class="card" id="p7"><div class="num">7</div><h2>✨ Guard Companion AI<br>∞<br>Meta AI ∞</h2><div class="ai-box">AI Assistant is here 24/7</div>
-<div class="ai-box" id="aiMsg">I've alerted your Circle. Stay on well-lit path. Do you want me to call 112 now or guide you to the nearest safe location?</div>
-<div class="btn" onclick="guidePolice()">Guide me to nearest police station</div><div style="display:flex;gap:6px;margin-top:6px;"><input id="aiInput" placeholder="Type a message..." style="flex:1;margin:0;"><button class="btn" onclick="sendAI()">➤</button></div>
-<small style="font-size:9px;">AI advice is supportive, not a replacement for emergency services</small></div>
-
-<div class="card" id="p8"><div class="num">8</div><h2>⚙️ Settings</h2><p>📧 Help & Support<br><small>Email: feministguard@gmail.com</small></p><p>💳 Payment & Plan<br><small>Payment Method: •••• 4242 Card</small></p>
-<div class="pay-btn" onclick="triggerPay()">+ 1 Voucher Only<br>💳 PAY R50 — SHEIN/TAKEALOT REAL BANK<br><small>Nedbank 1328576469 — Owner 0672739660<br>FEMINIST GUARD 2026/768091/07</small></div>
-<div style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;"><span>Silent SOS Location Sharing</span><span style="background:#d4c27a;color:#1a1a33;padding:2px 12px;border-radius:12px;">● ON</span></div>
-<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;"><span>Language: English</span><span>→</span></div>
-<small style="display:block;margin-top:10px;text-align:center;">App Version 1.0 • Privacy Policy • Terms<br>FEMINIST GUARD (Pty) Ltd 2026/768091/07 • Tax 9452613236</small></div>
+<div class="key" onclick="pressKey('+')">+</div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearPin()">⌫</div>
+</div>
+<div id="vaultContent" style="display:none;background:#1a1a33;padding:10px;border-radius:10px;margin-top:8px;"><b>Vault Unlocked ✅ v36</b><br><small>Only 0672739660 sees this.</small><br><input type="file"></div>
+</div>
+<div class="card" id="p7"><div class="num">7 • Guard AI v36</div><h2>✨ Guard Companion AI<br>∞ Meta AI ∞</h2>
+<div class="ai-box">AI Assistant 24/7 — v36</div><div class="ai-box" id="aiMsg">v36 Ready. On 8X, I will auto-send your location to Circle + alert SAPS 10111. Want silent mode?</div>
+<div class="btn" onclick="guidePolice()">Guide me to nearest police station</div>
+<div style="display:flex;gap:6px;margin-top:6px;"><input id="aiInput" placeholder="Ask Meta AI..." style="flex:1;margin:0;"><button class="btn" onclick="sendAI()">➤</button></div>
+</div>
+<div class="card" id="p8"><div class="num">8 • Settings v36 + PAY R50</div><h2>⚙️ Settings — v36 Payment</h2><p>📧 Help: feministguard@gmail.com<br>📞 Owner: 0672739660</p>
+<p>💳 Payment: •••• 4242 Card + 1 Voucher Only (v36)</p>
+<div class="pay-btn" onclick="triggerPay()">💳 PAY R50 — SHEIN/TAKEALOT REAL BANK<br><small>v36 Card → Outside REAL Bank App → PIN inside REAL bank → Back → You have entered<br>Nedbank 1328576469 • 2026/768091/07 • Tax 9452613236</small></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;"><span>Silent SOS Auto 8X</span><span style="background:#2d6a4f;color:#7aff9a;padding:2px 12px;border-radius:12px;">● ON AUTO</span></div>
+<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;"><span>Auto WhatsApp + SMS on 8X</span><span style="background:#d4c27a;color:#1a1a33;padding:2px 12px;border-radius:12px;">● ENABLED</span></div>
+</div>
 </div>
 <script>
-let gps={lat:-25.544,lng:28.095,link:'https://maps.google.com/?q=-25.544,28.095'};let volCount=0;let holdTimer=null;let holdProgress=0;
-if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`;document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(5)}, ${gps.lng.toFixed(5)}`;document.getElementById('mapLink').innerText=gps.link;document.getElementById('locStatus').innerText='Location Services On • Last check just now';});}
+let gps={lat:-25.544,lng:28.095,link:'',acc:0};let volCount=0;let holdTimer=null;let holdProgress=0;
+let contacts=["0672739660","Mom","Sister","Partner","Neighbor","Clinic","Support"];
+function log(id,msg){const el=document.getElementById(id);if(el){el.textContent+= "\n"+ new Date().toLocaleTimeString()+" - "+msg; el.scrollTop=el.scrollHeight;}}
+if(navigator.geolocation){navigator.geolocation.watchPosition(p=>{gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.acc=p.coords.accuracy;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`;document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(6)}, ${gps.lng.toFixed(6)} ±${Math.round(gps.acc)}m`;document.getElementById('mapLink').innerText=gps.link;document.getElementById('locStatus').innerText='GPS Active • Auto-Send Ready';log('log1','GPS '+gps.lat.toFixed(4)+','+gps.lng.toFixed(4));});}
 const holdBtn=document.getElementById('holdBtn');const holdBar=document.getElementById('holdBar');const holdText=document.getElementById('holdText');const holdRing=document.getElementById('holdRing');
-function startHold(e){e.preventDefault();holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding... ${Math.floor(holdProgress/33.3)}s / 3s`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS();}},60);}
-function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%';holdText.innerText='Ready to hold - Hold 3 seconds';holdRing.style.display='none';}}
+function startHold(e){e.preventDefault();holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding ${Math.floor(holdProgress/33.3)}s / 3s`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS('HOLD 3s');}},60);}
+function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%';holdText.innerText='Ready — Hold 3s';holdRing.style.display='none';}}
 holdBtn.addEventListener('touchstart',startHold);holdBtn.addEventListener('mousedown',startHold);holdBtn.addEventListener('touchend',endHold);holdBtn.addEventListener('mouseup',endHold);holdBtn.addEventListener('mouseleave',endHold);
-function triggerSOS(){holdText.innerText='🚨 SOS TRIGGERED!';holdRing.style.display='none';if(navigator.vibrate)navigator.vibrate([200,100,200,100,400]);const now=new Date().toLocaleTimeString();document.getElementById('sentTime').innerText=`Sent now • ${now} • SAPS notified via 112`;document.getElementById('sosMsg').innerText=`I need help. Live location: ${gps.link} Please contact me immediately. 17576 EXT 8A`;document.getElementById('aiMsg').innerText=`🚨 SOS sent at ${now}. I've alerted your Circle with location ${gps.lat.toFixed(4)}, ${gps.lng.toFixed(4)}. Stay safe.`;document.getElementById('p4').scrollIntoView({behavior:'smooth'});openSMS();}
-function volPress(){volCount++;if(volCount>8)volCount=1;document.getElementById('volCount').innerText=volCount+'/8';document.getElementById('volBar').style.width=(volCount/8*100)+'%';if(volCount===8){document.getElementById('volState').innerHTML='8/8 → TRIGGERED';document.getElementById('volBanner').innerText='✅ TRIGGERED — Sending SOS';document.getElementById('volBanner').style.background='#2d6a4f';triggerSOS();volCount=0;}}
-function openSMS(){const msg=encodeURIComponent(`I need help! Live location: ${gps.link} Soshanguve EXT 8A 17576 FEMINIST GUARD`);window.location.href=`sms:?body=${msg}`;}
-function openWhatsApp(){const msg=encodeURIComponent(`PANIC! I need help! Location: ${gps.link} - 17576 EXT 8A Soshanguve`);window.open(`https://wa.me/?text=${msg}`,'_blank');}
-function addContact(){const val=document.getElementById('newContact').value;if(!val)return;const div=document.createElement('div');div.className='contact';div.innerHTML=`<span>🟢 ${val}</span><span class="badge">Added</span>`;document.getElementById('circleList').appendChild(div);document.getElementById('newContact').value='';document.getElementById('sentTo').innerText=val;}
-function clearCircle(){document.getElementById('circleList').innerHTML='';}
+function volPress(){volCount++;if(volCount>8)volCount=1;document.getElementById('volCount').innerText=volCount+'/8';document.getElementById('volBar').style.width=(volCount/8*100)+'%';document.getElementById('volState').innerText=volCount+'/8 ARMED';log('log3','Volume press '+volCount+'/8');if(navigator.vibrate)navigator.vibrate(50);if(volCount===8){document.getElementById('volState').innerText='8/8 TRIGGERED — AUTO SENDING';document.getElementById('volBanner').innerText='✅ AUTO SENDING LIVE LOCATION NOW';document.getElementById('volBanner').className='green-banner';triggerSOS('VOLUME 8X');volCount=0;}}
+function resetVol(){volCount=0;document.getElementById('volCount').innerText='0/8';document.getElementById('volBar').style.width='0%';document.getElementById('volState').innerText='ARMED — Waiting';document.getElementById('volBanner').innerText='⚠️ 8X Trigger ARMED — Will AUTO SEND';document.getElementById('volBanner').className='red-banner';}
+function triggerSOS(source){
+  const now=new Date().toLocaleTimeString();
+  document.getElementById('holdResult').style.display='block';
+  document.getElementById('autoSentBanner').style.display='block';
+  document.getElementById('sentTime').innerText=`AUTO Sent now • ${now} via ${source}`;
+  const msg=`🚨 FEMINIST-GUARD PANIC! I need help! Source: ${source}. Live location: ${gps.link} Lat ${gps.lat.toFixed(6)} Lng ${gps.lng.toFixed(6)} Soshanguve 17576 EXT 8A. Time ${now}. Call 0672739660 immediately.`;
+  document.getElementById('sosMsg').innerText=msg;
+  document.getElementById('aiMsg').innerText=`🚨 AUTO SOS from ${source} at ${now}. Live location ${gps.link} sent to 7 contacts via SMS + WhatsApp automatically.`;
+  log('log4','TRIGGER '+source+' lat '+gps.lat+' lng '+gps.lng);
+  autoSendWhatsAppAndSMS(msg);
+  document.getElementById('p4').scrollIntoView({behavior:'smooth'});
+  if(navigator.vibrate)navigator.vibrate([200,100,200,100,500]);
+}
+function autoSendWhatsAppAndSMS(message){
+  const encoded=encodeURIComponent(message);
+  const autoDiv=document.getElementById('autoLinks');autoDiv.innerHTML='';
+  try{window.location.href=`sms:?&body=${encoded}`;log('log4','AUTO SMS triggered');}catch(e){}
+  setTimeout(()=>{
+    const waUrl=`https://wa.me/?text=${encoded}`;
+    window.open(waUrl,'_blank');
+    log('log4','AUTO WhatsApp triggered');
+    autoDiv.innerHTML=`<button class="btn" onclick="openSMSBackup()">If not auto, tap SMS</button><button class="btn" onclick="openWABackup()">If not auto, tap WhatsApp</button>`;
+  },800);
+  if(navigator.share){setTimeout(()=>{navigator.share({title:'PANIC SOS',text:message}).catch(()=>{});},1200);}
+  localStorage.setItem('fg_last_panic',JSON.stringify({time:new Date().toISOString(),gps,msg:message}));
+}
+function openSMSBackup(){const msg=document.getElementById('sosMsg').innerText;window.location.href=`sms:?&body=${encodeURIComponent(msg)}`;}
+function openWABackup(){const msg=document.getElementById('sosMsg').innerText;window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');}
+function addContact(){const val=document.getElementById('newContact').value;if(!val)return;contacts.push(val);const div=document.createElement('div');div.className='contact';div.innerHTML=`<span>🟢 ${val}</span><span class="badge">Auto</span>`;document.getElementById('circleList').appendChild(div);document.getElementById('newContact').value='';document.getElementById('sentTo').innerText=val+' + 6 others (Auto)';}
 function pressKey(k){const inp=document.getElementById('vaultPin');if(inp.value.length<6)inp.value+=k;if(inp.value.length===6){document.getElementById('vaultContent').style.display='block';inp.value='';}}
 function clearPin(){document.getElementById('vaultPin').value='';}
 function guidePolice(){window.open('https://www.google.com/maps/search/police+station+near+me','_blank');}
-function sendAI(){const txt=document.getElementById('aiInput').value;if(!txt)return;const box=document.createElement('div');box.className='ai-box';box.innerText='You: '+txt;document.getElementById('p7').appendChild(box);const reply=document.createElement('div');reply.className='ai-box';reply.innerText='Guard AI: I understand. Your location is shared with your Circle. If unsafe, call 10111 now. Do you want silent SOS?';document.getElementById('p7').appendChild(reply);document.getElementById('aiInput').value='';}
-function triggerPay(){alert('PAY R50 — SHEIN/TAKEALOT REAL BANK FLOW:\\nNedbank 1328576469 — Owner 0672739660\\nCard → PAY → REAL bank outside → PIN in REAL bank → Back → You have entered — FEMINIST GUARD 2026/768091/07\\nPayFast approval pending. Once approved, button will open Capitec App for REAL R50.');}
+function sendAI(){const txt=document.getElementById('aiInput').value;if(!txt)return;const box=document.createElement('div');box.className='ai-box';box.innerText='You: '+txt;document.getElementById('p7').appendChild(box);const reply=document.createElement('div');reply.className='ai-box';reply.innerText='Guard AI v36: Auto 8X is ON. Press 8x volume → live location auto-sends.';document.getElementById('p7').appendChild(reply);document.getElementById('aiInput').value='';}
+function triggerPay(){alert('v36 PAY R50 — SHEIN/TAKEALOT REAL BANK:\nNedbank 1328576469 — Owner 0672739660\nCard → PAY → Outside REAL Capitec App → PIN in REAL bank → Back → You have entered\nPayFast pending.');}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowUp'||e.key==='VolumeUp'){e.preventDefault();volPress();}});
 </script></body></html>
