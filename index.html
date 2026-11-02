@@ -1,98 +1,152 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>FEMINIST-GUARD v36 PREMIUM GOLD — Luxury Safety App</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FEMINIST-GUARD v36.1 PREMIUM GOLD — No Overlap — Auto 8X</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:linear-gradient(180deg,#0a0a1f 0%,#14142e 100%);color:#f5e6a3;font-family:Inter,sans-serif;min-height:100vh;padding-bottom:80px}
-.header{background:linear-gradient(135deg,#1a1a33 0%,#2a2a4a 100%);border-bottom:2px solid #d4c27a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(212,194,122,.2)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#f5e6a3,#d4c27a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#0a0a1f;font-weight:900}
-.logo-text h1{font-family:Playfair Display,serif;font-size:16px;letter-spacing:1px;color:#f5e6a3}
-.logo-text p{font-size:9px;letter-spacing:2px;color:#d4c27a}
-.status-badge{background:linear-gradient(135deg,#2d6a4f,#1e4a35);border:1px solid #7aff9a;color:#7aff9a;padding:6px 12px;border-radius:20px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:6px}
-.dot{width:8px;height:8px;background:#7aff9a;border-radius:50%;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.page{display:none;padding:20px;max-width:480px;margin:0 auto;animation:fadeIn .3s}
-.page.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card-premium{background:linear-gradient(135deg,#1e1e3e 0%,#2a2a5a 100%);border:1.5px solid #d4c27a;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(212,194,122,.2);position:relative;overflow:hidden}
-.card-premium::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#d4c27a,transparent)}
-.card-title{font-family:Playfair Display,serif;font-size:18px;color:#f5e6a3;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.btn-row{display:flex;gap:10px;margin:12px 0}
-.btn-gold{background:linear-gradient(135deg,#f5e6a3 0%,#d4c27a 100%);color:#0a0a1f;border:none;padding:14px;border-radius:12px;font-weight:800;font-size:13px;flex:1;text-align:center;text-decoration:none;cursor:pointer;box-shadow:0 4px 12px rgba(212,194,122,.3)}
-.btn-dark{background:linear-gradient(135deg,#2a2a4a,#3a3a6a);border:1.5px solid #d4c27a;color:#f5e6a3;padding:12px;border-radius:12px;font-weight:600;font-size:12px;flex:1;text-align:center;cursor:pointer}
-.pink-lux{width:180px;height:180px;background:radial-gradient(circle at 30% 30%,#ff8ab0,#e84a8a 60%,#c2386a);border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:white;font-size:22px;cursor:pointer;box-shadow:0 0 0 12px rgba(232,74,138,.12),0 0 0 24px rgba(232,74,138,.06),0 12px 32px rgba(232,74,138,.4);touch-action:none;position:relative}
-.hold-ring{position:absolute;top:50%;left:50%;width:200px;height:200px;border:3px solid #e84a8a;border-radius:50%;transform:translate(-50%,-50%);animation:pulse 1.2s infinite;display:none}
-@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.4);opacity:0}}
-.bar{height:14px;background:#0f0f2a;border:1px solid #3a3a5a;border-radius:10px;overflow:hidden;margin:14px 0}
-.bar-fill{height:100%;background:linear-gradient(90deg,#7aff9a,#2d6a4f);transition:width .2s}
-.gold-banner{background:linear-gradient(135deg,#f5e6a3,#d4c27a);color:#0a0a1f;padding:12px;border-radius:12px;font-weight:800;text-align:center}
-.green-banner{background:linear-gradient(135deg,#2d6a4f,#1e4a35);border:1px solid #7aff9a;color:#7aff9a;padding:12px;border-radius:12px;font-weight:700;text-align:center}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
+*{box-sizing:border-box}body{margin:0;background:#0a0a1f;color:#f5e6a3;font-family:Inter,sans-serif;padding-bottom:90px}
+.header{text-align:center;padding:16px 12px;background:linear-gradient(135deg,#1a1a33,#0f0f2a);border-bottom:2px solid #d4c27a;position:sticky;top:0;z-index:99}
+.header h1{font-family:Playfair Display,serif;font-size:18px;margin:0;letter-spacing:1px}
+.header p{font-size:10px;opacity:.8;margin:6px 0 0;line-height:1.4}
+.page{display:none;padding:14px;max-width:520px;margin:0 auto}
+.page.active{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card{border:1.8px solid #d4c27a;border-radius:18px;padding:18px;background:linear-gradient(135deg,#1e1e3e,#171732);margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.card h2{font-family:Playfair Display,serif;text-align:center;font-size:18px;margin:0 0 14px;color:#f5e6a3}
+.btn{background:#2a2a4a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:12px;border-radius:12px;font-size:12px;font-weight:700;flex:1;text-align:center;cursor:pointer;text-decoration:none;display:block}
+.btn-gold{background:linear-gradient(135deg,#f5e6a3,#d4c27a);color:#0a0a1f;border:none;padding:14px;border-radius:12px;font-weight:900;font-size:13px;width:100%;margin-top:10px;cursor:pointer;box-shadow:0 6px 16px rgba(212,194,122,.3)}
+.btn-row{display:flex;gap:10px}
+.pink{width:170px;height:170px;background:radial-gradient(circle at 30% 30%,#ff8ab0,#e84a8a 70%);border-radius:50%;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:white;font-size:22px;cursor:pointer;box-shadow:0 0 0 12px rgba(232,74,138,.12),0 12px 28px rgba(232,74,138,.35);touch-action:none;position:relative}
+.bar{height:12px;background:#0f0f2a;border:1px solid #3a3a5a;border-radius:10px;overflow:hidden;margin:12px 0}
+.bar-fill{height:100%;background:linear-gradient(90deg,#7aff9a,#2d6a4f);width:0%;transition:width .25s}
+.green-banner{background:linear-gradient(135deg,#2d6a4f,#1e4a35);border:1px solid #7aff9a;color:#7aff9a;padding:12px;border-radius:12px;font-weight:800;text-align:center}
 .red-banner{background:linear-gradient(135deg,#ff3b6b,#c2386a);color:white;padding:12px;border-radius:12px;font-weight:800;text-align:center}
-.contact-premium{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1e1e3a,#2a2a4a);border:1px solid rgba(212,194,122,.3);padding:14px;border-radius:14px;margin:8px 0}
-.avatar{width:40px;height:40px;background:linear-gradient(135deg,#d4c27a,#f5e6a3);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#0a0a1f;font-weight:800}
-.badge-auto{background:linear-gradient(135deg,#2d6a4f,#1e4a35);border:1px solid #7aff9a;color:#7aff9a;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
-.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:260px;margin:20px auto}
-.key{height:60px;background:linear-gradient(135deg,#2a2a4a,#3a3a5a);border:1.5px solid #d4c27a;border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#f5e6a3;cursor:pointer}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,#1a1a33 0%,#0a0a1f 100%);border-top:2px solid #d4c27a;display:flex;justify-content:space-around;padding:10px 0 20px;z-index:200}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 14px;border-radius:12px;cursor:pointer;opacity:.6}
-.nav-item.active{opacity:1;background:linear-gradient(135deg,rgba(212,194,122,.15),rgba(245,230,163,.1));border:1px solid rgba(212,194,122,.3)}
-.nav-icon{font-size:22px}.nav-label{font-size:9px;font-weight:700}
-.ai-msg{background:linear-gradient(135deg,#2a2a4a,#3a3a5a);border-left:3px solid #d4c27a;padding:14px;border-radius:12px;margin:10px 0;font-size:13px}
-.input-gold{width:100%;background:#0f0f2a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:14px;border-radius:12px;margin-top:8px}
-.log{max-height:120px;overflow-y:auto;background:#0a0a1f;border:1px solid #2a2a4a;border-radius:10px;padding:10px;font-size:10px;margin-top:10px;white-space:pre-wrap}
-.pay-card{background:linear-gradient(135deg,#f5e6a3 0%,#d4c27a 50%,#b89a4a 100%);color:#0a0a1f;padding:20px;border-radius:20px;font-weight:900;box-shadow:0 12px 32px rgba(212,194,122,.4);cursor:pointer;margin-top:12px}
+.contact{display:flex;align-items:center;justify-content:space-between;background:#1e1e3a;border:1px solid rgba(212,194,122,.25);padding:12px;border-radius:12px;margin:7px 0}
+.badge{background:#2d6a4f;border:1px solid #7aff9a;color:#7aff9a;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:800}
+.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:260px;margin:16px auto}
+.key{height:58px;background:linear-gradient(135deg,#2a2a4a,#3a3a5a);border:1.5px solid #d4c27a;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;cursor:pointer}
+.ai-box{background:#2a2a4a;border-left:3px solid #d4c27a;padding:12px;border-radius:10px;margin:8px 0;font-size:12px}
+.input{width:100%;background:#0f0f2a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:14px;border-radius:12px;margin-top:8px}
+.log{background:#08081a;border:1px solid #2a2a4a;border-radius:10px;padding:10px;font-size:10px;max-height:110px;overflow-y:auto;margin-top:10px;white-space:pre-wrap}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,#1a1a33,#0a0a1f);border-top:2px solid #d4c27a;display:flex;justify-content:space-around;padding:10px 0 18px;z-index:200}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;border-radius:12px;opacity:.55;cursor:pointer}
+.nav-item.active{opacity:1;background:rgba(212,194,122,.15);border:1px solid rgba(212,194,122,.3)}
+.hold-ring{position:absolute;top:50%;left:50%;width:190px;height:190px;border:3px solid #e84a8a;border-radius:50%;transform:translate(-50%,-50%);animation:pulse 1s infinite;display:none}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.4);opacity:0}}
+.pay-card{background:linear-gradient(135deg,#f5e6a3 0%,#d4c27a 50%,#b89a4a 100%);color:#0a0a1f;padding:18px;border-radius:18px;font-weight:900;box-shadow:0 10px 28px rgba(212,194,122,.35);cursor:pointer}
 </style></head><body>
-<div class="header"><div class="logo"><div class="logo-icon">♀️</div><div class="logo-text"><h1>FEMINIST-GUARD</h1><p>PREMIUM v36 • LUXURY SAFETY</p></div></div><div class="status-badge"><div class="dot"></div>ACTIVE</div></div>
+<div class="header">
+<h1>FEMINIST-GUARD v36.1 PREMIUM GOLD</h1>
+<p>v36.1 • Owner 0672739660 • AUTO 8X Live Location • Nedbank 1328576469 • Soshanguve 17576 EXT 8A • feministguard@gmail.com</p>
+</div>
 
 <div class="page active" id="page-home">
-<div class="card-premium"><div class="card-title">🛡️ Good Evening — You're Protected</div><p style="font-size:13px;opacity:.8;">Owner: Maranela • 0672739660 • Soshanguve 17576 EXT 8A<br>Company: FEMINIST GUARD (Pty) Ltd 2026/768091/07</p><div class="btn-row"><a class="btn-gold" href="tel:10111">📞 SAPS 10111<br><small>Police 24/7 FREE</small></a><a class="btn-dark" href="tel:112">📞 112 FREE<br><small>National Emergency</small></a></div><div style="background:#0f0f2a;border-radius:12px;padding:12px;margin-top:12px;border:1px solid rgba(122,255,154,.3);font-size:11px;"><span style="color:#7aff9a">● Safety Status: ACTIVE ✅</span><br><span id="locStatus">Getting GPS...</span><br><small id="gpsText">GPS: Waiting...</small></div></div>
-<div class="card-premium"><div class="card-title">💎 Premium Features</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11px;"><div style="background:rgba(212,194,122,.1);padding:10px;border-radius:10px;border:1px solid rgba(212,194,122,.2)">👥 7 Trusted Contacts</div><div style="background:rgba(122,255,154,.1);padding:10px;border-radius:10px;border:1px solid rgba(122,255,154,.2)">🔒 Vault Secured</div><div style="background:rgba(232,74,138,.1);padding:10px;border-radius:10px;border:1px solid rgba(232,74,138,.2)">🚨 Panic Ready 8X Auto</div><div style="background:rgba(245,230,163,.1);padding:10px;border-radius:10px;border:1px solid rgba(245,230,163,.2)">💳 PAY R50 Nedbank</div></div></div>
+<div class="card"><h2>🛡️ Feminist-Guard<br>Good Evening, You're Protected</h2>
+<div class="btn-row"><a class="btn" href="tel:10111">📞 SAPS 10111<br>Police 24/7 FREE</a><a class="btn" href="tel:112">📞 112 FREE<br>National Emergency</a></div>
+<div style="background:#0f0f2a;border:1px solid rgba(122,255,154,.3);border-radius:12px;padding:12px;margin-top:14px;font-size:11px;">
+<span style="color:#7aff9a;font-weight:800;">● Safety Status: ACTIVE ✅ v36.1</span><br>
+<span id="locStatus">Getting GPS for auto-send...</span><br>
+<small id="gpsText">GPS: Waiting permission...</small><br>
+<small>Owner: 0672739660 • Company 2026/768091/07</small>
+</div>
+<div class="log" id="log1">Log: Ready Premium Gold v36.1</div>
+</div>
 </div>
 
 <div class="page" id="page-sos">
-<div class="card-premium" style="text-align:center;"><div class="card-title" style="justify-content:center;">Panel 2 • HOLD SOS • Premium</div><div style="position:relative;width:fit-content;margin:0 auto;"><div class="hold-ring" id="holdRing"></div><div class="pink-lux" id="holdBtn">HOLD<br>TO SEND<br>SOS</div></div><p style="font-size:12px;margin-top:14px;opacity:.8">Hold 3 sec → Auto SMS + WhatsApp live location</p><div class="bar"><div class="bar-fill" id="holdBar"></div></div><small id="holdText">Ready — Premium Gold</small><div class="green-banner" id="holdResult" style="display:none;margin-top:12px;">SOS Auto-Sent ✅</div></div>
-<div class="card-premium"><div class="card-title">🔊 Volume 8X — Auto Live Location</div><div class="bar"><div class="bar-fill" id="volBar"></div></div><p style="text-align:center;font-size:16px;margin:8px 0;">Press Count: <span id="volCount">0/8</span> • <span id="volState">ARMED</span></p><div class="red-banner" id="volBanner">⚠️ 8X ARMED — Will AUTO SEND live location</div><button class="btn-gold" onclick="volPress()" style="width:100%;margin-top:12px;">PRESS Volume UP → 8X AUTO</button><button class="btn-dark" onclick="resetVol()" style="width:100%;margin-top:8px;">Reset Counter</button><div class="log" id="log3">Volume Log: Armed — Premium Gold</div></div>
-<div class="card-premium"><div class="card-title">🛡️ SOS Auto Alert Sent</div><div class="green-banner" id="autoSentBanner" style="display:none;">✅ AUTO SMS + WhatsApp Sent</div><div style="margin:12px 0;background:#e8e8e8;color:#333;border-radius:12px;padding:10px;"><div style="height:100px;background:#cfe8cf;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;">📍 LIVE MAP AUTO<br><small id="mapLink" style="word-break:break-all;text-align:center;font-size:10px;">Waiting GPS...</small></div></div><p style="font-size:12px;"><b>Auto Message:</b><br><i id="sosMsg">I need help. Live location.</i><br><small id="sentTime">Not sent — Trigger 8X</small></p><div id="autoLinks"></div><div class="log" id="log4">Auto-Send Log:</div></div>
+<div class="card" style="text-align:center;"><h2>HOLD SOS — Premium Gold</h2>
+<div style="position:relative;width:fit-content;margin:0 auto;"><div class="hold-ring" id="holdRing"></div><div class="pink" id="holdBtn">HOLD<br>TO SEND<br>SOS</div></div>
+<p style="font-size:12px;opacity:.8;margin-top:12px;">Hold 3 sec → Auto sends live location via SMS + WhatsApp — No manual tap</p>
+<div class="bar"><div class="bar-fill" id="holdBar"></div></div><small id="holdText">Ready — Premium Gold</small>
+<div class="green-banner" id="holdResult" style="display:none;margin-top:12px;">SOS Auto-Sent ✅ Premium</div>
+</div>
+<div class="card"><h2>🔊 Volume 8X — AUTO SEND<br><small style="font-size:12px;">Live Location Instant — No Manual Needed</small></h2>
+<div class="bar"><div class="bar-fill" id="volBar"></div></div>
+<p style="text-align:center;font-size:16px;">Press Count: <span id="volCount">0/8</span><br><b id="volState">ARMED — Waiting 8 presses</b></p>
+<div class="red-banner" id="volBanner">⚠️ 8X ARMED — Will AUTO SEND live location instantly</div>
+<button class="btn-gold" onclick="volPress()">PRESS Volume UP (Simulate) → 8X AUTO</button>
+<button class="btn" onclick="resetVol()" style="margin-top:8px;">Reset Counter</button>
+<div class="log" id="log3">Volume Log: Armed Premium v36.1</div>
+</div>
+<div class="card"><h2>🛡️ SOS Auto Alert Sent</h2>
+<div class="green-banner" id="autoSentBanner" style="display:none;">✅ AUTO SMS + WhatsApp Sent — Premium</div>
+<div style="background:#e8e8e8;color:#333;border-radius:12px;padding:10px;margin:12px 0;"><div style="height:90px;background:#cfe8cf;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;">📍 LIVE MAP AUTO<br><small id="mapLink" style="word-break:break-all;text-align:center;font-size:10px;">Waiting GPS...</small></div></div>
+<p style="font-size:12px;"><b>Auto Message:</b><br><i id="sosMsg">I need help. Live location will appear here.</i><br><small id="sentTime">Not sent yet — Trigger 8X</small></p>
+<div id="autoLinks"></div>
+<div class="log" id="log4">Auto-Send Log Premium:</div>
+</div>
 </div>
 
-<div class="page" id="page-circle"><div class="card-premium"><div class="card-title">👥 Your Circle — 7 Private Contacts — Premium Gold</div><div id="circleList"><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">M</div><div><b>Mom • Primary</b><br><small>0672739660 — Auto</small></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">S</div><div><b>Sister • Secondary</b></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">T</div><div><b>Best Friend • Thandi</b></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">A</div><div><b>Partner • Alex</b></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">L</div><div><b>Neighbor • Lerato</b></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">C</div><div><b>Colleague • Sam</b></div></div><span class="badge-auto">Auto</span></div><div class="contact-premium"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar">🏥</div><div><b>Clinic / Support</b></div></div><span class="badge-auto">Auto</span></div></div><input class="input-gold" id="newContact" placeholder="Add e.g. 0821234567 Partner — Auto gets location"><button class="btn-gold" style="width:100%;margin-top:12px;" onclick="addContact()">+ Add Contact — Auto receives on 8X</button></div></div>
+<div class="page" id="page-circle">
+<div class="card"><h2>👥 Your Circle — 7 Private — Auto</h2>
+<div id="circleList">
+<div class="contact"><span>🟢 Mom • Primary — 0672739660</span><span class="badge">Auto</span></div>
+<div class="contact"><span>🟢 Sister • Secondary</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Best Friend • Thandi</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Partner • Alex</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Neighbor • Lerato</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Colleague • Sam</span><span class="badge">Auto</span></div>
+<div class="contact"><span>👤 Clinic / Support</span><span class="badge">Auto</span></div>
+</div>
+<input class="input" id="newContact" placeholder="Add number e.g. 0821234567 Partner — Auto gets location on 8X">
+<button class="btn-gold" onclick="addContact()">+ Add — Auto receives on 8X</button>
+</div>
+</div>
 
-<div class="page" id="page-vault"><div class="card-premium" style="text-align:center;"><div class="card-title" style="justify-content:center;">Vault 🔒 Private & Secure — Premium Gold</div><p style="font-size:12px;opacity:.7;">Enter 6-Digit PIN — Only Owner 0672739660</p><input class="input-gold" id="vaultPin" type="password" placeholder="••••••" maxlength="6" style="text-align:center;font-size:24px;letter-spacing:8px;"><div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div class="key" onclick="pressKey('*')">*</div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearPin()">⌫</div></div><div id="vaultContent" style="display:none;background:#0f0f2a;border:1px solid #d4c27a;border-radius:16px;padding:16px;margin-top:16px;text-align:left;"><b style="color:#7aff9a">Vault Unlocked ✅ Premium Gold</b><br><small>Photo1.jpg • Audio_evidence.m4a • Soshanguve report.pdf — Encrypted</small><br><input type="file" class="input-gold" style="margin-top:10px;"></div></div></div>
+<div class="page" id="page-vault">
+<div class="card" style="text-align:center;"><h2>Vault 🔒 Private & Secure<br><small style="font-size:12px;">Owner 0672739660 Only — Premium</small></h2>
+<input class="input" id="vaultPin" type="password" placeholder="••••••" maxlength="6" style="text-align:center;font-size:24px;letter-spacing:10px;">
+<div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div class="key" onclick="pressKey('*')">*</div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearPin()">⌫</div></div>
+<div id="vaultContent" style="display:none;background:#0f0f2a;border:1.5px solid #d4c27a;border-radius:16px;padding:16px;margin-top:16px;text-align:left;"><b style="color:#7aff9a">Vault Unlocked ✅ Premium Gold</b><br><small>Photos, audio, docs — Encrypted — Owner only</small><br><input type="file" class="input"></div>
+</div>
+</div>
 
-<div class="page" id="page-ai"><div class="card-premium"><div class="card-title">✨ Guard Companion AI — ∞ Meta AI — Premium</div><div class="ai-msg">AI Assistant 24/7 — Premium Gold</div><div class="ai-msg" id="aiMsg">I've alerted your Circle. Stay on well-lit path. Do you want me to call 112 now or guide you to nearest safe location? — v36 Premium</div><button class="btn-gold" onclick="guidePolice()" style="width:100%;">📍 Guide to nearest police station</button><div style="display:flex;gap:8px;margin-top:16px;"><input class="input-gold" id="aiInput" placeholder="Ask Meta AI..." style="flex:1;margin:0;"><button class="btn-gold" onclick="sendAI()" style="flex:0 0 60px;">➤</button></div></div></div>
+<div class="page" id="page-ai">
+<div class="card"><h2>✨ Guard Companion AI<br>∞ Meta AI ∞ — Premium Gold</h2>
+<div class="ai-box">AI Assistant 24/7 — Premium</div>
+<div class="ai-box" id="aiMsg">v36.1 Ready. On 8X, I will auto-send your live location to Circle + alert SAPS 10111. Want silent mode?</div>
+<button class="btn-gold" onclick="guidePolice()">📍 Guide to nearest police station</button>
+<div style="display:flex;gap:8px;margin-top:14px;"><input class="input" id="aiInput" placeholder="Ask Meta AI..." style="flex:1;margin:0;"><button class="btn" onclick="sendAI()" style="flex:0 0 60px;">➤</button></div>
+</div>
+</div>
 
-<div class="page" id="page-settings"><div class="card-premium"><div class="card-title">⚙️ Settings — Premium Gold</div><p style="font-size:12px;line-height:1.6;">📧 Help: feministguard@gmail.com<br>📞 Owner: 0672739660<br>🏢 FEMINIST GUARD (Pty) Ltd • 2026/768091/07<br>Tax 9452613236 • Nedbank 1328576469</p></div><div class="card-premium"><div class="card-title">💳 Payment & Plan — Premium</div><div class="pay-card" onclick="triggerPay()"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:18px;">PAY R50 / month</div><small style="font-size:11px;">SHEIN/TAKEALOT REAL BANK</small></div><div style="font-size:28px;">💳</div></div><div style="margin-top:12px;font-size:11px;font-weight:600;">+ 1 Voucher Only • Card → Outside REAL Capitec App → PIN inside REAL bank → Back → You have entered<br>Nedbank 1328576469 • Owner 0672739660<br>FEMINIST GUARD 2026/768091/07</div></div><div style="display:flex;justify-content:space-between;margin-top:16px;padding:12px;background:rgba(212,194,122,.1);border-radius:12px;font-size:12px;"><span>Silent SOS Auto 8X</span><span class="badge-auto">● ON AUTO</span></div></div></div>
+<div class="page" id="page-settings">
+<div class="card"><h2>⚙️ Settings — Premium Gold</h2>
+<p style="font-size:12px;line-height:1.7;">📧 Help: feministguard@gmail.com<br>📞 Owner: 0672739660<br>🏢 FEMINIST GUARD (Pty) Ltd • 2026/768091/07<br>Tax 9452613236 • Nedbank 1328576469<br>📍 Soshanguve 17576 EXT 8A</p></div>
+<div class="card"><h2>💳 Payment & Plan — Premium</h2>
+<div class="pay-card" onclick="triggerPay()"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:18px;">PAY R50 / month</div><small>SHEIN/TAKEALOT REAL BANK FLOW</small></div><div style="font-size:28px;">💳</div></div><div style="margin-top:12px;font-size:11px;line-height:1.5;">+ 1 Voucher Only • Card → Outside REAL Capitec/Nedbank App → PIN inside REAL bank → Back → You have entered<br>Nedbank 1328576469 • Owner 0672739660 • 2026/768091/07</div></div>
+<div style="display:flex;justify-content:space-between;margin-top:14px;padding:12px;background:rgba(212,194,122,.12);border-radius:12px;font-size:12px;"><span>Silent SOS Auto 8X</span><span class="badge">● ON AUTO</span></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px;padding:12px;background:rgba(122,255,154,.12);border-radius:12px;font-size:12px;"><span>Auto WhatsApp + SMS on 8X</span><span class="badge">● ENABLED</span></div>
+</div>
+</div>
 
 <div class="bottom-nav">
-<div class="nav-item active" onclick="showPage('home',this)"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
-<div class="nav-item" onclick="showPage('sos',this)"><div class="nav-icon">🚨</div><div class="nav-label">SOS</div></div>
-<div class="nav-item" onclick="showPage('circle',this)"><div class="nav-icon">👥</div><div class="nav-label">CIRCLE</div></div>
-<div class="nav-item" onclick="showPage('vault',this)"><div class="nav-icon">🔒</div><div class="nav-label">VAULT</div></div>
-<div class="nav-item" onclick="showPage('ai',this)"><div class="nav-icon">✨</div><div class="nav-label">AI</div></div>
-<div class="nav-item" onclick="showPage('settings',this)"><div class="nav-icon">⚙️</div><div class="nav-label">SETTINGS</div></div>
+<div class="nav-item active" onclick="showPage('home',this)"><div style="font-size:22px">🏠</div><div style="font-size:9px;font-weight:700">HOME</div></div>
+<div class="nav-item" onclick="showPage('sos',this)"><div style="font-size:22px">🚨</div><div style="font-size:9px;font-weight:700">SOS</div></div>
+<div class="nav-item" onclick="showPage('circle',this)"><div style="font-size:22px">👥</div><div style="font-size:9px;font-weight:700">CIRCLE</div></div>
+<div class="nav-item" onclick="showPage('vault',this)"><div style="font-size:22px">🔒</div><div style="font-size:9px;font-weight:700">VAULT</div></div>
+<div class="nav-item" onclick="showPage('ai',this)"><div style="font-size:22px">✨</div><div style="font-size:9px;font-weight:700">AI</div></div>
+<div class="nav-item" onclick="showPage('settings',this)"><div style="font-size:22px">⚙️</div><div style="font-size:9px;font-weight:700">PAY</div></div>
 </div>
 
 <script>
-let gps={lat:-25.544,lng:28.095,link:'',acc:0};let volCount=0;let holdTimer=null;let holdProgress=0;
 function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');window.scrollTo(0,0);}
+let gps={lat:-25.544,lng:28.095,link:'',acc:0};let volCount=0;let holdTimer=null;let holdProgress=0;
 function log(id,msg){const el=document.getElementById(id);if(el){el.textContent+="\n"+new Date().toLocaleTimeString()+" - "+msg;el.scrollTop=el.scrollHeight;}}
-if(navigator.geolocation){navigator.geolocation.watchPosition(p=>{gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.acc=p.coords.accuracy;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`;document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(6)}, ${gps.lng.toFixed(6)} ±${Math.round(gps.acc)}m`;document.getElementById('mapLink').innerText=gps.link;document.getElementById('locStatus').innerText='GPS Active • Auto-Send Ready — Premium';});}
+if(navigator.geolocation){navigator.geolocation.watchPosition(p=>{gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.acc=p.coords.accuracy;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`;document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(6)}, ${gps.lng.toFixed(6)} ±${Math.round(gps.acc)}m`;document.getElementById('mapLink').innerText=gps.link;document.getElementById('locStatus').innerText='GPS Active • Auto-Send Ready — Premium v36.1';});}
 const holdBtn=document.getElementById('holdBtn');const holdBar=document.getElementById('holdBar');const holdText=document.getElementById('holdText');const holdRing=document.getElementById('holdRing');
-function startHold(e){e.preventDefault();holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding ${Math.floor(holdProgress/33.3)}s / 3s — Premium`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS('HOLD 3s Premium');}},60);}
-function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%';holdText.innerText='Ready to hold — Premium Gold';holdRing.style.display='none';}}
+function startHold(e){e.preventDefault();holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding ${Math.floor(holdProgress/33.3)}s / 3s`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS('HOLD 3s Premium v36.1');}},60);}
+function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%';holdText.innerText='Ready — Hold 3s Premium';holdRing.style.display='none';}}
 holdBtn.addEventListener('touchstart',startHold);holdBtn.addEventListener('mousedown',startHold);holdBtn.addEventListener('touchend',endHold);holdBtn.addEventListener('mouseup',endHold);holdBtn.addEventListener('mouseleave',endHold);
-function volPress(){volCount++;if(volCount>8)volCount=1;document.getElementById('volCount').innerText=volCount+'/8';document.getElementById('volBar').style.width=(volCount/8*100)+'%';document.getElementById('volState').innerText=volCount+'/8 ARMED';log('log3','Volume '+volCount+'/8 Premium');if(navigator.vibrate)navigator.vibrate(60);if(volCount===8){document.getElementById('volState').innerText='8/8 TRIGGERED — AUTO';document.getElementById('volBanner').innerText='✅ AUTO SENDING LIVE LOCATION NOW — Premium';document.getElementById('volBanner').className='green-banner';triggerSOS('VOLUME 8X Premium');volCount=0;}}
-function resetVol(){volCount=0;document.getElementById('volCount').innerText='0/8';document.getElementById('volBar').style.width='0%';document.getElementById('volState').innerText='ARMED';document.getElementById('volBanner').innerText='⚠️ 8X ARMED — Will AUTO SEND';document.getElementById('volBanner').className='red-banner';}
-function triggerSOS(source){const now=new Date().toLocaleTimeString();document.getElementById('holdResult').style.display='block';document.getElementById('autoSentBanner').style.display='block';document.getElementById('sentTime').innerText=`AUTO Sent ${now} via ${source} — Premium Gold`;const msg=`🚨 FEMINIST-GUARD PREMIUM PANIC! I need help! Source: ${source}. Live: ${gps.link} Lat ${gps.lat.toFixed(6)} Lng ${gps.lng.toFixed(6)} Soshanguve 17576 EXT 8A Time ${now} Call 0672739660.`;document.getElementById('sosMsg').innerText=msg;document.getElementById('aiMsg').innerText=`🚨 AUTO SOS Premium from ${source} at ${now}. Live ${gps.link} sent to 7 contacts auto.`;log('log4','TRIGGER '+source+' Premium '+gps.lat);autoSend(msg);if(navigator.vibrate)navigator.vibrate([200,100,200,100,500]);}
-function autoSend(message){const enc=encodeURIComponent(message);const autoDiv=document.getElementById('autoLinks');autoDiv.innerHTML='';try{window.location.href=`sms:?&body=${enc}`;log('log4','AUTO SMS Premium');}catch(e){}setTimeout(()=>{window.open(`https://wa.me/?text=${enc}`,'_blank');log('log4','AUTO WhatsApp Premium');autoDiv.innerHTML=`<button class="btn-dark" onclick="openSMSBackup()" style="width:100%">If not auto — Tap SMS</button><button class="btn-dark" onclick="openWABackup()" style="width:100%;margin-top:6px;">If not auto — Tap WhatsApp</button>`;},800);}
+function volPress(){volCount++;if(volCount>8)volCount=1;document.getElementById('volCount').innerText=volCount+'/8';document.getElementById('volBar').style.width=(volCount/8*100)+'%';document.getElementById('volState').innerText=volCount+'/8 ARMED';log('log3','Volume '+volCount+'/8');if(navigator.vibrate)navigator.vibrate(60);if(volCount===8){document.getElementById('volState').innerText='8/8 TRIGGERED — AUTO SENDING';document.getElementById('volBanner').innerText='✅ AUTO SENDING LIVE LOCATION NOW — Premium v36.1';document.getElementById('volBanner').className='green-banner';triggerSOS('VOLUME 8X Premium v36.1');volCount=0;}}
+function resetVol(){volCount=0;document.getElementById('volCount').innerText='0/8';document.getElementById('volBar').style.width='0%';document.getElementById('volState').innerText='ARMED — Waiting';document.getElementById('volBanner').innerText='⚠️ 8X ARMED — Will AUTO SEND live location instantly';document.getElementById('volBanner').className='red-banner';log('log3','Reset');}
+function triggerSOS(source){const now=new Date().toLocaleTimeString();document.getElementById('holdResult').style.display='block';document.getElementById('autoSentBanner').style.display='block';document.getElementById('sentTime').innerText=`AUTO Sent ${now} via ${source} — Premium Gold v36.1`;const msg=`🚨 FEMINIST-GUARD PREMIUM v36.1 PANIC! I need help! Source: ${source}. Live location: ${gps.link} Lat ${gps.lat.toFixed(6)} Lng ${gps.lng.toFixed(6)} Soshanguve 17576 EXT 8A Time ${now} Call 0672739660 immediately.`;document.getElementById('sosMsg').innerText=msg;document.getElementById('aiMsg').innerText=`🚨 AUTO SOS Premium v36.1 from ${source} at ${now}. Live ${gps.link} sent to 7 contacts automatically.`;log('log4','TRIGGER '+source+' lat '+gps.lat);autoSend(msg);document.getElementById('page-sos').scrollIntoView({behavior:'smooth'});if(navigator.vibrate)navigator.vibrate([200,100,200,100,500]);}
+function autoSend(message){const enc=encodeURIComponent(message);const autoDiv=document.getElementById('autoLinks');autoDiv.innerHTML='';try{window.location.href=`sms:?&body=${enc}`;log('log4','AUTO SMS Premium v36.1');}catch(e){}setTimeout(()=>{window.open(`https://wa.me/?text=${enc}`,'_blank');log('log4','AUTO WhatsApp Premium v36.1');autoDiv.innerHTML=`<button class="btn" onclick="openSMSBackup()" style="width:100%">If not auto — Tap SMS</button><button class="btn" onclick="openWABackup()" style="width:100%;margin-top:8px;">If not auto — Tap WhatsApp</button>`;},900);}
 function openSMSBackup(){const m=document.getElementById('sosMsg').innerText;window.location.href=`sms:?&body=${encodeURIComponent(m)}`;}
 function openWABackup(){const m=document.getElementById('sosMsg').innerText;window.open(`https://wa.me/?text=${encodeURIComponent(m)}`,'_blank');}
-function addContact(){const val=document.getElementById('newContact').value;if(!val)return;const div=document.createElement('div');div.className='contact-premium';div.innerHTML=`<div style="display:flex;align-items:center;gap:10px;"><div class="avatar">${val[0].toUpperCase()}</div><div><b>${val}</b><br><small>Auto-notified — Premium</small></div></div><span class="badge-auto">Auto</span>`;document.getElementById('circleList').appendChild(div);document.getElementById('newContact').value='';}
+function addContact(){const val=document.getElementById('newContact').value;if(!val)return;const div=document.createElement('div');div.className='contact';div.innerHTML=`<span>🟢 ${val}</span><span class="badge">Auto</span>`;document.getElementById('circleList').appendChild(div);document.getElementById('newContact').value='';}
 function pressKey(k){const inp=document.getElementById('vaultPin');if(inp.value.length<6)inp.value+=k;if(inp.value.length===6){document.getElementById('vaultContent').style.display='block';inp.value='';}}
 function clearPin(){document.getElementById('vaultPin').value='';}
 function guidePolice(){window.open('https://www.google.com/maps/search/police+station+near+me','_blank');}
-function sendAI(){const txt=document.getElementById('aiInput').value;if(!txt)return;const box=document.createElement('div');box.className='ai-msg';box.innerText='You: '+txt;document.getElementById('page-ai').appendChild(box);const reply=document.createElement('div');reply.className='ai-msg';reply.innerText='Guard AI Premium Gold: Auto 8X is ON. Press 8x volume → live location auto-sends.';document.getElementById('page-ai').appendChild(reply);document.getElementById('aiInput').value='';}
-function triggerPay(){alert('v36 PREMIUM PAY R50 — SHEIN/TAKEALOT REAL BANK:\nNedbank 1328576469 — Owner 0672739660\nLuxury flow: Card → PAY → Outside REAL Capitec App → PIN inside REAL bank → Back → You have entered\nPayFast pending — Premium Gold Edition');}
+function sendAI(){const txt=document.getElementById('aiInput').value;if(!txt)return;const box=document.createElement('div');box.className='ai-box';box.innerText='You: '+txt;document.getElementById('page-ai').appendChild(box);const reply=document.createElement('div');reply.className='ai-box';reply.innerText='Guard AI Premium v36.1: Auto 8X is ON. Press 8x volume → live location auto-sends instantly to 7 contacts.';document.getElementById('page-ai').appendChild(reply);document.getElementById('aiInput').value='';}
+function triggerPay(){alert('v36.1 PREMIUM PAY R50 — SHEIN/TAKEALOT REAL BANK:\nNedbank 1328576469 — Owner 0672739660\nLuxury flow: Card → PAY → Outside REAL Capitec/Nedbank App → PIN inside REAL bank → Back → You have entered\nCompany 2026/768091/07 — Premium Gold Edition');}
 </script></body></html>
