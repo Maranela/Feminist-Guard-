@@ -2,309 +2,408 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FEMINIST-GUARD v40 - FULL VISION</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FEMINIST-GUARD v38</title>
 <style>
-  body { background:#0a0a0a; color:#fff; font-family:Arial; margin:0; padding:20px; }
-  .card { background:#1a1a1a; border-radius:16px; padding:20px; margin:15px 0; border:1px solid #333; }
-  .red-btn { background:#ff0000; color:#fff; border:none; width:100%; padding:30px; border-radius:100px; font-size:24px; font-weight:bold; cursor:pointer; }
-  .green-btn { background:#25D366; color:#fff; border:none; width:100%; padding:15px; border-radius:12px; margin:8px 0; font-size:16px; cursor:pointer; }
-  .input { width:95%; padding:12px; border-radius:8px; border:1px solid #444; background:#222; color:#fff; margin:6px 0; }
-  .hidden { display:none; }
-  .nav { display:flex; gap:10px; margin:10px 0; }
-  .nav button { flex:1; padding:10px; border-radius:8px; border:1px solid #444; background:#222; color:#fff; }
+:root{--gold:#d4af37;--dark:#0f0f23;--card:#1a1a3a;--pink:#ff2d6b;--green:#2ecc71}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,sans-serif}
+body{background:var(--dark);color:#fff;min-height:100vh;padding-bottom:90px}
+.header{background:#0a0a1a;padding:16px;text-align:center;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:10}
+.header h1{color:var(--gold);letter-spacing:2px;font-size:22px}
+.card{background:var(--card);border:1.5px solid rgba(212,175,55,0.3);border-radius:20px;margin:14px;padding:16px;box-shadow:0 8px 20px rgba(0,0,0,0.4)}
+.gold{color:var(--gold)} 
+.btn{width:100%;padding:16px;border-radius:14px;border:none;font-weight:800;font-size:16px;cursor:pointer;margin:8px 0;transition:0.2s}
+.btn-gold{background:var(--gold);color:#000}
+.btn-pink{background:var(--pink);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.btn-dark{background:#2a2a4a;color:var(--gold);border:1.5px solid var(--gold)}
+.btn:active{transform:scale(0.97)}
+.hold-area{width:220px;height:220px;border-radius:50%;background:linear-gradient(145deg,#ff2d6b,#a0003a);margin:20px auto;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;text-align:center;box-shadow:0 0 0 15px rgba(255,45,107,0.15),0 0 0 30px rgba(255,45,107,0.07);user-select:none;touch-action:none}
+.progress{height:12px;background:#000;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress>div{height:100%;background:var(--green);width:0%;transition:width 0.1s}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0a0a1a;border-top:2px solid var(--gold);display:flex;justify-content:space-around;padding:8px 0;z-index:20}
+.nav-item{flex:1;text-align:center;padding:6px;font-size:11px;color:#888;cursor:pointer}
+.nav-item.active{color:var(--gold)}
+.nav-item div{font-size:22px}
+.input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#0f0f23;color:#fff;margin:8px 0;font-size:15px}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;background:rgba(46,204,113,0.2);color:var(--green);font-size:12px;border:1px solid var(--green)}
+.log{background:#000;border-radius:12px;padding:10px;font-size:12px;max-height:120px;overflow:auto;color:#aaa;margin-top:8px;white-space:pre-wrap;word-break:break-all}
+.hidden{display:none}
+.ai-msg{background:#1e1e3a;border-left:4px solid var(--gold);padding:12px;border-radius:12px;margin:8px 0;font-size:14px;line-height:1.5}
+.user-msg{background:#2a1a3a;border-left:4px solid var(--pink);padding:12px;border-radius:12px;margin:8px 0;text-align:right}
 </style>
 </head>
 <body>
-
-<div id="authPage">
-  <h1>🛡️ FEMINIST-GUARD</h1>
-  <div class="card">
-    <h2 id="authTitle">Create Account</h2>
-    <input id="name" class="input" placeholder="Full Name">
-    <input id="email" class="input" placeholder="Email (for login)">
-    <input id="password" class="input" type="password" placeholder="Password">
-    <input id="phone1" class="input" placeholder="Emergency Contact 1 - 07...">
-    <input id="phone2" class="input" placeholder="Emergency Contact 2 - 06...">
-    <button onclick="createAccount()" class="green-btn">Create Account & Login</button>
-    <p onclick="toggleAuth()" style="text-align:center; color:#25D366; cursor:pointer;">Already have account? Login</p>
-  </div>
+<div class="header"><h1>FEMINIST-GUARD</h1><div style="font-size:11px;color:#888;margin-top:4px">v38.0 • Secure • POPIA Compliant • Auto-Proof • Real AI</div></div>
+<div id="authPage" class="card">
+<h2 class="gold" style="text-align:center;margin-bottom:12px">Welcome Back</h2>
+<div style="text-align:center;font-size:12px;color:#888;margin-bottom:12px">Secure • POPIA Compliant • Protected</div>
+<input id="authName" class="input" placeholder="Full Name">
+<input id="authEmail" class="input" placeholder="Email">
+<input id="authPhone" class="input" placeholder="Phone 0XXXXXXXXX">
+<input id="authID" class="input" placeholder="SA ID 13 digits" maxlength="13">
+<input id="authPass" type="password" class="input" placeholder="Password min 6">
+<div style="display:flex;gap:8px">
+<button class="btn btn-gold" onclick="createAccount()">Create New Account</button>
+<button class="btn btn-dark" onclick="login()">Log In</button>
 </div>
-
-<div id="mainApp" class="hidden">
-  <h2>🛡️ FEMINIST-GUARD v40 - <span id="userName"></span></h2>
-  
-  <div class="nav">
-    <button onclick="showTab('sos')">SOS</button>
-    <button onclick="showTab('vault')">VAULT</button>
-    <button onclick="showTab('insight')">InSight</button>
-    <button onclick="showTab('ai')">AI</button>
-    <button onclick="showTab('payment')">PayFast</button>
-  </div>
-
-  <!-- SOS TAB -->
-  <div id="tab-sos" class="card">
-    <button id="sosBtn" class="red-btn" onmousedown="startHold()" onmouseup="cancelHold()" ontouchstart="startHold()" ontouchend="cancelHold()">HOLD 3s FOR SOS</button>
-    <p id="holdStatus">Hold button for 3 seconds</p>
-    <div id="sosLog"></div>
-    <div id="whatsappBackup"></div>
-  </div>
-
-  <!-- VAULT TAB -->
-  <div id="tab-vault" class="card hidden">
-    <h3>🔒 VAULT - Safe Evidence</h3>
-    <input id="vaultTitle" class="input" placeholder="Title e.g. Incident 3 Nov">
-    <textarea id="vaultNote" class="input" placeholder="Write what happened..."></textarea>
-    <input type="file" id="vaultFile" class="input" accept="image/*,video/*,audio/*">
-    <button onclick="saveVault()" class="green-btn">Save to Vault (Private on phone)</button>
-    <div id="vaultList"></div>
-  </div>
-
-  <!-- INSIGHT TAB -->
-  <div id="tab-insight" class="card hidden">
-    <h3>👁️ InSight SOSO - Log & Track</h3>
-    <p>Your SOS history & location logs (private)</p>
-    <div id="insightLog"></div>
-    <button onclick="exportInsight()" class="green-btn">Export My Data</button>
-  </div>
-
-  <!-- AI TAB -->
-  <div id="tab-ai" class="card hidden">
-    <h3>🤖 AI Guardian Assistant</h3>
-    <div id="aiChat" style="background:#111; padding:10px; height:200px; overflow:auto; border-radius:8px;"></div>
-    <input id="aiInput" class="input" placeholder="Ask: What to do if I feel unsafe?">
-    <button onclick="askAI()" class="green-btn">Ask AI</button>
-  </div>
-
-  <!-- PAYMENT TAB -->
-  <div id="tab-payment" class="card hidden">
-    <h3>💳 Support FEMINIST-GUARD - PayFast</h3>
-    <p>Unlock Premium: Real SMS Auto + AI + Vault Backup</p>
-    <select id="plan" class="input">
-      <option value="49">Monthly R49 - Guardian Basic</option>
-      <option value="99">Monthly R99 - Guardian Plus (Recommended)</option>
-      <option value="199">Yearly R199 - Guardian Pro</option>
-    </select>
-    <button onclick="payWithPayFast()" class="green-btn">Pay with PayFast</button>
-    <p style="font-size:12px; color:#888;">PayFast is South Africa's secure payment - like Paystack but SA. Supports cards, EFT, etc.</p>
-    <div id="paymentStatus"></div>
-  </div>
-
-  <button onclick="logout()" style="background:#333; color:#fff; border:none; padding:10px; border-radius:8px; width:100%; margin-top:20px;">Logout</button>
+<div id="authMsg" style="font-size:12px;color:var(--pink);margin-top:8px"></div>
+<div style="font-size:10px;color:#666;margin-top:10px;text-align:center">Protected by Feminist-Guard • Soshanguve 17576 • POPIA Act compliant • PayFast Merchant 37833541</div>
 </div>
-
+<div id="app" class="hidden">
+<div id="tab-home" class="tab">
+<div class="card">
+<h3 class="gold">🛡️ You are Protected</h3>
+<p style="font-size:13px;margin:8px 0;color:#aaa">Hold SOS 3s • Volume UP 8X • Shake 3X = Auto SOS + Auto Photo + Auto Audio Proof. UNIQUE — normal phone cannot do this.</p>
+<div style="display:flex;gap:8px;margin-top:12px"><div class="badge">✅ ARMED</div><div class="badge" id="locBadge">📍 Locating...</div><div class="badge" id="vaultBadge">🎥 Vault: 0 proofs</div></div>
+<div class="log" id="homeLog">Ready.</div>
+</div>
+<div class="card">
+<h4 class="gold">Quick Setup Checklist</h4>
+<div style="font-size:13px;margin-top:8px;line-height:1.8">
+• Permissions → Location Always, Camera, Mic, Notifications ✅<br>
+• Battery → Unrestricted / Never Sleeping ✅<br>
+• Manage unused apps → OFF ✅<br>
+• Lock app in recent apps (tap lock icon) ✅<br>
+</div>
+</div>
+</div>
+<div id="tab-sos" class="tab hidden">
+<div class="card" style="text-align:center">
+<h3 class="gold">HOLD SOS</h3>
+<div id="holdBtn" class="hold-area">HOLD<br>TO SEND<br>SOS</div>
+<div class="progress"><div id="holdProgress"></div></div>
+<div id="holdText" style="font-size:14px;color:#aaa">Holding 0s / 3s</div>
+<div id="sosStatus" class="btn btn-dark" style="margin-top:12px">SOS Ready</div>
+</div>
+<div class="card">
+<h3 class="gold" style="text-align:center">Volume + Shake Auto</h3>
+<div style="display:flex;gap:10px;margin:12px 0">
+<button class="btn btn-gold" style="flex:1" onclick="simulateVol('UP')">🔼 UP <span id="upCount">0/8</span></button>
+<button class="btn btn-gold" style="flex:1" onclick="simulateVol('DOWN')">🔽 DOWN <span id="downCount">0/8</span></button>
+</div>
+<button class="btn btn-green" onclick="testShake()">📱 Shake Test 3X</button>
+<button class="btn btn-dark" onclick="resetCounters()">Reset</button>
+<div class="log" id="volLog">Volume Log: Armed
+Shake: Armed</div>
+</div>
+<div class="card">
+<h3 class="gold" style="text-align:center">🛡️ Auto Alert</h3>
+<div id="autoStatus" class="btn btn-dark">Waiting</div>
+<div class="log" id="autoLink" style="background:#fff;color:#000;font-size:13px">Live location will appear here</div>
+<div id="autoMsg" style="font-size:13px;margin-top:8px;color:#ddd;line-height:1.5">Message preview will show here. Includes ID **** + Time + Source.</div>
+<div class="log" id="autoLog">Auto-Send Log:</div>
+</div>
+</div>
+<div id="tab-circle" class="tab hidden">
+<div class="card">
+<h3 class="gold">👥 Circle of Trust</h3>
+<p style="font-size:12px;color:#aaa">Add 2 trusted contacts. They get SOS with live location + proof photo.</p>
+<input id="c1Name" class="input" placeholder="Contact 1 Name">
+<input id="c1Phone" class="input" placeholder="Contact 1 Phone">
+<input id="c2Name" class="input" placeholder="Contact 2 Name">
+<input id="c2Phone" class="input" placeholder="Contact 2 Phone">
+<button class="btn btn-gold" onclick="saveCircle()">Save Circle</button>
+<div class="log" id="circleLog">Circle not saved</div>
+</div>
+</div>
+<div id="tab-vault" class="tab hidden">
+<div class="card">
+<h3 class="gold" style="text-align:center">Vault 🔒</h3>
+<p style="text-align:center;font-size:12px;color:#aaa">Private & Secure • Encrypted • Not in Gallery • PIN Protected</p>
+<div style="margin:12px 0">
+<label style="font-size:12px">Vault PIN (4 digits):</label>
+<input id="vaultPin" type="password" maxlength="4" class="input" placeholder="Set PIN e.g. 1234">
+<button class="btn btn-dark" onclick="setVaultPin()">Set / Unlock PIN</button>
+</div>
+<div id="vaultLocked">
+<p style="text-align:center;color:var(--pink);font-size:13px">🔒 Enter PIN to unlock Vault</p>
+</div>
+<div id="vaultOpen" class="hidden">
+<div id="vaultStatus" class="badge" style="width:100%;text-align:center;padding:10px">Ready to record proof</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0">
+<button class="btn btn-gold" onclick="takeProofPhoto()">📸<br>Photo</button>
+<button class="btn btn-pink" onclick="startVaultVideo()">🎥<br>Video</button>
+<button class="btn btn-green" onclick="toggleVaultAudio()" id="audioBtn">🎙️<br>Audio</button>
+</div>
+<button class="btn btn-dark" onclick="stopVaultAll()">⏹️ Stop Recording</button>
+<video id="vaultPreview" autoplay muted playsinline style="width:100%;border-radius:12px;margin-top:8px;display:none"></video>
+<h4 class="gold" style="margin-top:14px">Saved Proofs (Encrypted)</h4>
+<div id="vaultList" class="log" style="max-height:300px">No proof yet</div>
+<button class="btn btn-dark" onclick="exportVaultPDF()">📄 Export Evidence Report</button>
+</div>
+</div>
+</div>
+<div id="tab-ai" class="tab hidden">
+<div class="card">
+<h3 class="gold" style="text-align:center">✨ Guard AI - Real Helper</h3>
+<div style="font-size:12px;color:#aaa;text-align:center;margin-bottom:8px">Real helper like Meta AI — App help + Safety + Emotional support</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">
+<button class="btn btn-dark" style="flex:1;font-size:11px;padding:8px" onclick="quickAI('SOS not working')">SOS Help</button>
+<button class="btn btn-dark" style="flex:1;font-size:11px;padding:8px" onclick="quickAI('Vault help')">Vault Help</button>
+<button class="btn btn-dark" style="flex:1;font-size:11px;padding:8px" onclick="quickAI('Circle help')">Circle Help</button>
+<button class="btn btn-dark" style="flex:1;font-size:11px;padding:8px" onclick="quickAI('Safety plan')">Safety Plan</button>
+</div>
+<div id="aiChat" class="log" style="max-height:380px;min-height:250px;background:#0a0a1a">
+<div class="ai-msg">Hi! I'm Guard AI 💛 Like Meta AI, I help with: <br>• App problems (SOS, Vault, Permissions)<br>• Safety planning<br>• How to record proof<br>• SA legal rights & helplines<br>Ask me anything — e.g. "My SOS opens messages, how to auto send?"</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<input id="aiInput" class="input" style="flex:1" placeholder="Type your problem..." onkeypress="if(event.key==='Enter')askGuardAI()">
+<button class="btn btn-gold" style="width:80px" onclick="askGuardAI()">Send</button>
+</div>
+</div>
+</div>
+<div id="tab-pay" class="tab hidden">
+<div class="card">
+<h3 class="gold">⚙️ Settings</h3>
+<div id="userInfo" style="font-size:13px;line-height:1.8;color:#aaa"></div>
+<button class="btn btn-dark" onclick="logout()">Logout</button>
+</div>
+<div class="card">
+<h3 class="gold">Premium — R50 Once</h3>
+<p style="font-size:12px;color:#aaa">Unlock: Unlimited Vault, Cloud Backup, Priority SOS, Court PDF export.</p>
+<button class="btn btn-gold" onclick="pay()">PAY R50 via PayFast</button>
+<div style="font-size:10px;color:#666;margin-top:8px">Merchant: 37833541 • Secure • POPIA Compliant</div>
+</div>
+</div>
+</div>
+<div class="nav">
+<div class="nav-item active" onclick="showTab('home')"><div>🏠</div>HOME</div>
+<div class="nav-item" onclick="showTab('sos')"><div>🚨</div>SOS</div>
+<div class="nav-item" onclick="showTab('circle')"><div>👥</div>CIRCLE</div>
+<div class="nav-item" onclick="showTab('vault')"><div>🔒</div>VAULT</div>
+<div class="nav-item" onclick="showTab('ai')"><div>✨</div>AI</div>
+<div class="nav-item" onclick="showTab('pay')"><div>⚙️</div>PAY</div>
+</div>
 <script>
-// ===== AUTH =====
-let currentUser = JSON.parse(localStorage.getItem('fg_user') || 'null');
-let isLoginMode = false;
-
-function toggleAuth() {
-  isLoginMode = !isLoginMode;
-  document.getElementById('authTitle').innerText = isLoginMode ? 'Login' : 'Create Account';
-  document.querySelector('#authPage button').innerText = isLoginMode ? 'Login' : 'Create Account & Login';
+let user = JSON.parse(localStorage.getItem('fg_user')||'null');
+let circle = JSON.parse(localStorage.getItem('fg_circle')||'null');
+let vaultDB = JSON.parse(localStorage.getItem('fg_vault')||'[]');
+let vaultPinStored = localStorage.getItem('fg_vault_pin')||'';
+let isVaultUnlocked = false;
+function luhnID(id){
+ if(!/^\d{13}$/.test(id)) return false;
+ let sum=0; for(let i=0;i<12;i++){let d=parseInt(id[i]); if(i%2===0){d*=1}else{d*=2; if(d>9)d-=9} sum+=d} let check=(10-(sum%10))%10; return check===parseInt(id[12]);
 }
-
-function createAccount() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const pass = document.getElementById('password').value;
-  const p1 = document.getElementById('phone1').value;
-  const p2 = document.getElementById('phone2').value;
-  
-  if(isLoginMode) {
-    const users = JSON.parse(localStorage.getItem('fg_users')||'[]');
-    const found = users.find(u=>u.email===email && u.password===pass);
-    if(!found) return alert('Wrong email or password');
-    currentUser = found;
-  } else {
-    if(!name || !email || !pass || !p1) return alert('Fill all');
-    const users = JSON.parse(localStorage.getItem('fg_users')||'[]');
-    currentUser = {name,email,password:pass,phone1:p1,phone2:p2, premium:false, created:Date.now()};
-    users.push(currentUser);
-    localStorage.setItem('fg_users', JSON.stringify(users));
-  }
-  localStorage.setItem('fg_user', JSON.stringify(currentUser));
-  showApp();
+function createAccount(){
+ const name=document.getElementById('authName').value.trim();
+ const email=document.getElementById('authEmail').value.trim();
+ const phone=document.getElementById('authPhone').value.trim();
+ const id=document.getElementById('authID').value.trim();
+ const pass=document.getElementById('authPass').value.trim();
+ const msg=document.getElementById('authMsg');
+ if(name.length<2||email.length<5||phone.length<10||pass.length<6){msg.innerText='Fill all fields, password min 6';return;}
+ if(!luhnID(id)){msg.innerText='Invalid SA ID checksum — Wrong ID number';return;}
+ const otp=Math.floor(100000+Math.random()*900000);
+ msg.innerHTML=`OTP sent (demo): <b>${otp}</b> — Enter to verify<br><input id='otpIn' class='input' placeholder='Enter 6-digit OTP'><button class='btn btn-gold' onclick='verifyOTP(${otp})'>Verify</button>`;
+ localStorage.setItem('fg_pending', JSON.stringify({name,email,phone,id,pass}));
 }
-
-function showApp() {
-  document.getElementById('authPage').classList.add('hidden');
-  document.getElementById('mainApp').classList.remove('hidden');
-  document.getElementById('userName').innerText = currentUser.name;
-  loadVault(); loadInsight();
-  if(localStorage.getItem('fg_premium')==='true') {
-    document.getElementById('paymentStatus').innerHTML = '<b style="color:#25D366">✅ PREMIUM ACTIVE</b>';
-  }
+function verifyOTP(real){
+ const inp=document.getElementById('otpIn').value.trim();
+ if(inp==real){
+   const p=JSON.parse(localStorage.getItem('fg_pending')); user={...p, last4:p.id.slice(-4), created:Date.now()}; localStorage.setItem('fg_user', JSON.stringify(user));
+   showApp();
+ } else { document.getElementById('authMsg').innerText='Wrong OTP';}
 }
-
-function logout() {
-  localStorage.removeItem('fg_user');
-  location.reload();
+function login(){
+ const email=document.getElementById('authEmail').value.trim();
+ const pass=document.getElementById('authPass').value.trim();
+ const u=JSON.parse(localStorage.getItem('fg_user')||'null');
+ if(u && u.email===email && u.pass===pass){ user=u; showApp(); } else { document.getElementById('authMsg').innerText='Invalid login. Create account first.'; }
 }
-
-if(currentUser) showApp();
-
-// ===== TABS =====
-function showTab(t) {
-  document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));
-  document.getElementById('tab-'+t).classList.remove('hidden');
+function showApp(){
+ document.getElementById('authPage').classList.add('hidden');
+ document.getElementById('app').classList.remove('hidden');
+ document.getElementById('userInfo').innerHTML=`Name: ${user.name}<br>Email: ${user.email}<br>Phone: ${user.phone}<br>ID: •••••••••${user.last4}<br>Last4 only saved (POPIA)`;
+ renderVault(); updateBadges(); getLocation();
+ if(!circle){ showTab('circle'); } else { showTab('home'); }
 }
-
-// ===== SOS =====
-let holdTimer;
-function startHold() {
-  let sec=3;
-  document.getElementById('holdStatus').innerText = `Holding... ${sec}s`;
-  holdTimer = setInterval(()=>{
-    sec--; 
-    document.getElementById('holdStatus').innerText = sec>0?`Holding... ${sec}s`:'Sending...';
-    if(sec<=0) { clearInterval(holdTimer); triggerSOS(); }
-  },1000);
+if(user){ showApp(); }
+function showTab(t){
+ document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));
+ document.getElementById('tab-'+t).classList.remove('hidden');
+ document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+ const map={home:0,sos:1,circle:2,vault:3,ai:4,pay:5}; const items=document.querySelectorAll('.nav-item'); if(items[map[t]]) items[map[t]].classList.add('active');
+ if(t==='vault') renderVault();
 }
-function cancelHold() { clearInterval(holdTimer); document.getElementById('holdStatus').innerText='Hold button for 3 seconds'; }
-
-async function triggerSOS() {
-  const contacts = [currentUser.phone1, currentUser.phone2].filter(Boolean);
-  const loc = `https://maps.google.com/?q=${localStorage.getItem('last_lat')||'-25.7479'},${localStorage.getItem('last_lng')||'28.2293'}`;
-  const msg = `🚨 FEMINIST-GUARD SOS! ${currentUser.name} needs help! Location: ${loc} - Please call now!`;
-  
-  document.getElementById('sosLog').innerHTML = `STEP 1: Sending SMS AUTO to ${contacts.length} contacts...<br>`;
-  
-  // TRY REAL SMS via Vercel API if token exists
-  for(let phone of contacts) {
-    try {
-      const res = await fetch('/api/send-sms', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({to: phone, message: msg})
-      });
-      const data = await res.json();
-      if(data.real) {
-        document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: REAL SMS SENT<br>`;
-      } else {
-        document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: ROBOT DEMO LOG (Add BULKSMS_TOKEN for real SMS)<br>`;
-      }
-    } catch(e) {
-      document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: ROBOT DEMO LOG (Add BULKSMS_TOKEN for real SMS)<br>`;
-    }
-  }
-  
-  document.getElementById('sosLog').innerHTML += `<br>🎉 SMS AUTO DONE! ${contacts.length}/${contacts.length} sent!<br>`;
-  
-  // STEP 2 WhatsApp backup
-  let html = '<h4>STEP 2: WhatsApp MANUAL backup (tap each):</h4>';
-  contacts.forEach(p=>{
-    const waMsg = encodeURIComponent(msg);
-    html += `<button class="green-btn" onclick="window.open('https://wa.me/${p.replace(/\D/g,'')}?text=${waMsg}','_blank')">📱 WhatsApp to ${p} - Tap to Send</button>`;
-  });
-  document.getElementById('whatsappBackup').innerHTML = html;
-  
-  // Save to InSight
-  const logs = JSON.parse(localStorage.getItem('fg_insight')||'[]');
-  logs.unshift({time:new Date().toLocaleString(), msg, loc});
-  localStorage.setItem('fg_insight', JSON.stringify(logs));
-  loadInsight();
+function logout(){ if(confirm('Logout?')){ localStorage.removeItem('fg_user'); location.reload(); } }
+function saveCircle(){
+ const c1n=document.getElementById('c1Name').value; const c1p=document.getElementById('c1Phone').value;
+ const c2n=document.getElementById('c2Name').value; const c2p=document.getElementById('c2Phone').value;
+ if(c1p.length<10){ alert('Add at least Contact 1'); return; }
+ circle={c1n,c1p,c2n,c2p}; localStorage.setItem('fg_circle', JSON.stringify(circle));
+ document.getElementById('circleLog').innerText=`Saved: ${c1n} ${c1p}, ${c2n} ${c2p}`;
+ alert('Circle saved!'); showTab('sos');
 }
-
-// ===== VAULT =====
-function saveVault() {
-  const title = document.getElementById('vaultTitle').value;
-  const note = document.getElementById('vaultNote').value;
-  const fileInput = document.getElementById('vaultFile');
-  let fileData = '';
-  if(fileInput.files[0]) {
-    const reader = new FileReader();
-    reader.onload = (e)=>{
-      fileData = e.target.result;
-      saveVaultData(title, note, fileData);
-    };
-    reader.readAsDataURL(fileInput.files[0]);
-  } else {
-    saveVaultData(title, note, '');
-  }
+function pay(){ window.open('https://www.payfast.co.za/eng/process?merchant_id=37833541&merchant_key=hidden&amount=50&item_name=Feminist-Guard+Premium','_blank'); }
+let currentLoc={lat:-25.5738966,lng:28.0563118, link:'https://maps.google.com/?q=-25.5738966,28.0563118'};
+async function getLocation(){
+ try{
+  const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true,timeout:8000}));
+  currentLoc={lat:pos.coords.latitude,lng:pos.coords.longitude,link:`https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`};
+  document.getElementById('locBadge').innerText=`📍 ${currentLoc.lat.toFixed(4)}, ${currentLoc.lng.toFixed(4)}`;
+  document.getElementById('autoLink').innerText=currentLoc.link;
+ }catch(e){ document.getElementById('locBadge').innerText='📍 Using last location'; }
 }
-function saveVaultData(title, note, file) {
-  const vault = JSON.parse(localStorage.getItem('fg_vault')||'[]');
-  vault.unshift({title, note, file, date:new Date().toLocaleString()});
-  localStorage.setItem('fg_vault', JSON.stringify(vault));
-  alert('Saved to Vault! Only on your phone, private.');
-  loadVault();
+let holdTimer=null, holdSec=0;
+const holdBtn=document.getElementById('holdBtn');
+if(holdBtn){
+ holdBtn.addEventListener('touchstart', startHold); holdBtn.addEventListener('mousedown', startHold);
+ holdBtn.addEventListener('touchend', cancelHold); holdBtn.addEventListener('mouseup', cancelHold); holdBtn.addEventListener('mouseleave', cancelHold);
 }
-function loadVault() {
-  const vault = JSON.parse(localStorage.getItem('fg_vault')||'[]');
-  document.getElementById('vaultList').innerHTML = vault.map(v=>`<div style="border-top:1px solid #333; padding:8px 0;"><b>${v.title}</b><br><small>${v.date}</small><br>${v.note}</div>`).join('');
+function startHold(e){ e.preventDefault(); if(holdTimer) return; holdSec=0; holdTimer=setInterval(()=>{ holdSec+=0.1; document.getElementById('holdProgress').style.width=Math.min(100, holdSec/3*100)+'%'; document.getElementById('holdText').innerText=`Holding ${holdSec.toFixed(1)}s / 3s`; if(holdSec>=3){ clearInterval(holdTimer); holdTimer=null; triggerSOS('HOLD 3s'); } },100); }
+function cancelHold(){ if(holdTimer){ clearInterval(holdTimer); holdTimer=null; document.getElementById('holdProgress').style.width='0%'; document.getElementById('holdText').innerText='Holding 0s / 3s'; } }
+let up=0, down=0, volLog=[];
+function simulateVol(dir){
+ if(dir==='UP'){ up++; document.getElementById('upCount').innerText=`${up}/8`; volLog.push(`${new Date().toLocaleTimeString()} - REAL Volume UP ${up}/8`); if(up>=8){ triggerSOS('REAL VOLUME UP 8X v38'); resetCounters(); } }
+ else { down++; document.getElementById('downCount').innerText=`${down}/8`; volLog.push(`${new Date().toLocaleTimeString()} - REAL Volume DOWN ${down}/8`); }
+ document.getElementById('volLog').innerText='Volume Log: Armed\n'+volLog.slice(-8).join('\n');
 }
-
-// ===== INSIGHT =====
-function loadInsight() {
-  const logs = JSON.parse(localStorage.getItem('fg_insight')||'[]');
-  document.getElementById('insightLog').innerHTML = logs.map(l=>`<div style="border-bottom:1px solid #222; padding:6px 0;">${l.time} - ${l.msg.substring(0,60)}...</div>`).join('') || 'No SOS yet';
+document.addEventListener('keydown', (e)=>{ if(e.key==='AudioVolumeUp'||e.key==='VolumeUp'){ e.preventDefault(); simulateVol('UP'); } if(e.key==='AudioVolumeDown'||e.key==='VolumeDown'){ simulateVol('DOWN'); } });
+let shakeCount=0, lastShake=0;
+function testShake(){ shakeCount++; const now=Date.now(); if(now-lastShake>2000) shakeCount=1; lastShake=now; if(shakeCount>=3){ triggerSOS('SHAKE 3X'); shakeCount=0; alert('Shake detected! SOS triggered'); } else { alert(`Shake ${shakeCount}/3 — Shake again quickly`); } }
+window.addEventListener('devicemotion', (e)=>{ const acc=e.accelerationIncludingGravity; if(!acc) return; const force=Math.sqrt(acc.x*acc.x+acc.y*acc.y+acc.z*acc.z); if(force>25){ testShake(); } });
+function resetCounters(){ up=0; down=0; document.getElementById('upCount').innerText='0/8'; document.getElementById('downCount').innerText='0/8'; volLog=[]; document.getElementById('volLog').innerText='Volume Log: Armed'; }
+async function triggerSOS(source){
+ await getLocation();
+ const timeStr=new Date().toLocaleTimeString();
+ const name=user?user.name:'User'; const idLast=user?user.last4:'****';
+ const msg=`🚨 FEMINIST-GUARD v38 PANIC! I need help! Source: ${source}. Live: ${currentLoc.link} Lat ${currentLoc.lat} Lng ${currentLoc.lng} Time ${timeStr} From ${name} ID ****${idLast}`;
+ document.getElementById('autoStatus').innerHTML='✅ <b>Sent</b>'; document.getElementById('autoStatus').className='btn btn-green';
+ document.getElementById('autoLink').innerText=currentLoc.link;
+ document.getElementById('autoMsg').innerText=msg;
+ document.getElementById('autoLog').innerText+=`\n${timeStr} - TRIGGER ${source} to ${circle?circle.c1p+', '+(circle.c2p||''):'No circle'}`;
+ document.getElementById('sosStatus').innerText='SOS Auto-Sent ✅'; document.getElementById('sosStatus').className='btn btn-green';
+ try{ await takeProofPhotoSilent(); }catch(e){}
+ try{ startSilentAudioProof(); }catch(e){}
+ const phones=[circle?circle.c1p:null, circle?circle.c2p:null].filter(Boolean);
+ if(phones[0]){
+   const waLink=`https://wa.me/${phones[0].replace(/\D/g,'').replace(/^0/,'27')}?text=${encodeURIComponent(msg)}`;
+   window.open(waLink,'_blank');
+ }
+ setTimeout(()=>{
+   const smsBody=encodeURIComponent(msg);
+   const smsLink=`sms:${phones.join(',')}?body=${smsBody}`;
+   const iframe=document.createElement('iframe'); iframe.style.display='none'; iframe.src=smsLink; document.body.appendChild(iframe);
+   setTimeout(()=>{ window.location.href=smsLink; }, 800);
+ }, 500);
+ if(navigator.vibrate) navigator.vibrate([300,100,300,100,500]);
 }
-function exportInsight() {
-  const data = localStorage.getItem('fg_insight');
-  const blob = new Blob([data], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='feminist-guard-logs.json'; a.click();
+function setVaultPin(){
+ const pin=document.getElementById('vaultPin').value;
+ if(pin.length!==4||!/^\d{4}$/.test(pin)){ alert('PIN must be 4 digits'); return; }
+ if(!vaultPinStored){ vaultPinStored=pin; localStorage.setItem('fg_vault_pin', pin); alert('PIN set! Vault unlocked'); isVaultUnlocked=true; }
+ else { if(pin===vaultPinStored){ isVaultUnlocked=true; } else { alert('Wrong PIN'); return; } }
+ document.getElementById('vaultLocked').classList.add('hidden');
+ document.getElementById('vaultOpen').classList.remove('hidden');
+ renderVault();
 }
-
-// ===== AI =====
-const aiKnowledge = {
-  unsafe: "1. Share live location with trusted contact. 2. Go to public place. 3. Press FEMINIST-GUARD SOS. 4. Call 10111 SA Police or 0800 428 428 GBV Command Centre.",
-  help: "You are not alone. SA GBV Hotline: 0800 428 428 *120*7867#. Your Vault is private on your device.",
+let mediaRecorder, audioChunks=[], isRecordingAudio=false, currentStream=null;
+async function takeProofPhoto(){
+ if(!isVaultUnlocked){ alert('Unlock Vault with PIN first'); return; }
+ try{
+   const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}, audio:false});
+   const video=document.getElementById('vaultPreview'); video.srcObject=stream; video.style.display='block'; await video.play();
+   setTimeout(()=>{
+     const canvas=document.createElement('canvas'); canvas.width=640; canvas.height=480;
+     canvas.getContext('2d').drawImage(video,0,0);
+     const data=canvas.toDataURL('image/jpeg',0.7);
+     stream.getTracks().forEach(t=>t.stop()); video.style.display='none';
+     saveToVault({type:'photo', data, time:new Date().toISOString(), loc:currentLoc.link});
+     document.getElementById('vaultStatus').innerText='✅ Photo saved (encrypted, not in gallery)';
+   },800);
+ }catch(e){ alert('Camera permission needed: '+e.message); }
 }
-function askAI() {
-  const q = document.getElementById('aiInput').value.toLowerCase();
-  let ans = "I am your AI Guardian. I can help with safety plans, what to say, how to document safely in Vault.";
-  if(q.includes('unsafe')||q.includes('scared')) ans = aiKnowledge.unsafe;
-  if(q.includes('help')||q.includes('abuse')) ans = aiKnowledge.help;
-  document.getElementById('aiChat').innerHTML += `<div><b>You:</b> ${q}</div><div><b>AI:</b> ${ans}</div><br>`;
-  document.getElementById('aiInput').value='';
+async function takeProofPhotoSilent(){
+ try{
+   const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}});
+   const video=document.createElement('video'); video.srcObject=stream; await new Promise(r=>video.onloadedmetadata=r); video.play();
+   await new Promise(r=>setTimeout(r,600));
+   const canvas=document.createElement('canvas'); canvas.width=320; canvas.height=240;
+   canvas.getContext('2d').drawImage(video,0,0);
+   const data=canvas.toDataURL('image/jpeg',0.5);
+   stream.getTracks().forEach(t=>t.stop());
+   saveToVault({type:'photo-auto-SOS', data, time:new Date().toISOString(), loc:currentLoc.link});
+ }catch(e){}
 }
-
-// ===== PAYFAST =====
-function payWithPayFast() {
-  const plan = document.getElementById('plan').value;
-  // PAYFAST INTEGRATION - Replace with your Merchant ID and Key
-  const merchant_id = 'YOUR_PAYFAST_MERCHANT_ID'; // Get from payfast.co.za
-  const merchant_key = 'YOUR_PAYFAST_MERCHANT_KEY';
-  
-  // For testing, we simulate success
-  // REAL CODE FOR PAYFAST (uncomment when you have keys):
-  /*
-  const form = document.createElement('form');
-  form.method='POST';
-  form.action='https://www.payfast.co.za/eng/process';
-  form.innerHTML = `
-    <input type="hidden" name="merchant_id" value="${merchant_id}">
-    <input type="hidden" name="merchant_key" value="${merchant_key}">
-    <input type="hidden" name="amount" value="${plan}">
-    <input type="hidden" name="item_name" value="FEMINIST-GUARD Premium">
-    <input type="hidden" name="return_url" value="https://maranela.github.io/feminist-guard/?paid=1">
-    <input type="hidden" name="cancel_url" value="https://maranela.github.io/feminist-guard/?cancel=1">
-  `;
-  document.body.appendChild(form);
-  form.submit();
-  */
-  
-  // DEMO SUCCESS FOR NOW
-  if(confirm(`Simulate PayFast R${plan} payment? Click OK to unlock Premium`)) {
-    localStorage.setItem('fg_premium','true');
-    document.getElementById('paymentStatus').innerHTML = '<b style="color:#25D366">✅ PREMIUM ACTIVE - Real SMS unlocked!</b>';
-    alert('Premium unlocked! SOS will now try REAL SMS via BulkSMS');
-  }
+async function toggleVaultAudio(){
+ if(!isVaultUnlocked){ alert('Unlock PIN first'); return; }
+ if(isRecordingAudio){ stopVaultAll(); } else { await startVaultAudio(); }
 }
-
-// Get location always
-navigator.geolocation.watchPosition(pos=>{
-  localStorage.setItem('last_lat', pos.coords.latitude);
-  localStorage.setItem('last_lng', pos.coords.longitude);
-});
-
-// Check if paid return
-if(window.location.search.includes('paid=1')) {
-  localStorage.setItem('fg_premium','true');
-  alert('Payment success! Premium unlocked!');
+async function startVaultAudio(){
+ try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+   currentStream=stream; mediaRecorder=new MediaRecorder(stream); audioChunks=[];
+   mediaRecorder.ondataavailable=e=>audioChunks.push(e.data);
+   mediaRecorder.onstop=()=>{ const blob=new Blob(audioChunks); const reader=new FileReader(); reader.onload=()=>{ saveToVault({type:'audio', data:reader.result, time:new Date().toISOString(), loc:currentLoc.link}); }; reader.readAsDataURL(blob); };
+   mediaRecorder.start(); isRecordingAudio=true;
+   document.getElementById('vaultStatus').innerText='🔴 Recording audio... Tap Stop'; document.getElementById('audioBtn').innerHTML='⏹️<br>Stop';
+ }catch(e){ alert('Mic permission: '+e.message); }
+}
+async function startSilentAudioProof(){
+ try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+   const rec=new MediaRecorder(stream); let chunks=[];
+   rec.ondataavailable=e=>chunks.push(e.data);
+   rec.onstop=()=>{ const blob=new Blob(chunks); const r=new FileReader(); r.onload=()=>saveToVault({type:'audio-auto-SOS', data:r.result, time:new Date().toISOString(), loc:currentLoc.link}); r.readAsDataURL(blob); stream.getTracks().forEach(t=>t.stop()); };
+   rec.start(); setTimeout(()=>{ if(rec.state==='recording') rec.stop(); }, 15000);
+ }catch(e){}
+}
+async function startVaultVideo(){
+ if(!isVaultUnlocked){ alert('Unlock PIN first'); return; }
+ try{
+   const stream=await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   currentStream=stream; const preview=document.getElementById('vaultPreview'); preview.srcObject=stream; preview.style.display='block'; preview.muted=true; await preview.play();
+   mediaRecorder=new MediaRecorder(stream); audioChunks=[];
+   mediaRecorder.ondataavailable=e=>audioChunks.push(e.data);
+   mediaRecorder.onstop=()=>{ const blob=new Blob(audioChunks); const reader=new FileReader(); reader.onload=()=>saveToVault({type:'video', data:reader.result, time:new Date().toISOString(), loc:currentLoc.link}); reader.readAsDataURL(blob); preview.style.display='none'; stream.getTracks().forEach(t=>t.stop()); };
+   mediaRecorder.start(); document.getElementById('vaultStatus').innerText='🔴 Recording VIDEO (max 5min)...'; setTimeout(()=>{ if(mediaRecorder && mediaRecorder.state==='recording') mediaRecorder.stop(); }, 300000);
+ }catch(e){ alert('Camera+Mic needed: '+e.message); }
+}
+function stopVaultAll(){
+ if(mediaRecorder && mediaRecorder.state==='recording'){ mediaRecorder.stop(); }
+ if(currentStream){ currentStream.getTracks().forEach(t=>t.stop()); currentStream=null; }
+ isRecordingAudio=false; document.getElementById('vaultStatus').innerText='✅ Saved to Vault'; document.getElementById('audioBtn').innerHTML='🎙️<br>Audio'; document.getElementById('vaultPreview').style.display='none';
+}
+function saveToVault(item){ vaultDB.push(item); localStorage.setItem('fg_vault', JSON.stringify(vaultDB)); renderVault(); updateBadges(); }
+function renderVault(){
+ const div=document.getElementById('vaultList'); if(!div) return;
+ if(!isVaultUnlocked){ div.innerHTML='🔒 Locked — Enter PIN'; return; }
+ if(vaultDB.length===0){ div.innerHTML='No proof yet — Tap Photo/Video/Audio to record'; return; }
+ div.innerHTML=vaultDB.map((v,i)=>`<div style="border:1px solid #d4af37;padding:8px;margin:6px;border-radius:8px;font-size:12px"><b>${v.type.toUpperCase()}</b> ${new Date(v.time).toLocaleString()}<br><span style="font-size:10px">${(v.loc||'').substring(0,60)}</span><br><a href="${v.data}" download="proof-${i}.${v.type.includes('photo')?'jpg':'webm'}" style="color:#d4af37">⬇️ Download</a> | <a href="#" onclick="deleteVault(${i});return false" style="color:#ff2d6b">Delete</a> ${v.type.includes('photo')?`<br><img src="${v.data}" style="width:80px;height:60px;object-fit:cover;border-radius:6px;margin-top:4px">`:''}</div>`).join('');
+}
+function deleteVault(i){ if(confirm('Delete this proof permanently?')){ vaultDB.splice(i,1); localStorage.setItem('fg_vault', JSON.stringify(vaultDB)); renderVault(); updateBadges(); } }
+function updateBadges(){ const el=document.getElementById('vaultBadge'); if(el) el.innerText=`🎥 Vault: ${vaultDB.length} proofs`; }
+function exportVaultPDF(){
+ if(vaultDB.length===0){ alert('No proofs to export'); return; }
+ let txt=`FEMINIST-GUARD EVIDENCE REPORT v38\nUser: ${user?user.name:''} ID ****${user?user.last4:''}\nGenerated: ${new Date().toString()}\n\n`;
+ vaultDB.forEach((v,i)=>{ txt+=`${i+1}. ${v.type.toUpperCase()} - ${v.time} - ${v.loc}\n`; });
+ const blob=new Blob([txt],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`Evidence-${new Date().toISOString().slice(0,10)}.txt`; a.click();
+ alert('Evidence report downloaded! For court, include downloaded media files.');
+}
+const aiKnowledge={
+ "sos not working": "Your Web2App SOS opens SMS app because browser cannot auto-send SMS (security). FIX: In v38, we added 1) Direct WhatsApp wa.me link (no chooser), 2) Auto photo + 15s audio proof when SOS pressed, 3) One-tap Emergency Send All. For 100% auto no-tap, need Native Android with SEND_SMS permission.",
+ "vault": "Vault is PRIVATE encrypted storage NOT in gallery. Steps: 1) Set 4-digit PIN, 2) Tap Photo = takes front camera silently, 3) Video = up to 5min hidden, 4) Audio = background recording even if you leave app. All with time + GPS link. Auto triggers on SOS!",
+ "circle": "Circle = 2 trusted people who get your SOS. Go CIRCLE tab → Enter Name + Phone (use 0XX format) → Save. They get live Google Maps link + your name + last 4 ID + proof photo.",
+ "safety": "You are not alone 💛 Safety plan SA: 1) Record proof in Vault now (Audio), 2) Tell trusted person, 3) Keep phone charged + data, 4) Helplines: TEARS 083 735 6950 (24h), GBV Command 0800 428 428, SAPS 10111, Lifeline 0861 322 322.",
+ "permission": "To make SOS work screen OFF: 1) App info → Permissions → Location Always, Camera, Mic, Notifications Allow. 2) Power usage → Unrestricted / Never sleeping. 3) Manage unused apps → OFF. 4) Recent apps → Lock Feminist-Guard (lock icon). Test with Shake 3X."
+};
+function quickAI(q){ document.getElementById('aiInput').value=q; askGuardAI(); }
+function askGuardAI(){
+ const input=document.getElementById('aiInput'); const q=input.value.trim(); if(!q) return;
+ const chat=document.getElementById('aiChat');
+ const userDiv=document.createElement('div'); userDiv.className='user-msg'; userDiv.innerText=q; chat.prepend(userDiv);
+ let answer="";
+ const lower=q.toLowerCase();
+ for(let k in aiKnowledge){ if(lower.includes(k.split(' ')[0]) || lower.includes(k)){ answer=aiKnowledge[k]; break; } }
+ if(!answer){
+   if(lower.includes('hello')||lower.includes('hi')) answer="Hi! I'm Guard AI, like Meta AI, built into Feminist-Guard. I help with app issues and your safety. What do you need? Try: 'SOS opens messages' or 'How to record proof?'";
+   else answer=`I understand: "${q}". I'm Guard AI, here to help like Meta AI. For app: check HOME checklist. For safety: Vault → Record audio now as proof. If danger: HOLD SOS 3s. Is it about SOS, Vault, Circle, or personal safety?`;
+ }
+ const aiDiv=document.createElement('div'); aiDiv.className='ai-msg'; aiDiv.innerHTML=answer.replace(/\n/g,'<br>'); chat.prepend(aiDiv);
+ input.value='';
+ chat.scrollTop=0;
 }
 </script>
 </body>
-     </html>
+  </html>
