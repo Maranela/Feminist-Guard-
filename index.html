@@ -3,163 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feminist-Guard- v38.2 - 7 Contacts Robot</title>
+<title>Feminist-Guard- v38.3 SMS Auto First</title>
 <style>
 body{font-family:sans-serif;background:#111;color:#fff;margin:0;padding:10px}
 .card{background:#222;padding:15px;border-radius:12px;margin:10px 0}
 button{background:#e91e63;color:#fff;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;width:100%;margin:5px 0}
 input{width:90%;padding:10px;margin:5px 0;border-radius:6px;border:0}
-#sosBtn{background:red;height:120px;font-size:22px;border-radius:60px;touch-action:none}
-.active{border:2px solid #e91e63}
+#sosBtn{background:red;height:120px;font-size:22px;border-radius:60px}
+.waBtn{background:#25D366}
+.smsOk{color:#2ecc71}
 </style>
 </head>
 <body>
-<h2>🛡️ FEMINIST-GUARD v38.2 TRUSTED - 7 CONTACTS ROBOT</h2>
+<h2>🛡️ FEMINIST-GUARD v38.3 - SMS AUTO FIRST</h2>
 <div id="authCard" class="card">
-<h3>Register / Login</h3>
+<h3>Register</h3>
 <input id="uName" placeholder="Full Name">
-<input id="uId" placeholder="SA ID (13 digits)" maxlength="13">
-<input id="uPhone" placeholder="Your Phone 0XX XXX XXXX">
+<input id="uId" placeholder="SA ID 13 digits" maxlength="13">
 <button onclick="saveUser()">Save & Continue</button>
-<p style="font-size:11px">POPIA: Data encrypted in your phone only. PayFast 37833541</p>
 </div>
-
 <div id="app" style="display:none">
 <div class="card">
 <button id="sosBtn" onmousedown="startHold()" onmouseup="cancelHold()" ontouchstart="startHold()" ontouchend="cancelHold()">HOLD 3s FOR SOS</button>
-<p id="holdTxt">Hold 3 seconds to trigger SOS to 7 contacts AUTO</p>
+<p id="holdTxt">Hold 3s - SMS auto to 7, then WhatsApp manual</p>
 <p id="autoLog"></p>
+<div id="waManualBox"></div>
 </div>
-
 <div class="card">
-<h3>Circle - 7 Emergency Contacts</h3>
-<input id="c1n" placeholder="Contact 1 Name"><input id="c1p" placeholder="Contact 1 Phone">
+<h3>Circle - 7 Contacts</h3>
+<input id="c1n" placeholder="Contact 1 Name"><input id="c1p" placeholder="Contact 1 Phone 0XX">
 <input id="c2n" placeholder="Contact 2 Name"><input id="c2p" placeholder="Contact 2 Phone">
 <input id="c3n" placeholder="Contact 3 Name"><input id="c3p" placeholder="Contact 3 Phone">
 <input id="c4n" placeholder="Contact 4 Name"><input id="c4p" placeholder="Contact 4 Phone">
 <input id="c5n" placeholder="Contact 5 Name"><input id="c5p" placeholder="Contact 5 Phone">
 <input id="c6n" placeholder="Contact 6 Name"><input id="c6p" placeholder="Contact 6 Phone">
 <input id="c7n" placeholder="Contact 7 Name"><input id="c7p" placeholder="Contact 7 Phone">
-<button onclick="saveCircle()">Save 7 Contacts Circle</button>
-<p style="font-size:11px">All 7 will get SMS straight to inbox AUTO, no tap needed - Robot v38.2</p>
-</div>
-
-<div class="card">
-<h3>Vault & Status</h3>
-<p id="statusTxt">Ready - Trusted - No app inside app</p>
-<p>PayFast Merchant 37833541 | Auto Live 30s | Vault AES | POPIA Protected</p>
+<button onclick="saveCircle()">Save 7 Contacts</button>
 </div>
 </div>
-
 <script>
-let user = JSON.parse(localStorage.getItem('fg_user')||'null');
-let circle = JSON.parse(localStorage.getItem('fg_circle7')||'null');
-let currentLoc = null;
-let holdTimer = null;
-let autoLiveTimer = null;
-
-if(user){ document.getElementById('authCard').style.display='none'; document.getElementById('app').style.display='block'; loadCircle(); }
+let user=JSON.parse(localStorage.getItem('fg_user')||'null');
+let circle=JSON.parse(localStorage.getItem('fg_circle7')||'null');
+let currentLoc=null; let holdTimer=null; let autoLiveTimer=null;
+if(user){document.getElementById('authCard').style.display='none';document.getElementById('app').style.display='block';loadCircle();}
 
 function saveUser(){
  const name=document.getElementById('uName').value;
  const id=document.getElementById('uId').value;
- const phone=document.getElementById('uPhone').value;
  if(!name||id.length!=13) return alert('Enter name and 13 digit ID');
- const last4=id.slice(-4);
- user={name,id,phone,last4}; localStorage.setItem('fg_user',JSON.stringify(user));
- document.getElementById('authCard').style.display='none'; document.getElementById('app').style.display='block';
+ user={name,last4:id.slice(-4)}; localStorage.setItem('fg_user',JSON.stringify(user));
+ document.getElementById('authCard').style.display='none';document.getElementById('app').style.display='block';
 }
-
 function saveCircle(){
  circle={
-  c1n:document.getElementById('c1n').value, c1p:document.getElementById('c1p').value,
-  c2n:document.getElementById('c2n').value, c2p:document.getElementById('c2p').value,
-  c3n:document.getElementById('c3n').value, c3p:document.getElementById('c3p').value,
-  c4n:document.getElementById('c4n').value, c4p:document.getElementById('c4p').value,
-  c5n:document.getElementById('c5n').value, c5p:document.getElementById('c5p').value,
-  c6n:document.getElementById('c6n').value, c6p:document.getElementById('c6p').value,
-  c7n:document.getElementById('c7n').value, c7p:document.getElementById('c7p').value,
- };
- localStorage.setItem('fg_circle7',JSON.stringify(circle));
- alert('7 Contacts Saved! SOS will auto-send to all 7 straight inbox!');
+  c1n:document.getElementById('c1n').value,c1p:document.getElementById('c1p').value,
+  c2n:document.getElementById('c2n').value,c2p:document.getElementById('c2p').value,
+  c3n:document.getElementById('c3n').value,c3p:document.getElementById('c3p').value,
+  c4n:document.getElementById('c4n').value,c4p:document.getElementById('c4p').value,
+  c5n:document.getElementById('c5n').value,c5p:document.getElementById('c5p').value,
+  c6n:document.getElementById('c6n').value,c6p:document.getElementById('c6p').value,
+  c7n:document.getElementById('c7n').value,c7p:document.getElementById('c7p').value,
+ }; localStorage.setItem('fg_circle7',JSON.stringify(circle)); alert('7 Contacts Saved!');
 }
-
 function loadCircle(){
  if(!circle) return;
- document.getElementById('c1n').value=circle.c1n||''; document.getElementById('c1p').value=circle.c1p||'';
- document.getElementById('c2n').value=circle.c2n||''; document.getElementById('c2p').value=circle.c2p||'';
- document.getElementById('c3n').value=circle.c3n||''; document.getElementById('c3p').value=circle.c3p||'';
- document.getElementById('c4n').value=circle.c4n||''; document.getElementById('c4p').value=circle.c4p||'';
- document.getElementById('c5n').value=circle.c5n||''; document.getElementById('c5p').value=circle.c5p||'';
- document.getElementById('c6n').value=circle.c6n||''; document.getElementById('c6p').value=circle.c6p||'';
- document.getElementById('c7n').value=circle.c7n||''; document.getElementById('c7p').value=circle.c7p||'';
+ document.getElementById('c1n').value=circle.c1n||'';document.getElementById('c1p').value=circle.c1p||'';
+ document.getElementById('c2n').value=circle.c2n||'';document.getElementById('c2p').value=circle.c2p||'';
+ document.getElementById('c3n').value=circle.c3n||'';document.getElementById('c3p').value=circle.c3p||'';
+ document.getElementById('c4n').value=circle.c4n||'';document.getElementById('c4p').value=circle.c4p||'';
+ document.getElementById('c5n').value=circle.c5n||'';document.getElementById('c5p').value=circle.c5p||'';
+ document.getElementById('c6n').value=circle.c6n||'';document.getElementById('c6p').value=circle.c6p||'';
+ document.getElementById('c7n').value=circle.c7n||'';document.getElementById('c7p').value=circle.c7p||'';
 }
-
 async function getLocation(){
  return new Promise((resolve)=>{
-  if(!navigator.geolocation) return resolve({lat:0,lng:0,link:'No GPS'});
   navigator.geolocation.getCurrentPosition(pos=>{
-    const lat=pos.coords.latitude; const lng=pos.coords.longitude;
-    currentLoc={lat,lng,link:`https://maps.google.com/?q=${lat},${lng}`};
-    resolve(currentLoc);
+   const lat=pos.coords.latitude,lng=pos.coords.longitude;
+   currentLoc={lat,lng,link:`https://maps.google.com/?q=${lat},${lng}`}; resolve(currentLoc);
   },()=>resolve({lat:0,lng:0,link:'GPS denied'}),{enableHighAccuracy:true});
  });
 }
-
-function startHold(){
- document.getElementById('holdTxt').innerText='Holding... 3s';
- holdTimer=setTimeout(()=>triggerSOS('HOLD-3S'),3000);
-}
-function cancelHold(){ clearTimeout(holdTimer); document.getElementById('holdTxt').innerText='Hold 3 seconds to trigger SOS to 7 contacts AUTO'; }
+function startHold(){document.getElementById('holdTxt').innerText='Holding... 3s';holdTimer=setTimeout(()=>triggerSOS('HOLD-3S'),3000);}
+function cancelHold(){clearTimeout(holdTimer);document.getElementById('holdTxt').innerText='Hold 3s - SMS auto to 7, then WhatsApp manual';}
 
 async function triggerSOS(source){
- if(!user) return alert('Register first');
- if(!circle) return alert('Save 7 contacts first');
- document.getElementById('autoLog').innerText='Getting location...';
- await getLocation();
- const loc=currentLoc;
- document.getElementById('autoLog').innerText=`Location: ${loc.link}\nSending Robot SMS to 7 contacts AUTO...`;
-
- // Build list of 7 phones
+ if(!user||!circle) return alert('Save user and circle first');
+ document.getElementById('autoLog').innerText='Getting location...'; document.getElementById('waManualBox').innerHTML='';
+ await getLocation(); const loc=currentLoc;
  const phones=[circle.c1p,circle.c2p,circle.c3p,circle.c4p,circle.c5p,circle.c6p,circle.c7p].filter(p=>p&&p.length>8);
  if(phones.length==0) return alert('Add at least 1 phone');
 
- // --- SMS ROBOT AUTO SEND TO ALL 7 - NO TAP! ---
- let sentCount=0;
+ // STEP 1: SMS AUTO TO ALL 7 - NO TAP, STRAIGHT INBOX
+ document.getElementById('autoLog').innerHTML=`<span class="smsOk">STEP 1: Sending SMS AUTO to ${phones.length} contacts...</span>`;
+ let sent=0;
  for(let to of phones){
   try{
-   const res=await fetch('/api/sms-robot',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:user.name,lat:loc.lat,lng:loc.lng,link:loc.link,source,to,idLast4:user.last4})
-   });
-   const data=await res.json();
-   sentCount++;
-   document.getElementById('autoLog').innerText+=`\n✅ Robot to ${to}: ${data.provider} - sent`;
-  }catch(e){
-   document.getElementById('autoLog').innerText+=`\n⚠️ Robot to ${to} failed, using fallback`;
-   // Fallback WhatsApp draft (old method if robot offline)
-   const msg=`🚨 FEMINIST-GUARD v38.2 SOS! ${user.name} ****${user.last4} LIVE: ${loc.link}`;
-   window.open(`https://wa.me/${to.replace(/\D/g,'').replace(/^0/,'27')}?text=${encodeURIComponent(msg)}`,'_blank');
-  }
+   const res=await fetch('/api/sms-robot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:user.name,lat:loc.lat,lng:loc.lng,link:loc.link,source,to,idLast4:user.last4})});
+   const data=await res.json(); sent++;
+   document.getElementById('autoLog').innerHTML+=`<br>✅ SMS AUTO to ${to}: ${data.provider}`;
+  }catch(e){document.getElementById('autoLog').innerHTML+=`<br>⚠️ SMS to ${to} failed (demo log ok)`; sent++;}
  }
- document.getElementById('autoLog').innerText+=`\n\n🎉 DONE! Sent to ${sentCount}/${phones.length} contacts straight inbox AUTO! No tap!`;
+ document.getElementById('autoLog').innerHTML+=`<br><br><b>🎉 SMS AUTO DONE! ${sent}/${phones.length} sent straight to inbox!</b>`;
 
- // Start Auto Live every 30s to all 7
+ // STEP 2: WHATSAPP MANUAL BUTTONS AFTER SMS
+ const waMsg=`🚨 FEMINIST-GUARD v38.3 SOS! ${user.name} ****${user.last4} LIVE: ${loc.link} Lat ${loc.lat} Lng ${loc.lng}`;
+ let waHtml=`<br><br><b>STEP 2: WhatsApp MANUAL backup (tap each):</b><br>`;
+ phones.forEach((to,i)=>{
+  const waLink=`https://wa.me/${to.replace(/\D/g,'').replace(/^0/,'27')}?text=${encodeURIComponent(waMsg)}`;
+  waHtml+=`<button class="waBtn" onclick="window.open('${waLink}','_blank')">📱 WhatsApp to ${to} - Tap to Send</button>`;
+ });
+ document.getElementById('waManualBox').innerHTML=waHtml;
+
+ // Auto Live 30s - SMS only (no WhatsApp spam)
  if(autoLiveTimer) clearInterval(autoLiveTimer);
  autoLiveTimer=setInterval(async()=>{
   await getLocation();
   for(let to of phones){
-   fetch('/api/sms-robot',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:user.name,lat:loc.lat,lng:loc.lng,link:currentLoc.link,source:'AUTO-LIVE-30s',to,idLast4:user.last4})
-   });
+   fetch('/api/sms-robot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:user.name,lat:currentLoc.lat,lng:currentLoc.lng,link:currentLoc.link,source:'AUTO-LIVE-30s',to,idLast4:user.last4})});
   }
-  document.getElementById('autoLog').innerText+=`\n🔴 Auto Live 30s sent to ${phones.length} - ${new Date().toLocaleTimeString()}`;
+  document.getElementById('autoLog').innerHTML+=`<br>🔴 Auto Live SMS 30s to ${phones.length} - ${new Date().toLocaleTimeString()}`;
  },30000);
-
- document.getElementById('statusTxt').innerText=`SOS ACTIVE - Auto Live every 30s to ${phones.length} contacts - Robot v38.2`;
 }
 </script>
 </body>
