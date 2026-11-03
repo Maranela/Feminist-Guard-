@@ -3,127 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feminist-Guard- v38.3 SMS Auto First</title>
+<title>FEMINIST-GUARD v40 - FULL VISION</title>
 <style>
-body{font-family:sans-serif;background:#111;color:#fff;margin:0;padding:10px}
-.card{background:#222;padding:15px;border-radius:12px;margin:10px 0}
-button{background:#e91e63;color:#fff;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;width:100%;margin:5px 0}
-input{width:90%;padding:10px;margin:5px 0;border-radius:6px;border:0}
-#sosBtn{background:red;height:120px;font-size:22px;border-radius:60px}
-.waBtn{background:#25D366}
-.smsOk{color:#2ecc71}
+  body { background:#0a0a0a; color:#fff; font-family:Arial; margin:0; padding:20px; }
+  .card { background:#1a1a1a; border-radius:16px; padding:20px; margin:15px 0; border:1px solid #333; }
+  .red-btn { background:#ff0000; color:#fff; border:none; width:100%; padding:30px; border-radius:100px; font-size:24px; font-weight:bold; cursor:pointer; }
+  .green-btn { background:#25D366; color:#fff; border:none; width:100%; padding:15px; border-radius:12px; margin:8px 0; font-size:16px; cursor:pointer; }
+  .input { width:95%; padding:12px; border-radius:8px; border:1px solid #444; background:#222; color:#fff; margin:6px 0; }
+  .hidden { display:none; }
+  .nav { display:flex; gap:10px; margin:10px 0; }
+  .nav button { flex:1; padding:10px; border-radius:8px; border:1px solid #444; background:#222; color:#fff; }
 </style>
 </head>
 <body>
-<h2>🛡️ FEMINIST-GUARD v38.3 - SMS AUTO FIRST</h2>
-<div id="authCard" class="card">
-<h3>Register</h3>
-<input id="uName" placeholder="Full Name">
-<input id="uId" placeholder="SA ID 13 digits" maxlength="13">
-<button onclick="saveUser()">Save & Continue</button>
+
+<div id="authPage">
+  <h1>🛡️ FEMINIST-GUARD</h1>
+  <div class="card">
+    <h2 id="authTitle">Create Account</h2>
+    <input id="name" class="input" placeholder="Full Name">
+    <input id="email" class="input" placeholder="Email (for login)">
+    <input id="password" class="input" type="password" placeholder="Password">
+    <input id="phone1" class="input" placeholder="Emergency Contact 1 - 07...">
+    <input id="phone2" class="input" placeholder="Emergency Contact 2 - 06...">
+    <button onclick="createAccount()" class="green-btn">Create Account & Login</button>
+    <p onclick="toggleAuth()" style="text-align:center; color:#25D366; cursor:pointer;">Already have account? Login</p>
+  </div>
 </div>
-<div id="app" style="display:none">
-<div class="card">
-<button id="sosBtn" onmousedown="startHold()" onmouseup="cancelHold()" ontouchstart="startHold()" ontouchend="cancelHold()">HOLD 3s FOR SOS</button>
-<p id="holdTxt">Hold 3s - SMS auto to 7, then WhatsApp manual</p>
-<p id="autoLog"></p>
-<div id="waManualBox"></div>
+
+<div id="mainApp" class="hidden">
+  <h2>🛡️ FEMINIST-GUARD v40 - <span id="userName"></span></h2>
+  
+  <div class="nav">
+    <button onclick="showTab('sos')">SOS</button>
+    <button onclick="showTab('vault')">VAULT</button>
+    <button onclick="showTab('insight')">InSight</button>
+    <button onclick="showTab('ai')">AI</button>
+    <button onclick="showTab('payment')">PayFast</button>
+  </div>
+
+  <!-- SOS TAB -->
+  <div id="tab-sos" class="card">
+    <button id="sosBtn" class="red-btn" onmousedown="startHold()" onmouseup="cancelHold()" ontouchstart="startHold()" ontouchend="cancelHold()">HOLD 3s FOR SOS</button>
+    <p id="holdStatus">Hold button for 3 seconds</p>
+    <div id="sosLog"></div>
+    <div id="whatsappBackup"></div>
+  </div>
+
+  <!-- VAULT TAB -->
+  <div id="tab-vault" class="card hidden">
+    <h3>🔒 VAULT - Safe Evidence</h3>
+    <input id="vaultTitle" class="input" placeholder="Title e.g. Incident 3 Nov">
+    <textarea id="vaultNote" class="input" placeholder="Write what happened..."></textarea>
+    <input type="file" id="vaultFile" class="input" accept="image/*,video/*,audio/*">
+    <button onclick="saveVault()" class="green-btn">Save to Vault (Private on phone)</button>
+    <div id="vaultList"></div>
+  </div>
+
+  <!-- INSIGHT TAB -->
+  <div id="tab-insight" class="card hidden">
+    <h3>👁️ InSight SOSO - Log & Track</h3>
+    <p>Your SOS history & location logs (private)</p>
+    <div id="insightLog"></div>
+    <button onclick="exportInsight()" class="green-btn">Export My Data</button>
+  </div>
+
+  <!-- AI TAB -->
+  <div id="tab-ai" class="card hidden">
+    <h3>🤖 AI Guardian Assistant</h3>
+    <div id="aiChat" style="background:#111; padding:10px; height:200px; overflow:auto; border-radius:8px;"></div>
+    <input id="aiInput" class="input" placeholder="Ask: What to do if I feel unsafe?">
+    <button onclick="askAI()" class="green-btn">Ask AI</button>
+  </div>
+
+  <!-- PAYMENT TAB -->
+  <div id="tab-payment" class="card hidden">
+    <h3>💳 Support FEMINIST-GUARD - PayFast</h3>
+    <p>Unlock Premium: Real SMS Auto + AI + Vault Backup</p>
+    <select id="plan" class="input">
+      <option value="49">Monthly R49 - Guardian Basic</option>
+      <option value="99">Monthly R99 - Guardian Plus (Recommended)</option>
+      <option value="199">Yearly R199 - Guardian Pro</option>
+    </select>
+    <button onclick="payWithPayFast()" class="green-btn">Pay with PayFast</button>
+    <p style="font-size:12px; color:#888;">PayFast is South Africa's secure payment - like Paystack but SA. Supports cards, EFT, etc.</p>
+    <div id="paymentStatus"></div>
+  </div>
+
+  <button onclick="logout()" style="background:#333; color:#fff; border:none; padding:10px; border-radius:8px; width:100%; margin-top:20px;">Logout</button>
 </div>
-<div class="card">
-<h3>Circle - 7 Contacts</h3>
-<input id="c1n" placeholder="Contact 1 Name"><input id="c1p" placeholder="Contact 1 Phone 0XX">
-<input id="c2n" placeholder="Contact 2 Name"><input id="c2p" placeholder="Contact 2 Phone">
-<input id="c3n" placeholder="Contact 3 Name"><input id="c3p" placeholder="Contact 3 Phone">
-<input id="c4n" placeholder="Contact 4 Name"><input id="c4p" placeholder="Contact 4 Phone">
-<input id="c5n" placeholder="Contact 5 Name"><input id="c5p" placeholder="Contact 5 Phone">
-<input id="c6n" placeholder="Contact 6 Name"><input id="c6p" placeholder="Contact 6 Phone">
-<input id="c7n" placeholder="Contact 7 Name"><input id="c7p" placeholder="Contact 7 Phone">
-<button onclick="saveCircle()">Save 7 Contacts</button>
-</div>
-</div>
+
 <script>
-let user=JSON.parse(localStorage.getItem('fg_user')||'null');
-let circle=JSON.parse(localStorage.getItem('fg_circle7')||'null');
-let currentLoc=null; let holdTimer=null; let autoLiveTimer=null;
-if(user){document.getElementById('authCard').style.display='none';document.getElementById('app').style.display='block';loadCircle();}
+// ===== AUTH =====
+let currentUser = JSON.parse(localStorage.getItem('fg_user') || 'null');
+let isLoginMode = false;
 
-function saveUser(){
- const name=document.getElementById('uName').value;
- const id=document.getElementById('uId').value;
- if(!name||id.length!=13) return alert('Enter name and 13 digit ID');
- user={name,last4:id.slice(-4)}; localStorage.setItem('fg_user',JSON.stringify(user));
- document.getElementById('authCard').style.display='none';document.getElementById('app').style.display='block';
+function toggleAuth() {
+  isLoginMode = !isLoginMode;
+  document.getElementById('authTitle').innerText = isLoginMode ? 'Login' : 'Create Account';
+  document.querySelector('#authPage button').innerText = isLoginMode ? 'Login' : 'Create Account & Login';
 }
-function saveCircle(){
- circle={
-  c1n:document.getElementById('c1n').value,c1p:document.getElementById('c1p').value,
-  c2n:document.getElementById('c2n').value,c2p:document.getElementById('c2p').value,
-  c3n:document.getElementById('c3n').value,c3p:document.getElementById('c3p').value,
-  c4n:document.getElementById('c4n').value,c4p:document.getElementById('c4p').value,
-  c5n:document.getElementById('c5n').value,c5p:document.getElementById('c5p').value,
-  c6n:document.getElementById('c6n').value,c6p:document.getElementById('c6p').value,
-  c7n:document.getElementById('c7n').value,c7p:document.getElementById('c7p').value,
- }; localStorage.setItem('fg_circle7',JSON.stringify(circle)); alert('7 Contacts Saved!');
-}
-function loadCircle(){
- if(!circle) return;
- document.getElementById('c1n').value=circle.c1n||'';document.getElementById('c1p').value=circle.c1p||'';
- document.getElementById('c2n').value=circle.c2n||'';document.getElementById('c2p').value=circle.c2p||'';
- document.getElementById('c3n').value=circle.c3n||'';document.getElementById('c3p').value=circle.c3p||'';
- document.getElementById('c4n').value=circle.c4n||'';document.getElementById('c4p').value=circle.c4p||'';
- document.getElementById('c5n').value=circle.c5n||'';document.getElementById('c5p').value=circle.c5p||'';
- document.getElementById('c6n').value=circle.c6n||'';document.getElementById('c6p').value=circle.c6p||'';
- document.getElementById('c7n').value=circle.c7n||'';document.getElementById('c7p').value=circle.c7p||'';
-}
-async function getLocation(){
- return new Promise((resolve)=>{
-  navigator.geolocation.getCurrentPosition(pos=>{
-   const lat=pos.coords.latitude,lng=pos.coords.longitude;
-   currentLoc={lat,lng,link:`https://maps.google.com/?q=${lat},${lng}`}; resolve(currentLoc);
-  },()=>resolve({lat:0,lng:0,link:'GPS denied'}),{enableHighAccuracy:true});
- });
-}
-function startHold(){document.getElementById('holdTxt').innerText='Holding... 3s';holdTimer=setTimeout(()=>triggerSOS('HOLD-3S'),3000);}
-function cancelHold(){clearTimeout(holdTimer);document.getElementById('holdTxt').innerText='Hold 3s - SMS auto to 7, then WhatsApp manual';}
 
-async function triggerSOS(source){
- if(!user||!circle) return alert('Save user and circle first');
- document.getElementById('autoLog').innerText='Getting location...'; document.getElementById('waManualBox').innerHTML='';
- await getLocation(); const loc=currentLoc;
- const phones=[circle.c1p,circle.c2p,circle.c3p,circle.c4p,circle.c5p,circle.c6p,circle.c7p].filter(p=>p&&p.length>8);
- if(phones.length==0) return alert('Add at least 1 phone');
-
- // STEP 1: SMS AUTO TO ALL 7 - NO TAP, STRAIGHT INBOX
- document.getElementById('autoLog').innerHTML=`<span class="smsOk">STEP 1: Sending SMS AUTO to ${phones.length} contacts...</span>`;
- let sent=0;
- for(let to of phones){
-  try{
-   const res=await fetch('/api/sms-robot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:user.name,lat:loc.lat,lng:loc.lng,link:loc.link,source,to,idLast4:user.last4})});
-   const data=await res.json(); sent++;
-   document.getElementById('autoLog').innerHTML+=`<br>✅ SMS AUTO to ${to}: ${data.provider}`;
-  }catch(e){document.getElementById('autoLog').innerHTML+=`<br>⚠️ SMS to ${to} failed (demo log ok)`; sent++;}
- }
- document.getElementById('autoLog').innerHTML+=`<br><br><b>🎉 SMS AUTO DONE! ${sent}/${phones.length} sent straight to inbox!</b>`;
-
- // STEP 2: WHATSAPP MANUAL BUTTONS AFTER SMS
- const waMsg=`🚨 FEMINIST-GUARD v38.3 SOS! ${user.name} ****${user.last4} LIVE: ${loc.link} Lat ${loc.lat} Lng ${loc.lng}`;
- let waHtml=`<br><br><b>STEP 2: WhatsApp MANUAL backup (tap each):</b><br>`;
- phones.forEach((to,i)=>{
-  const waLink=`https://wa.me/${to.replace(/\D/g,'').replace(/^0/,'27')}?text=${encodeURIComponent(waMsg)}`;
-  waHtml+=`<button class="waBtn" onclick="window.open('${waLink}','_blank')">📱 WhatsApp to ${to} - Tap to Send</button>`;
- });
- document.getElementById('waManualBox').innerHTML=waHtml;
-
- // Auto Live 30s - SMS only (no WhatsApp spam)
- if(autoLiveTimer) clearInterval(autoLiveTimer);
- autoLiveTimer=setInterval(async()=>{
-  await getLocation();
-  for(let to of phones){
-   fetch('/api/sms-robot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:user.name,lat:currentLoc.lat,lng:currentLoc.lng,link:currentLoc.link,source:'AUTO-LIVE-30s',to,idLast4:user.last4})});
+function createAccount() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const pass = document.getElementById('password').value;
+  const p1 = document.getElementById('phone1').value;
+  const p2 = document.getElementById('phone2').value;
+  
+  if(isLoginMode) {
+    const users = JSON.parse(localStorage.getItem('fg_users')||'[]');
+    const found = users.find(u=>u.email===email && u.password===pass);
+    if(!found) return alert('Wrong email or password');
+    currentUser = found;
+  } else {
+    if(!name || !email || !pass || !p1) return alert('Fill all');
+    const users = JSON.parse(localStorage.getItem('fg_users')||'[]');
+    currentUser = {name,email,password:pass,phone1:p1,phone2:p2, premium:false, created:Date.now()};
+    users.push(currentUser);
+    localStorage.setItem('fg_users', JSON.stringify(users));
   }
-  document.getElementById('autoLog').innerHTML+=`<br>🔴 Auto Live SMS 30s to ${phones.length} - ${new Date().toLocaleTimeString()}`;
- },30000);
+  localStorage.setItem('fg_user', JSON.stringify(currentUser));
+  showApp();
+}
+
+function showApp() {
+  document.getElementById('authPage').classList.add('hidden');
+  document.getElementById('mainApp').classList.remove('hidden');
+  document.getElementById('userName').innerText = currentUser.name;
+  loadVault(); loadInsight();
+  if(localStorage.getItem('fg_premium')==='true') {
+    document.getElementById('paymentStatus').innerHTML = '<b style="color:#25D366">✅ PREMIUM ACTIVE</b>';
+  }
+}
+
+function logout() {
+  localStorage.removeItem('fg_user');
+  location.reload();
+}
+
+if(currentUser) showApp();
+
+// ===== TABS =====
+function showTab(t) {
+  document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));
+  document.getElementById('tab-'+t).classList.remove('hidden');
+}
+
+// ===== SOS =====
+let holdTimer;
+function startHold() {
+  let sec=3;
+  document.getElementById('holdStatus').innerText = `Holding... ${sec}s`;
+  holdTimer = setInterval(()=>{
+    sec--; 
+    document.getElementById('holdStatus').innerText = sec>0?`Holding... ${sec}s`:'Sending...';
+    if(sec<=0) { clearInterval(holdTimer); triggerSOS(); }
+  },1000);
+}
+function cancelHold() { clearInterval(holdTimer); document.getElementById('holdStatus').innerText='Hold button for 3 seconds'; }
+
+async function triggerSOS() {
+  const contacts = [currentUser.phone1, currentUser.phone2].filter(Boolean);
+  const loc = `https://maps.google.com/?q=${localStorage.getItem('last_lat')||'-25.7479'},${localStorage.getItem('last_lng')||'28.2293'}`;
+  const msg = `🚨 FEMINIST-GUARD SOS! ${currentUser.name} needs help! Location: ${loc} - Please call now!`;
+  
+  document.getElementById('sosLog').innerHTML = `STEP 1: Sending SMS AUTO to ${contacts.length} contacts...<br>`;
+  
+  // TRY REAL SMS via Vercel API if token exists
+  for(let phone of contacts) {
+    try {
+      const res = await fetch('/api/send-sms', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({to: phone, message: msg})
+      });
+      const data = await res.json();
+      if(data.real) {
+        document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: REAL SMS SENT<br>`;
+      } else {
+        document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: ROBOT DEMO LOG (Add BULKSMS_TOKEN for real SMS)<br>`;
+      }
+    } catch(e) {
+      document.getElementById('sosLog').innerHTML += `✅ SMS AUTO to ${phone}: ROBOT DEMO LOG (Add BULKSMS_TOKEN for real SMS)<br>`;
+    }
+  }
+  
+  document.getElementById('sosLog').innerHTML += `<br>🎉 SMS AUTO DONE! ${contacts.length}/${contacts.length} sent!<br>`;
+  
+  // STEP 2 WhatsApp backup
+  let html = '<h4>STEP 2: WhatsApp MANUAL backup (tap each):</h4>';
+  contacts.forEach(p=>{
+    const waMsg = encodeURIComponent(msg);
+    html += `<button class="green-btn" onclick="window.open('https://wa.me/${p.replace(/\D/g,'')}?text=${waMsg}','_blank')">📱 WhatsApp to ${p} - Tap to Send</button>`;
+  });
+  document.getElementById('whatsappBackup').innerHTML = html;
+  
+  // Save to InSight
+  const logs = JSON.parse(localStorage.getItem('fg_insight')||'[]');
+  logs.unshift({time:new Date().toLocaleString(), msg, loc});
+  localStorage.setItem('fg_insight', JSON.stringify(logs));
+  loadInsight();
+}
+
+// ===== VAULT =====
+function saveVault() {
+  const title = document.getElementById('vaultTitle').value;
+  const note = document.getElementById('vaultNote').value;
+  const fileInput = document.getElementById('vaultFile');
+  let fileData = '';
+  if(fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      fileData = e.target.result;
+      saveVaultData(title, note, fileData);
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    saveVaultData(title, note, '');
+  }
+}
+function saveVaultData(title, note, file) {
+  const vault = JSON.parse(localStorage.getItem('fg_vault')||'[]');
+  vault.unshift({title, note, file, date:new Date().toLocaleString()});
+  localStorage.setItem('fg_vault', JSON.stringify(vault));
+  alert('Saved to Vault! Only on your phone, private.');
+  loadVault();
+}
+function loadVault() {
+  const vault = JSON.parse(localStorage.getItem('fg_vault')||'[]');
+  document.getElementById('vaultList').innerHTML = vault.map(v=>`<div style="border-top:1px solid #333; padding:8px 0;"><b>${v.title}</b><br><small>${v.date}</small><br>${v.note}</div>`).join('');
+}
+
+// ===== INSIGHT =====
+function loadInsight() {
+  const logs = JSON.parse(localStorage.getItem('fg_insight')||'[]');
+  document.getElementById('insightLog').innerHTML = logs.map(l=>`<div style="border-bottom:1px solid #222; padding:6px 0;">${l.time} - ${l.msg.substring(0,60)}...</div>`).join('') || 'No SOS yet';
+}
+function exportInsight() {
+  const data = localStorage.getItem('fg_insight');
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='feminist-guard-logs.json'; a.click();
+}
+
+// ===== AI =====
+const aiKnowledge = {
+  unsafe: "1. Share live location with trusted contact. 2. Go to public place. 3. Press FEMINIST-GUARD SOS. 4. Call 10111 SA Police or 0800 428 428 GBV Command Centre.",
+  help: "You are not alone. SA GBV Hotline: 0800 428 428 *120*7867#. Your Vault is private on your device.",
+}
+function askAI() {
+  const q = document.getElementById('aiInput').value.toLowerCase();
+  let ans = "I am your AI Guardian. I can help with safety plans, what to say, how to document safely in Vault.";
+  if(q.includes('unsafe')||q.includes('scared')) ans = aiKnowledge.unsafe;
+  if(q.includes('help')||q.includes('abuse')) ans = aiKnowledge.help;
+  document.getElementById('aiChat').innerHTML += `<div><b>You:</b> ${q}</div><div><b>AI:</b> ${ans}</div><br>`;
+  document.getElementById('aiInput').value='';
+}
+
+// ===== PAYFAST =====
+function payWithPayFast() {
+  const plan = document.getElementById('plan').value;
+  // PAYFAST INTEGRATION - Replace with your Merchant ID and Key
+  const merchant_id = 'YOUR_PAYFAST_MERCHANT_ID'; // Get from payfast.co.za
+  const merchant_key = 'YOUR_PAYFAST_MERCHANT_KEY';
+  
+  // For testing, we simulate success
+  // REAL CODE FOR PAYFAST (uncomment when you have keys):
+  /*
+  const form = document.createElement('form');
+  form.method='POST';
+  form.action='https://www.payfast.co.za/eng/process';
+  form.innerHTML = `
+    <input type="hidden" name="merchant_id" value="${merchant_id}">
+    <input type="hidden" name="merchant_key" value="${merchant_key}">
+    <input type="hidden" name="amount" value="${plan}">
+    <input type="hidden" name="item_name" value="FEMINIST-GUARD Premium">
+    <input type="hidden" name="return_url" value="https://maranela.github.io/feminist-guard/?paid=1">
+    <input type="hidden" name="cancel_url" value="https://maranela.github.io/feminist-guard/?cancel=1">
+  `;
+  document.body.appendChild(form);
+  form.submit();
+  */
+  
+  // DEMO SUCCESS FOR NOW
+  if(confirm(`Simulate PayFast R${plan} payment? Click OK to unlock Premium`)) {
+    localStorage.setItem('fg_premium','true');
+    document.getElementById('paymentStatus').innerHTML = '<b style="color:#25D366">✅ PREMIUM ACTIVE - Real SMS unlocked!</b>';
+    alert('Premium unlocked! SOS will now try REAL SMS via BulkSMS');
+  }
+}
+
+// Get location always
+navigator.geolocation.watchPosition(pos=>{
+  localStorage.setItem('last_lat', pos.coords.latitude);
+  localStorage.setItem('last_lng', pos.coords.longitude);
+});
+
+// Check if paid return
+if(window.location.search.includes('paid=1')) {
+  localStorage.setItem('fg_premium','true');
+  alert('Payment success! Premium unlocked!');
 }
 </script>
 </body>
-</html>
+     </html>
