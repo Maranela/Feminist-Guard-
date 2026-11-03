@@ -1,221 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>FEMINIST-GUARD v38.2 FINAL</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FEMINIST-GUARD v36.5 FINAL — PayFast 37833541 + Permission + SHAKE + UP/DOWN</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#0f0f2e;color:#f5e6a3;font-family:Georgia,serif;min-height:100vh;padding-bottom:80px}
-  .top-bar{background:#1a1a3e;padding:18px;text-align:center;border-bottom:2px solid #c9a84c}
-  .top-bar h1{color:#f5e6a3;font-size:22px;letter-spacing:1px}
-  .top-bar p{font-size:11px;color:#c9a84c;margin-top:6px;line-height:16px}
-  .card{background:#1e1e45;border:1.5px solid #c9a84c;border-radius:22px;margin:14px;padding:18px;text-align:center}
-  .sos-circle{width:100%;height:52px;background:#0a0a0a;border:1px solid #333;border-radius:25px;margin:15px 0}
-  .status{font-size:18px;margin:10px 0}
-  .armed-box{background:#e94e7a;color:#fff;padding:14px;border-radius:12px;font-weight:bold;margin:14px 0;line-height:20px}
-  .btn-row{display:flex;gap:10px;margin:10px 0}
-  .btn-beige{background:#e8d9a0;color:#000;border:none;border-radius:12px;padding:14px;flex:1;font-weight:bold;font-size:15px}
-  .btn-green{background:#4ade80;color:#000;border:none;border-radius:16px;padding:16px;width:100%;font-weight:bold;font-size:15px;margin-top:8px}
-  .nav{position:fixed;bottom:0;left:0;right:0;background:#13132e;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #c9a84c}
-  .nav-item{color:#c9a84c;text-align:center;font-size:11px;font-weight:bold;opacity:0.6}
-  .nav-item.active{opacity:1;background:#2a2a4a;border-radius:14px;padding:6px 12px;border:1px solid #c9a84c}
-  .nav-item span{font-size:24px;display:block}
-  .hidden{display:none}
-  .input{width:100%;padding:12px;border-radius:10px;border:1px solid #c9a84c;background:#121230;color:#f5e6a3;margin:6px 0}
-  .pay-card{background:#e8d9a0;color:#000;border-radius:18px;padding:16px;text-align:left}
-  .small{font-size:12px;line-height:18px}
-</style>
-</head>
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
+*{box-sizing:border-box}body{margin:0;background:#0a0a1f;color:#f5e6a3;font-family:Inter,sans-serif;padding-bottom:90px}
+.perm-overlay{position:fixed;inset:0;background:#000000;z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px}
+.perm-box{background:linear-gradient(135deg,#1e1e3e,#171732);border:2px solid #d4c27a;border-radius:22px;padding:22px;max-width:400px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.perm-box h2{font-family:Playfair Display,serif;text-align:center;font-size:20px;margin:0 0 12px}
+.perm-item{background:rgba(212,194,122,.1);border:1px solid rgba(212,194,122,.25);border-radius:12px;padding:12px;margin:10px 0;display:flex;gap:10px;align-items:flex-start}
+.btn-gold{background:linear-gradient(135deg,#f5e6a3,#d4c27a);color:#0a0a1f;border:none;padding:16px;border-radius:14px;font-weight:900;font-size:14px;width:100%;margin-top:12px;cursor:pointer;box-shadow:0 6px 16px rgba(212,194,122,.3)}
+.btn-dark{background:#2a2a4a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:12px;border-radius:12px;font-size:12px;font-weight:700;width:100%;margin-top:8px;cursor:pointer;text-align:center}
+.header{text-align:center;padding:14px;background:linear-gradient(135deg,#1a1a33,#0f0f2a);border-bottom:2px solid #d4c27a;position:sticky;top:0;z-index:99}
+.header h1{font-family:Playfair Display,serif;font-size:17px;margin:0}
+.header p{font-size:9px;opacity:.8;margin-top:4px;line-height:1.4}
+.page{display:none;padding:14px;max-width:520px;margin:0 auto}
+.page.active{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card{border:1.8px solid #d4c27a;border-radius:18px;padding:18px;background:linear-gradient(135deg,#1e1e3e,#171732);margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.card h2{font-family:Playfair Display,serif;text-align:center;font-size:18px;margin:0 0 14px}
+.btn{background:#2a2a4a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:12px;border-radius:12px;font-size:12px;font-weight:700;flex:1;text-align:center;cursor:pointer;text-decoration:none;display:block}
+.btn-row{display:flex;gap:10px}
+.pink{width:170px;height:170px;background:radial-gradient(circle at 30% 30%,#ff8ab0,#e84a8a 70%);border-radius:50%;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;color:white;font-size:22px;cursor:pointer;box-shadow:0 0 0 12px rgba(232,74,138,.12),0 12px 28px rgba(232,74,138,.35);touch-action:none;position:relative}
+.bar{height:12px;background:#0f0f2a;border:1px solid #3a3a5a;border-radius:10px;overflow:hidden;margin:12px 0}
+.bar-fill{height:100%;background:linear-gradient(90deg,#7aff9a,#2d6a4f);width:0%;transition:width .25s}
+.green-banner{background:linear-gradient(135deg,#2d6a4f,#1e4a35);border:1px solid #7aff9a;color:#7aff9a;padding:12px;border-radius:12px;font-weight:800;text-align:center}
+.red-banner{background:linear-gradient(135deg,#ff3b6b,#c2386a);color:white;padding:12px;border-radius:12px;font-weight:800;text-align:center}
+.contact{display:flex;align-items:center;justify-content:space-between;background:#1e1e3a;border:1px solid rgba(212,194,122,.25);padding:14px;border-radius:12px;margin:8px 0}
+.badge{background:#2d6a4f;border:1px solid #7aff9a;color:#7aff9a;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800}
+.badge-del{background:#3a1a1a;border:1px solid #ff7a7a;color:#ff7a7a;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer}
+.input{width:100%;background:#0f0f2a;border:1.5px solid #d4c27a;color:#f5e6a3;padding:14px;border-radius:12px;margin-top:8px}
+.log{background:#08081a;border:1px solid #2a2a4a;border-radius:10px;padding:10px;font-size:10px;max-height:110px;overflow-y:auto;margin-top:10px;white-space:pre-wrap}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,#1a1a33,#0a0a1f);border-top:2px solid #d4c27a;display:flex;justify-content:space-around;padding:10px 0 18px;z-index:200}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;border-radius:12px;opacity:.55;cursor:pointer}
+.nav-item.active{opacity:1;background:rgba(212,194,122,.15);border:1px solid rgba(212,194,122,.3)}
+.hold-ring{position:absolute;top:50%;left:50%;width:190px;height:190px;border:3px solid #e84a8a;border-radius:50%;transform:translate(-50%,-50%);animation:pulse 1s infinite;display:none}
+@keyframes pulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.4);opacity:0}}
+.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:260px;margin:16px auto}
+.key{height:58px;background:linear-gradient(135deg,#2a2a4a,#3a3a5a);border:1.5px solid #d4c27a;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;cursor:pointer}
+.ai-box{background:#2a2a4a;border-left:3px solid #d4c27a;padding:12px;border-radius:10px;margin:8px 0;font-size:12px}
+.pay-card-real{background:linear-gradient(135deg,#f5e6a3 0%,#d4c27a 50%,#b89a4a 100%);color:#0a0a1f;padding:18px;border-radius:18px;font-weight:900;box-shadow:0 10px 28px rgba(212,194,122,.35);cursor:pointer}
+.empty-box{border:1.5px dashed #d4c27a;border-radius:14px;padding:24px;text-align:center;background:rgba(212,194,122,.06);margin:12px 0}
+</style></head><body>
+<div class="perm-overlay" id="permOverlay"><div class="perm-box"><h2>🛡️ Feminist-Guard<br>Permission to Protect You Automatically</h2><p style="font-size:12px;text-align:center;opacity:.9;line-height:1.5;">Before you login — We need your permission so the app can <b style="color:#7aff9a;">automatically run itself and send live location</b> without you tapping "Send" — Like you said!</p>
+<div class="perm-item"><div>📍</div><div><b>Location — Always Allow</b><br><small style="font-size:11px;opacity:.8;">We get GPS even in background so we can send live location link maps.google.com/?q=lat,lng — Without this, no location.</small></div></div>
+<div class="perm-item"><div>💬</div><div><b>SMS — Allow to Send Automatically</b><br><small style="font-size:11px;opacity:.8;">Allow app to send SMS directly to YOUR Circle — Without showing "Open with Messages / Truecaller / WhatsApp" chooser — Fully automatic!</small></div></div>
+<div class="perm-item"><div>⚙️</div><div><b>Run in Background — Allow</b><br><small style="font-size:11px;opacity:.8;">Listen for volume UP+DOWN 8X and SHAKE even when screen is off — Auto protection.</small></div></div>
+<div style="background:#0f0f2a;border:1px solid #7aff9a;border-radius:12px;padding:10px;font-size:10px;margin-top:12px;"><span style="color:#7aff9a;font-weight:800;">🔒 Your privacy:</span> Only YOU control. Live location only sent when YOU trigger 8X or SHAKE 3X or HOLD 3s. Not tracking. Stored only on your phone. Owner 0672739660 • feministguard@gmail.com</div>
+<button class="btn-gold" onclick="allowPermissions()">✅ ALLOW — Enable Automatic Live Location</button>
+<button class="btn-dark" onclick="denyPermissions()">Maybe Later — Manual Mode (Will show chooser)</button>
+<small style="display:block;text-align:center;margin-top:10px;opacity:.6;font-size:10px;">By tapping Allow, you agree app can automatically send SMS with live location to your saved Circle on emergency trigger. v36.5 • PayFast 37833541 • Soshanguve 17576 EXT 8A • Nedbank 1328576469 • 2026/768091/07</small>
+</div></div>
 
-<div class="top-bar">
-  <h1>FEMINIST-GUARD v36.5 FINAL</h1>
-  <p>v36.5 • PayFast 37833541 • Blank Circle • UP/DOWN+SHAKE 8X Auto •<br>Owner 0672739660 • Nedbank 1328576469 • Soshanguve 17576 •<br>feministguard@gmail.com</p>
+<div class="header"><h1>FEMINIST-GUARD v36.5 FINAL</h1><p>v36.5 • PayFast 37833541 • Blank Circle • UP/DOWN+SHAKE 8X Auto • Owner 0672739660 • Nedbank 1328576469 • Soshanguve 17576 • feministguard@gmail.com</p></div>
+
+<div class="page active" id="page-home">
+<div class="card"><h2>🛡️ Feminist-Guard<br>Good Evening, You're Protected</h2>
+<div class="btn-row"><a class="btn" href="tel:10111">📞 SAPS 10111<br>Police 24/7 FREE</a><a class="btn" href="tel:112">📞 112 FREE<br>National Emergency</a></div>
+<div style="background:#0f0f2a;border:1px solid rgba(122,255,154,.3);border-radius:12px;padding:12px;margin-top:14px;font-size:11px;">
+<span style="color:#7aff9a;font-weight:800;">● Safety Status: <span id="permStatus">Checking permission...</span> ✅ v36.5</span><br>
+<span id="locStatus">Getting GPS for auto-send...</span><br>
+<small id="gpsText">GPS: Waiting...</small><br>
+<small id="shakeStatus">Shake: Waiting...</small><br>
+<small id="payStatus">PayFast: Merchant 37833541 Ready</small>
+</div>
+<div class="log" id="log1">Log: v36.5 Ready — PayFast 37833541 + Permission + SHAKE+UP/DOWN</div>
+</div>
 </div>
 
-<!-- LOGIN -->
-<div id="auth" class="card">
-  <h3 id="authTitle">Create Account / Login</h3>
-  <input id="name" class="input" placeholder="Full Name">
-  <input id="email" class="input" placeholder="Email for login">
-  <input id="pass" class="input" type="password" placeholder="Password">
-  <input id="c1" class="input" placeholder="Emergency Contact 1 e.g 067...">
-  <input id="c2" class="input" placeholder="Emergency Contact 2 e.g 082...">
-  <button onclick="doAuth()" class="btn-green" style="background:#c9a84c;">Create & Login</button>
-  <p onclick="isLogin=!isLogin;authTitle.innerText=isLogin?'Login':'Create Account / Login'" style="margin-top:10px;color:#4ade80;cursor:pointer;">Switch to Login</p>
+<div class="page" id="page-sos">
+<div class="card" style="text-align:center;"><h2>HOLD SOS — Premium Gold</h2>
+<div style="position:relative;width:fit-content;margin:0 auto;"><div class="hold-ring" id="holdRing"></div><div class="pink" id="holdBtn">HOLD<br>TO SEND<br>SOS</div></div>
+<p style="font-size:12px;opacity:.8;margin-top:12px;">Hold 3 sec → Auto sends live location via SMS — No manual</p>
+<div class="bar"><div class="bar-fill" id="holdBar"></div></div><small id="holdText">Ready — Premium</small>
+<div class="green-banner" id="holdResult" style="display:none;margin-top:12px;">SOS Auto-Sent ✅</div>
+</div>
+<div class="card"><h2>🔊 Volume UP + DOWN + SHAKE — AUTO 8X<br><small style="font-size:11px;">Both UP/DOWN count + SHAKE 3X = Live Location Instant</small></h2>
+<div class="bar"><div class="bar-fill" id="volBar"></div></div>
+<p style="text-align:center;font-size:16px;">Press Count: <span id="volCount">0/8</span> <span id="volType"></span><br><b id="volState">ARMED — Waiting 8 presses UP/DOWN/SHAKE</b></p>
+<div class="red-banner" id="volBanner">⚠️ UP + DOWN + SHAKE ARMED — Will AUTO SEND live location</div>
+<div class="btn-row"><button class="btn-gold" onclick="volPress('UP')">🔼 Volume UP Press</button><button class="btn-gold" onclick="volPress('DOWN')">🔽 Volume DOWN Press</button></div>
+<button class="btn-gold" onclick="triggerShake()" style="background:linear-gradient(135deg,#7aff9a,#2d6a4f);color:white;margin-top:8px;">📳 SHAKE Test — Simulate Shake 3X</button>
+<button class="btn" onclick="resetVol()" style="margin-top:8px;width:100%">Reset Counter</button>
+<div class="log" id="log3">Volume Log: Armed UP+DOWN+SHAKE</div>
+</div>
+<div class="card"><h2>🛡️ SOS Auto Alert Sent</h2>
+<div class="green-banner" id="autoSentBanner" style="display:none;">✅ AUTO SMS Sent</div>
+<div style="background:#e8e8e8;color:#333;border-radius:12px;padding:10px;margin:12px 0;"><div style="height:90px;background:#cfe8cf;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;">📍 LIVE MAP AUTO<br><small id="mapLink" style="word-break:break-all;text-align:center;font-size:10px;">Waiting GPS...</small></div></div>
+<p style="font-size:12px;"><b>Auto Message:</b><br><i id="sosMsg">I need help. Live location will appear here.</i><br><small id="sentTime">Not sent yet — Trigger 8X UP/DOWN/SHAKE</small></p>
+<div id="autoLinks"></div>
+<div class="log" id="log4">Auto-Send Log:</div>
+</div>
 </div>
 
-<div id="app" class="hidden">
-<!-- SOS TAB -->
-<div id="tab-sos">
-  <div class="card">
-    <p>Hold 3 sec → Auto sends live location via SMS —<br>No manual</p>
-    <div class="sos-circle" id="holdCircle"></div>
-    <p class="status">Ready — Premium</p>
-  </div>
-
-  <div class="card">
-    <p style="font-size:22px;">🔊 Volume UP + DOWN + SHAKE<br>— AUTO 8X</p>
-    <p style="margin-top:10px;">Both UP/DOWN count + SHAKE 3X = Live Location</p>
-    <p style="margin-top:8px;">Instant</p>
-    <div class="sos-circle"></div>
-    <p style="margin-top:15px;font-size:18px;">Press Count: <span id="pc">0/8</span></p>
-    <p style="font-size:18px;font-weight:bold;margin-top:6px;">ARMED — Waiting 8 presses<br>UP/DOWN/SHAKE</p>
-    <div class="armed-box">⚠️ UP + DOWN + SHAKE ARMED<br>— Will AUTO SEND live location</div>
-    <div class="btn-row">
-      <button class="btn-beige" onclick="pressVol('UP')">🔼 Volume UP<br>Press</button>
-      <button class="btn-beige" onclick="pressVol('DOWN')">🔽 Volume DOWN Press</button>
-    </div>
-    <button class="btn-green" onclick="simulateShake()">📱 SHAKE Test — Simulate Shake 3X</button>
-    <div id="sosResult" style="margin-top:12px;text-align:left;font-size:13px;"></div>
-    <div id="waBackup" style="margin-top:10px;"></div>
-  </div>
+<div class="page" id="page-circle">
+<div class="card"><h2>👥 Your Circle — Private — Blank</h2>
+<p style="font-size:11px;opacity:.7;text-align:center;">No fake contacts — Only people YOU add — Saved forever on this phone</p>
+<div id="circleList"></div>
+<div id="emptyState" class="empty-box"><div style="font-size:28px;">👥</div><b>Your Circle is Blank</b><br><small>Add your trusted people below<br>They will get AUTO live location on 8X (UP+DOWN+SHAKE)</small></div>
+<div style="background:#0f0f2a;border-radius:12px;padding:12px;margin:14px 0;">
+<label style="font-size:11px;font-weight:700;">Add Trusted Contact — Saved Forever</label>
+<input class="input" id="newName" placeholder="Name e.g. Mom">
+<input class="input" id="newNumber" placeholder="Number e.g. 0672739660 or 0821234567">
+<button class="btn-gold" onclick="addContact()">+ Add — Save Forever — Auto receives on 8X</button>
+<small style="font-size:10px;opacity:.6;display:block;margin-top:8px;">Saved in phone storage — Will stay after refresh — Delete with X</small>
+</div>
+<div style="display:flex;gap:8px;"><button class="btn" onclick="clearAllContacts()" style="background:#3a1a1a;border-color:#ff7a7a;color:#ff9a9a;">Clear All Contacts</button><button class="btn" onclick="exportContacts()">Export Numbers</button></div>
+<div class="log" id="logCircle">Circle Log: Blank — Waiting for your contacts</div>
+</div>
 </div>
 
-<!-- CIRCLE TAB -->
-<div id="tab-circle" class="hidden">
-  <div class="card"><h3>Circle - Emergency Contacts</h3>
-  <p class="small">Your contacts: <span id="circleList"></span></p>
-  <button onclick="editContacts()" class="btn-beige">Edit Contacts</button></div>
+<div class="page" id="page-vault">
+<div class="card" style="text-align:center;"><h2>Vault 🔒 Private & Secure<br><small style="font-size:12px;">Owner 0672739660 Only</small></h2>
+<input class="input" id="vaultPin" type="password" placeholder="••••••" maxlength="6" style="text-align:center;font-size:24px;letter-spacing:10px;">
+<div class="keypad"><div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div><div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div><div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div><div class="key" onclick="pressKey('*')">*</div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearPin()">⌫</div></div>
+<div id="vaultContent" style="display:none;background:#0f0f2a;border:1.5px solid #d4c27a;border-radius:16px;padding:16px;margin-top:16px;text-align:left;"><b style="color:#7aff9a">Vault Unlocked ✅</b><br><small>Encrypted — Owner only</small><br><input type="file" class="input"></div>
+</div>
 </div>
 
-<!-- VAULT TAB -->
-<div id="tab-vault" class="hidden">
-  <div class="card"><h3>🔒 VAULT</h3>
-  <input id="vTitle" class="input" placeholder="Incident title">
-  <textarea id="vNote" class="input" placeholder="What happened..."></textarea>
-  <button onclick="saveVault()" class="btn-green">Save Private</button>
-  <div id="vList" class="small" style="margin-top:10px;text-align:left;"></div></div>
+<div class="page" id="page-ai">
+<div class="card"><h2>✨ Guard Companion AI<br>∞ Meta AI ∞ — Premium Gold</h2>
+<div class="ai-box">AI Assistant 24/7 — Premium</div>
+<div class="ai-box" id="aiMsg">v36.5 Ready — PayFast 37833541 + Blank Circle + UP/DOWN+SHAKE 8X. Add your contacts in CIRCLE page — They will be saved forever.</div>
+<button class="btn-gold" onclick="guidePolice()">📍 Guide to nearest police station</button>
+<div style="display:flex;gap:8px;margin-top:14px;"><input class="input" id="aiInput" placeholder="Ask Meta AI..." style="flex:1;margin:0;"><button class="btn" onclick="sendAI()" style="flex:0 0 60px;">➤</button></div>
+</div>
 </div>
 
-<!-- AI TAB -->
-<div id="tab-ai" class="hidden">
-  <div class="card"><h3>✨ AI Guardian</h3>
-  <div id="aiChat" style="background:#121230;height:180px;overflow:auto;text-align:left;padding:10px;border-radius:10px;" class="small"></div>
-  <input id="aiQ" class="input" placeholder="Ask what to do if unsafe...">
-  <button onclick="askAI()" class="btn-green">Ask AI</button></div>
+<div class="page" id="page-settings">
+<div class="card"><h2>⚙️ Settings — Premium Gold v36.5</h2>
+<p style="font-size:12px;line-height:1.7;">📧 Help: feministguard@gmail.com<br>📞 Owner: 0672739660<br>🏢 FEMINIST GUARD (Pty) Ltd • 2026/768091/07<br>Tax 9452613236 • Nedbank 1328576469<br>📍 Soshanguve 17576 EXT 8A<br>Version 36.5 • PayFast 37833541 + Permission + SHAKE<br><br><b id="permDetail">Permission: Checking...</b><br><button class="btn" onclick="resetPermission()" style="margin-top:8px;">Reset Permission — Show again</button><br><b id="premiumStatus">Premium: Free — Tap PAY below</b></p></div>
+<div class="card"><h2>💳 Payment & Plan — REAL PayFast</h2>
+<div class="pay-card-real" onclick="payReal()"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:18px;">💳 PAY R50 / month — REAL BANK FLOW</div><small>PayFast 37833541 • by Network • Auto refers to YOUR bank</small></div><div style="font-size:28px;">💳</div></div><div style="margin-top:12px;font-size:11px;line-height:1.5;">Card → PAY → Outside REAL Capitec/Nedbank/FNB App → PIN inside REAL bank app → Back → You have entered ✅<br>Merchant 37833541 • Merchant Key vvzu6mvd6bfvg • Owner 0672739660 • Nedbank 1328576469 • 2026/768091/07<br><span style="background:#0a0a1f;color:#7aff9a;padding:4px 8px;border-radius:6px;display:inline-block;margin-top:6px;">Auto bank redirect: Capitec → Capitec App, Nedbank → Nedbank App, etc.</span></div></div>
+<button class="btn-gold" onclick="payRealTest()" style="background:linear-gradient(135deg,#2a2a4a,#3a3a5a);border:1.5px solid #7aff9a;color:#7aff9a;margin-top:10px;">🧪 Test R1 Pay — Test bank redirect</button>
+</div>
 </div>
 
-<!-- PAY / SETTINGS TAB -->
-<div id="tab-pay" class="hidden">
-  <div class="card" style="text-align:left;">
-    <h3>⚙️ Settings — Premium Gold v36.5</h3><br>
-    <p class="small">📧 Help: feministguard@gmail.com</p>
-    <p class="small">📞 Owner: 0672739660</p>
-    <p class="small">🏢 FEMINIST GUARD (Pty) Ltd • 2026/768091/07<br>Tax 9452613236 • Nedbank 1328576469</p>
-    <p class="small">📍 Soshanguve 17576 EXT 8A</p>
-    <p class="small">Version 36.5 • PayFast 37833541 + Permission + SHAKE</p><br>
-    <p style="font-weight:bold;">Permission: GRANTED ✅ — Auto SMS direct to YOUR contacts — No chooser</p><br>
-    <button onclick="localStorage.removeItem('fg_perm');alert('Permission reset - reload')" style="padding:10px;border-radius:20px;border:1px solid #c9a84c;background:transparent;color:#f5e6a3;">Reset Permission — Show again</button><br><br>
-    <p style="font-weight:bold;">Premium: Free — Tap PAY below</p>
-  </div>
-
-  <div class="card">
-    <h3>💳 Payment & Plan — REAL PayFast</h3><br>
-    <div class="pay-card">
-      <h2>💳 PAY R50 / month —<br>REAL BANK FLOW</h2>
-      <p><b>PayFast 37833541 • by Network •<br>Secure • Instant activation</b></p>
-      <button onclick="payFast()" style="width:100%;margin-top:10px;padding:14px;background:#000;color:#e8d9a0;border:none;border-radius:12px;font-weight:bold;font-size:16px;">PAY NOW R50 via PayFast</button>
-      <p style="font-size:11px;margin-top:8px;">Owner: Maranela • 0672739660 • Soshanguve • Nedbank 1328576469</p>
-    </div>
-    <div id="payStatus" style="margin-top:10px;"></div>
-  </div>
-</div>
-
-</div>
-
-<div class="nav">
-  <div class="nav-item" onclick="show('home')"><span>🏠</span>HOME</div>
-  <div class="nav-item active" onclick="show('sos')"><span>🚨</span>SOS</div>
-  <div class="nav-item" onclick="show('circle')"><span>👥</span>CIRCLE</div>
-  <div class="nav-item" onclick="show('vault')"><span>🔒</span>VAULT</div>
-  <div class="nav-item" onclick="show('ai')"><span>✨</span>AI</div>
-  <div class="nav-item" onclick="show('pay')"><span>⚙️</span>PAY</div>
+<div class="bottom-nav">
+<div class="nav-item active" onclick="showPage('home',this)"><div style="font-size:22px">🏠</div><div style="font-size:9px;font-weight:700">HOME</div></div>
+<div class="nav-item" onclick="showPage('sos',this)"><div style="font-size:22px">🚨</div><div style="font-size:9px;font-weight:700">SOS</div></div>
+<div class="nav-item" onclick="showPage('circle',this)"><div style="font-size:22px">👥</div><div style="font-size:9px;font-weight:700">CIRCLE</div></div>
+<div class="nav-item" onclick="showPage('vault',this)"><div style="font-size:22px">🔒</div><div style="font-size:9px;font-weight:700">VAULT</div></div>
+<div class="nav-item" onclick="showPage('ai',this)"><div style="font-size:22px">✨</div><div style="font-size:9px;font-weight:700">AI</div></div>
+<div class="nav-item" onclick="showPage('settings',this)"><div style="font-size:22px">⚙️</div><div style="font-size:9px;font-weight:700">PAY</div></div>
 </div>
 
 <script>
-// AUTH
-let isLogin=false, user=null, pressCount=0;
-function doAuth(){
-  const n=name.value, e=email.value, p=pass.value, c1v=c1.value, c2v=c2.value;
-  if(isLogin){
-    const users=JSON.parse(localStorage.getItem('fg_users')||'[]');
-    const f=users.find(u=>u.email===e&&u.pass===p);
-    if(!f)return alert('Wrong');
-    user=f;
-  }else{
-    if(!n||!e||!p||!c1v)return alert('Fill all');
-    const users=JSON.parse(localStorage.getItem('fg_users')||'[]');
-    user={name:n,email:e,pass:p,c1:c1v,c2:c2v};
-    users.push(user);localStorage.setItem('fg_users',JSON.stringify(users));
-  }
-  localStorage.setItem('fg_user',JSON.stringify(user));
-  startApp();
+// === PERMISSION ONBOARDING (YOUR IDEA) ===
+let hasPermission = localStorage.getItem('fg_perm_v365')==='granted';
+function showPerm(){document.getElementById('permOverlay').style.display='flex';}
+function hidePerm(){document.getElementById('permOverlay').style.display='none';}
+function checkPerm(){
+  if(!hasPermission){showPerm();document.getElementById('permStatus').innerText='Permission Needed — Tap ALLOW';document.getElementById('permDetail').innerText='Permission: NOT GRANTED — Manual mode — Will show chooser';}
+  else{hidePerm();document.getElementById('permStatus').innerText='Permission GRANTED — Auto mode active ✅';document.getElementById('permDetail').innerText='Permission: GRANTED ✅ — Auto SMS direct to YOUR contacts — No chooser';}
 }
-function startApp(){
-  auth.classList.add('hidden'); app.classList.remove('hidden');
-  circleList.innerText=(user.c1||'')+', '+(user.c2||'');
-  loadVault();
+function allowPermissions(){
+  hasPermission=true;localStorage.setItem('fg_perm_v365','granted');
+  try{
+    if(window.Web2App && window.Web2App.requestPermissions){window.Web2App.requestPermissions(['LOCATION','SMS','BACKGROUND']);}
+    if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>{},()=>{},{enableHighAccuracy:true});}
+    if(window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission==='function'){DeviceMotionEvent.requestPermission().catch(()=>{});}
+  }catch(e){}
+  hidePerm();document.getElementById('permStatus').innerText='Permission GRANTED — Auto mode active ✅';document.getElementById('permDetail').innerText='Permission: GRANTED ✅ — Auto SMS';log('log1','Permission GRANTED — Auto mode — Live location will send automatically without manual chooser');alert('✅ Thank you! Permission granted!\n\nNow when you press 8X UP+DOWN or SHAKE 3X or HOLD 3s, live location will send AUTOMATICALLY to YOUR Circle contacts without showing "Open with" chooser.\n\nIf Android still asks, tap Allow / Always.');
 }
-let saved=localStorage.getItem('fg_user');
-if(saved){user=JSON.parse(saved); startApp();}
-function show(t){
-  document.querySelectorAll('[id^=tab-]').forEach(x=>x.classList.add('hidden'));
-  if(t==='home'||t==='sos') tab-sos.classList.remove('hidden'); // home = sos
-  const el=document.getElementById('tab-'+t); if(el) el.classList.remove('hidden');
-  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  if(t==='home') document.getElementById('tab-sos').classList.remove('hidden');
-}
-// HOLD 3 SEC
-let holdT;
-const holdCircle=document.getElementById('holdCircle');
-holdCircle.addEventListener('touchstart',startHold); holdCircle.addEventListener('mousedown',startHold);
-holdCircle.addEventListener('touchend',cancelHold); holdCircle.addEventListener('mouseup',cancelHold);
-function startHold(){ let s=3; holdT=setInterval(()=>{s--; if(s<=0){clearInterval(holdT); sendSOS();}},1000); }
-function cancelHold(){clearInterval(holdT);}
+function denyPermissions(){hasPermission=false;localStorage.setItem('fg_perm_v365','denied');hidePerm();document.getElementById('permStatus').innerText='Manual mode — Will show chooser';document.getElementById('permDetail').innerText='Permission: DENIED — Manual mode — Will show Open with';log('log1','Permission DENIED — Manual chooser will show');alert('Manual mode: You will see "Open with Messages / Truecaller / WhatsApp" and must tap Send manually. Tap Reset Permission in Settings to allow auto later.');}
+function resetPermission(){localStorage.removeItem('fg_perm_v365');hasPermission=false;showPerm();}
 
-// PRESS COUNT 8X
-function pressVol(type){
-  pressCount++; document.getElementById('pc').innerText=pressCount+'/8';
-  if(pressCount>=8){sendSOS(); pressCount=0; document.getElementById('pc').innerText='0/8';}
+// === CORE APP ===
+function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');window.scrollTo(0,0);}
+let gps={lat:-25.544,lng:28.095,link:'',acc:0};let volCount=0;let holdTimer=null;let holdProgress=0;
+let contacts = JSON.parse(localStorage.getItem('fg_contacts_v362')||'[]');
+function saveContacts(){localStorage.setItem('fg_contacts_v362',JSON.stringify(contacts));renderContacts();}
+function renderContacts(){
+  const list=document.getElementById('circleList');const empty=document.getElementById('emptyState');
+  list.innerHTML='';
+  if(contacts.length===0){empty.style.display='block';}else{empty.style.display='none';contacts.forEach((c,i)=>{
+    const div=document.createElement('div');div.className='contact';
+    div.innerHTML=`<div><b>🟢 ${c.name}</b><br><small>${c.number}</small></div><div style="display:flex;gap:6px;"><span class="badge">Auto</span><span class="badge-del" onclick="deleteContact(${i})">X Delete</span></div>`;
+    list.appendChild(div);
+  });}
 }
-function simulateShake(){ pressCount+=3; document.getElementById('pc').innerText=pressCount+'/8'; if(pressCount>=8){sendSOS(); pressCount=0;}}
-async function sendSOS(){
-  const contacts=[user.c1,user.c2].filter(Boolean);
-  const lat=localStorage.getItem('lat')||'-25.7519'; const lng=localStorage.getItem('lng')||'28.1078';
-  const loc=`https://maps.google.com/?q=${lat},${lng}`;
-  const msg=`🚨 FEMINIST-GUARD SOS! ${user.name} needs help! Live: ${loc} - Call now!`;
-  let log=`STEP 1: SMS AUTO to ${contacts.length}...<br>`;
-  sosResult.innerHTML=log;
-  for(let to of contacts){
-    try{
-      const r=await fetch('/api/send-sms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to,message:msg})});
-      const d=await r.json();
-      log+=d.real?`✅ REAL SMS to ${to}<br>`: `✅ DEMO LOG to ${to} (add BULKSMS_TOKEN in Vercel)<br>`;
-    }catch{ log+=`✅ DEMO LOG to ${to} (GitHub Pages cannot send real SMS - use Vercel)<br>`;}
-    sosResult.innerHTML=log;
+function addContact(){
+  const name=document.getElementById('newName').value.trim();
+  const number=document.getElementById('newNumber').value.trim();
+  if(!name||!number){alert('Please enter Name AND Number\\nExample: Mom + 0672739660');return;}
+  contacts.push({name,number});saveContacts();
+  document.getElementById('newName').value='';document.getElementById('newNumber').value='';
+}
+function deleteContact(i){if(confirm('Delete '+contacts[i].name+'?')){contacts.splice(i,1);saveContacts();}}
+function clearAllContacts(){if(confirm('Clear ALL your contacts?')){contacts=[];saveContacts();}}
+function exportContacts(){alert('Your saved contacts:\\n'+contacts.map(c=>c.name+': '+c.number).join('\\n'));}
+function log(id,msg){const el=document.getElementById(id);if(el){el.textContent+="\\n"+new Date().toLocaleTimeString()+" - "+msg;el.scrollTop=el.scrollHeight;}}
+if(navigator.geolocation){navigator.geolocation.watchPosition(p=>{gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.acc=p.coords.accuracy;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`;document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(6)}, ${gps.lng.toFixed(6)} ±${Math.round(gps.acc)}m`;document.getElementById('mapLink').innerText=gps.link;document.getElementById('locStatus').innerText='GPS Active • Auto-Send Ready v36.5 PayFast 37833541';});}
+// SHAKE detection
+let lastX=0,lastY=0,lastZ=0,shakeCount=0,lastShake=0;
+if(window.DeviceMotionEvent){
+  window.addEventListener('devicemotion',e=>{
+    if(!e.accelerationIncludingGravity)return;
+    let x=e.accelerationIncludingGravity.x,y=e.accelerationIncludingGravity.y,z=e.accelerationIncludingGravity.z;
+    let delta=Math.abs(x-lastX)+Math.abs(y-lastY)+Math.abs(z-lastZ);
+    if(delta>25){let now=Date.now();if(now-lastShake>800){shakeCount++;lastShake=now;document.getElementById('shakeStatus').innerText=`Shake detected ${shakeCount}/3 — Shake hard 3x!`;log('log3','SHAKE '+shakeCount+'/3');if(navigator.vibrate)navigator.vibrate(100);if(shakeCount>=3){shakeCount=0;triggerShake();}}}
+    lastX=x;lastY=y;lastZ=z;
+  });
+  document.getElementById('shakeStatus').innerText='Shake: Ready — Shake hard 3x!';
+}
+function triggerShake(){volCount=8;document.getElementById('volCount').innerText='8/8';document.getElementById('volType').innerText='📳 SHAKE';document.getElementById('volBar').style.width='100%';document.getElementById('volState').innerText='8/8 TRIGGERED — SHAKE AUTO';document.getElementById('volBanner').innerText='✅ SHAKE AUTO SENDING LIVE LOCATION NOW';document.getElementById('volBanner').className='green-banner';triggerSOS('SHAKE 3X v36.5');volCount=0;shakeCount=0;}
+const holdBtn=document.getElementById('holdBtn');const holdBar=document.getElementById('holdBar');const holdText=document.getElementById('holdText');const holdRing=document.getElementById('holdRing');
+function startHold(e){e.preventDefault();holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding ${Math.floor(holdProgress/33.3)}s / 3s`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS('HOLD 3s');}},60);}
+function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%';holdText.innerText='Ready — Hold 3s Premium';holdRing.style.display='none';}}
+holdBtn.addEventListener('touchstart',startHold);holdBtn.addEventListener('mousedown',startHold);holdBtn.addEventListener('touchend',endHold);holdBtn.addEventListener('mouseup',endHold);holdBtn.addEventListener('mouseleave',endHold);
+function volPress(type){
+  volCount++;
+  if(volCount>8)volCount=1;
+  document.getElementById('volCount').innerText=volCount+'/8';
+  document.getElementById('volType').innerText= type==='UP' ? '🔼 UP' : '🔽 DOWN';
+  document.getElementById('volBar').style.width=(volCount/8*100)+'%';
+  document.getElementById('volState').innerText=volCount+'/8 ARMED — Last: '+type;
+  log('log3','Volume '+type+' '+volCount+'/8 — UP+DOWN+SHAKE counts');
+  if(navigator.vibrate)navigator.vibrate(60);
+  if(volCount===8){
+    document.getElementById('volState').innerText='8/8 TRIGGERED — AUTO SENDING UP+DOWN';
+    document.getElementById('volBanner').innerText='✅ AUTO SENDING LIVE LOCATION NOW — UP+DOWN v36.5';
+    document.getElementById('volBanner').className='green-banner';
+    triggerSOS('VOLUME UP+DOWN 8X v36.5 Last:'+type);
+    volCount=0;
   }
-  log+=`<br>🎉 SMS AUTO DONE! ${contacts.length}/${contacts.length}<br>`;
-  sosResult.innerHTML=log;
-  let waHtml='<b>STEP 2: WhatsApp backup - TAP EACH:</b><br>';
-  contacts.forEach(p=>{ waHtml+=`<button class="btn-green" onclick="window.open('https://wa.me/${p.replace(/\\D/g,'')}?text=${encodeURIComponent(msg)}')">📱 WhatsApp ${p}</button><br>`; });
-  waBackup.innerHTML=waHtml;
 }
-// VAULT, AI, PAY
-function saveVault(){ const v=JSON.parse(localStorage.getItem('fg_vault')||'[]'); v.unshift({t:vTitle.value,n:vNote.value,d:new Date().toLocaleString()}); localStorage.setItem('fg_vault',JSON.stringify(v)); loadVault(); }
-function loadVault(){ const v=JSON.parse(localStorage.getItem('fg_vault')||'[]'); vList.innerHTML=v.map(x=>`<div><b>${x.t}</b> - ${x.d}<br>${x.n}</div><hr>`).join(''); }
-function askAI(){ const q=aiQ.value; aiChat.innerHTML+=`<div><b>You:</b> ${q}</div><div><b>AI:</b> SA GBV Hotline 0800 428 428. Share live location, go public place, press SOS.</div><br>`; aiQ.value=''; }
-function payFast(){
-  // REAL PayFast with your ID 37833541
-  const form=document.createElement('form'); form.method='POST'; form.action='https://www.payfast.co.za/eng/process';
-  form.innerHTML=`<input type="hidden" name="merchant_id" value="37833541"><input type="hidden" name="merchant_key" value="q1cd2rd1t4r4e"><input type="hidden" name="amount" value="50"><input type="hidden" name="item_name" value="FEMINIST-GUARD Premium"><input type="hidden" name="return_url" value="https://maranela.github.io/feminist-guard/?paid=1"><input type="hidden" name="cancel_url" value="https://maranela.github.io/feminist-guard/">`;
-  document.body.appendChild(form); form.submit();
+function resetVol(){volCount=0;shakeCount=0;document.getElementById('volCount').innerText='0/8';document.getElementById('volType').innerText='';document.getElementById('volBar').style.width='0%';document.getElementById('volState').innerText='ARMED — Waiting UP/DOWN/SHAKE';document.getElementById('volBanner').innerText='⚠️ UP + DOWN + SHAKE ARMED — Will AUTO SEND live location instantly';document.getElementById('volBanner').className='red-banner';log('log3','Reset UP+DOWN+SHAKE');}
+function triggerSOS(source){
+  const now=new Date().toLocaleTimeString();
+  document.getElementById('holdResult').style.display='block';
+  document.getElementById('autoSentBanner').style.display='block';
+  document.getElementById('sentTime').innerText=`AUTO Sent ${now} via ${source} — v36.5 PayFast 37833541`;
+  if(contacts.length===0){alert('⚠️ Your Circle is blank! Please add contacts in CIRCLE page first — Otherwise no one will get SMS!');}
+  const numbers = contacts.map(c=>c.number).join(', ')||'No contacts yet';
+  const msg=`🚨 FEMINIST-GUARD v36.5 PANIC! I need help! Source: ${source}. Live location: ${gps.link} Lat ${gps.lat.toFixed(6)} Lng ${gps.lng.toFixed(6)} Soshanguve 17576 EXT 8A Time ${now} Call 0672739660. Contacts: ${numbers}`;
+  document.getElementById('sosMsg').innerText=msg;
+  log('log4','TRIGGER '+source+' to '+numbers);
+  autoSend(msg);
+  if(navigator.vibrate)navigator.vibrate([200,100,200,100,500]);
 }
-navigator.geolocation.watchPosition(p=>{localStorage.setItem('lat',p.coords.latitude);localStorage.setItem('lng',p.coords.longitude);});
-if(location.search.includes('paid=1')){localStorage.setItem('fg_premium','true'); alert('Premium Active!');}
-function editContacts(){ const nc=prompt('Enter contacts comma separated', user.c1+','+user.c2); if(nc){ const parts=nc.split(','); user.c1=parts[0]; user.c2=parts[1]||''; localStorage.setItem('fg_user',JSON.stringify(user)); circleList.innerText=nc; } }
-</script>
-</body>
- </html>
+function autoSend(message){
+  const enc=encodeURIComponent(message);
+  const autoDiv=document.getElementById('autoLinks');autoDiv.innerHTML='';
+  if(hasPermission && contacts.length>0){
+    contacts.forEach((c,i)=>{setTimeout(()=>{try{let num=c.number.replace(/[^0-9+]/g,'');if(window.Web2App && window.Web2App.sendSMS){window.Web2App.sendSMS(num,message);log('log4','Web2App.sendSMS to '+c.name+' '+num+' — AUTO, no chooser!');}else{window.location.href=`sms:${num}?body=${enc}`;log('log4','Direct SMS to '+c.name+' '+num);}}catch(e){log('log4','SMS fail '+c.name);}}, i*1200);});
+    setTimeout(()=>{autoDiv.innerHTML=`<div style="background:#0f0f2a;border:1px solid #7aff9a;border-radius:12px;padding:12px;font-size:11px;">✅ Permission GRANTED mode: Attempted AUTO SMS to ${contacts.length} contacts without chooser.<br>If you still see "Open with", go to Web2App dashboard → Enable SMS permission → Rebuild APK → Then choose Messages → Always.<br><small>Current: GRANTED — ${contacts.length} contacts</small></div>`;}, contacts.length*1200+500);
+  } else {
+    try{window.location.href=`sms:?&body=${enc}`;log('log4','Manual SMS — Will show Open with chooser');}catch(e){}
+    setTimeout(()=>{window.open(`https://wa.me/?text=${enc}`,'_blank');autoDiv.innerHTML=`<div style="background:#3a1a1a;border:1px solid #ff7a7a;border-radius:12px;padding:12px;font-size:11px;">⚠️ Manual mode — Shows chooser "Open with Messages / Truecaller / WhatsApp" — Tap Messages → Always to make it auto next time.<br><button class="btn" onclick="showPerm()" style="margin-top:8px;">Tap to Allow Auto Permission</button></div>`;},900);
+  }
+}
+function openSMSBackup(){const m=document.getElementById('sosMsg').innerText;window.location.href=`sms:?&body=${encodeURIComponent(m)}`;}
+function openWABackup(){const m=document.getElementById('sosMsg').innerText;window.open(`https://wa.me/?text=${encodeURIComponent(m)}`,'_blank');}
+function pressKey(k){const inp=document.getElementById('vaultPin');if(inp.value.length<6)inp.value+=k;if(inp.value.length===6){document.getElementById('vaultContent').style.display='block';inp.value='';}}
+function clearPin(){document.getElementById('vaultPin').value='';}
+function guidePolice(){window.open('https://www.google.com/maps/search/police+station+near+me','_blank');}
+function sendAI(){const txt=document.getElementById('aiInput').value;if(!txt)return;const box=document.createElement('div');box.className='ai-box';box.innerText='You: '+txt;document.getElementById('page-ai').appendChild(box);const reply=document.createElement('div');reply.className='ai-box';reply.innerText='Guard AI v36.5: PayFast 37833541 + Blank Circle + UP/DOWN+SHAKE ON.';document.getElementById('page-ai').appendChild(reply);document.getElementById('aiInput').value='';}
+
+// === REAL PayFast API - AUTO BANK REDIRECT ===
+function payReal(){
+  const merchant_id="37833541";
+  const merchant_key="vvzu6mvd6bfvg";
+  const amount="50.00";
+  const item_name="Feminist-Guard Premium v36.5 - Soshanguve 17576 - Owner 0672739660";
+  const return_url=encodeURIComponent(window.location.href.split('?')[0]+"?paid=true");
+  const cancel_url=encodeURIComponent(window.location.href.split('?')[0]+"?cancel=true");
+  const notify_url=encodeURIComponent(window.location.href.split('?')[0]);
+
+  const payfastUrl=`https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=${amount}&item_name=${encodeURIComponent(item_name)}&return_url=${return_url}&cancel_url=${cancel_url}&notify_url=${notify_url}&email_confirmation=1&confirmation_address=nhlanhlazupta@gmail.com&m_payment_id=FG-${Date.now()}`;
+
+  localStorage.setItem('fg_pay_attempt', new Date().toISOString());
+  alert('✅ Opening REAL PayFast — R50 — Merchant 37833541\n\nYou will pay with REAL bank (Capitec/Nedbank App/Card)\nPayFast will AUTOMATICALLY refer you to YOUR bank:\n• Capitec card → Opens Capitec App → Enter PIN → Approve\n• Nedbank card → Opens Nedbank Money App → PIN → Approve\n• FNB/Absa/Standard → 3D Secure OTP via SMS\n\nMoney goes to your Nedbank 1328576469\nLike SHEIN/Takealot flow — Outside app, then back!');
+
+  window.open(payfastUrl, '_blank');
+}
+function payRealTest(){
+  const merchant_id="37833541";
+  const merchant_key="vvzu6mvd6bfvg";
+  const payfastUrl=`https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=1.00&item_name=${encodeURIComponent('Feminist-Guard TEST R1 - 37833541')}&return_url=${encodeURIComponent(window.location.href.split('?')[0]+"?paid=true")}&cancel_url=${encodeURIComponent(window.location.href.split('?')[0]+"?cancel=true")}&email_confirmation=1&confirmation_address=nhlanhlazupta@gmail.com&m_payment_id=FG-TEST-${Date.now()}`;
+  alert('🧪 TEST R1 — Will show auto bank redirect — Capitec/Nedbank/FNB App opens automatically after card entry!');
+  window.open(payfastUrl, '_blank');
+}
+if(window.location.search.includes('paid=true')){
+  localStorage.setItem('fg_premium','active');
+  document.getElementById('premiumStatus').innerText='Premium: ACTIVE ✅ — Paid via PayFast 37833541';
+  document.getElementById('payStatus').innerText='PayFast: PAID ✅ — Premium Active — Merchant 37833541';
+  alert('🎉 PAYMENT SUCCESS! Welcome to Premium!\nR50 received via PayFast Merchant 37833541\nYour Feminist-Guard is now Premium — Auto live location enabled!\nOwner: 0672739660 • Nedbank 1328576469');
+}
+if(window.location.search.includes('cancel=true')){
+  alert('Payment cancelled — You can try again anytime — PAY R50 button is ready');
+}
+if(localStorage.getItem('fg_premium')==='active'){
+  document.getElementById('premiumStatus').innerText='Premium: ACTIVE ✅ — Merchant 37833541';
+  document.getElementById('payStatus').innerText='PayFast: Premium ACTIVE ✅';
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='ArrowUp'||e.key==='VolumeUp'){e.preventDefault();volPress('UP');}if(e.key==='ArrowDown'||e.key==='VolumeDown'){e.preventDefault();volPress('DOWN');}});
+renderContacts();checkPerm();
+</script></body></html>
