@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FEMINIST-GUARD — AI v41.0 REAL VISION</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon192.png">
+<link rel="apple-touch-icon" href="icon192.png">
+<meta name="theme-color" content="#d4af37">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
 *{box-sizing:border-box}body{margin:0;background:#0a0a1f;color:#f5e6a3;font-family:Inter,sans-serif;padding-bottom:90px}
@@ -206,7 +210,6 @@ function showPerm(){document.getElementById('permOverlay').style.display='flex';
 function hidePerm(){document.getElementById('permOverlay').style.display='none';}
 function checkPerm(){ if(!hasPermission && currentUser){setTimeout(showPerm,800);} }
 function allowPermissions(){ hasPermission=true; localStorage.setItem('fg_perm_v365','granted'); hidePerm(); try{if(window.Web2App && window.Web2App.requestPermissions){window.Web2App.requestPermissions(['LOCATION','SMS','BACKGROUND','SENSORS','MIC','CAMERA','STORAGE']);}}catch(e){} aiStartVoice(); }
-// === REAL VISION MODE DETECT ===
 function isRealApp(){ return !!(window.Web2App && window.Web2App.sendSMS); }
 function updateRealVisionUI(){
   let isReal = isRealApp();
@@ -238,8 +241,6 @@ function addContact(){const name=document.getElementById('newName').value.trim()
 function deleteContact(i){if(confirm('Delete '+contacts[i].name+'?')){contacts.splice(i,1);saveContacts();}}
 function log(id,msg){const el=document.getElementById(id);if(el){el.textContent+="\n"+new Date().toLocaleTimeString()+" - "+msg;el.scrollTop=el.scrollHeight;}}
 if(navigator.geolocation){gpsWatchId=navigator.geolocation.watchPosition(p=>{ gps.lat=p.coords.latitude;gps.lng=p.coords.longitude;gps.acc=p.coords.accuracy;gps.link=`https://maps.google.com/?q=${gps.lat},${gps.lng}`; document.getElementById('gpsText').innerText=`GPS: ${gps.lat.toFixed(6)}, ${gps.lng.toFixed(6)} ±${Math.round(gps.acc)}m`; document.getElementById('mapLink').innerText=gps.link; if(isTracking){ aiUpdateLocationCard(); } }, (e)=>{console.log('GPS error',e);}, {enableHighAccuracy:true, maximumAge:5000, timeout:10000});}
-
-// === VAULT + PIN REAL + FAKE ===
 let vaultItems = JSON.parse(localStorage.getItem('fg_vault_v40')||'[]');
 let mediaRecorder=null, recChunks=[], isRecording=false, recStartTime=0;
 let vaultPin = localStorage.getItem('fg_vault_pin') || '';
@@ -308,8 +309,6 @@ function vaultClosePin(){ document.getElementById('vaultPinOverlay').style.displ
 function vaultUpdatePinStatus(){ let el=document.getElementById('vaultPinStatus'); if(!el) return; if(!vaultPin) el.innerText='Vault PIN: Not set yet — Tap VAULT to create'; else if(!vaultFakePin) el.innerText='Vault PIN: Real ✅ Set • Fake ❌ Not set — Set Fake PIN now!'; else el.innerText='Vault PIN: Real ✅ Set • Fake ✅ Set — You are protected'; }
 function vaultChangePin(){ let old=prompt('Enter your OLD Real PIN to change it:'); if(!old) return; if(old!==vaultPin){ alert('❌ Wrong old PIN'); return; } vaultChangingPin=true; document.getElementById('vaultPinOverlay').style.display='flex'; ['vp1','vp2','vp3','vp4'].forEach(id=>document.getElementById(id).value=''); document.getElementById('vaultPinText').innerText='Enter your NEW Real PIN — 4 digits, different from old + fake'; document.getElementById('vaultPinError').style.display='none'; setTimeout(()=>document.getElementById('vp1').focus(), 200); }
 function vaultSetFakePin(){ if(!vaultPin){ alert('Set Real PIN first — Tap VAULT and create PIN'); return; } let fake=prompt('Set FAKE PIN (4 digits):\n\nThis is the PIN you give if someone FORCES you to open Vault.\nIt will show EMPTY vault.\n\nMust be DIFFERENT from Real PIN:'); if(!fake) return; fake=fake.replace(/[^0-9]/g,'').slice(0,4); if(fake.length!==4){ alert('Fake PIN must be 4 digits'); return; } if(fake===vaultPin){ alert('❌ Fake PIN cannot be same as Real PIN! Choose different.'); return; } vaultFakePin=fake; localStorage.setItem('fg_vault_fake_pin', vaultFakePin); vaultUpdatePinStatus(); alert('✅ Fake PIN Set: '+fake+'\n\nIf forced, give '+fake+' — Attacker will see EMPTY vault.\nYour REAL evidence stays hidden!'); }
-
-// === 🤫 AI v41.0 - REAL VISION: AUTO SMS IN APP, 1 TAP IN CHROME ===
 let aiQueue = JSON.parse(localStorage.getItem('fg_ai_queue')||'[]');
 let aiRetryTimer=null, aiIsSending=false, aiLastSend=0, aiWaIndex=0;
 let aiWaDone = {};
@@ -415,91 +414,6 @@ function aiRestoreSOSOnLoad(){
   }
   return false;
 }
-function autoSend(message, source){
-  if(aiIsSending && Date.now()-aiLastSend<3000){ log('log4','AI: Already sending, wait 3s'); return; }
-  aiIsSending=true; aiLastSend=Date.now(); setTimeout(()=>aiIsSending=false,5000);
-  if(!message) message=aiBuildMessage(source||'AI AUTO');
-  document.getElementById('sosMsg').innerText=message;
-  document.getElementById('holdResult').style.display='block';
-  document.getElementById('autoSentBanner').style.display='block';
-  let isReal = isRealApp();
-  document.getElementById('sentTime').innerText = isReal ? '✅ AI AUTO-SENT via SMS silently '+new Date().toLocaleTimeString()+' — No tap needed' : '👀 CHROME TEST: WhatsApp opened — Tap SEND once. In REAL APP, AI sends SMS automatically with NO tap.';
-  document.getElementById('aiStatus').innerText= isReal ? 'AI: Sending silently via SMS to ALL...' : 'AI: Chrome mode — Tap SEND on WhatsApp';
-  aiQueue.push({msg:message,time:Date.now(),source:source}); localStorage.setItem('fg_ai_queue',JSON.stringify(aiQueue));
-  if(contacts.length===0){ alert('Your Circle is blank! Add contacts first!'); aiIsSending=false; return; }
-  log('log4','🤫 AI SILENT START — Sending to '+contacts.length+' contacts — Real App: '+isReal);
-  let sentCount=0, didAnyNative=false;
-  contacts.forEach((c,i)=>{
-    setTimeout(()=>{
-      let num=c.number.replace(/[^0-9+]/g,''); let didNative=false;
-      try{ if(window.Web2App && window.Web2App.sendSMS){ window.Web2App.sendSMS(num,message); didNative=true; didAnyNative=true; sentCount++; aiWaDone[c.number]=true; log('log4','✅ AI AUTO-SMS to '+c.name+' — Silent, no tap'); } }catch(e){}
-      if(didNative){ document.getElementById('sentTime').innerText=`✅ AI AUTO-SENT SMS to ${sentCount}/${contacts.length} — ${new Date().toLocaleTimeString()} — SILENT, NO TAP`; if(sentCount===contacts.length){ document.getElementById('aiStatus').innerText='AI: SOS Sent to ALL ✅ Silent SMS'; aiRenderContactBox(message); } }
-      else{ if(i===0){ aiSendSMSButtons(message); setTimeout(()=>{ aiSendWhatsApp(message); },500); log('log4','AI: No native SMS (Chrome mode) — Showing SMS + WhatsApp buttons for ALL — Tap SEND once'); } }
-      if(i===contacts.length-1 && !didAnyNative){ aiStartRetry(message, source); }
-    }, i*1200);
-  });
-  if(navigator.vibrate) navigator.vibrate([200,100,200]);
-}
-function aiStartRetry(message, source){ if(aiRetryTimer) return; log('log4','AI: Retry every 30s silently + vibrate'); aiSiren(); aiRetryTimer=setInterval(()=>{ log('log4','AI RETRY silently...'); aiSiren(); autoSend(message, source); },30000); setTimeout(()=>{ if(aiRetryTimer){clearInterval(aiRetryTimer); aiRetryTimer=null; log('log4','AI: Stopped retry after 5 min — SOS saved');} },300000); }
-function aiTestSend(){ triggerSOS('AI TEST LAUNCH'); }
-function aiStartTracking(){ isTracking=true; document.getElementById('safeBox').style.display='block'; document.getElementById('safeDoneBox').style.display='none'; document.getElementById('liveLocCard').style.display='block'; aiStartWaitingTimer(); aiStartAutoSafe(); log('log4','📍 TRACKING STARTED — Only during SOS'); }
-function aiStartAutoSafe(){ if(autoSafeTimer) clearTimeout(autoSafeTimer); if(autoSafeWarnTimer) clearTimeout(autoSafeWarnTimer); autoSafeWarnTimer=setTimeout(()=>{ if(!isTracking) return; if(navigator.vibrate) navigator.vibrate([300,200,300]); let wantMore=confirm('⏰ You have been sharing location for 1h 45m.\n\nTracking will AUTO-STOP in 15 mins (2 hours total) for your safety.\n\nPress OK to KEEP sharing for 1 more hour?\nPress Cancel to STOP NOW and mark SAFE.'); if(wantMore){ log('log4','⏰ User extended tracking +1 hour'); aiStartAutoSafe(); } else { aiMarkSafe(); } },105*60*1000); autoSafeTimer=setTimeout(()=>{ if(!isTracking) return; log('log4','⏰ AUTO-SAFE: 2 hours reached — Auto stopping'); let autoMsg=`✅ FEMINIST-GUARD AUTO-SAFE: Tracking auto-stopped after 2 hours for privacy. ${currentUser?currentUser.name:'User'} shared location for 2 hours. If still in danger, she will trigger SOS again. Location is now DELETED.`; contacts.forEach((c)=>{ try{ if(window.Web2App && window.Web2App.sendSMS){ window.Web2App.sendSMS(c.number.replace(/[^0-9+]/g,''), autoMsg); } }catch(e){} }); aiForceStopTracking('AUTO-SAFE after 2 hours'); },2*60*60*1000); log('log4','⏰ AUTO-SAFE armed: Will auto-stop in 2 hours'); }
-function aiForceStopTracking(reason){ if(liveUpdateTimer) clearInterval(liveUpdateTimer); aiClearSOSState(); aiResetSOSUI(); clearInterval(locTimerInt); locTimerInt=null; if(aiRetryTimer){clearInterval(aiRetryTimer); aiRetryTimer=null;} if(autoSafeTimer) clearTimeout(autoSafeTimer); if(autoSafeWarnTimer) clearTimeout(autoSafeWarnTimer); if(gpsWatchId!==null && navigator.geolocation){ navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId=null; } if(window.Web2App && window.Web2App.stopLocation){ try{window.Web2App.stopLocation();}catch(e){} } isTracking=false; gps={lat:0,lng:0,link:'',acc:0}; localStorage.removeItem('fg_ai_queue'); aiQueue=[]; aiWaDone={}; document.getElementById('liveLocCard').style.display='none'; document.getElementById('safeBox').style.display='none'; document.getElementById('autoLinks').innerHTML=''; document.getElementById('sosMsg').innerText='Tracking auto-stopped — '+reason; document.getElementById('sentTime').innerText='Auto-stopped at '+new Date().toLocaleTimeString(); document.getElementById('locStatus').innerText='GPS Off — Auto-Safe, not tracked'; document.getElementById('aiStatus').innerText='AI: Tracking OFF — Auto-Safe'; document.getElementById('safeDoneBox').style.display='block'; document.getElementById('safeTime').innerText=reason+' at '+new Date().toLocaleTimeString()+' • Location DELETED'; if(navigator.vibrate) navigator.vibrate([200,100,200]); log('log4','✅ '+reason+' — Tracking DELETED'); }
-function aiMarkSafe(){ if(autoSafeTimer) clearTimeout(autoSafeTimer); if(autoSafeWarnTimer) clearTimeout(autoSafeWarnTimer); if(!confirm('Are you SAFE now?\n\nThis will:\n✅ STOP location sharing\n✅ DELETE your live map\n✅ Tell your Circle you are SAFE\n\nNo one can track you after this.')){ return; } if(liveUpdateTimer) clearInterval(liveUpdateTimer); aiClearSOSState(); aiResetSOSUI(); clearInterval(locTimerInt); locTimerInt=null; if(aiRetryTimer){clearInterval(aiRetryTimer); aiRetryTimer=null;} if(gpsWatchId!==null && navigator.geolocation){ navigator.geolocation.clearWatch(gpsWatchId); gpsWatchId=null; } if(window.Web2App && window.Web2App.stopLocation){ try{window.Web2App.stopLocation();}catch(e){} } isTracking=false; gps={lat:0,lng:0,link:'',acc:0}; localStorage.removeItem('fg_ai_queue'); aiQueue=[]; aiWaDone={}; document.getElementById('liveLocCard').style.display='none'; document.getElementById('safeBox').style.display='none'; document.getElementById('autoLinks').innerHTML=''; document.getElementById('sosMsg').innerText='🛑 TRACKING STOPPED — Old WhatsApp links are EXPIRED. Circle was told to IGNORE old map pin.'; document.getElementById('sentTime').innerText='Stopped at '+new Date().toLocaleTimeString(); document.getElementById('mapLink').innerText='Tracking OFF — Old links expired — No new locations will be sent'; document.getElementById('locStatus').innerText='GPS Off — You are safe, not tracked'; document.getElementById('aiStatus').innerText='AI: Tracking OFF — You are safe'; document.getElementById('safeDoneBox').style.display='block'; document.getElementById('safeTime').innerText='Stopped at '+new Date().toLocaleTimeString()+' • Was sharing for '+document.getElementById('locWaitTime').innerText; let safeMsg=`🛑 STOP! I'M SAFE NOW! ✅\n\nPlease STOP coming, I am safe.\n\n⚠️ DO NOT USE THE OLD MAP LINK ANYMORE — It is EXPIRED and will still show my OLD location. That does NOT mean I am still in danger.\n\n✅ Tracking is OFF — I will NOT send any more locations.\n✅ Location DELETED from Feminist-Guard.\n\nIf you still see a red pin on Google Maps, that is the OLD message from earlier. Ignore it.\n\nThank you! From ${currentUser?currentUser.name:'User'} at ${new Date().toLocaleTimeString()}`; contacts.forEach((c)=>{ try{ if(window.Web2App && window.Web2App.sendSMS){ window.Web2App.sendSMS(c.number.replace(/[^0-9+]/g,''), safeMsg); } }catch(e){} }); let box=document.getElementById('autoLinks'); box.innerHTML='<p style="font-size:12px;font-weight:800;">✅ Tell Circle you are SAFE:</p>'; contacts.forEach((c)=>{ let num=c.number.replace(/[^0-9+]/g,''); if(num.startsWith('0')) num='27'+num.substring(1); let a=document.createElement('a'); a.href=`https://wa.me/${num}?text=${encodeURIComponent(safeMsg)}`; a.target='_blank'; a.style.cssText='display:block;background:#2d6a4f;color:white;padding:12px;border-radius:12px;text-align:center;font-weight:800;margin:6px 0;text-decoration:none;'; a.innerText='✅ Tell '+c.name+' I\'M SAFE'; box.appendChild(a); }); if(navigator.vibrate) navigator.vibrate([200,100,200,100,200]); log('log4','✅ SAFE PRESSED — Tracking DELETED, location OFF, Circle notified'); alert('✅ YOU ARE SAFE!\n\nTracking is OFF.\nLocation DELETED.\nNo one can see you now.\nYour Circle has been told you are safe.'); }
-function aiAddChat(text, who){ let box=document.getElementById('aiChatBox'); let div=document.createElement('div'); div.className=who==='me'?'msg-me':'msg-ai'; div.innerHTML=text; box.appendChild(div); box.scrollTop=box.scrollHeight; }
-function aiQuickChat(txt){ document.getElementById('aiInput').value=txt; aiChatSend(); }
-function aiChatSend(){
-  let input=document.getElementById('aiInput'); let txt=input.value.trim(); if(!txt) return;
-  aiAddChat(txt,'me'); input.value='';
-  setTimeout(()=>{
-    let low=txt.toLowerCase(); let reply='';
-    if(low.includes('sos')||low.includes('help')||low.includes('danger')||low.includes('scared')||low.includes('afraid')||low.includes('follow')){ reply=`🚨 I hear you. I am sending SOS NOW — silently.<br><br>1. Stay calm, keep phone in hand.<br>2. If you can, go to a shop / taxi rank / people.<br>3. Don't let him see your screen.<br><br>✅ AI is sending your live location to <b>${contacts.length} contacts</b> right now. Help is coming. You are not alone. 💛`; aiAddChat(reply,'ai'); setTimeout(()=>triggerSOS('AI CHAT SOS'), 500); }
-    else if(low.includes('safe')){ reply=`✅ So glad you are safe! 💛<br><br>I will stop tracking now and tell your Circle you are safe. Press I'M SAFE in SOS page to confirm.`; aiAddChat(reply,'ai'); }
-    else if(low.includes('follow')||low.includes('stalking')||low.includes('ex')){ reply=`If someone is following you:<br>• Don't go home — go to a busy place<br>• Cross the road, check if they follow<br>• Go into a shop and tell the cashier<br>• Shake 3X or Hold SOS — I will send your location<br>• Record in Vault if safe to do so<br><br>Do you want me to send SOS now? Type "Send SOS"`; aiAddChat(reply,'ai'); }
-    else if(low.includes('saps')||low.includes('police')||low.includes('10111')){ reply=`📞 SAPS: <b>10111</b><br>📞 Emergency: <b>112</b><br>📞 GBV Helpline: <b>0800 428 428</b><br><br>Tap HOME to call directly. I can also send your location to your Circle first.`; aiAddChat(reply,'ai'); }
-    else if(low.includes('hi')||low.includes('hello')||low.includes('hey')){ reply=`Hi ${currentUser?currentUser.name:'beautiful'}! 💛 I'm Guard AI — like Meta AI, but I protect you.<br><br>How are you feeling today? Are you safe? If you feel scared, just say "I'm scared" and I'll help you.`; aiAddChat(reply,'ai'); }
-    else if(low.includes('vault')||low.includes('photo')||low.includes('video')||low.includes('record')){ reply=`🔒 Vault is your private evidence locker.<br><br>• Go to VAULT tab → Enter PIN → Take Photo / Video / Record voice<br>• It saves ONLY on your phone, no one else sees it<br>• You can show it to SAPS later<br><br>Do you want to save evidence now?`; aiAddChat(reply,'ai'); }
-    else if(low.includes('pay')||low.includes('premium')||low.includes('r50')){ reply=`💳 Premium is R50/month — it unlocks unlimited SOS + Vault + AI.<br><br>Go to PAY tab → Tap PAY R50 → Pay with your bank app. It's safe and secure via PayFast.`; aiAddChat(reply,'ai'); }
-    else { reply=`I understand. 💛<br><br>I'm Guard AI — I can:<br>• Send SOS to your Circle if you say "Send SOS"<br>• Help you if you feel scared or followed<br>• Tell you SAPS numbers<br>• Help you save evidence in Vault<br><br>Are you safe right now? If not, say "I'm scared" and I'll send help silently.`; aiAddChat(reply,'ai'); }
-  }, 600);
-}
-let aiVoiceRec=null;
-function aiStartVoice(){
-  try{
-    let SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if(!SR){ document.getElementById('aiVoiceStatus').innerText='Voice: Not supported — Shake still works'; return; }
-    aiVoiceRec=new SR(); aiVoiceRec.continuous=true; aiVoiceRec.interimResults=true; aiVoiceRec.lang='en-ZA';
-    aiVoiceRec.onresult=(e)=>{ let txt=''; for(let i=e.resultIndex;i<e.results.length;i++){ txt+=e.results[i][0].transcript.toLowerCase(); } if(txt.includes('help')||txt.includes('save me')){ log('log4','🤫 AI VOICE heard HELP — SILENT SEND'); triggerSOS('AI VOICE HELP'); aiVoiceRec.stop(); setTimeout(()=>{ try{aiVoiceRec.start();}catch(e){} },10000); } };
-    aiVoiceRec.onend=()=>{ try{aiVoiceRec.start();}catch(e){} };
-    aiVoiceRec.start();
-    document.getElementById('aiVoiceStatus').innerText='Voice: LISTENING ✅ Say "HELP" — Silent send';
-    document.getElementById('aiStatus').innerText='AI: Listening — Shake / Hold / Voice — Silent';
-  }catch(e){ document.getElementById('aiVoiceStatus').innerText='Voice: Could not start — Shake still works'; }
-}
-function volPressReal(type){ volCount++; if(volCount>8) volCount=1; document.getElementById('volCount').innerText=volCount+'/8'; document.getElementById('volType').innerText= type==='UP'?'🔼 UP':'🔽 DOWN'; document.getElementById('volBar').style.width=(volCount/8*100)+'%'; document.getElementById('volState').innerText=volCount+'/8 ARMED — Last: '+type; log('log3','REAL Volume '+type+' '+volCount+'/8'); if(navigator.vibrate) navigator.vibrate(70); if(volCount===8){triggerSOS('REAL VOLUME '+type+' 8X AI');volCount=0;} }
-function triggerShake(){ document.getElementById('volCount').innerText='3/3'; document.getElementById('volType').innerText='📳 SHAKE 3X'; document.getElementById('volBar').style.width='100%'; document.getElementById('volState').innerText='3/3 TRIGGERED — AI SILENT'; document.getElementById('volBanner').innerText='✅ AI SILENT SENDING NOW'; document.getElementById('volBanner').className='green-banner'; triggerSOS('SHAKE 3X AI SILENT'); shakeCount=0; volCount=0; }
-function resetVol(){volCount=0;shakeCount=0;document.getElementById('volCount').innerText='0/8';document.getElementById('volType').innerText='';document.getElementById('volBar').style.width='0%';document.getElementById('volState').innerText='ARMED';document.getElementById('volBanner').innerText='ARMED — AI Auto Send';document.getElementById('volBanner').className='red-banner';}
-const holdBtn=document.getElementById('holdBtn');const holdBar=document.getElementById('holdBar');const holdText=document.getElementById('holdText');const holdRing=document.getElementById('holdRing');
-function startHold(e){e.preventDefault(); if(aiIsSOSActive()||isTracking){ alert('✅ ALREADY SENT!\n\nYour location was ALREADY sent. Your Circle already has you.\nDo NOT press again — Press I\'M SAFE when you are safe.'); return; } holdRing.style.display='block';holdProgress=0;holdTimer=setInterval(()=>{holdProgress+=2;holdBar.style.width=holdProgress+'%';holdText.innerText=`Holding ${Math.floor(holdProgress/33.3)}s / 3s — AI silent send`;if(holdProgress>=100){clearInterval(holdTimer);triggerSOS('HOLD 3s AI');}},60);}
-function endHold(){clearInterval(holdTimer);if(holdProgress<100){holdProgress=0;holdBar.style.width='0%'; if(!aiIsSOSActive()) holdText.innerText='Ready — AI silent send';holdRing.style.display='none';}}
-if(holdBtn){holdBtn.addEventListener('touchstart',startHold);holdBtn.addEventListener('mousedown',startHold);holdBtn.addEventListener('touchend',endHold);holdBtn.addEventListener('mouseup',endHold);holdBtn.addEventListener('mouseleave',endHold);}
-function triggerSOS(source){
-  if(aiIsSOSActive() || isTracking){ let mins = sosStartTime ? Math.floor((Date.now()-sosStartTime)/60000) : 0; alert('✅ ALREADY SENT!\n\nYour location was ALREADY sent ' + mins + ' mins ago.\nYour Circle already has you on Google Maps.\n\nDo NOT press again — Just wait for help or press I\'M SAFE when you are safe.'); aiShowSOSGreen(); return; }
-  aiShowSOSGreen(); aiStartTracking(); aiUpdateLocationCard(); aiStartWaitingTimer(); aiSaveSOSState();
-  const now=new Date().toLocaleTimeString(); document.getElementById('holdResult').style.display='block'; document.getElementById('autoSentBanner').style.display='block'; document.getElementById('sentTime').innerText=`AI SILENT Sent ${now} via ${source} — STAYS GREEN until I'M SAFE`; if(contacts.length===0){alert('Your Circle is blank! Add contacts first!');} const msg=aiBuildMessage(source); document.getElementById('sosMsg').innerText=msg; log('log4','TRIGGER '+source+' — LOCKED GREEN until I\'M SAFE'); autoSend(msg, source); if(navigator.vibrate) navigator.vibrate([200,100,200]); aiStartLiveMoving(); updateRealVisionUI();
-}
-function payReal(){ const merchant_id="37833541"; const merchant_key="vvzu6mvd6bfvg"; const payfastUrl=`https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=50.00&item_name=${encodeURIComponent('Feminist-Guard Premium')}&return_url=${encodeURIComponent(location.href.split('?')[0]+"?paid=true")}&cancel_url=${encodeURIComponent(location.href.split('?')[0]+"?cancel=true")}&email_confirmation=1&m_payment_id=FG-${Date.now()}`; window.open(payfastUrl,'_blank'); }
-function payRealTest(){ const merchant_id="37833541"; const merchant_key="vvzu6mvd6bfvg"; const payfastUrl=`https://www.payfast.co.za/eng/process?merchant_id=${merchant_id}&merchant_key=${merchant_key}&amount=1.00&item_name=${encodeURIComponent('Feminist-Guard TEST R1')}&return_url=${encodeURIComponent(location.href.split('?')[0]+"?paid=true")}&cancel_url=${encodeURIComponent(location.href.split('?')[0]+"?cancel=true")}&email_confirmation=1&m_payment_id=FG-TEST-${Date.now()}`; window.open(payfastUrl,'_blank'); }
-if(location.search.includes('paid=true')){localStorage.setItem('fg_premium','active');alert('🎉 Payment Success — Premium Active!');}
-function setupShakeFixed(){ if(window.DeviceMotionEvent){ window.addEventListener('devicemotion', e=>{ if(!e.accelerationIncludingGravity) return; let x=e.accelerationIncludingGravity.x, y=e.accelerationIncludingGravity.y, z=e.accelerationIncludingGravity.z; let delta=Math.abs(x-lastX)+Math.abs(y-lastY)+Math.abs(z-lastZ); if(delta>12){ let now=Date.now(); if(now-lastShake>600){shakeCount++; lastShake=now; document.getElementById('shakeStatus').innerText=`Shake ${shakeCount}/3`; log('log3','SHAKE '+shakeCount+'/3'); if(navigator.vibrate) navigator.vibrate(100); if(shakeCount>=3){triggerShake();}} } lastX=x; lastY=y; lastZ=z; }, {passive:false}); } }
-function setupRealVolumeHardware(){ window.onVolumeUp=()=>volPressReal('UP'); window.onVolumeDown=()=>volPressReal('DOWN'); document.addEventListener('keydown', e=>{if(e.key==='AudioVolumeUp'||e.key==='VolumeUp'||e.key==='ArrowUp'){e.preventDefault(); volPressReal('UP');} if(e.key==='AudioVolumeDown'||e.key==='VolumeDown'||e.key==='ArrowDown'){e.preventDefault(); volPressReal('DOWN');}}); }
-async function keepAliveScreenOff(){try{if('wakeLock' in navigator){await navigator.wakeLock.request('screen');}}catch(e){} if(window.Web2App && window.Web2App.keepAlive){window.Web2App.keepAlive(true);}}
-showPage = function(name, el){
-  if(name==='vault' && !vaultUnlocked){ showPageOriginal(name, el); vaultOpen(); return; }
-  if(name!=='vault' && vaultUnlocked){ setTimeout(()=>{ vaultUnlocked=false; vaultInFakeMode=false; }, 2000); }
-  showPageOriginal(name, el);
-};
-setupRealVolumeHardware(); setupShakeFixed(); keepAliveScreenOff();
-renderContacts(); vaultRender(); vaultUpdatePinStatus(); checkAuth(); updateRealVisionUI();
-setTimeout(()=>{ aiRestoreSOSOnLoad(); updateRealVisionUI(); }, 1000);
-</script></body></html>
+</script>
+</body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </html>
