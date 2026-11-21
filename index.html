@@ -463,32 +463,40 @@ let wrapTimer=setInterval(function(){
 }, 200);
 
 // 6. ADMIN LIVE SOS ALERTS BOX - Inject into Admin page, no design change elsewhere
+// 6. ADMIN LIVE SOS ALERTS BOX - FORCED TO TOP OF ADMIN PAGE
 function injectAdminSos(){
-  let list=document.getElementById('adminUserList');
-  if(!list) return;
   if(document.getElementById('adminSosAlerts')) return;
-  let div=document.createElement('div');
-  div.innerHTML='<div style="background:#3a1a1a;border:2px solid #ff7a7a;border-radius:14px;padding:14px;margin-bottom:12px;"><b style="color:#ff9a9a;font-size:14px;">🚨 LIVE SOS ALERTS - SILENT CLOUD</b><div id="adminSosAlerts" style="font-size:12px;line-height:1.7;margin-top:8px;">Loading...</div><button class="btn-dark" onclick="adminLoadSos()">🔄 Refresh SOS Alerts</button></div>';
-  list.parentNode.insertBefore(div, list);
+  let page = document.getElementById('page-admin') || document.querySelector('[id*="admin"]');
+  if(!page) return;
+  let div = document.createElement('div');
+  div.innerHTML = '<div style="background:#3a1a1a;border:2px solid #ff7a7a;border-radius:14px;padding:14px;margin:12px;"><b style="color:#ff9a9a;font-size:14px;">🚨 LIVE SOS ALERTS - SILENT CLOUD</b><div id="adminSosAlerts" style="font-size:12px;line-height:1.7;margin-top:8px;">Loading... Tap Refresh</div><button class="btn-dark" onclick="adminLoadSos()">🔄 Refresh SOS Alerts</button><button class="btn-dark" onclick="testCloudSos()">🧪 Test Cloud</button></div>';
+  page.prepend(div);
 }
+window.testCloudSos = async function(){
+  try{
+    if(!window.FG_DB){ alert('Cloud not ready - FG_DB missing'); return; }
+    await window.FG_ADD(window.FG_COL(window.FG_DB,"sos_alerts"),{name:'TEST - Admin Check', phone:'0672739660', status:'ACTIVE - NEED HELP', time:new Date().toISOString(), timeText:new Date().toLocaleString(), source:'TEST BUTTON', battery:100, area:'Soshanguve', link:'https://maps.google.com/?q=-25.544,28.095'});
+    alert('Test SOS written to Cloud! Now tap Refresh.');
+    window.adminLoadSos();
+  }catch(e){ alert('Test failed: '+e.message); }
+};
 window.adminLoadSos=async function(){
   try{
     let el=document.getElementById('adminSosAlerts'); if(!el) return;
-    if(!window.FG_DB){ el.innerText='Cloud not ready'; return; }
+    if(!window.FG_DB){ el.innerText='Cloud not ready - FG_DB missing.'; return; }
     let snap=await window.FG_GET(window.FG_COL(window.FG_DB,"sos_alerts"));
     let arr=[]; snap.forEach(d=>arr.push(d.data()));
     arr=arr.sort((a,b)=>(b.time||'').localeCompare(a.time||'')).slice(0,10);
-    if(arr.length===0){ el.innerHTML='No SOS yet - All safe ✅'; return; }
+    if(arr.length===0){ el.innerHTML='No SOS in Cloud yet - All safe ✅<br><small>WhatsApp SOS still works! If you got WhatsApp SOS but nothing here, SHAKE SOS is not writing to Cloud yet.</small>'; return; }
     el.innerHTML=arr.map(s=>{
       let isSafe=(s.status||'').includes('SAFE');
       return '<div style="border:1px solid '+(isSafe?'#7aff9a':'#ff7a7a')+';border-radius:10px;padding:10px;margin:8px 0;background:#0f0f2a;"><b>'+(s.name||'Unknown')+' - '+(s.phone||'')+'</b><br><b style="color:'+(isSafe?'#7aff9a':'#ff7a7a')+';">'+(s.status||'')+'</b><br><small>'+(s.timeText||'')+' - '+(s.source||'')+' - Battery '+(s.battery||'')+'%</small><br><small>'+(s.area||'')+' '+(s.address||'')+'</small><br><a href="'+(s.link||'')+'" target="_blank" style="color:#7aff9a;font-weight:800;">📍 OPEN MAP - GO TO HER →</a></div>';
     }).join('');
   }catch(e){ let el=document.getElementById('adminSosAlerts'); if(el) el.innerText='Error: '+e.message; }
 };
-setInterval(function(){ injectAdminSos(); if(document.getElementById('page-admin') && document.getElementById('page-admin').classList.contains('active')) window.adminLoadSos(); }, 5000);
+setInterval(function(){ injectAdminSos(); }, 2000);
 setTimeout(injectAdminSos, 1000);
 })();
 </script>
 <!-- ===== END ALL FIXES ===== -->
-<script>
 </body></html>
