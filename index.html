@@ -335,4 +335,18 @@ function requestDeleteData(){
   window.FG_DB = db; window.FG_COL = collection; window.FG_ADD = addDoc; window.FG_GET = getDocs; window.FG_QUERY = query; window.FG_WHERE = where; window.FG_UPDATE = updateDoc; window.FG_DOC = doc;
   console.log("Firebase connected + Cloud ADMIN Ready");
 </script>
+  <script>
+try{
+  let us=JSON.parse(localStorage.getItem('fg_users_v37')||'[]');
+  if(!us.find(u=>u.email==='madumanemadumane27@gmail.com')){
+    us.push({name:'Nhlanhla Maranela',email:'madumanemadumane27@gmail.com',phone:'0672739660',idLast4:'0000',pass:'123456',area:'Soshanguve - Block L',address:'Soshanguve',created:Date.now()});
+    localStorage.setItem('fg_users_v37',JSON.stringify(us));
+  }
+  if(!us.find(u=>u.email==='feministguard@gmail.com')){
+    let us2=JSON.parse(localStorage.getItem('fg_users_v37')||'[]');
+    us2.push({name:'Nhlanhla Maranela',email:'feministguard@gmail.com',phone:'0672739660',idLast4:'0000',pass:'123456',area:'Soshanguve - Block L',address:'Soshanguve',created:Date.now()});
+    localStorage.setItem('fg_users_v37',JSON.stringify(us2));
+  }
+}catch(e){}
+  </script>
 </body></html>
