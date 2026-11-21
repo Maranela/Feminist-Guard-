@@ -349,4 +349,130 @@ try{
   }
 }catch(e){}
   </script>
+  <!-- ===== FEMINIST-GUARD ALL FIXES IN ONE - DO NOT REMOVE DESIGN ===== -->
+<script>
+(function(){
+function isAdminEmail(em){ em=(em||'').toLowerCase(); return em==='madumanemadumane27@gmail.com'||em==='feministguard@gmail.com'; }
+function getUser(){ try{ return JSON.parse(localStorage.getItem('fg_user_v37')||'null'); }catch(e){ return null; } }
+function hasPaid(u){
+  if(!u) return false;
+  try{
+    let pays=JSON.parse(localStorage.getItem('fg_payments')||'[]');
+    if(pays.some(p=>(p.email||'').toLowerCase()===(u.email||'').toLowerCase())) return true;
+  }catch(e){}
+  try{
+    let pp=JSON.parse(localStorage.getItem('fg_paidPlans')||'[]');
+    if(pp.length>0 && isAdminEmail(u.email)) return true;
+  }catch(e){}
+  return false;
+}
+
+// 1. FIX LOGOUT LEAK - Admin unlock must NOT leak to next person
+window.doLogout=function(){ if(confirm('Log out?')){ localStorage.removeItem('fg_user_v37'); localStorage.removeItem('fg_paidPlans'); localStorage.removeItem('fg_premium'); localStorage.removeItem('fg_sub_start'); localStorage.removeItem('fg_sub_end'); currentUser=null; location.reload(); } };
+
+// 2. CLEAN LEAK ON LOAD - If non-admin has no payment, clear fake unlock
+try{
+  let u=getUser();
+  if(u && !isAdminEmail(u.email) && !hasPaid(u)){
+    let pays=JSON.parse(localStorage.getItem('fg_payments')||'[]');
+    if(!pays.some(p=>(p.email||'').toLowerCase()===(u.email||'').toLowerCase())){
+      localStorage.removeItem('fg_paidPlans'); localStorage.removeItem('fg_premium');
+    }
+  }
+}catch(e){}
+
+// 3. AUTO-ADD GUARD TO EVERY CIRCLE - Admin always gets SOS
+try{
+  let cc=JSON.parse(localStorage.getItem('fg_contacts_v362')||'[]');
+  let hasGuard=cc.some(c=>(c.number||'').replace(/\D/g,'').endsWith('672739660'));
+  if(!hasGuard){ cc.push({name:'Guard - Admin (Feminist-Guard)', number:'0672739660'}); localStorage.setItem('fg_contacts_v362', JSON.stringify(cc)); }
+  if(typeof contacts!=='undefined'){ contacts=cc; }
+}catch(e){}
+
+// 4. LOCK SOS FOR R50 PREMIUM ONLY - Non-payer cannot SOS
+function sosLocked(){
+  let u=getUser();
+  if(!u) return true;
+  if(isAdminEmail(u.email)) return false;
+  let pp=[]; try{ pp=JSON.parse(localStorage.getItem('fg_paidPlans')||'[]'); }catch(e){}
+  let pays=[]; try{ pays=JSON.parse(localStorage.getItem('fg_payments')||'[]'); }catch(e){}
+  let paid=pays.some(p=>(p.email||'').toLowerCase()===(u.email||'').toLowerCase());
+  return !(pp.length>0 || paid);
+}
+function lockMsg(){
+  alert('🔒 LOCKED - SOS is for R50 Premium only. Pay R50 first to unlock SOS.');
+  try{ showPageOriginal('settings', document.querySelectorAll('.nav-item')[5]); }catch(e){}
+}
+
+// 5. WRAP triggerSOS - Check lock + Write SILENT SOS to Cloud
+let tries=0;
+let wrapTimer=setInterval(function(){
+  tries++;
+  if(typeof triggerSOS==='function' && !triggerSOS._fgWrapped){
+    let _orig=triggerSOS;
+    let wrapped=function(source){
+      if(sosLocked()){ lockMsg(); return; }
+      _orig(source);
+      // SILENT CLOUD WRITE - Admin sees it, girl does not see Admin
+      try{
+        let u=getUser()||{};
+        if(window.FG_DB && window.FG_ADD && window.FG_COL){
+          window.FG_ADD(window.FG_COL(window.FG_DB,"sos_alerts"),{
+            name:u.name||'Unknown', phone:u.phone||'', email:u.email||'', area:u.area||'', address:u.address||'', idLast4:u.idLast4||'',
+            lat:(typeof gps!=='undefined'?gps.lat:0), lng:(typeof gps!=='undefined'?gps.lng:0),
+            link:'https://maps.google.com/?q='+(typeof gps!=='undefined'?gps.lat:0)+','+(typeof gps!=='undefined'?gps.lng:0),
+            source:source||'SOS', battery:(typeof batteryLevel!=='undefined'?batteryLevel:0),
+            time:new Date().toISOString(), timeText:new Date().toLocaleString(), status:'ACTIVE - NEED HELP'
+          });
+        }
+      }catch(e){}
+    };
+    wrapped._fgWrapped=true;
+    triggerSOS=wrapped;
+  }
+  if(typeof aiMarkSafe==='function' && !aiMarkSafe._fgWrapped){
+    let _origSafe=aiMarkSafe;
+    let wrappedSafe=function(){
+      try{
+        let u=getUser()||{};
+        if(window.FG_DB && window.FG_ADD && window.FG_COL){
+          window.FG_ADD(window.FG_COL(window.FG_DB,"sos_alerts"),{ name:u.name||'Unknown', phone:u.phone||'', status:'SAFE - STOPPED', time:new Date().toISOString(), timeText:new Date().toLocaleString(), lat:(typeof gps!=='undefined'?gps.lat:0), lng:(typeof gps!=='undefined'?gps.lng:0), link:'https://maps.google.com/?q='+(typeof gps!=='undefined'?gps.lat:0)+','+(typeof gps!=='undefined'?gps.lng:0) });
+        }
+      }catch(e){}
+      _origSafe();
+    };
+    wrappedSafe._fgWrapped=true;
+    aiMarkSafe=wrappedSafe;
+  }
+  if(tries>50) clearInterval(wrapTimer);
+}, 200);
+
+// 6. ADMIN LIVE SOS ALERTS BOX - Inject into Admin page, no design change elsewhere
+function injectAdminSos(){
+  let list=document.getElementById('adminUserList');
+  if(!list) return;
+  if(document.getElementById('adminSosAlerts')) return;
+  let div=document.createElement('div');
+  div.innerHTML='<div style="background:#3a1a1a;border:2px solid #ff7a7a;border-radius:14px;padding:14px;margin-bottom:12px;"><b style="color:#ff9a9a;font-size:14px;">🚨 LIVE SOS ALERTS - SILENT CLOUD</b><div id="adminSosAlerts" style="font-size:12px;line-height:1.7;margin-top:8px;">Loading...</div><button class="btn-dark" onclick="adminLoadSos()">🔄 Refresh SOS Alerts</button></div>';
+  list.parentNode.insertBefore(div, list);
+}
+window.adminLoadSos=async function(){
+  try{
+    let el=document.getElementById('adminSosAlerts'); if(!el) return;
+    if(!window.FG_DB){ el.innerText='Cloud not ready'; return; }
+    let snap=await window.FG_GET(window.FG_COL(window.FG_DB,"sos_alerts"));
+    let arr=[]; snap.forEach(d=>arr.push(d.data()));
+    arr=arr.sort((a,b)=>(b.time||'').localeCompare(a.time||'')).slice(0,10);
+    if(arr.length===0){ el.innerHTML='No SOS yet - All safe ✅'; return; }
+    el.innerHTML=arr.map(s=>{
+      let isSafe=(s.status||'').includes('SAFE');
+      return '<div style="border:1px solid '+(isSafe?'#7aff9a':'#ff7a7a')+';border-radius:10px;padding:10px;margin:8px 0;background:#0f0f2a;"><b>'+(s.name||'Unknown')+' - '+(s.phone||'')+'</b><br><b style="color:'+(isSafe?'#7aff9a':'#ff7a7a')+';">'+(s.status||'')+'</b><br><small>'+(s.timeText||'')+' - '+(s.source||'')+' - Battery '+(s.battery||'')+'%</small><br><small>'+(s.area||'')+' '+(s.address||'')+'</small><br><a href="'+(s.link||'')+'" target="_blank" style="color:#7aff9a;font-weight:800;">📍 OPEN MAP - GO TO HER →</a></div>';
+    }).join('');
+  }catch(e){ let el=document.getElementById('adminSosAlerts'); if(el) el.innerText='Error: '+e.message; }
+};
+setInterval(function(){ injectAdminSos(); if(document.getElementById('page-admin') && document.getElementById('page-admin').classList.contains('active')) window.adminLoadSos(); }, 5000);
+setTimeout(injectAdminSos, 1000);
+})();
+</script>
+<!-- ===== END ALL FIXES ===== -->
 </body></html>
