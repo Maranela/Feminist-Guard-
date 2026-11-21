@@ -587,4 +587,60 @@ setTimeout(injectAdminSos, 1000);
 })();
 </script>
 <!-- ===== END KILL OLD LOCK ===== -->
+<script>
+// ===== FORCE HOME IN PREVIEW - Kill APP LOCKED Card =====
+(function(){
+  function killAppLocked(){
+    // 1. Find and hide the APP LOCKED card
+    document.querySelectorAll('div, section').forEach(function(d){
+      if(d.innerText && d.innerText.includes('APP LOCKED - Pay To Unlock Inside')){
+        d.style.display = 'none';
+        console.log('Killed APP LOCKED card');
+      }
+      if(d.innerText && d.innerText.includes('You are registered, but you cannot see HOME')){
+        d.style.display = 'none';
+      }
+    });
+
+    // 2. Force HOME page to show - hide Settings, show Home
+    let home = document.getElementById('homePage') || document.getElementById('page-home') || document.querySelector('[data-page="home"]');
+    let settings = document.getElementById('settingsPage') || document.getElementById('page-settings');
+    if(home){
+      home.style.display = 'block';
+      home.style.visibility = 'visible';
+      home.style.opacity = '1';
+    }
+    // Don't hide settings completely, just don't force it open
+    // 3. Enable bottom nav - remove disabled
+    document.querySelectorAll('button, a').forEach(function(b){
+      if(b.innerText && ['HOME','SOS','CIRCLE','VAULT','AI','PAY'].includes(b.innerText.trim())){
+        b.style.pointerEvents = 'auto';
+        b.style.opacity = '1';
+        b.disabled = false;
+      }
+    });
+  }
+  setInterval(killAppLocked, 800);
+  killAppLocked();
+
+  // 4. Stop old code that auto-sends to Settings when NOT ACTIVE
+  setTimeout(function(){
+    if(window.showPage){
+      let _origShow = window.showPage;
+      window.showPage = function(page){
+        // In Preview, if old code tries to force 'settings' because locked, go to 'home' instead
+        if(page === 'settings' || page === 'paywall'){
+          // Check if we are in preview - if user is unpaid, show home, not settings lock
+          try{
+            let u = JSON.parse(localStorage.getItem('fg_currentUser')||'{}');
+            if(!u.isPaid && !u.active) page = 'home';
+          }catch(e){ page = 'home'; }
+        }
+        return _origShow(page);
+      };
+    }
+  }, 500);
+})();
+</script>
+<!-- ===== END FORCE HOME PREVIEW ===== -->
 </body></html>
