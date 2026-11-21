@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>y
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FEMINIST-GUARD — Safety App</title>
 <link rel="manifest" href="manifest.json">
@@ -399,7 +399,22 @@ function sosLocked(){
   let paid=pays.some(p=>(p.email||'').toLowerCase()===(u.email||'').toLowerCase());
   return !(pp.length>0 || paid);
 }
-function lockMsg(){
+// 4b. PREVIEW - Hide NOT ACTIVE wall, show HOME for viewing only
+setTimeout(function(){
+  let check = setInterval(function(){
+    let all = document.body.innerText || '';
+    if(all.includes('NOT ACTIVE')){
+      document.querySelectorAll('div').forEach(function(d){
+        if(d.innerText && d.innerText.includes('NOT ACTIVE') && d.innerText.includes('PAY R50')){
+          d.style.display = 'none';
+        }
+      });
+      try{ if(typeof showPage === 'function') showPage('home'); }catch(e){}
+      clearInterval(check);
+    }
+  }, 500);
+  setTimeout(function(){ clearInterval(check); }, 5000);
+}, 1000);
   alert('🔒 LOCKED - SOS is for R50 Premium only. Pay R50 first to unlock SOS.');
   try{ showPageOriginal('settings', document.querySelectorAll('.nav-item')[5]); }catch(e){}
 }
