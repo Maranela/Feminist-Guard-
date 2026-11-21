@@ -475,4 +475,68 @@ setTimeout(injectAdminSos, 1000);
 })();
 </script>
 <!-- ===== END ALL FIXES ===== -->
+<script>
+// ===== FREE PREVIEW MODE - See App, Lock Actions =====
+(function(){
+  // 1. Remove the NOT ACTIVE wall - let her inside
+  function removeWall(){
+    let all = document.querySelectorAll('*');
+    all.forEach(function(el){
+      if(el.textContent && el.textContent.includes('NOT ACTIVE') && el.textContent.includes('PAY R50')){
+        // Find the big blocking card and hide it, don't delete login
+        let card = el.closest('div');
+        if(card && card.offsetHeight > 300){
+          card.style.display = 'none';
+        }
+      }
+    });
+    // Also hide any full-screen block with NOT ACTIVE
+    document.querySelectorAll('div').forEach(function(d){
+      if(d.innerText && d.innerText.trim().startsWith('NOT ACTIVE') && d.offsetHeight > 400){
+        d.style.display = 'none';
+      }
+    });
+  }
+  setInterval(removeWall, 1000);
+  removeWall();
+
+  // 2. Show PREVIEW banner at top so she knows she is in Preview
+  function showBanner(){
+    if(document.getElementById('previewBanner')) return;
+    if(document.body && !document.body.innerText.includes('PREVIEW MODE')){
+      let b = document.createElement('div');
+      b.id = 'previewBanner';
+      b.innerHTML = "👀 FREE PREVIEW MODE - You are looking inside. Tap any 🔒 to unlock full protection. <a href='#pay' style='color:#FFD700;font-weight:bold'>SEE PLANS - R50 / R100 / R250 →</a>";
+      b.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:99999;background:#7C3AED;color:white;text-align:center;padding:10px;font-size:13px;font-weight:bold;";
+      document.body.prepend(b);
+    }
+  }
+  setInterval(showBanner, 1500);
+
+  // 3. Lock SOS in Preview - She can SEE it, but can't USE it
+  document.addEventListener('click', function(e){
+    let t = e.target.closest('button');
+    if(!t) return;
+    let txt = (t.innerText||'').toUpperCase();
+    // If user is NOT ACTIVE, block real SOS
+    let isActive = false;
+    try{
+      let u = JSON.parse(localStorage.getItem('fg_currentUser')||localStorage.getItem('fg_user')||'{}');
+      isActive = u.isPaid || u.active || u.premium;
+      // Also check payments list
+      let pays = JSON.parse(localStorage.getItem('fg_payments')||'[]');
+      if(pays.length>0) isActive = true;
+    }catch(e){}
+    if(!isActive && (txt.includes('SOS') || txt.includes('VAULT') || txt.includes('GUARD'))){
+      e.stopPropagation();
+      e.preventDefault();
+      alert("🔒 LOCKED - PREVIEW MODE\n\nYou can SEE the app, but to USE SOS / Vault / Guard you need Premium.\n\n💛 R50 - 31 Days\n👑 R100 - Queen / Month\n🏠 R250 - Family / Month\n\nGo to PAY to choose the plan that fits you.");
+      // Scroll to Pay section if exists
+      let pay = document.querySelector('[id*=\"pay\"], [id*=\"Pay\"]');
+      if(pay) pay.scrollIntoView({behavior:'smooth'});
+    }
+  }, true);
+})();
+</script>
+<!-- ===== END FREE PREVIEW ===== -->
 </body></html>
